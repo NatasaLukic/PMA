@@ -9,7 +9,7 @@ import android.widget.TextView;
 
 import com.example.findacar.R;
 import com.example.findacar.model.CarService;
-import com.example.findacar.tools.MokapServices;
+import com.example.findacar.mockupData.CarServices;
 
 public class CarServicesAdapter extends BaseAdapter {
 
@@ -21,12 +21,12 @@ public class CarServicesAdapter extends BaseAdapter {
 
     @Override
     public int getCount() {
-        return MokapServices.getCarServices().size();
+        return CarServices.getCarServices().size();
     }
 
     @Override
     public Object getItem(int position) {
-        return MokapServices.getCarServices().get(position);
+        return CarServices.getCarServices().get(position);
     }
 
     @Override
@@ -37,17 +37,17 @@ public class CarServicesAdapter extends BaseAdapter {
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
         View vi = convertView;
-        CarService service = MokapServices.getCarServices().get(position);
+        CarService service = CarServices.getCarServices().get(position);
 
         if(convertView==null)
             vi = activity.getLayoutInflater().inflate(R.layout.carservices_list, null);
 
         TextView name = (TextView)vi.findViewById(R.id.name);
-        TextView description = (TextView)vi.findViewById(R.id.description);
+        TextView address = (TextView)vi.findViewById(R.id.address);
         ImageView image = (ImageView)vi.findViewById(R.id.item_icon);
 
         name.setText(service.getName());
-        description.setText(service.getAddress());
+        address.setText(service.getAddress());
 
         if (service.getAvatar() != -1){
             image.setImageResource(service.getAvatar());

@@ -14,7 +14,7 @@ public class SearchResultsActivity extends AppCompatActivity {
     private TabLayout tabLayout;
     private ViewPager viewPager;
     private TabItem tab1, tab2;
-    public TabAdapter pagerAdapter;
+    public TabAdapter tabAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,8 +27,8 @@ public class SearchResultsActivity extends AppCompatActivity {
         tab2 = (TabItem) findViewById(R.id.map);
 
         viewPager = (ViewPager) findViewById(R.id.viewPager);
-        pagerAdapter = new TabAdapter(getSupportFragmentManager(), tabLayout.getTabCount());
-        viewPager.setAdapter(pagerAdapter);
+        tabAdapter = new TabAdapter(getSupportFragmentManager(), tabLayout.getTabCount());
+        viewPager.setAdapter(tabAdapter);
 
         tabLayout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
             @Override
@@ -36,9 +36,9 @@ public class SearchResultsActivity extends AppCompatActivity {
                 viewPager.setCurrentItem(tab.getPosition());
 
                 if (tab.getPosition() == 0){
-                    pagerAdapter.notifyDataSetChanged();
+                    tabAdapter.notifyDataSetChanged();
                 } else if (tab.getPosition() == 1) {
-                    pagerAdapter.notifyDataSetChanged();
+                    tabAdapter.notifyDataSetChanged();
                 }
             }
 

@@ -1,4 +1,4 @@
-package com.example.findacar.tools;
+package com.example.findacar.mockupData;
 
 import com.example.findacar.R;
 import com.example.findacar.model.CarService;
@@ -6,7 +6,7 @@ import com.example.findacar.model.CarService;
 import java.util.ArrayList;
 import java.util.List;
 
-public class MokapServices {
+public class CarServices {
 
     public static List<CarService> getCarServices(){
 
