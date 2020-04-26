@@ -9,6 +9,7 @@
     <string name="invalid_username">Not a valid username</string>
     <string name="invalid_password">Password must be >5 characters</string>
     <string name="login_failed">"Login failed"</string>
+<<<<<<< HEAD
     <string name="profile_title">Profile</string>
     <string name="Name">Name</string>
     <string name="surname">Surname</string>
@@ -25,4 +26,12 @@
 
     <string name="hello_first_fragment">Hello first fragment</string>
     <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
+=======
+    <string name="title_activity_search_results">SearchResults</string>
+    <string name="tab_text_1">Tab 1</string>
+    <string name="tab_text_2">Tab 2</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+>>>>>>> fd4fc59699e53f1e1454ccb9965d4059a8c7e001
 </resources>
