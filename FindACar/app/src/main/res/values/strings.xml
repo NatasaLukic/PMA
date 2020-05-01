@@ -28,6 +28,15 @@
     <string name="hello_first_fragment">Hello first fragment</string>
     <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
 
+
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+
+    <string name="edit">Edit</string>
+    <string name="btnOk">Ok</string>
+    <string name="btnCancel">Cancel</string>
+    <string name="oldPassword">Enter old password</string>
+    <string name="newPassword">Enter new password</string>
+    <string name="confirmPassword">Confirm new password</string>
+
 </resources>
