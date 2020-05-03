@@ -1,6 +1,5 @@
 package com.example.findacar.fragments;
 
-import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.annotation.Nullable;
@@ -11,20 +10,20 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ListView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.findacar.R;
-import com.example.findacar.activites.CarServiceDetailsActivity;
 import com.example.findacar.adapters.CarServicesAdapter;
-import com.example.findacar.mockupData.CarServices;
-import com.example.findacar.model.CarService;
+import com.example.findacar.adapters.VehiclesAdapter;
+import com.example.findacar.mockupData.Vehicles;
 
 /**
  * A simple {@link Fragment} subclass.
  */
-public class ListResults extends ListFragment {
+public class VehicleList extends ListFragment {
 
-    public ListResults() {
+    public VehicleList() {
         // Required empty public constructor
     }
 
@@ -33,19 +32,9 @@ public class ListResults extends ListFragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_list_results, container, false);
-    }
+        View vi = inflater.inflate(R.layout.fragment_vehicle_list, container, false);
 
-    @Override
-    public void onListItemClick(ListView l, View v, int position, long id) {
-        super.onListItemClick(l, v, position, id);
-
-        CarService s = CarServices.getCarServices().get(position);
-
-        Intent intent = new Intent(getActivity(), CarServiceDetailsActivity.class);
-        intent.putExtra("service", s.getName());
-        startActivity(intent);
-
+        return vi;
     }
 
     @Override
@@ -53,7 +42,7 @@ public class ListResults extends ListFragment {
         super.onActivityCreated(savedInstanceState);
         Toast.makeText(getActivity(), "onActivityFragmentCreated()", Toast.LENGTH_SHORT).show();
 
-        CarServicesAdapter adapter = new CarServicesAdapter(getActivity());
+        VehiclesAdapter adapter = new VehiclesAdapter(getActivity());
         setListAdapter(adapter);
     }
 }

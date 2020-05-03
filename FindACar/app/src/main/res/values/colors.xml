@@ -3,6 +3,11 @@
     <color name="colorPrimary">#55a4f9</color>
     <color name="colorPrimaryDark">#3700B3</color>
     <color name="colorAccent">#03DAC5</color>
+<<<<<<< HEAD
     <color name="colorRed">#f44545</color>
     <color name="colorPurple">#51489a</color>
+=======
+    <color name="colorLightGray">#efefef</color>
+    <color name="whiteTransp">#B3FFFFFF</color>
+>>>>>>> eaf6aca3bde213975f0998f37364b6e588427252
 </resources>
