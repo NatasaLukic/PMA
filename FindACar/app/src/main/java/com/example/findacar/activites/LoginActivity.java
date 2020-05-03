@@ -43,8 +43,5 @@ public class LoginActivity extends AppCompatActivity {
 
     }
 
-    public void navigateToUserProfile(View view) {
-        Intent intent = new Intent(this, UserProfileActivity.class);
-        startActivity(intent);
-    }
+
 }

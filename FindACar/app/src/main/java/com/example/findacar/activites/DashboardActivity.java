@@ -6,7 +6,9 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 
 import com.example.findacar.R;
 
@@ -35,5 +37,10 @@ public class DashboardActivity extends AppCompatActivity {
         } else {
             super.onBackPressed();
         }
+    }
+
+    public void navigateToUserProfile(View view) {
+        Intent intent = new Intent(this, UserProfileActivity.class);
+        startActivity(intent);
     }
 }
