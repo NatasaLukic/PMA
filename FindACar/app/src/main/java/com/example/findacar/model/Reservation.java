@@ -16,4 +16,24 @@ public class Reservation {
         this.returnDate = returnDate;
         this.price = price;
     }
+
+    public User getUser() {
+        return user;
+    }
+
+    public Vehicle getVehicle() {
+        return vehicle;
+    }
+
+    public Date getPickUpDate() {
+        return pickUpDate;
+    }
+
+    public Date getReturnDate() {
+        return returnDate;
+    }
+
+    public double getPrice() {
+        return price;
+    }
 }

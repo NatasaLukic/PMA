@@ -6,8 +6,8 @@ import androidx.viewpager.widget.ViewPager;
 import android.os.Bundle;
 
 import com.example.findacar.R;
-import com.example.findacar.adapters.ReservationTabAdapter;
-import com.example.findacar.fragments.ReservationFragment;
+import com.example.findacar.adapters.CurrentReservationAdapter;
+import com.example.findacar.adapters.ResTabAdapter;
 import com.google.android.material.tabs.TabItem;
 import com.google.android.material.tabs.TabLayout;
 
@@ -16,7 +16,7 @@ public class ReservationsActivity extends AppCompatActivity {
     private TabLayout tabLayout;
     private ViewPager viewPager;
     private TabItem currentRes, previousRes;
-    public ReservationTabAdapter tabAdapter;
+    public ResTabAdapter tabAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,11 +27,8 @@ public class ReservationsActivity extends AppCompatActivity {
         currentRes = (TabItem) findViewById(R.id.currentResTabId);
         previousRes = (TabItem) findViewById(R.id.prevResTabId);
 
-        viewPager = (ViewPager) findViewById(R.id.viewPager);
-        tabAdapter = new ReservationTabAdapter(getSupportFragmentManager(), tabLayout.getTabCount());
-        tabAdapter.addFragment(new ReservationFragment(), "Current");
-        tabAdapter.addFragment(new ReservationFragment(), "Previous");
-
+        viewPager = (ViewPager) findViewById(R.id.viewPagerRes);
+        tabAdapter = new ResTabAdapter(getSupportFragmentManager(), tabLayout.getTabCount());
         viewPager.setAdapter(tabAdapter);
 
         tabLayout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {

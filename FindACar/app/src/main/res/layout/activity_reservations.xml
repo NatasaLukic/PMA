@@ -6,6 +6,18 @@
     android:layout_height="match_parent"
     tools:context=".activites.ReservationsActivity">
 
+    <View
+        android:id="@+id/line"
+        android:layout_width="320dp"
+        android:layout_height="1dp"
+        android:layout_below="@+id/name"
+        android:layout_centerInParent="true"
+        android:background="#c0c0c0"
+        app:layout_constraintBottom_toTopOf="@+id/resTabId"
+        app:layout_constraintEnd_toStartOf="@+id/guideline19"
+        app:layout_constraintStart_toStartOf="@+id/guideline10"
+        app:layout_constraintTop_toTopOf="@+id/guideline2" />
+
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline2"
         android:layout_width="wrap_content"
@@ -85,6 +97,7 @@
         app:layout_constraintGuide_percent="0.18" />
 
     <androidx.viewpager.widget.ViewPager
+        android:id="@+id/viewPagerRes"
         android:layout_width="0dp"
         android:layout_height="0dp"
         app:layout_constraintBottom_toBottomOf="parent"

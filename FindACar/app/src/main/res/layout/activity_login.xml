@@ -68,9 +68,9 @@
             <Button
                 android:layout_width="270dp"
                 android:layout_height="40dp"
+                android:layout_gravity="center"
                 android:layout_marginTop="10dp"
                 android:background="@drawable/button_background"
-                android:layout_gravity="center"
                 android:text="GO"
                 android:textColor="#fff" />
 

@@ -6,6 +6,18 @@
     android:layout_height="match_parent"
     tools:context=".activites.UserProfileActivity">
 
+    <View
+        android:id="@+id/line4"
+        android:layout_width="320dp"
+        android:layout_height="1dp"
+        android:layout_below="@+id/name"
+        android:layout_centerInParent="true"
+        android:background="#c0c0c0"
+        app:layout_constraintEnd_toStartOf="@+id/guideline9"
+        app:layout_constraintHorizontal_bias="0.941"
+        app:layout_constraintStart_toStartOf="@+id/guideline"
+        app:layout_constraintTop_toTopOf="@+id/guideline18" />
+
     <ImageButton
         android:id="@+id/btnEditSurname"
         android:layout_width="35dp"
@@ -17,7 +29,8 @@
         app:layout_constraintStart_toEndOf="@+id/barrier"
         app:layout_constraintTop_toTopOf="@+id/textView7"
         app:layout_constraintVertical_bias="0.541"
-        app:srcCompat="@android:drawable/ic_menu_edit" />
+        app:srcCompat="@android:drawable/ic_menu_edit"
+        android:layout_marginLeft="16dp" />
 
     <ImageButton
         android:id="@+id/btnEditEmail"
@@ -30,7 +43,8 @@
         app:layout_constraintStart_toEndOf="@+id/barrier"
         app:layout_constraintTop_toTopOf="@+id/textView9"
         app:layout_constraintVertical_bias="0.583"
-        app:srcCompat="@android:drawable/ic_menu_edit" />
+        app:srcCompat="@android:drawable/ic_menu_edit"
+        android:layout_marginLeft="16dp" />
 
     <TextView
         android:id="@+id/textView"
@@ -38,11 +52,14 @@
         android:layout_height="0dp"
         android:layout_marginStart="16dp"
         android:layout_marginEnd="32dp"
+        android:gravity="center"
         android:text="@string/profile_title"
         app:layout_constraintBottom_toTopOf="@+id/guideline18"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="@+id/guideline"
-        app:layout_constraintTop_toTopOf="@+id/guideline17" />
+        app:layout_constraintTop_toTopOf="@+id/guideline17"
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="32dp" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline"
@@ -71,7 +88,8 @@
         app:layout_constraintStart_toEndOf="@+id/textViewName"
         app:layout_constraintTop_toTopOf="@+id/textViewName"
         app:layout_constraintVertical_bias="0.0"
-        tools:text="Pera" />
+        tools:text="Pera"
+        android:layout_marginLeft="43dp" />
 
     <ImageButton
         android:id="@+id/btnEditName"
@@ -83,7 +101,8 @@
         app:layout_constraintEnd_toStartOf="@+id/guideline9"
         app:layout_constraintStart_toEndOf="@+id/barrier"
         app:layout_constraintTop_toTopOf="@+id/textView3"
-        app:srcCompat="@android:drawable/ic_menu_edit" />
+        app:srcCompat="@android:drawable/ic_menu_edit"
+        android:layout_marginLeft="16dp" />
 
     <TextView
         android:id="@+id/textViewSurname"
@@ -105,7 +124,8 @@
         app:layout_constraintStart_toEndOf="@+id/textViewSurname"
         app:layout_constraintTop_toTopOf="@+id/textViewSurname"
         app:layout_constraintVertical_bias="0.0"
-        tools:text="Peric" />
+        tools:text="Peric"
+        android:layout_marginLeft="25dp" />
 
     <TextView
         android:id="@+id/textViewEmail"
@@ -126,13 +146,16 @@
         app:layout_constraintEnd_toStartOf="@+id/btnEditEmail"
         app:layout_constraintStart_toEndOf="@+id/textViewEmail"
         app:layout_constraintTop_toTopOf="@+id/textViewEmail"
-        tools:text="pera.peric@uns.ac.rs" />
+        tools:text="pera.peric@uns.ac.rs"
+        android:layout_marginLeft="45dp" />
 
     <Button
         android:id="@+id/btnMyReservations"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="24dp"
+        android:layout_marginLeft="24dp"
+        android:onClick="navigateMyReservations"
         android:text="@string/btn_my_reservations"
         app:layout_constraintBottom_toTopOf="@+id/guideline8"
         app:layout_constraintEnd_toStartOf="@+id/btnChangePass"
@@ -145,7 +168,9 @@
         android:layout_width="164dp"
         android:layout_height="47dp"
         android:layout_marginEnd="40dp"
+        android:layout_marginRight="40dp"
         android:capitalize="sentences"
+        android:onClick="navigateChangePassword"
         android:text="@string/btn_change_pass"
         app:layout_constraintBottom_toTopOf="@+id/guideline8"
         app:layout_constraintEnd_toEndOf="parent"
