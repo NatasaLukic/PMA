@@ -16,7 +16,8 @@
             android:name=".activites.LoginActivity"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name=".activites.ChangePasswordActivity" />
-        <activity android:name=".activites.CarServiceDetailsActivity" />
+        <activity android:name=".activites.CarServiceDetailsActivity"></activity>
+        <activity android:name=".activites.ReservationsActivity"></activity>
         <activity android:name=".activites.UserProfileActivity" />
         <activity android:name=".activites.SearchResultsActivity" />
         <activity
