@@ -15,12 +15,21 @@ import com.example.findacar.R;
 
 public class LoginActivity extends AppCompatActivity {
 
-    Button callSignUp;
+    Button callSignUp, callLogin;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
+
+        callLogin = findViewById(R.id.login);
+        callLogin.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(LoginActivity.this,DashboardActivity.class);
+                startActivity(intent);
+            }
+        });
 
         callSignUp = findViewById(R.id.signup_screen);
 
