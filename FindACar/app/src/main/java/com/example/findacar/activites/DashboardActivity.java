@@ -74,9 +74,4 @@ public class DashboardActivity extends AppCompatActivity implements NavigationVi
             super.onBackPressed();
         }
     }
-
-    public void navigateToUserProfile(View view) {
-        Intent intent = new Intent(this, UserProfileActivity.class);
-        startActivity(intent);
-    }
 }

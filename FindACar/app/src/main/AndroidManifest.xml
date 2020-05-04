@@ -18,8 +18,6 @@
             android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name=".activites.ChangePasswordActivity" />
         <activity android:name=".activites.CarServiceDetailsActivity" />
-        <activity android:name=".activites.ReservationsActivity" />
-        <activity android:name=".activites.UserProfileActivity" />
         <activity android:name=".activites.SearchResultsActivity" />
         <activity
             android:name=".activites.MainActivity"
