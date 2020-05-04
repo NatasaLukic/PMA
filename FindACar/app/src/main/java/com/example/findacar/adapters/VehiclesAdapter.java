@@ -1,15 +1,18 @@
 package com.example.findacar.adapters;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.findacar.R;
+import com.example.findacar.activites.VehicleActivity;
 import com.example.findacar.mockupData.CarServices;
 import com.example.findacar.mockupData.Vehicles;
 import com.example.findacar.model.CarService;
@@ -62,6 +65,18 @@ public class VehiclesAdapter extends BaseAdapter {
         doors.setText(Integer.toString(vehicle.getNumOfDoors()));
         type.setText(vehicle.getType());
         price.setText("Price: 19.200 RSD");
+
+        Button details = (Button) vi.findViewById(R.id.button);
+
+        details.setOnClickListener(new View.OnClickListener(){
+
+            @Override
+            public void onClick(View v) {
+
+                Intent intent = new Intent(activity, VehicleActivity.class);
+                activity.startActivity(intent);
+            }
+        });
 
 
         image.setImageResource(vehicle.getImage());

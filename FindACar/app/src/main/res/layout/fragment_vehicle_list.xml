@@ -5,7 +5,7 @@
     android:layout_height="match_parent"
     android:layout_marginRight="7dp"
     android:layout_marginLeft="7dp"
-    tools:context=".fragments.VehicleList">
+    tools:context=".fragments.VehicleListFragment">
 
     <ListView
         android:id="@android:id/list"

@@ -4,8 +4,8 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentPagerAdapter;
 
-import com.example.findacar.fragments.ListResults;
-import com.example.findacar.fragments.MapResults;
+import com.example.findacar.fragments.ListResultsFragment;
+import com.example.findacar.fragments.MapResultsFragment;
 
 public class TabAdapter extends FragmentPagerAdapter {
 
@@ -20,9 +20,9 @@ public class TabAdapter extends FragmentPagerAdapter {
     public Fragment getItem(int position) {
         switch (position){
             case 0:
-                return new ListResults();
+                return new ListResultsFragment();
             case 1:
-                return new MapResults();
+                return new MapResultsFragment();
             default:
                 return null;
         }

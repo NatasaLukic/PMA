@@ -8,9 +8,7 @@ import android.os.Bundle;
 import android.widget.TextView;
 
 import com.example.findacar.R;
-import com.example.findacar.fragments.VehicleList;
-
-import org.w3c.dom.Text;
+import com.example.findacar.fragments.VehicleListFragment;
 
 public class CarServiceDetailsActivity extends AppCompatActivity {
 
@@ -22,7 +20,7 @@ public class CarServiceDetailsActivity extends AppCompatActivity {
         TextView service = (TextView) findViewById(R.id.service);
         service.setText(getIntent().getStringExtra("service"));
 
-        Fragment fragment = new VehicleList();
+        Fragment fragment = new VehicleListFragment();
         FragmentTransaction ft = getSupportFragmentManager().beginTransaction().setTransition((FragmentTransaction.TRANSIT_FRAGMENT_OPEN))
                 .replace(R.id.listOfVehicles, fragment);
 

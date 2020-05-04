@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".fragments.DashboardFragment">
+
+
+    <ImageView
+        android:id="@+id/imageCal2"
+        android:layout_width="55dp"
+        android:layout_height="59dp"
+        android:layout_below="@id/search_bar"
+        android:layout_marginLeft="5dp"
+        android:layout_marginTop="50dp"
+        android:layout_toRightOf="@id/datePickUp"
+        android:src="@drawable/calendar" />
+
+    <TextView
+        android:id="@+id/title"
+        android:fontFamily="@font/architects_daughter"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="25dp"
+        android:focusable="false"
+        android:textSize="30dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Search for a car" />
+
+    <SearchView
+        android:id="@+id/search_bar"
+        android:layout_width="wrap_content"
+        android:focusable="false"
+        android:queryBackground="@android:color/transparent"
+        android:layout_centerHorizontal="true"
+        android:layout_height="60dp"
+        android:layout_below="@+id/title"
+        android:layout_marginTop="25dp"
+        android:background="@drawable/border_search"
+        android:iconifiedByDefault="false"
+        android:queryHint="Search place here" />
+
+    <TextView
+        android:id="@+id/pickUpString"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/search_bar"
+        android:layout_marginLeft="40dp"
+        android:fontFamily="@font/architects_daughter"
+        android:layout_marginTop="57dp"
+        android:hint="Pick up "
+        android:textSize="27dp" />
+
+    <TextView
+        android:id="@+id/returnString"
+        android:fontFamily="@font/architects_daughter"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/pickUpString"
+        android:layout_marginLeft="42dp"
+        android:layout_marginTop="38dp"
+        android:hint="Return "
+        android:textSize="27dp" />
+
+    <EditText
+        android:id="@+id/datePickUp"
+        android:layout_width="122dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/search_bar"
+        android:layout_marginLeft="17dp"
+        android:focusable="false"
+        android:layout_marginTop="53dp"
+        android:layout_toRightOf="@id/pickUpString"
+        android:hint="asdasw"
+        android:textSize="20dp" />
+
+    <ImageView
+        android:id="@+id/imageCal"
+        android:layout_width="54dp"
+        android:layout_height="56dp"
+        android:layout_below="@id/search_bar"
+        android:layout_marginLeft="7dp"
+        android:layout_marginTop="132dp"
+        android:layout_toRightOf="@id/datePickUp"
+        android:src="@drawable/calendar" />
+
+    <EditText
+        android:id="@+id/dateReturn"
+        android:layout_width="122dp"
+        android:focusable="false"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/datePickUp"
+        android:layout_marginLeft="22dp"
+        android:layout_marginTop="33dp"
+        android:layout_toRightOf="@id/returnString"
+        android:hint="asdasw"
+        android:textSize="20dp" />
+
+    <Button
+        android:id="@+id/goNext"
+        android:layout_width="167dp"
+        android:layout_height="73dp"
+        android:layout_below="@id/returnString"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="140dp"
+        android:background="@drawable/button_background_search"
+        android:fontFamily="@font/architects_daughter"
+        android:text="Search"
+        android:textColor="@color/whiteTransp"
+        android:textSize="25dp" />
+
+</RelativeLayout>

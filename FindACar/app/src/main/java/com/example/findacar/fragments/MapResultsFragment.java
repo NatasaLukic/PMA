@@ -13,9 +13,9 @@ import com.example.findacar.R;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class MapResults extends Fragment {
+public class MapResultsFragment extends Fragment {
 
-    public MapResults() {
+    public MapResultsFragment() {
         // Required empty public constructor
     }
 
