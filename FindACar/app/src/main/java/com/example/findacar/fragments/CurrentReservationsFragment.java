@@ -64,6 +64,5 @@ public class CurrentReservationsFragment extends ListFragment {
     @Override
     public void onListItemClick(ListView l, View v, int position, long id) {
         super.onListItemClick(l, v, position, id);
-        Reservation reservation = Reservations.getReservations().get(position);
     }
 }

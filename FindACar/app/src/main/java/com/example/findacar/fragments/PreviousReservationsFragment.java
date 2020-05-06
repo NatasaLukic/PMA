@@ -65,8 +65,8 @@ public class PreviousReservationsFragment extends ListFragment {
 
     @Override
     public void onListItemClick(ListView l, View v, int position, long id) {
+        Toast.makeText(getActivity(), "onListItemClick()", Toast.LENGTH_SHORT).show();
         super.onListItemClick(l, v, position, id);
-        Reservation reservation = Reservations.getReservations().get(position);
         showRateServiceDialog(l, v, position);
     }
 
