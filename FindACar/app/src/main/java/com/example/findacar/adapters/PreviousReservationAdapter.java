@@ -10,6 +10,8 @@ import com.example.findacar.R;
 import com.example.findacar.mockupData.Reservations;
 import com.example.findacar.model.Reservation;
 
+import java.text.SimpleDateFormat;
+
 public class PreviousReservationAdapter extends BaseAdapter {
 
     public Activity activity;
@@ -41,12 +43,13 @@ public class PreviousReservationAdapter extends BaseAdapter {
         if(convertView==null)
             vi = activity.getLayoutInflater().inflate(R.layout.fragment_previous_reservation, null);
 
-        TextView vehicleServiceName = (TextView)vi.findViewById(R.id.textView4);
-        TextView date = (TextView)vi.findViewById(R.id.textView5);
-        TextView price = (TextView)vi.findViewById(R.id.textView8);
+        TextView vehicleServiceName = (TextView)vi.findViewById(R.id.textViewVehicleName);
+        TextView date = (TextView)vi.findViewById(R.id.textViewReservationDate);
+        TextView price = (TextView)vi.findViewById(R.id.textViewReservationPrice);
 
         vehicleServiceName.setText(reservation.getVehicle().getName());
-        date.setText(reservation.getPickUpDate() + " - " + reservation.getReturnDate());
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-mm-dd");
+        date.setText(dateFormat.format(reservation.getPickUpDate()) + " - " + dateFormat.format(reservation.getReturnDate()));
         price.setText((String.valueOf(reservation.getPrice())));
         return vi;
     }

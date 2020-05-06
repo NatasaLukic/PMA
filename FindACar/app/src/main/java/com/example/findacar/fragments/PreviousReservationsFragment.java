@@ -3,16 +3,23 @@ package com.example.findacar.fragments;
 import android.os.Bundle;
 
 import androidx.annotation.Nullable;
+import androidx.fragment.app.DialogFragment;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.fragment.app.ListFragment;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ListView;
 import android.widget.Toast;
 
 import com.example.findacar.R;
+
 import com.example.findacar.adapters.CurrentReservationAdapter;
+import com.example.findacar.adapters.PreviousReservationAdapter;
+import com.example.findacar.mockupData.Reservations;
+import com.example.findacar.model.Reservation;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -47,7 +54,6 @@ public class PreviousReservationsFragment extends ListFragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
     }
 
     @Override
@@ -58,12 +64,34 @@ public class PreviousReservationsFragment extends ListFragment {
     }
 
     @Override
+    public void onListItemClick(ListView l, View v, int position, long id) {
+        super.onListItemClick(l, v, position, id);
+        Reservation reservation = Reservations.getReservations().get(position);
+        showRateServiceDialog(l, v, position);
+    }
+
+    @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-        Toast.makeText(getActivity(), "onActivityFragmentCreated()", Toast.LENGTH_SHORT).show();
-
-        CurrentReservationAdapter adapter = new CurrentReservationAdapter(getActivity());
+        Toast.makeText(getActivity(), "onActivityPreviousReservationsFragmentCreated()", Toast.LENGTH_SHORT).show();
+        PreviousReservationAdapter adapter = new PreviousReservationAdapter(getActivity());
+        //CurrentReservationAdapter adapter = new CurrentReservationAdapter(getActivity());
         setListAdapter(adapter);
+    }
+
+    private void showRateServiceDialog(ListView l, View v, int position) {
+        // DialogFragment.show() will take care of adding the fragment
+        // in a transaction.  We also want to remove any currently showing
+        // dialog, so make our own transaction and take care of that here.
+        FragmentTransaction ft = getActivity().getSupportFragmentManager().beginTransaction();
+        Fragment prev = getActivity().getSupportFragmentManager().findFragmentByTag("dialog");
+        if (prev != null) {
+            ft.remove(prev);
+        }
+        ft.addToBackStack(null);
+        // Create and show the dialog.
+        DialogFragment newFragment = ServiceRatingFragment.newInstance(l, v, position);
+        newFragment.show(ft, "dialog");
     }
 
 }

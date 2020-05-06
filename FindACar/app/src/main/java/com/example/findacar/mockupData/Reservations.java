@@ -32,7 +32,7 @@ public class Reservations {
 
         reservations.add(r1);
         reservations.add(r2);
-        reservations.add(r2);
+        reservations.add(r3);
         return reservations;
     }
 }

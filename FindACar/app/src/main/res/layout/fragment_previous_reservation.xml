@@ -53,7 +53,7 @@
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline40"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="0dp"
         android:orientation="horizontal"
         app:layout_constraintGuide_percent="0.15" />
 
@@ -69,14 +69,14 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.22" />
+        app:layout_constraintGuide_begin="145dp" />
 
     <TextView
-        android:id="@+id/textView4"
+        android:id="@+id/textViewVehicleName"
         android:layout_width="wrap_content"
         android:layout_height="0dp"
         android:gravity="center"
-        android:text="TextView"
+        android:text="Toyota, Servis 1"
         app:layout_constraintBottom_toTopOf="@+id/guideline34"
         app:layout_constraintEnd_toStartOf="@+id/guideline38"
         app:layout_constraintHorizontal_bias="0.0"
@@ -85,11 +85,11 @@
         app:layout_constraintVertical_bias="1.0" />
 
     <TextView
-        android:id="@+id/textView5"
+        android:id="@+id/textViewReservationDate"
         android:layout_width="wrap_content"
         android:layout_height="0dp"
         android:gravity="center"
-        android:text="TextView"
+        android:text="15 april 2020 - 22 april 2020"
         app:layout_constraintBottom_toTopOf="@+id/guideline40"
         app:layout_constraintStart_toStartOf="@+id/guideline37"
         app:layout_constraintTop_toTopOf="@+id/guideline39" />
@@ -112,15 +112,15 @@
         android:text="Rate"
         app:layout_constraintEnd_toStartOf="@+id/guideline38"
         app:layout_constraintHorizontal_bias="0.65"
-        app:layout_constraintStart_toEndOf="@+id/textView5"
+        app:layout_constraintStart_toEndOf="@+id/textViewReservationDate"
         app:layout_constraintTop_toTopOf="@+id/guideline39" />
 
     <TextView
-        android:id="@+id/textView8"
+        android:id="@+id/textViewReservationPrice"
         android:layout_width="wrap_content"
         android:layout_height="0dp"
         android:gravity="center"
-        android:text="TextView"
+        android:text="17.8"
         app:layout_constraintBottom_toTopOf="@+id/guideline42"
         app:layout_constraintEnd_toStartOf="@+id/guideline38"
         app:layout_constraintHorizontal_bias="0.05"
