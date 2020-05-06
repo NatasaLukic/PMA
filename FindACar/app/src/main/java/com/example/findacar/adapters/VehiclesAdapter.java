@@ -44,11 +44,11 @@ public class VehiclesAdapter extends BaseAdapter {
     }
 
     @Override
-    public View getView(int position, View convertView, ViewGroup parent) {
+    public View getView(final int position, View convertView, ViewGroup parent) {
 
         View vi = convertView;
 
-        Vehicle vehicle = Vehicles.getVehicles().get(position);
+        final Vehicle vehicle = Vehicles.getVehicles().get(position);
 
         if(convertView==null)
             vi = activity.getLayoutInflater().inflate(R.layout.vehicle_item, null);
@@ -74,6 +74,9 @@ public class VehiclesAdapter extends BaseAdapter {
             public void onClick(View v) {
 
                 Intent intent = new Intent(activity, VehicleActivity.class);
+                intent.putExtra("name", vehicle.getName());
+                intent.putExtra("position", position);
+
                 activity.startActivity(intent);
             }
         });

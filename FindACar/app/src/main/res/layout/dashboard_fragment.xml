@@ -132,7 +132,6 @@
         android:layout_centerHorizontal="true"
         android:layout_marginTop="66dp"
         android:background="@drawable/button_background_search"
-        android:fontFamily="@font/architects_daughter"
         android:text="Search"
         android:textColor="@color/whiteTransp"
         android:textSize="25dp" />

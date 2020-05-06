@@ -1,5 +1,7 @@
 package com.example.findacar.model;
 
+import java.util.ArrayList;
+
 public class Vehicle {
 
     private String name;
@@ -9,8 +11,10 @@ public class Vehicle {
     private boolean airCond;
     private boolean automTrans;
     private int image;
+    private String registratedUntil;
+    private ArrayList<Integer> images;
 
-    public Vehicle(String name, int numOfSeats, int numOfDoors, String type, boolean airCond, boolean automTrans, int image) {
+    public Vehicle(String name, int numOfSeats, int numOfDoors, String type, boolean airCond, boolean automTrans, int image, String registratedUntil) {
         this.name = name;
         this.numOfSeats = numOfSeats;
         this.numOfDoors = numOfDoors;
@@ -18,6 +22,8 @@ public class Vehicle {
         this.airCond = airCond;
         this.automTrans = automTrans;
         this.image = image;
+        this.registratedUntil = registratedUntil;
+        this.images = new ArrayList<Integer>();
     }
 
     public String getName() {
@@ -71,4 +77,16 @@ public class Vehicle {
     public String getType() { return type; }
 
     public void setType(String type) { this.type = type; }
+
+    public String getRegistratedUntil() { return registratedUntil; }
+
+    public void setRegistratedUntil(String registratedUntil) { this.registratedUntil = registratedUntil; }
+
+    public ArrayList<Integer> getImages() {
+        return images;
+    }
+
+    public void setImages(ArrayList<Integer> images) {
+        this.images = images;
+    }
 }

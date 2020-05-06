@@ -44,14 +44,9 @@ public class CarServicesAdapter extends BaseAdapter {
 
         TextView name = (TextView)vi.findViewById(R.id.name);
         TextView address = (TextView)vi.findViewById(R.id.address);
-        ImageView image = (ImageView)vi.findViewById(R.id.item_icon);
 
         name.setText(service.getName());
         address.setText(service.getAddress());
-
-        if (service.getAvatar() != -1){
-            image.setImageResource(service.getAvatar());
-        }
 
         return  vi;
     }

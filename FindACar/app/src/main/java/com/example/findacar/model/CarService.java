@@ -4,12 +4,10 @@ public class CarService {
 
     private String name;
     private String address;
-    private int avatar;
 
-    public CarService(String name, String address, int avatar) {
+    public CarService(String name, String address) {
         this.name = name;
         this.address = address;
-        this.avatar = avatar;
     }
 
     public String getName() {
@@ -28,11 +26,4 @@ public class CarService {
         this.address = address;
     }
 
-    public int getAvatar() {
-        return avatar;
-    }
-
-    public void setAvatar(int avatar) {
-        this.avatar = avatar;
-    }
 }

@@ -8,46 +8,45 @@
     android:orientation="vertical"
     tools:context=".activites.SearchResultsActivity">
 
-    <TextView
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar"
         android:layout_width="match_parent"
-        android:layout_height="40dp"
-        android:gravity="center"
-        android:paddingTop="10dp"
-        android:textSize="25dp"
-        android:text="Search results" />
+        android:layout_height="?attr/actionBarSize"
+        android:background="@color/colorPrimary"
+        android:elevation="4dp"
+        android:popupTheme="@style/ThemeOverlay.AppCompat.Light"
+        android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
+        app:elevation="0dp" />
 
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="60dp"
-        android:gravity="center"
-        android:textSize="25dp"
-        android:text="Novi Sad" />
-
-
-        <com.google.android.material.tabs.TabLayout
+    <com.google.android.material.tabs.TabLayout
         android:id="@+id/tabLayout"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        app:tabBackground="@color/colorPrimary"
+        app:tabIndicatorColor="@android:color/white"
+        app:tabTextColor="@android:color/white">
 
         <com.google.android.material.tabs.TabItem
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
             android:id="@+id/list"
-            android:text="Lista servisa" />
-
-        <com.google.android.material.tabs.TabItem
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:fontFamily="@font/architects_daughter"
+            android:text="List" />
+
+        <com.google.android.material.tabs.TabItem
             android:id="@+id/map"
-            android:text="Prikaz na mapi" />
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/architects_daughter"
+            android:text="Map" />
 
 
     </com.google.android.material.tabs.TabLayout>
 
     <androidx.viewpager.widget.ViewPager
+        android:id="@+id/viewPager"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:id="@+id/viewPager">
+        android:layout_height="match_parent">
 
     </androidx.viewpager.widget.ViewPager>
 </LinearLayout>
