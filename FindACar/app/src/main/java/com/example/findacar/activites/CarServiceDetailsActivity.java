@@ -1,10 +1,12 @@
 package com.example.findacar.activites;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 
 import android.os.Bundle;
+import android.view.View;
 import android.widget.TextView;
 
 import com.example.findacar.R;
@@ -17,8 +19,21 @@ public class CarServiceDetailsActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_car_service_details);
 
-        TextView service = (TextView) findViewById(R.id.service);
-        service.setText(getIntent().getStringExtra("service"));
+        Toolbar toolbar = findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setDisplayShowHomeEnabled(true);
+
+        getSupportActionBar().setTitle(getIntent().getStringExtra("service"));
+
+        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                finish();
+            }
+        });
 
         Fragment fragment = new VehicleListFragment();
         FragmentTransaction ft = getSupportFragmentManager().beginTransaction().setTransition((FragmentTransaction.TRANSIT_FRAGMENT_OPEN))
