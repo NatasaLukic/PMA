@@ -5,6 +5,7 @@ import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentPagerAdapter;
 
 import com.example.findacar.fragments.CurrentReservationsFragment;
+import com.example.findacar.fragments.ListResultsFragment;
 import com.example.findacar.fragments.PreviousReservationsFragment;
 
 public class ResTabAdapter extends FragmentPagerAdapter {

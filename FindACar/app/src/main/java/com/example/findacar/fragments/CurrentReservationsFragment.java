@@ -4,13 +4,19 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ListView;
 import android.widget.Toast;
 
 import androidx.annotation.Nullable;
+import androidx.fragment.app.DialogFragment;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.fragment.app.ListFragment;
 
 import com.example.findacar.R;
 import com.example.findacar.adapters.CurrentReservationAdapter;
+import com.example.findacar.mockupData.Reservations;
+import com.example.findacar.model.Reservation;
 
 public class CurrentReservationsFragment extends ListFragment {
 
@@ -38,7 +44,6 @@ public class CurrentReservationsFragment extends ListFragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
     }
 
     @Override
@@ -51,9 +56,13 @@ public class CurrentReservationsFragment extends ListFragment {
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-        Toast.makeText(getActivity(), "onActivityFragmentCreated()", Toast.LENGTH_SHORT).show();
+        Toast.makeText(getActivity(), "onActivityCurrentReservationsFragmentCreated()", Toast.LENGTH_SHORT).show();
         CurrentReservationAdapter adapter = new CurrentReservationAdapter(getActivity());
         setListAdapter(adapter);
     }
 
+    @Override
+    public void onListItemClick(ListView l, View v, int position, long id) {
+        super.onListItemClick(l, v, position, id);
+    }
 }
