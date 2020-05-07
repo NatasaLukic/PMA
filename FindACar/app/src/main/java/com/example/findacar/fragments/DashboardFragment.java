@@ -70,7 +70,7 @@ public class DashboardFragment extends Fragment {
             public void onClick(View v) {
 
 
-                DatePickerDialog dialog = new DatePickerDialog(getActivity(),
+                DatePickerDialog dialog = new DatePickerDialog(getActivity(),R.style.DatePickerDialog,
                         mDateSetListenerPickUp, year, month,day);
 
                 dialog.show();
@@ -85,8 +85,9 @@ public class DashboardFragment extends Fragment {
 
                 String date = month + "/" + day + "/" + year;
                 pickUpDate.setText(date);
+                pickUpDate.setTextColor(getResources().getColor(R.color.colorDarkGray));
 
-                TimePickerDialog dialogTime = new TimePickerDialog(getActivity(), mTimeSetListenerPickUp, hour, minute, true);
+                TimePickerDialog dialogTime = new TimePickerDialog(getActivity(), R.style.DatePickerDialog, mTimeSetListenerPickUp, hour, minute, true);
                 dialogTime.show();
             }
         };
@@ -97,6 +98,7 @@ public class DashboardFragment extends Fragment {
 
                 String time = hour + ":" + minute;
                 pickUpTime.setText(time);
+                pickUpTime.setTextColor(getResources().getColor(R.color.colorDarkGray));
 
             }
         };
@@ -107,7 +109,7 @@ public class DashboardFragment extends Fragment {
 
                 String time = hourOfDay + ":" + minute;
                 returnTime.setText(time);
-
+                returnTime.setTextColor(getResources().getColor(R.color.colorDarkGray));
             }
         };
 
@@ -116,7 +118,7 @@ public class DashboardFragment extends Fragment {
             @Override
             public void onClick(View v) {
 
-                DatePickerDialog dialog = new DatePickerDialog(getActivity(),
+                DatePickerDialog dialog = new DatePickerDialog(getActivity(), R.style.DatePickerDialog,
                         mDateSetListenerReturn, year, month,day);
                 dialog.show();
             }
@@ -129,8 +131,10 @@ public class DashboardFragment extends Fragment {
 
                 String date2 = month + "/" + day + "/" + year;
                 returnDate.setText(date2);
+                returnDate.setTextColor(getResources().getColor(R.color.colorDarkGray));
 
-                TimePickerDialog dialogTime = new TimePickerDialog(getActivity(), mTimeSetListenerReturn, hour, minute, true);
+
+                TimePickerDialog dialogTime = new TimePickerDialog(getActivity(), R.style.DatePickerDialog, mTimeSetListenerReturn, hour, minute, true);
                 dialogTime.show();
             }
         };
