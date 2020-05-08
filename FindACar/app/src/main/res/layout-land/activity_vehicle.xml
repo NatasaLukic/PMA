@@ -1,11 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
+    android:layout_width="fill_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
     tools:context=".activites.VehicleActivity">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
 
     <androidx.appcompat.widget.Toolbar
         android:layout_width="match_parent"
@@ -17,15 +21,16 @@
         android:elevation="4dp"/>
 
 
-    <androidx.viewpager.widget.ViewPager
-        android:id="@+id/slider"
-        android:layout_width="320dp"
-        android:layout_height="280dp"
-        android:layout_centerHorizontal="true"
-        android:layout_below="@id/up_layout"
-        android:layout_marginTop="16dp" />
+        <androidx.viewpager.widget.ViewPager
+            android:id="@+id/slider"
+            android:layout_width="320dp"
+            android:layout_height="280dp"
+            android:layout_below="@id/up_layout"
+            android:layout_gravity="center"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="16dp" />
 
-    <TextView
+        <TextView
         android:id="@+id/hint"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -101,54 +106,52 @@
 
         <Button
             android:id="@+id/book"
-            android:layout_width="170dp"
-            android:layout_height="40dp"
+            android:layout_width="119dp"
+            android:layout_height="63dp"
             android:layout_below="@id/reg"
             android:layout_marginLeft="50dp"
-            android:layout_marginTop="108dp"
-            android:layout_centerHorizontal="true"
+            android:layout_marginTop="58dp"
             android:background="@drawable/button_background_search"
             android:text="Book"
             android:textColor="@android:color/white" />
 
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/date"
-            android:gravity="center"
-            android:paddingTop="10dp"
-            android:paddingBottom="10dp">
-
-
-            <ImageView
+        <ImageView
             android:id="@+id/photoSeat"
             android:layout_width="28dp"
             android:layout_height="26dp"
+            android:layout_below="@id/date"
             android:layout_marginLeft="50dp"
+            android:layout_marginTop="28dp"
+            android:layout_toRightOf="@id/book"
             android:src="@drawable/car_seat" />
 
-            <TextView
-                android:id="@+id/numOfSeats"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="7dp"
-                android:layout_toRightOf="@id/photoSeat"
-                android:text="asd" />
+        <TextView
+            android:id="@+id/numOfSeats"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/date"
+            android:layout_marginLeft="7dp"
+            android:layout_marginTop="34dp"
+            android:layout_toRightOf="@id/photoSeat"
+            android:text="asd" />
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="4dp"
-                android:layout_toRightOf="@id/numOfSeats"
-                android:text="seats" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/date"
+            android:layout_marginLeft="4dp"
+            android:layout_marginTop="34dp"
+            android:layout_toRightOf="@id/numOfSeats"
+            android:text="seats" />
 
-            <ImageView
+        <ImageView
             android:id="@+id/photoDoor"
             android:layout_width="28dp"
             android:layout_height="26dp"
             android:layout_below="@id/photoSeat"
             android:layout_marginLeft="50dp"
             android:layout_marginTop="3dp"
+            android:layout_toRightOf="@id/book"
             android:src="@drawable/car_door" />
 
         <TextView
@@ -161,58 +164,57 @@
             android:layout_toRightOf="@id/photoDoor"
             android:text="asd" />
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@id/numOfSeats"
-                android:layout_marginLeft="4dp"
-                android:layout_marginTop="9dp"
-                android:layout_toRightOf="@id/numOfDoors"
-                android:text="doors" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/numOfSeats"
+            android:layout_marginLeft="4dp"
+            android:layout_marginTop="9dp"
+            android:layout_toRightOf="@id/numOfDoors"
+            android:text="doors" />
 
-            <ImageView
-            android:id="@+id/airC"
+        <ImageView
             android:layout_width="27dp"
+            android:id="@+id/airC"
             android:layout_height="25dp"
             android:layout_below="@id/photoDoor"
-            android:layout_marginLeft="61dp"
-            android:layout_marginTop="-54dp"
-            android:layout_toRightOf="@id/numOfSeats"
+            android:layout_marginLeft="51dp"
+            android:layout_marginTop="8dp"
+            android:layout_toRightOf="@id/book"
             android:src="@drawable/air_cond" />
 
-            <TextView
-                android:id="@+id/airC_text"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="4dp"
-                android:layout_marginTop="5dp"
-                android:layout_toRightOf="@id/airC"
-                android:text="Air conditioning"
-                android:textSize="12dp" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/numOfDoors"
+            android:layout_marginLeft="5dp"
+            android:layout_marginTop="12dp"
+            android:layout_toRightOf="@id/airC"
+            android:textSize="12dp"
+            android:id="@+id/airC_text"
+            android:text="Air conditioning" />
 
-            <ImageView
-                android:id="@+id/autPic"
-                android:layout_width="wrap_content"
-                android:layout_height="20dp"
-                android:layout_below="@id/airC"
-                android:layout_marginLeft="62dp"
-                android:layout_marginTop="5dp"
-                android:layout_toRightOf="@id/numOfDoors"
-                android:src="@drawable/pic" />
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="20dp"
+            android:layout_below="@id/airC"
+            android:layout_marginLeft="50dp"
+            android:layout_marginTop="7dp"
+            android:id="@+id/autPic"
+            android:layout_toRightOf="@id/book"
+            android:src="@drawable/pic" />
 
-            <TextView
-                android:id="@+id/auto_text"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@id/airC_text"
-                android:layout_marginLeft="3dp"
-                android:layout_marginTop="8dp"
-                android:layout_toRightOf="@id/autPic"
-                android:text="text" />
-
-        </RelativeLayout>
-
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/airC_text"
+            android:layout_marginLeft="5dp"
+            android:layout_marginTop="14dp"
+            android:layout_toRightOf="@id/autPic"
+            android:id="@+id/auto_text"
+            android:text="text" />
     </RelativeLayout>
+    </LinearLayout>
 
 
-</RelativeLayout>
+</ScrollView>

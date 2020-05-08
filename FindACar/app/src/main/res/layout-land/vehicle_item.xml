@@ -56,7 +56,7 @@
         app:fontFamily="serif"></TextView>
 
     <View
-        android:layout_width="320dp"
+        android:layout_width="640dp"
         android:layout_height="1dp"
         android:layout_below="@+id/name"
         android:layout_marginTop="5dp"
@@ -66,10 +66,10 @@
 
     <ImageView
         android:id="@+id/vehiclePhoto"
-        android:layout_width="180dp"
-        android:layout_height="171dp"
+        android:layout_width="306dp"
+        android:layout_height="230dp"
         android:layout_below="@+id/line1"
-        android:layout_marginLeft="7dp"
+        android:layout_marginLeft="100dp"
         android:layout_marginBottom="-5dp"
         android:layout_weight="0" />
 
@@ -78,7 +78,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@id/line1"
-        android:layout_marginLeft="5dp"
+        android:layout_marginLeft="30dp"
         android:layout_marginTop="11dp"
         android:layout_toRightOf="@id/vehiclePhoto"
         android:text="ajskd"
@@ -112,7 +112,7 @@
         app:fontFamily="serif"></TextView>
 
     <View
-        android:layout_width="320dp"
+        android:layout_width="640dp"
         android:layout_height="1dp"
         android:layout_below="@id/price"
         android:id="@+id/line2"
@@ -124,8 +124,8 @@
         android:layout_width="108dp"
         android:layout_height="32dp"
         android:layout_below="@id/seats"
-        android:layout_marginLeft="26dp"
-        android:layout_marginTop="75dp"
+        android:layout_marginLeft="41dp"
+        android:layout_marginTop="127dp"
         android:layout_toRightOf="@id/vehiclePhoto"
         android:background="@drawable/button_background_search"
         android:fontFamily="serif"
@@ -139,7 +139,7 @@
         android:layout_width="25dp"
         android:layout_height="25dp"
         android:layout_below="@id/type"
-        android:layout_marginLeft="15dp"
+        android:layout_marginLeft="50dp"
         android:layout_marginTop="7dp"
         android:layout_toRightOf="@id/vehiclePhoto"
         android:src="@drawable/car_door" />
@@ -149,7 +149,7 @@
         android:layout_width="25dp"
         android:layout_height="25dp"
         android:layout_below="@id/imageDoors"
-        android:layout_marginLeft="17dp"
+        android:layout_marginLeft="53dp"
         android:layout_marginTop="5dp"
         android:layout_toRightOf="@id/vehiclePhoto"
         android:src="@drawable/car_seat" />
