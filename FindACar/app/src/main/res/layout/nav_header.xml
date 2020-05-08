@@ -11,9 +11,9 @@
     <ImageView
         android:layout_width="100dp"
         android:layout_height="100dp"
-        android:paddingTop="10dp"
+        android:paddingTop="20dp"
         android:layout_gravity="center"
-        android:src="@mipmap/ic_user_image" />
+        android:src="@drawable/ic_rent_a_car" />
 
     <TextView
         android:layout_gravity="center"
