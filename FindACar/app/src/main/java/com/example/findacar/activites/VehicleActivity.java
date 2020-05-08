@@ -47,13 +47,22 @@ public class VehicleActivity extends AppCompatActivity {
 
         TextView name = (TextView) findViewById(R.id.name);
 
-        TextView date = (TextView) findViewById(R.id.date);
+        TextView date = (TextView) findViewById(R.id.reg);
         TextView nDoors = (TextView) findViewById(R.id.numOfDoors);
         TextView nSeats = (TextView) findViewById(R.id.numOfSeats);
 
         Vehicle vehicle = Vehicles.getVehicles().get(position);
 
-        date.setText(vehicle.getRegistratedUntil());
+        TextView numOfBags = (TextView) findViewById(R.id.numOfBags);
+        numOfBags.setText(Integer.toString(vehicle.getNumOfCases()));
+
+        TextView fuel = (TextView) findViewById(R.id.fuel);
+        fuel.setText(vehicle.getFuel());
+
+        TextView yearOfProd = (TextView) findViewById(R.id.yearOfProd);
+        yearOfProd.setText("Year of production - " + vehicle.getYearOfProd());
+
+        date.setText("Vehicle registrated until - " + vehicle.getRegistratedUntil());
         nDoors.setText(Integer.toString(vehicle.getNumOfDoors()));
         nSeats.setText(Integer.toString(vehicle.getNumOfSeats()));
 

@@ -30,6 +30,18 @@ public class Vehicles {
         v1.getImages().add(R.drawable.toy_ayi);
         v1.getImages().add(R.drawable.toyota_aygo_seats);
 
+        v1.setFuel("Petrol");
+        v2.setFuel("Diesel");
+        v3.setFuel("Petrol");
+
+        v1.setNumOfCases(1);
+        v2.setNumOfCases(2);
+        v3.setNumOfCases(2);
+
+        v1.setYearOfProd(2017);
+        v2.setYearOfProd(2017);
+        v3.setYearOfProd(2016);
+
         v2.getImages().add(R.drawable.dacia_sandero);
         v2.getImages().add(R.drawable.dacia_sandero_2);
         v2.getImages().add(R.drawable.dacia_sandero_4);

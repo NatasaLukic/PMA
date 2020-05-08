@@ -24,6 +24,7 @@ import com.example.findacar.mockupData.CarServices;
 import com.example.findacar.mockupData.Vehicles;
 import com.example.findacar.model.CarService;
 import com.example.findacar.model.Vehicle;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -39,6 +40,8 @@ public class VehicleListFragment extends ListFragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
+        BottomNavigationView bottomNavigationView = getActivity().findViewById(R.id.bottom_toolbar);
+        bottomNavigationView.setVisibility(View.VISIBLE);
         View vi = inflater.inflate(R.layout.fragment_vehicle_list, container, false);
 
         return vi;
