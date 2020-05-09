@@ -8,9 +8,9 @@
 
     <View
         android:id="@+id/line"
-        android:layout_width="320dp"
+        android:layout_width="0dp"
         android:layout_height="1dp"
-        android:layout_below="@+id/name"
+        android:layout_below="@id/tvResId"
         android:layout_centerInParent="true"
         android:background="#c0c0c0"
         app:layout_constraintBottom_toTopOf="@+id/resTabId"
@@ -23,7 +23,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.08" />
+        app:layout_constraintGuide_percent="0.2" />
 
     <TextView
         android:id="@+id/tvResId"
@@ -32,6 +32,7 @@
         android:gravity="center"
         android:text="Reservations"
         android:textAppearance="@style/TextAppearance.AppCompat.Large"
+        android:textColor="@color/colorPurple"
         app:layout_constraintBottom_toTopOf="@+id/guideline2"
         app:layout_constraintEnd_toStartOf="@+id/guideline19"
         app:layout_constraintStart_toStartOf="@+id/guideline10"
@@ -42,21 +43,21 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        app:layout_constraintGuide_percent="0.09" />
+        app:layout_constraintGuide_percent="0.15" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline19"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        app:layout_constraintGuide_percent="0.91" />
+        app:layout_constraintGuide_percent="0.85" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline20"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.03" />
+        app:layout_constraintGuide_percent="0.05" />
 
     <com.google.android.material.tabs.TabLayout
         android:id="@+id/resTabId"
@@ -66,7 +67,8 @@
         app:layout_constraintEnd_toStartOf="@+id/guideline19"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="@+id/guideline10"
-        app:layout_constraintTop_toTopOf="@+id/guideline21">
+        app:layout_constraintTop_toTopOf="@+id/guideline21"
+        app:tabTextColor="@color/colorPurple">
 
         <com.google.android.material.tabs.TabItem
             android:id="@+id/currentResTabId"
@@ -87,14 +89,14 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.12" />
+        app:layout_constraintGuide_percent="0.22" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline22"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.18" />
+        app:layout_constraintGuide_percent="0.37" />
 
     <androidx.viewpager.widget.ViewPager
         android:id="@+id/viewPagerRes"

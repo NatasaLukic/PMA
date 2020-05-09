@@ -2,46 +2,39 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/relativeLayout2"
+    android:id="@+id/constraint_layout"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_gravity="center"
+    android:layout_gravity="center|top"
     android:background="@drawable/divider">
-
-    <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/guideline29"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.08" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline25"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.03" />
+        app:layout_constraintGuide_percent="0.15" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline26"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.08" />
+        app:layout_constraintGuide_percent="0.3" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline27"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        app:layout_constraintGuide_percent="0.09" />
+        app:layout_constraintGuide_percent="0.15" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline28"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        app:layout_constraintGuide_percent="0.91" />
+        app:layout_constraintGuide_percent="0.85" />
 
     <TextView
         android:id="@+id/textViewVehicleName"
@@ -49,6 +42,7 @@
         android:layout_height="0dp"
         android:gravity="center"
         android:text="TextView"
+        android:textColor="@color/colorPurple"
         app:layout_constraintBottom_toTopOf="@+id/guideline26"
         app:layout_constraintEnd_toStartOf="@+id/guideline28"
         app:layout_constraintHorizontal_bias="0.0"
@@ -62,28 +56,28 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.1" />
+        app:layout_constraintGuide_percent="0.4" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline31"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.15" />
+        app:layout_constraintGuide_percent="0.55" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline32"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.17" />
+        app:layout_constraintGuide_percent="0.65" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline33"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.22" />
+        app:layout_constraintGuide_percent="0.8" />
 
     <TextView
         android:id="@+id/textViewReservationDate"
@@ -91,6 +85,7 @@
         android:layout_height="0dp"
         android:gravity="center"
         android:text="15 april 2020 - 22 april 2020"
+        android:textColor="@color/colorPurple"
         app:layout_constraintBottom_toTopOf="@+id/guideline31"
         app:layout_constraintStart_toStartOf="@+id/guideline27"
         app:layout_constraintTop_toTopOf="@+id/guideline30"
@@ -100,6 +95,7 @@
         android:id="@+id/button2"
         android:layout_width="wrap_content"
         android:layout_height="43dp"
+        android:background="@drawable/button_background"
         android:text="@string/btnCancel"
         app:layout_constraintBottom_toTopOf="@+id/guideline31"
         app:layout_constraintEnd_toStartOf="@+id/guideline28"
@@ -114,6 +110,7 @@
         android:layout_height="0dp"
         android:gravity="center"
         android:text="Price"
+        android:textColor="@color/colorRed"
         app:layout_constraintBottom_toTopOf="@+id/guideline33"
         app:layout_constraintStart_toStartOf="@+id/guideline27"
         app:layout_constraintTop_toTopOf="@+id/guideline32" />
@@ -124,6 +121,7 @@
         android:layout_height="0dp"
         android:gravity="center"
         android:text="15.300 RRSD"
+        android:textColor="@color/colorPurple"
         app:layout_constraintBottom_toTopOf="@+id/guideline33"
         app:layout_constraintEnd_toStartOf="@+id/guideline28"
         app:layout_constraintHorizontal_bias="0.116"
@@ -134,13 +132,21 @@
     <Button
         android:id="@+id/button5"
         android:layout_width="wrap_content"
-        android:layout_height="42dp"
+        android:layout_height="43dp"
+        android:background="@drawable/button_background"
         android:text="Rate"
         app:layout_constraintBottom_toTopOf="@+id/guideline31"
         app:layout_constraintEnd_toStartOf="@+id/guideline28"
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toEndOf="@+id/textViewReservationDate"
         app:layout_constraintTop_toTopOf="@+id/guideline30"
-        app:layout_constraintVertical_bias="0.7" />
+        app:layout_constraintVertical_bias="0.636" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline39"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.98" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

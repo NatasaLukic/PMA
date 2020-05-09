@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/constraint_layout"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+
+    android:background="@drawable/divider">
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline25"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.2" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline26"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.35" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline27"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.04" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline28"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.96" />
+
+    <TextView
+        android:id="@+id/textViewVehicleName"
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:gravity="center"
+        android:text="TextView"
+        android:textColor="@color/colorPurple"
+        app:layout_constraintBottom_toTopOf="@+id/guideline26"
+        app:layout_constraintEnd_toStartOf="@+id/guideline28"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/guideline27"
+        app:layout_constraintTop_toTopOf="@+id/guideline25"
+        app:layout_constraintVertical_bias="0.538"
+        tools:text="Toyota, Servis 1" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline30"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.4" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline31"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.55" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline32"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.6" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline33"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.75" />
+
+    <TextView
+        android:id="@+id/textViewReservationDate"
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:gravity="center"
+        android:text="15 april 2020 - 22 april 2020"
+        android:textColor="@color/colorPurple"
+        app:layout_constraintBottom_toTopOf="@+id/guideline31"
+        app:layout_constraintStart_toStartOf="@+id/guideline27"
+        app:layout_constraintTop_toTopOf="@+id/guideline30"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <Button
+        android:id="@+id/button2"
+        android:layout_width="wrap_content"
+        android:layout_height="43dp"
+        android:background="@drawable/button_background"
+        android:text="@string/btnCancel"
+        app:layout_constraintBottom_toTopOf="@+id/guideline31"
+        app:layout_constraintEnd_toStartOf="@+id/guideline28"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toEndOf="@+id/textViewReservationDate"
+        app:layout_constraintTop_toTopOf="@+id/guideline30"
+        app:layout_constraintVertical_bias="0.636" />
+
+    <TextView
+        android:id="@+id/textView12"
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:gravity="center"
+        android:text="Price"
+        android:textColor="@color/colorRed"
+        app:layout_constraintBottom_toTopOf="@+id/guideline33"
+        app:layout_constraintStart_toStartOf="@+id/guideline27"
+        app:layout_constraintTop_toTopOf="@+id/guideline32" />
+
+    <TextView
+        android:id="@+id/textViewReservationPrice"
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:gravity="center"
+        android:text="15.300 RRSD"
+        android:textColor="@color/colorPurple"
+        app:layout_constraintBottom_toTopOf="@+id/guideline33"
+        app:layout_constraintEnd_toStartOf="@+id/guideline28"
+        app:layout_constraintHorizontal_bias="0.116"
+        app:layout_constraintStart_toEndOf="@+id/textView12"
+        app:layout_constraintTop_toTopOf="@+id/guideline32"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <Button
+        android:id="@+id/button5"
+        android:layout_width="wrap_content"
+        android:layout_height="43dp"
+        android:background="@drawable/button_background"
+        android:text="Rate"
+        app:layout_constraintBottom_toTopOf="@+id/guideline31"
+        app:layout_constraintEnd_toStartOf="@+id/guideline28"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toEndOf="@+id/textViewReservationDate"
+        app:layout_constraintTop_toTopOf="@+id/guideline30"
+        app:layout_constraintVertical_bias="0.636" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

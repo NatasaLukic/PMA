@@ -24,7 +24,7 @@ public class ReservationsFragment extends Fragment {
                              Bundle savedInstanceState) {
 
         super.onCreateView(inflater, container, savedInstanceState);
-        View view = inflater.inflate(R.layout.fragment_reservations, container, false);
+        View view = inflater.inflate(R.layout.fragment_reservations_tabs, container, false);
 
         tabLayout = (TabLayout) view.findViewById(R.id.resTabId);
         currentRes = (TabItem) view.findViewById(R.id.currentResTabId);

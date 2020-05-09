@@ -8,15 +8,11 @@ import android.widget.ListView;
 import android.widget.Toast;
 
 import androidx.annotation.Nullable;
-import androidx.fragment.app.DialogFragment;
-import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentTransaction;
 import androidx.fragment.app.ListFragment;
 
 import com.example.findacar.R;
 import com.example.findacar.adapters.CurrentReservationAdapter;
 import com.example.findacar.mockupData.Reservations;
-import com.example.findacar.model.Reservation;
 
 public class CurrentReservationsFragment extends ListFragment {
 
@@ -32,8 +28,8 @@ public class CurrentReservationsFragment extends ListFragment {
      * @return A new instance of fragment PreviousReservationsFragment.
      */
     // TODO: Rename and change types and number of parameters
-    public static PreviousReservationsFragment newInstance(String param1, String param2) {
-        PreviousReservationsFragment fragment = new PreviousReservationsFragment();
+    public static CurrentReservationsFragment newInstance(String param1, String param2) {
+        CurrentReservationsFragment fragment = new CurrentReservationsFragment();
         Bundle args = new Bundle();
         args.putString("ARG_PARAM1", param1);
         args.putString("ARG_PARAM2", param2);
@@ -50,14 +46,14 @@ public class CurrentReservationsFragment extends ListFragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_current_reservations, container, false);
+        return inflater.inflate(R.layout.fragment_reservation_list, container, false);
     }
 
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
         Toast.makeText(getActivity(), "onActivityCurrentReservationsFragmentCreated()", Toast.LENGTH_SHORT).show();
-        CurrentReservationAdapter adapter = new CurrentReservationAdapter(getActivity());
+        CurrentReservationAdapter adapter = new CurrentReservationAdapter(getActivity(), Reservations.getCurrentReservations());
         setListAdapter(adapter);
     }
 

@@ -25,20 +25,22 @@ import java.util.List;
 
 public class CurrentReservationAdapter extends BaseAdapter {
 
+    private List<Reservation> mDataset;
     public Activity activity;
 
-    public CurrentReservationAdapter(Activity activity) {
+    public CurrentReservationAdapter(Activity activity, List<Reservation> mDataset) {
         this.activity = activity;
+        this.mDataset = mDataset;
     }
 
     @Override
     public int getCount() {
-        return Reservations.getCurrentReservations().size();
+        return mDataset.size();
     }
 
     @Override
     public Object getItem(int position) {
-        return Reservations.getCurrentReservations().get(position);
+        return mDataset.get(position);
     }
 
     @Override
@@ -52,7 +54,7 @@ public class CurrentReservationAdapter extends BaseAdapter {
         Reservation reservation = (Reservation) getItem(position);
 
         if(convertView==null)
-            vi = activity.getLayoutInflater().inflate(R.layout.fragment_current_reservation, null);
+            vi = activity.getLayoutInflater().inflate(R.layout.fragment_reservation, null);
 
         TextView vehicleServiceName = (TextView)vi.findViewById(R.id.textViewVehicleName);
         TextView date = (TextView)vi.findViewById(R.id.textViewReservationDate);
@@ -64,10 +66,9 @@ public class CurrentReservationAdapter extends BaseAdapter {
         price.setText((String.valueOf(reservation.getPrice())));
 
         Button buttonRate = (Button) vi.findViewById(R.id.button5);
-        Button buttonCancel = (Button) vi.findViewById(R.id.button2);
         buttonRate.setVisibility(View.GONE);
+        Button buttonCancel = (Button) vi.findViewById(R.id.button2);
         buttonCancel.setVisibility(View.VISIBLE);
-
         buttonCancel.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

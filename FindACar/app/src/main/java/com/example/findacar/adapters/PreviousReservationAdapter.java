@@ -4,33 +4,43 @@ import android.app.Activity;
 
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.Window;
+import android.view.WindowManager;
 import android.widget.BaseAdapter;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.DialogFragment;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
+
 import com.example.findacar.R;
+import com.example.findacar.fragments.ServiceRatingFragment;
 import com.example.findacar.mockupData.Reservations;
 import com.example.findacar.model.Reservation;
 
 import java.text.SimpleDateFormat;
+import java.util.List;
 
 public class PreviousReservationAdapter extends BaseAdapter {
-
+    private List<Reservation> mDataset;
     public Activity activity;
 
-    public PreviousReservationAdapter(Activity activity) {
+    public PreviousReservationAdapter(Activity activity, List<Reservation> mDataset) {
         this.activity = activity;
+        this.mDataset = mDataset;
     }
 
     @Override
     public int getCount() {
-        return Reservations.getPreviousReservations().size();
+        return mDataset.size();
     }
 
     @Override
     public Object getItem(int position) {
-        return Reservations.getPreviousReservations().get(position);
+        return mDataset.get(position);
     }
 
     @Override
@@ -42,9 +52,9 @@ public class PreviousReservationAdapter extends BaseAdapter {
     public View getView(int position, View convertView, ViewGroup parent) {
         View vi = convertView;
         Reservation reservation = (Reservation) getItem(position);
-        if(convertView==null)
-            vi = activity.getLayoutInflater().inflate(R.layout.fragment_current_reservation, null);
-
+        if(convertView==null){
+            vi = activity.getLayoutInflater().inflate(R.layout.fragment_reservation, null);
+        }
         TextView vehicleServiceName = (TextView)vi.findViewById(R.id.textViewVehicleName);
         TextView date = (TextView)vi.findViewById(R.id.textViewReservationDate);
         TextView price = (TextView)vi.findViewById(R.id.textViewReservationPrice);
@@ -61,7 +71,17 @@ public class PreviousReservationAdapter extends BaseAdapter {
         buttonRate.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
                 Toast.makeText(activity, "on rate button click", Toast.LENGTH_SHORT).show();
+                FragmentTransaction ft =((AppCompatActivity)activity).getSupportFragmentManager().beginTransaction();
+                Fragment prev =((AppCompatActivity)activity).getSupportFragmentManager().findFragmentByTag("dialog");
+                if (prev != null) {
+                    ft.remove(prev);
+                }
+                ft.addToBackStack(null);
+                // Create and show the dialog.
+                DialogFragment newFragment = new ServiceRatingFragment();
+                newFragment.show(ft, "dialog");
             }
         });
 
