@@ -8,6 +8,18 @@
     android:layout_gravity="center|top"
     android:background="@drawable/divider">
 
+    <RatingBar
+        android:id="@+id/ratingBar3"
+        android:layout_width="237dp"
+        android:layout_height="50dp"
+        android:clickable="false"
+        android:soundEffectsEnabled="true"
+        app:layout_constraintBottom_toTopOf="@+id/guideline39"
+        app:layout_constraintEnd_toStartOf="@+id/guideline28"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="@+id/guideline27"
+        app:layout_constraintTop_toTopOf="@+id/guideline33" />
+
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline25"
         android:layout_width="wrap_content"
@@ -133,7 +145,7 @@
         android:id="@+id/button5"
         android:layout_width="wrap_content"
         android:layout_height="43dp"
-        android:background="@drawable/button_background"
+        android:background="@drawable/button_background_search"
         android:text="Rate"
         app:layout_constraintBottom_toTopOf="@+id/guideline31"
         app:layout_constraintEnd_toStartOf="@+id/guideline28"
@@ -148,5 +160,15 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         app:layout_constraintGuide_percent="0.98" />
+
+    <TextView
+        android:id="@+id/textView5"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="TextView"
+        android:textColor="@color/colorRed"
+        app:layout_constraintBottom_toTopOf="@+id/guideline39"
+        app:layout_constraintStart_toStartOf="@+id/guideline27"
+        app:layout_constraintTop_toTopOf="@+id/guideline33" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

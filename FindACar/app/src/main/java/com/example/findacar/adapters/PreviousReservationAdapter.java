@@ -8,6 +8,7 @@ import android.view.Window;
 import android.view.WindowManager;
 import android.widget.BaseAdapter;
 import android.widget.Button;
+import android.widget.RatingBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -58,33 +59,42 @@ public class PreviousReservationAdapter extends BaseAdapter {
         TextView vehicleServiceName = (TextView)vi.findViewById(R.id.textViewVehicleName);
         TextView date = (TextView)vi.findViewById(R.id.textViewReservationDate);
         TextView price = (TextView)vi.findViewById(R.id.textViewReservationPrice);
+        TextView textView5 = (TextView)vi.findViewById(R.id.textView5);
+        textView5.setVisibility(View.GONE);
 
         vehicleServiceName.setText(reservation.getVehicle().getName());
         SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-mm-dd");
         date.setText(dateFormat.format(reservation.getPickUpDate()) + " - " + dateFormat.format(reservation.getReturnDate()));
-        price.setText((String.valueOf(reservation.getPrice())));
+        price.setText((String.valueOf(reservation.getPrice())) + " RSD");
         Button buttonRate = (Button) vi.findViewById(R.id.button5);
         Button buttonCancel = (Button) vi.findViewById(R.id.button2);
-        buttonRate.setVisibility(View.VISIBLE);
         buttonCancel.setVisibility(View.GONE);
-
-        buttonRate.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-
-                Toast.makeText(activity, "on rate button click", Toast.LENGTH_SHORT).show();
-                FragmentTransaction ft =((AppCompatActivity)activity).getSupportFragmentManager().beginTransaction();
-                Fragment prev =((AppCompatActivity)activity).getSupportFragmentManager().findFragmentByTag("dialog");
-                if (prev != null) {
-                    ft.remove(prev);
+        RatingBar ratingBar = vi.findViewById(R.id.ratingBar3);
+        ratingBar.setEnabled(false);
+        if (position == 1){
+            ratingBar.setVisibility(View.VISIBLE);
+            buttonRate.setEnabled(false);
+            ratingBar.setRating(4);
+        }else {
+            ratingBar.setVisibility(View.GONE);
+            buttonRate.setEnabled(true);
+            buttonRate.setVisibility(View.VISIBLE);
+            buttonRate.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    FragmentTransaction ft =((AppCompatActivity)activity).getSupportFragmentManager().beginTransaction();
+                    Fragment prev =((AppCompatActivity)activity).getSupportFragmentManager().findFragmentByTag("dialog");
+                    if (prev != null) {
+                        ft.remove(prev);
+                    }
+                    ft.addToBackStack(null);
+                    // Create and show the dialog.
+                    DialogFragment newFragment = new ServiceRatingFragment();
+                    newFragment.show(ft, "dialog");
                 }
-                ft.addToBackStack(null);
-                // Create and show the dialog.
-                DialogFragment newFragment = new ServiceRatingFragment();
-                newFragment.show(ft, "dialog");
-            }
-        });
+            });
 
+        }
         return vi;
     }
 }

@@ -7,6 +7,7 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.RatingBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -59,12 +60,15 @@ public class CurrentReservationAdapter extends BaseAdapter {
         TextView vehicleServiceName = (TextView)vi.findViewById(R.id.textViewVehicleName);
         TextView date = (TextView)vi.findViewById(R.id.textViewReservationDate);
         TextView price = (TextView)vi.findViewById(R.id.textViewReservationPrice);
+        TextView canCancel = (TextView)vi.findViewById(R.id.textView5);
+        canCancel.setVisibility(View.VISIBLE);
 
         vehicleServiceName.setText(reservation.getVehicle().getName());
         SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-mm-dd");
         date.setText(dateFormat.format(reservation.getPickUpDate()) + " - " + dateFormat.format(reservation.getReturnDate()));
-        price.setText((String.valueOf(reservation.getPrice())));
-
+        price.setText((String.valueOf(reservation.getPrice())) + " RSD");
+        RatingBar ratingBar = vi.findViewById(R.id.ratingBar3);
+        ratingBar.setVisibility(View.GONE);
         Button buttonRate = (Button) vi.findViewById(R.id.button5);
         buttonRate.setVisibility(View.GONE);
         Button buttonCancel = (Button) vi.findViewById(R.id.button2);
@@ -75,6 +79,14 @@ public class CurrentReservationAdapter extends BaseAdapter {
                 Toast.makeText(activity, "on cancel button click", Toast.LENGTH_SHORT).show();
             }
         });
+
+        if (position == 1){
+            buttonCancel.setEnabled(false);
+            canCancel.setText("The cancellation deadline has passed.");
+        }else {
+            buttonCancel.setEnabled(true);
+            canCancel.setText("Cancellation deadline: dd/mm/yyyy hh:mm");
+        }
 
         return vi;
     }

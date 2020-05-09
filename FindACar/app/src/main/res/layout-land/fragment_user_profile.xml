@@ -59,7 +59,7 @@
         android:textColor="@color/colorPurple"
         app:layout_constraintBottom_toTopOf="@+id/guideline18"
         app:layout_constraintEnd_toStartOf="@+id/guideline9"
-        app:layout_constraintStart_toStartOf="@+id/guideline"
+        app:layout_constraintStart_toStartOf="@+id/guideline62"
         app:layout_constraintTop_toTopOf="@+id/guideline17" />
 
     <androidx.constraintlayout.widget.Guideline
@@ -167,7 +167,7 @@
         android:id="@+id/btnChangePass"
         android:layout_width="wrap_content"
         android:layout_height="0dp"
-        android:background="@drawable/button_background"
+        android:background="@drawable/button_background_search"
         android:capitalize="sentences"
         android:text="@string/btn_change_pass"
         app:layout_constraintBottom_toTopOf="@+id/guideline8"
@@ -271,5 +271,23 @@
         tools:layout_editor_absoluteX="683dp">
 
     </androidx.constraintlayout.widget.Barrier>
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline62"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.23" />
+
+    <ImageView
+        android:id="@+id/imageView3"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:background="@color/colorPrimary"
+        android:src="@drawable/ic_account_circle_black_24dp"
+        app:layout_constraintBottom_toTopOf="@+id/guideline18"
+        app:layout_constraintEnd_toStartOf="@+id/textView"
+        app:layout_constraintStart_toStartOf="@+id/guideline"
+        app:layout_constraintTop_toTopOf="@+id/guideline17" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
