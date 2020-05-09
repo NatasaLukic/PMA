@@ -1,6 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_height="match_parent"
+    android:layout_width="match_parent">
+    <RelativeLayout
+        android:layout_width="match_parent"
     android:layout_gravity="center"
     android:background="@drawable/divider"
     android:layout_height="match_parent">
@@ -13,60 +18,64 @@
         android:layout_marginLeft="3dp"
         android:layout_marginTop="11dp"
         android:layout_toRightOf="@id/type"
-        android:text="car with:">
+        android:text="car with:"
+        app:fontFamily="serif">
 
     </TextView>
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/line1"
-        android:layout_marginLeft="3dp"
-        android:layout_marginTop="62dp"
-        android:layout_toRightOf="@+id/seats"
-        android:text="seats">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/line1"
+            android:layout_marginLeft="5dp"
+            android:layout_marginTop="69dp"
+            android:layout_toRightOf="@+id/seats"
+            android:text="seats"
+            android:textSize="12dp"
+            app:fontFamily="serif">
 
-    </TextView>
+        </TextView>
 
-    <TextView
+        <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/line1"
         android:layout_marginLeft="3dp"
         android:layout_marginTop="38dp"
         android:layout_toRightOf="@+id/doors"
-        android:text="doors">
+        android:textSize="12dp"
+        android:text="doors"
+        app:fontFamily="serif">
 
     </TextView>
 
     <TextView
         android:id="@+id/name"
+        android:textStyle="bold"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
+        android:layout_marginLeft="15dp"
         android:layout_marginTop="10dp"
-        android:textColor="@android:color/black"
-       android:layout_centerHorizontal="true"
         android:text="asdsadasd"
-        android:textSize="25dp">
-    </TextView>
+        android:textSize="22dp"
+        app:fontFamily="serif"></TextView>
 
     <View
         android:layout_width="320dp"
         android:layout_height="1dp"
         android:layout_below="@+id/name"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="5dp"
         android:id="@+id/line1"
         android:layout_centerInParent="true"
         android:background="#c0c0c0" />
 
     <ImageView
         android:id="@+id/vehiclePhoto"
-        android:layout_width="205dp"
-        android:layout_height="189dp"
+        android:layout_width="180dp"
+        android:layout_height="171dp"
         android:layout_below="@+id/line1"
-        android:layout_marginLeft="-3dp"
-        android:layout_marginTop="0dp"
+        android:layout_marginLeft="7dp"
         android:layout_weight="0" />
 
     <TextView
@@ -78,7 +87,8 @@
         android:layout_marginTop="11dp"
         android:layout_toRightOf="@id/vehiclePhoto"
         android:text="ajskd"
-        android:textStyle="bold">
+        android:textStyle="bold"
+        app:fontFamily="serif">
 
     </TextView>
 
@@ -87,56 +97,119 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/line1"
-        android:layout_marginLeft="11dp"
+        android:layout_marginLeft="8dp"
+        android:textSize="12dp"
         android:layout_marginTop="38dp"
-        android:layout_toRightOf="@+id/vehiclePhoto"
-        android:text="Num of doors">
+        android:layout_toRightOf="@+id/imageDoors"
+        android:text="Num of doors"
+        app:fontFamily="serif">
 
     </TextView>
 
-    <TextView
-        android:id="@+id/seats"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/doors"
-        android:layout_marginLeft="11dp"
-        android:layout_marginTop="5dp"
-        android:layout_toRightOf="@+id/vehiclePhoto"
-        android:text="Num of seats"></TextView>
+        <TextView
+            android:id="@+id/seats"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/doors"
+            android:layout_marginLeft="5dp"
+            android:layout_marginTop="14dp"
+            android:layout_toRightOf="@id/imageSeats"
+            android:text="Num of seats"
+            android:textSize="12dp"
+            app:fontFamily="serif"></TextView>
 
-    <View
-        android:layout_width="320dp"
-        android:layout_height="1dp"
-        android:layout_below="@+id/vehiclePhoto"
-        android:layout_marginBottom="10dp"
-        android:id="@+id/line2"
-        android:layout_centerInParent="true"
-        android:background="#c0c0c0" />
+        <View
+            android:id="@+id/line2"
+            android:layout_width="320dp"
+            android:layout_height="1dp"
+            android:layout_below="@id/reg"
+            android:layout_centerInParent="true"
+            android:layout_marginTop="19dp"
+            android:background="#c0c0c0" />
 
-    <Button
-        android:id="@+id/button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/seats"
+        <ImageView
+        android:layout_width="15dp"
+        android:layout_height="15dp"
+        android:layout_below="@id/imageSeats"
         android:layout_marginLeft="22dp"
-        android:layout_marginTop="32dp"
+        android:layout_marginTop="11dp"
         android:layout_toRightOf="@id/vehiclePhoto"
-        android:background="@drawable/button_background_search"
-        android:text="Details"
-        android:textColor="@color/whiteTransp">
+        android:src="@drawable/ic_manual" />
 
-    </Button>
+        <TextView
+            android:id="@+id/aut"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/seats"
+            android:layout_marginLeft="45dp"
+            android:layout_marginTop="10dp"
+            android:layout_toRightOf="@id/vehiclePhoto"
+            android:text="man/aut"
+            android:textSize="12dp" />
 
-    <TextView
-        android:id="@+id/price"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/line2"
-        android:gravity="right"
-        android:layout_marginBottom="15dp"
-        android:text="asds"
-        android:textSize="22dp">
+        <Button
+            android:id="@+id/button"
+            android:layout_width="150dp"
+            android:layout_height="32dp"
+            android:layout_below="@id/line2"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="15dp"
+            android:layout_marginBottom="15dp"
+            android:background="@drawable/button_background_search"
+            android:fontFamily="serif"
+            android:text="Details"
+            android:textColor="@color/colorWhite">
 
-    </TextView>
+        </Button>
 
-</RelativeLayout>
+        <ImageView
+        android:id="@+id/imageDoors"
+        android:layout_width="16dp"
+        android:layout_height="17dp"
+        android:layout_below="@id/type"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="10dp"
+        android:layout_toRightOf="@id/vehiclePhoto"
+        android:src="@drawable/ic_door" />
+
+    <ImageView
+        android:id="@+id/imageSeats"
+        android:layout_width="22dp"
+        android:layout_height="18dp"
+        android:layout_below="@id/imageDoors"
+        android:layout_marginLeft="17dp"
+        android:layout_marginTop="11dp"
+        android:layout_toRightOf="@id/vehiclePhoto"
+        android:src="@drawable/ic_seat" />
+
+        <TextView
+            android:id="@+id/price"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/line2"
+            android:layout_marginLeft="15dp"
+            android:layout_marginTop="-27dp"
+            android:layout_marginRight="15dp"
+            android:layout_marginBottom="5dp"
+            android:gravity="right"
+            android:text="asds"
+            android:textSize="20dp"
+            android:textStyle="bold"
+            app:fontFamily="serif" />
+
+        <TextView
+            android:id="@+id/reg"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/vehiclePhoto"
+            android:layout_marginLeft="15dp"
+            android:layout_marginBottom="35dp"
+            android:layout_marginTop="-25dp"
+            android:fontFamily="serif"
+            android:text="Vehicle registrated until "
+            android:textSize="11dp">
+
+        </TextView>
+
+    </RelativeLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

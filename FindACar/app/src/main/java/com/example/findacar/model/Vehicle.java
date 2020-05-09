@@ -13,6 +13,10 @@ public class Vehicle {
     private int image;
     private String registratedUntil;
     private ArrayList<Integer> images;
+    private int yearOfProd;
+    private String fuel;
+    private int numOfCases;
+    private String description;
 
     public Vehicle(String name, int numOfSeats, int numOfDoors, String type, boolean airCond, boolean automTrans, int image, String registratedUntil) {
         this.name = name;
@@ -88,5 +92,31 @@ public class Vehicle {
 
     public void setImages(ArrayList<Integer> images) {
         this.images = images;
+    }
+
+    public int getYearOfProd() { return yearOfProd; }
+
+    public void setYearOfProd(int yearOfProd) { this.yearOfProd = yearOfProd; }
+
+    public String getFuel() { return fuel; }
+
+    public void setFuel(String fuel) {
+        this.fuel = fuel;
+    }
+
+    public int getNumOfCases() {
+        return numOfCases;
+    }
+
+    public void setNumOfCases(int numOfCases) {
+        this.numOfCases = numOfCases;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
     }
 }

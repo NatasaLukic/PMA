@@ -52,7 +52,6 @@ public class CurrentReservationsFragment extends ListFragment {
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-        Toast.makeText(getActivity(), "onActivityCurrentReservationsFragmentCreated()", Toast.LENGTH_SHORT).show();
         CurrentReservationAdapter adapter = new CurrentReservationAdapter(getActivity(), Reservations.getCurrentReservations());
         setListAdapter(adapter);
     }

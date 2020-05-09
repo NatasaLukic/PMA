@@ -1,11 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:fillViewport="true"
     android:layout_height="match_parent"
-    android:background="@color/colorWhite"
+    android:background="@color/colorLightGray"
     android:orientation="vertical"
     tools:context=".activites.CarServiceDetailsActivity">
 
@@ -29,14 +28,13 @@
             android:layout_width="match_parent"
             android:layout_below="@id/toolbar"
             android:layout_marginTop="10dp"
-            android:layout_marginBottom="30dp"
             android:layout_height="wrap_content"
             android:gravity="center"></RelativeLayout>
 
 
         <View
             android:layout_width="match_parent"
-            android:layout_height="20dp"
+            android:layout_height="8dp"
             android:layout_above="@id/bottom_toolbar"
             android:background="@drawable/shadow_bar"/>
 
@@ -52,4 +50,4 @@
 
     </RelativeLayout>
 
-</ScrollView>
+</RelativeLayout>

@@ -55,7 +55,6 @@ public class PreviousReservationsFragment extends ListFragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        Toast.makeText(getActivity(), "onCreateView", Toast.LENGTH_SHORT).show();
         return inflater.inflate(R.layout.fragment_reservation_list, container, false);
     }
 
@@ -68,8 +67,6 @@ public class PreviousReservationsFragment extends ListFragment {
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-        Toast.makeText(getActivity(), "onActivityPreviousReservationsFragmentCreated()", Toast.LENGTH_SHORT).show();
-        System.out.println("*********************************************************************************************");
         PreviousReservationAdapter adapter = new PreviousReservationAdapter(getActivity(), Reservations.getPreviousReservations());
         setListAdapter(adapter);
     }

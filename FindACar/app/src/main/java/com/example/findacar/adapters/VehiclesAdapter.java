@@ -66,7 +66,18 @@ public class VehiclesAdapter extends BaseAdapter {
         type.setText(vehicle.getType());
         price.setText("Price: 19.200 RSD");
 
+        TextView date = (TextView) vi.findViewById(R.id.reg);
+        TextView autom = (TextView) vi.findViewById(R.id.aut);
+
+        date.setText("Vehicle registrated until " + vehicle.getRegistratedUntil());
+
         Button details = (Button) vi.findViewById(R.id.button);
+
+        if (vehicle.isAutomTrans() == true) {
+            autom.setText("Automatic");
+        } else {
+            autom.setText("Manual");
+        }
 
         details.setOnClickListener(new View.OnClickListener(){
 
