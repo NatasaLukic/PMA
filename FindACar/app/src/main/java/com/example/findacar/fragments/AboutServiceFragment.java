@@ -25,8 +25,6 @@ public class AboutServiceFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        BottomNavigationView bottomNavigationView = getActivity().findViewById(R.id.bottom_toolbar);
-        bottomNavigationView.setVisibility(View.GONE);
 
         return inflater.inflate(R.layout.fragment_about_service, container, false);
     }

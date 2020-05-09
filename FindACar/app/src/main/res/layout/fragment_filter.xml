@@ -1,164 +1,67 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
+    android:fillViewport="true"
+    android:background="@color/colorWhite"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".fragments.FilterFragment">
 
-
     <RelativeLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content">
+    <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:text="Filter results"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="110dp">
+        android:gravity="center"
+        android:textSize="24dp"
+        android:layout_marginBottom="15dp"
+        android:layout_marginTop="15dp"
+        android:id="@+id/text_filter"/>
 
-
-        <RelativeLayout
-            android:id="@+id/car_group"
+        <ExpandableListView
+            android:id="@+id/expand_list"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="50dp"
+            android:layout_below="@id/text_filter" />
 
-            <TextView
-                android:id="@+id/lText"
-                android:textSize="18dp"
+
+        <LinearLayout android:id="@+id/footer"
+            android:layout_marginTop="40dp"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_alignParentBottom="true"
+            style="@android:style/ButtonBar"
+            android:background="@color/colorWhite">
+
+            <Button android:id="@+id/saveButton"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="60dp"
-                android:layout_marginTop="5dp"
-                android:text="Large cars" />
+                android:layout_height="40dp"
+                android:layout_weight="1"
+                android:layout_marginLeft="20dp"
+                android:background="@drawable/button_background_search"
+                android:textColor="@color/colorWhite"
+                android:text="Filter" />
 
-            <CheckBox
-                android:id="@+id/checkLarge"
-                android:buttonTint="@drawable/item_color_state_checkbox"
-                android:layout_width="wrap_content" android:layout_marginTop="7dp"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="150dp"
-                android:layout_toRightOf="@id/lText" />
-
-            <TextView
-                android:id="@+id/mText"
-                android:textSize="18dp"
+            <Button android:id="@+id/cancelButton"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@id/lText"
-                android:layout_marginLeft="60dp"
-                android:layout_marginTop="20dp"
-                android:text="Medium cars" />
-
-            <CheckBox
-                android:id="@+id/checkMedium"
-                android:buttonTint="@drawable/item_color_state_checkbox"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@id/checkLarge"
-                android:layout_marginLeft="150dp"
-                android:layout_marginTop="10dp"
-                android:layout_toRightOf="@id/lText" />
-
-            <TextView
-                android:id="@+id/sText"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@id/mText"
-                android:layout_marginLeft="60dp"
-                android:layout_marginTop="20dp"
-                android:textSize="18dp"
-                android:text="Small cars" />
-
-            <CheckBox
-                android:id="@+id/checkSmall"
-                android:buttonTint="@drawable/item_color_state_checkbox"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@id/checkMedium"
-                android:layout_marginLeft="150dp"
-                android:layout_marginTop="7dp"
-                android:layout_toRightOf="@id/lText" />
-
-        </RelativeLayout>
-
-
-        <View
-            android:id="@+id/line"
-            android:layout_width="320dp"
-            android:layout_height="1dp"
-            android:layout_below="@id/car_group"
-            android:layout_centerVertical="true"
-            android:layout_centerInParent="true"
-            android:layout_marginTop="25dp"
-            android:background="#c0c0c0" />
-
-        <TextView
-            android:id="@+id/airText"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/line"
-            android:layout_marginLeft="60dp"
-            android:textSize="18dp"
-            android:layout_marginTop="30dp"
-            android:text="Air Conditioning" />
-
-        <CheckBox
-            android:id="@+id/checkAirC"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/line"
-            android:layout_marginLeft="109dp"
-            android:layout_marginTop="28dp"
-            android:layout_toRightOf="@id/airText"
-            android:buttonTint="@drawable/item_color_state_checkbox" />
-
-        <TextView
-            android:id="@+id/manText"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/airText"
-            android:textSize="18dp"
-            android:layout_marginLeft="60dp"
-            android:layout_marginTop="20dp"
-            android:text="Manual" />
-
-        <CheckBox
-            android:id="@+id/checkMan"
-            android:buttonTint="@drawable/item_color_state_checkbox"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/checkAirC"
-            android:layout_marginLeft="109dp"
-            android:layout_marginTop="10dp"
-            android:layout_toRightOf="@id/airText" />
-
-        <TextView
-            android:id="@+id/auto"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/manText"
-            android:layout_marginLeft="60dp"
-            android:textSize="18dp"
-            android:layout_marginTop="20dp"
-            android:text="Automatic" />
-
-        <CheckBox
-            android:id="@+id/checkAut"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:buttonTint="@drawable/item_color_state_checkbox"
-            android:layout_below="@id/checkMan"
-            android:layout_marginLeft="109dp"
-            android:layout_marginTop="10dp"
-            android:layout_toRightOf="@id/airText" />
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
+                android:layout_height="40dp"
+                android:layout_weight="1"
+                android:background="@drawable/button_background_search"
+                android:textColor="@color/colorWhite"
+                android:text="Reset" />
+        </LinearLayout>
 
 
     </RelativeLayout>
 
-    <Button
-        android:layout_width="204dp"
-        android:layout_height="38dp"
-        android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginBottom="51dp"
-        android:textColor="@color/colorWhite"
-        android:background="@drawable/button_background_search"
-        android:text="Filter" />
 
-</RelativeLayout>
+
+</ScrollView>

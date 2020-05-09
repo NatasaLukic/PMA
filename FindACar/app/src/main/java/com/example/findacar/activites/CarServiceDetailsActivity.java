@@ -8,6 +8,7 @@ import androidx.fragment.app.FragmentTransaction;
 
 import android.content.res.ColorStateList;
 import android.graphics.Color;
+import android.opengl.Visibility;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
@@ -24,6 +25,7 @@ import java.util.List;
 public class CarServiceDetailsActivity extends AppCompatActivity implements BottomNavigationView.OnNavigationItemSelectedListener {
 
     private BottomNavigationView bottomNavigationView;
+    private BottomNavigationView bottomNavigationViewFilter;
     private Fragment currentFragment;
 
     @Override
@@ -50,6 +52,8 @@ public class CarServiceDetailsActivity extends AppCompatActivity implements Bott
 
                     if(currentFragment instanceof FilterFragment || currentFragment instanceof AboutServiceFragment){
                         Fragment f = new VehicleListFragment();
+
+                        bottomNavigationView.setVisibility(View.VISIBLE);
                         getSupportFragmentManager().beginTransaction().setTransition((FragmentTransaction.TRANSIT_FRAGMENT_OPEN))
                                 .replace(R.id.listOfVehicles, f).commit();
                         currentFragment = f;
@@ -76,12 +80,14 @@ public class CarServiceDetailsActivity extends AppCompatActivity implements Bott
             case R.id.filter:
                 Fragment f = new FilterFragment();
                 currentFragment = f;
+                bottomNavigationView.setVisibility(View.GONE);
                 getSupportFragmentManager().beginTransaction().replace(R.id.listOfVehicles,
                         f).commit();
                 break;
 
             case R.id.about:
                 Fragment f2 = new AboutServiceFragment();
+                bottomNavigationView.setVisibility(View.GONE);
                 currentFragment = f2;
                 getSupportFragmentManager().beginTransaction().replace(R.id.listOfVehicles,
                         f2).commit();
