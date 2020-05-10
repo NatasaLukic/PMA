@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/colorWhite"
     android:orientation="vertical"
     tools:context=".activites.VehicleActivity">
 
@@ -22,7 +23,7 @@
 
     <androidx.viewpager.widget.ViewPager
         android:id="@+id/slider"
-        android:layout_width="320dp"
+        android:layout_width="350dp"
         android:layout_height="280dp"
         android:layout_centerHorizontal="true"
         android:layout_below="@id/up_layout"
