@@ -50,7 +50,6 @@ public class VehicleListFragment extends ListFragment {
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-        Toast.makeText(getActivity(), "onActivityFragmentCreated()", Toast.LENGTH_SHORT).show();
 
         VehiclesAdapter adapter = new VehiclesAdapter(getActivity());
         setListAdapter(adapter);

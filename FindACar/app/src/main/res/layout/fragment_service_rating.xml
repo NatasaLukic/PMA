@@ -51,6 +51,8 @@
     <EditText
         android:id="@+id/editText"
         android:layout_width="0dp"
+        android:paddingTop="10dp"
+        android:paddingLeft="10dp"
         android:layout_height="0dp"
         android:background="@drawable/input"
         android:ems="10"
@@ -87,6 +89,7 @@
     <RatingBar
         android:id="@+id/ratingBar"
         android:layout_width="wrap_content"
+        android:paddingTop="5dp"
         android:layout_height="0dp"
         android:background="@drawable/input"
         app:layout_constraintBottom_toTopOf="@+id/guideline47"
@@ -117,31 +120,35 @@
 
     <Button
         android:id="@+id/button6"
-        android:layout_width="wrap_content"
+        android:layout_width="120dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="64dp"
-        android:layout_marginLeft="64dp"
-        android:background="@color/colorGreen"
+        android:layout_marginStart="34dp"
+        android:layout_marginLeft="0dp"
+        android:background="@drawable/button_background_search"
         android:text="@string/btnOk"
+        android:textColor="@color/colorWhite"
         app:layout_constraintBottom_toTopOf="@+id/guideline55"
         app:layout_constraintEnd_toStartOf="@+id/guideline57"
-        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintHorizontal_bias="0.166"
         app:layout_constraintStart_toStartOf="@+id/guideline23"
-        app:layout_constraintTop_toTopOf="@+id/guideline54" />
+        app:layout_constraintTop_toTopOf="@+id/guideline54"
+        app:layout_constraintVertical_bias="0.4" />
 
     <Button
         android:id="@+id/button7"
-        android:layout_width="wrap_content"
+        android:layout_width="120dp"
         android:layout_height="wrap_content"
         android:layout_marginEnd="76dp"
-        android:layout_marginRight="76dp"
-        android:background="@color/colorRed"
+        android:layout_marginRight="30dp"
+        android:background="@drawable/button_background_cancel"
         android:text="@string/btnCancel"
+        android:textColor="@color/colorWhite"
         app:layout_constraintBottom_toTopOf="@+id/guideline55"
         app:layout_constraintEnd_toStartOf="@+id/guideline24"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="@+id/guideline58"
         app:layout_constraintTop_toTopOf="@+id/guideline54"
+        app:layout_constraintVertical_bias="0.4"
         tools:text="@string/btnCancel" />
 
     <androidx.constraintlayout.widget.Guideline
@@ -149,7 +156,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        app:layout_constraintGuide_percent="0.47" />
+        app:layout_constraintGuide_percent="0.41" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline58"
