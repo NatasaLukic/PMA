@@ -8,6 +8,7 @@ import android.view.Window;
 import android.view.WindowManager;
 import android.widget.BaseAdapter;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.RatingBar;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -57,15 +58,19 @@ public class PreviousReservationAdapter extends BaseAdapter {
             vi = activity.getLayoutInflater().inflate(R.layout.fragment_reservation, null);
         }
         TextView vehicleServiceName = (TextView)vi.findViewById(R.id.textViewVehicleName);
-        TextView date = (TextView)vi.findViewById(R.id.textViewReservationDate);
+        TextView datePickUp = (TextView)vi.findViewById(R.id.textViewReservationDatePickUp);
+        TextView datReturn = (TextView)vi.findViewById(R.id.textViewReservationDateReturn);
         TextView price = (TextView)vi.findViewById(R.id.textViewReservationPrice);
         TextView textView5 = (TextView)vi.findViewById(R.id.textView5);
         textView5.setVisibility(View.GONE);
 
+        ImageView carPhoto = (ImageView) vi.findViewById(R.id.car_photo);
+        carPhoto.setImageResource(reservation.getVehicle().getImage());
+
         vehicleServiceName.setText(reservation.getVehicle().getName());
         SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-mm-dd");
-        date.setText(dateFormat.format(reservation.getPickUpDate()) + " - " + dateFormat.format(reservation.getReturnDate()));
-        price.setText((String.valueOf(reservation.getPrice())) + " RSD");
+        datePickUp.setText(dateFormat.format(reservation.getPickUpDate()));
+        datReturn.setText(dateFormat.format(reservation.getReturnDate()));
         Button buttonRate = (Button) vi.findViewById(R.id.button5);
         Button buttonCancel = (Button) vi.findViewById(R.id.button2);
         buttonCancel.setVisibility(View.GONE);
@@ -73,7 +78,7 @@ public class PreviousReservationAdapter extends BaseAdapter {
         ratingBar.setEnabled(false);
         if (position == 1){
             ratingBar.setVisibility(View.VISIBLE);
-            buttonRate.setEnabled(false);
+            buttonRate.setEnabled(true);
             ratingBar.setRating(4);
         }else {
             ratingBar.setVisibility(View.GONE);
