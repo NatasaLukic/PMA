@@ -18,6 +18,8 @@ import org.w3c.dom.Text;
 
 public class VehicleActivity extends AppCompatActivity {
 
+    private boolean clicked = false;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -70,6 +72,29 @@ public class VehicleActivity extends AppCompatActivity {
         TextView airC_text = (TextView) findViewById(R.id.airC_text);
 
         TextView auto_text = (TextView) findViewById(R.id.auto_text);
+
+        final ImageView notClickedImage = (ImageView) findViewById(R.id.notClickedImage);
+        final ImageView clickedImage = (ImageView) findViewById(R.id.clickedImage);
+
+        notClickedImage.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                notClickedImage.setVisibility(View.GONE);
+                clickedImage.setVisibility(View.VISIBLE);
+
+            }
+        });
+
+        clickedImage.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                notClickedImage.setVisibility(View.VISIBLE);
+                clickedImage.setVisibility(View.GONE);
+
+            }
+        });
 
         if(vehicle.isAirCond() == false) {
             airC.setVisibility(View.INVISIBLE);

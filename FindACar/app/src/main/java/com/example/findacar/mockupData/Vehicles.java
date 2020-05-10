@@ -21,7 +21,7 @@ public class Vehicles {
         Vehicle v4 = new Vehicle("Nissan Qashqai", 5, 5, "Large", true,
                 false, R.drawable.nissan1, "26/03/2021");
 
-        v1.getImages().add(R.drawable.reno_clio_1);
+        v1.getImages().add(R.drawable.renoclio_1);
         v1.getImages().add(R.drawable.reno_clio_2);
         v1.getImages().add(R.drawable.reno_clio_3);
         v1.getImages().add(R.drawable.reno_clio_4);
@@ -46,11 +46,11 @@ public class Vehicles {
         v2.getImages().add(R.drawable.ford_fiesta_3);
         v2.getImages().add(R.drawable.ford_fiesta_4);
 
-        v3.getImages().add(R.drawable.dacia_logan);
+        v3.getImages().add(R.drawable.dacia_logan_1_1);
         v3.getImages().add(R.drawable.dacia_logan_3);
         v3.getImages().add(R.drawable.dacia_logan_4);
 
-        v4.getImages().add(R.drawable.nissan_1_2);
+        v4.getImages().add(R.drawable.nissan_2);
         v4.getImages().add(R.drawable.nissan2);
         v4.getImages().add(R.drawable.nissan3);
         v4.getImages().add(R.drawable.nissan4);
