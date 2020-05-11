@@ -18,6 +18,7 @@ import com.example.findacar.R;
 import com.example.findacar.fragments.AboutServiceFragment;
 import com.example.findacar.fragments.FilterFragment;
 import com.example.findacar.fragments.VehicleListFragment;
+import com.google.android.material.appbar.AppBarLayout;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import java.util.List;
@@ -40,6 +41,9 @@ public class CarServiceDetailsActivity extends AppCompatActivity implements Bott
 
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+
+    //    AppBarLayout.LayoutParams params = (AppBarLayout.LayoutParams) toolbar.getLayoutParams();
+    //    params.setScrollFlags(0);
 
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setDisplayShowHomeEnabled(true);

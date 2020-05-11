@@ -46,7 +46,7 @@
                 android:layout_marginLeft="20dp"
                 android:background="@drawable/button_background_search"
                 android:textColor="@color/colorWhite"
-                android:text="Filter" />
+                android:text="Apply" />
 
             <Button android:id="@+id/cancelButton"
                 android:layout_width="wrap_content"
