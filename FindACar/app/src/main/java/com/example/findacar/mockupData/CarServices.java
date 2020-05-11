@@ -12,7 +12,7 @@ public class CarServices {
 
         ArrayList<CarService> carServices = new ArrayList<CarService>();
 
-        CarService c1 = new CarService("Servis 1", "Narodnog Fronta 23");
+        CarService c1 = new CarService("Servis 1", "Narodnog Fronta 15");
         CarService c2 = new CarService("Servis 2", "Janka Cmelika 24");
         CarService c3 = new CarService("Servis 3", "Radnicka 10");
 

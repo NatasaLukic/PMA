@@ -157,7 +157,7 @@
             android:layout_marginTop="45dp"
             android:textStyle="bold"
             android:layout_gravity="center_horizontal"
-            android:text="Kneza Mihaila 23" />
+            android:text="Narodnog Fronta 15" />
         <TextView
             android:id="@+id/textView24"
             android:layout_width="wrap_content"
@@ -165,7 +165,7 @@
             android:scrollbars="vertical"
             android:layout_marginTop="65dp"
             android:layout_gravity="center_horizontal"
-            android:text="Belgrade, 11000" />
+            android:text="Novi Sad, 21000" />
         <TextView
             android:id="@+id/textView27"
             android:layout_width="wrap_content"
@@ -212,7 +212,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
-            android:text="Service 1 car agency based in Belgrade has an excellent ratio of price and quality of vehicles. Our vehicles are not older than five years and all are technically correct. We offer you rental of new cars with complete equipment at extremely favorable rental conditions. It is up to you to choose the vehicle that suits you and enjoy a carefree and comfortable ride. We guarantee: professionalism, reliability, safety"
+            android:text="Service 1 car agency based in Novi Sad has an excellent ratio of price and quality of vehicles. Our vehicles are not older than five years and all are technically correct. We offer you rental of new cars with complete equipment at extremely favorable rental conditions. It is up to you to choose the vehicle that suits you and enjoy a carefree and comfortable ride. We guarantee: professionalism, reliability, safety"
             />
     </androidx.cardview.widget.CardView>
 
