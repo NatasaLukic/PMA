@@ -6,18 +6,17 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.ImageButton;
-import android.widget.TextView;
 
 import androidx.fragment.app.Fragment;
 
 import com.example.findacar.R;
 import com.example.findacar.activites.ChangePasswordActivity;
+import com.example.findacar.activites.EditProfileActivity;
 
 
 public class UserProfileFragment extends Fragment {
 
-
+    private Button btnEditProfile;
     private Button btnChangePassword;
     private View view;
 
@@ -34,6 +33,14 @@ public class UserProfileFragment extends Fragment {
         btnChangePassword.setOnClickListener(new View.OnClickListener() {
             public void onClick(View view) {
                 Intent intent = new Intent(getActivity(), ChangePasswordActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        btnEditProfile = (Button)  view.findViewById(R.id.btnEditProfile);
+        btnEditProfile.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View view) {
+                Intent intent = new Intent(getActivity(), EditProfileActivity.class);
                 startActivity(intent);
             }
         });
