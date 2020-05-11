@@ -1,106 +1,114 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" 
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:layout_gravity="center"
     android:gravity="center"
     android:padding="20dp"
+    android:background="@color/colorWhite"
    >
-    
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:layout_gravity="center"
-        android:layout_marginRight="20dp"
-        android:layout_marginLeft="20dp" >
-        <ImageView
-            android:layout_width="120dp"
-            android:layout_height="120dp"
-            android:src="@drawable/ic_contact_mail_black_24dp"
-            android:padding="5dp"
-            android:gravity="center"/>
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:text="My Profile"
-            android:textSize="26dp"
-            android:gravity="center"
-            android:paddingRight="20dp"
-            android:textColor="@color/colorPrimary"/>
-    </LinearLayout>
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         android:orientation="vertical"
-        android:layout_marginRight="20dp"
-        android:layout_marginLeft="20dp"
+        android:gravity="center"
         >
-        <TextView
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="First Name"
-            android:textColor="@color/colorPrimary"
-            android:textSize="17dp"
-            android:paddingTop="20dp"/>
-        <TextView
+            android:orientation="horizontal"
+            android:layout_gravity="center"
+            android:layout_marginRight="20dp"
+            android:layout_marginLeft="20dp" >
+            <ImageView
+                android:layout_width="120dp"
+                android:layout_height="120dp"
+                android:src="@drawable/ic_contact_mail_black_24dp"
+                android:padding="5dp"
+                android:gravity="center"/>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="My Profile"
+                android:textSize="26dp"
+                android:gravity="center"
+                android:paddingRight="20dp"
+                android:textColor="@color/colorPrimary"/>
+        </LinearLayout>
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Pera"
-            android:textSize="17dp"
-            android:textColor="@color/colorDarkGray"
-            android:paddingTop="5dp"/>
+            android:orientation="vertical"
+            android:layout_marginRight="20dp"
+            android:layout_marginLeft="20dp"
+            >
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="First Name"
+                android:textColor="@color/colorPrimary"
+                android:textSize="17dp"
+                android:paddingTop="20dp"/>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Pera"
+                android:textSize="17dp"
+                android:textColor="@color/colorDarkGray"
+                android:paddingTop="5dp"/>
 
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Last Name"
-            android:textColor="@color/colorPrimary"
-            android:textSize="17dp"
-            android:paddingTop="20dp"/>
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Peric"
-            android:textSize="17dp"
-            android:textColor="@color/colorDarkGray"
-            android:paddingTop="5dp"/>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Last Name"
+                android:textColor="@color/colorPrimary"
+                android:textSize="17dp"
+                android:paddingTop="20dp"/>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Peric"
+                android:textSize="17dp"
+                android:textColor="@color/colorDarkGray"
+                android:paddingTop="5dp"/>
 
-        <TextView
-            android:layout_width="match_parent"
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Email"
+                android:textColor="@color/colorPrimary"
+                android:textSize="17dp"
+                android:paddingTop="20dp"/>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="pera.peric@gmail.com"
+                android:textSize="17dp"
+                android:textColor="@color/colorDarkGray"
+                android:paddingTop="5dp"/>
+        </LinearLayout>
+
+        <Button
+            android:id="@+id/btnEditProfile"
+            android:layout_width="200dp"
             android:layout_height="wrap_content"
-            android:text="Email"
-            android:textColor="@color/colorPrimary"
-            android:textSize="17dp"
-            android:paddingTop="20dp"/>
-        <TextView
-            android:layout_width="match_parent"
+            android:text="Edit profile"
+            android:background="@drawable/button_background_search"
+            android:textColor="@color/colorWhite"
+            android:textSize="13dp"
+            android:layout_marginTop="30dp"/>
+
+        <Button
+            android:id="@+id/btnChangePass"
+            android:layout_width="200dp"
             android:layout_height="wrap_content"
-            android:text="pera.peric@gmail.com"
-            android:textSize="17dp"
-            android:textColor="@color/colorDarkGray"
-            android:paddingTop="5dp"/>
+            android:text="Change passwoerd"
+            android:background="@drawable/button_background_search"
+            android:textColor="@color/colorWhite"
+            android:textSize="13dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp"/>
     </LinearLayout>
 
-    <Button
-        android:id="@+id/btnEditProfile"
-        android:layout_width="200dp"
-        android:layout_height="wrap_content"
-        android:text="Edit profile"
-        android:background="@drawable/button_background_search"
-        android:textColor="@color/colorWhite"
-        android:textSize="13dp"
-        android:layout_marginTop="30dp"/>
 
-    <Button
-        android:id="@+id/btnChangePass"
-        android:layout_width="200dp"
-        android:layout_height="wrap_content"
-        android:text="Change passwoerd"
-        android:background="@drawable/button_background_search"
-        android:textColor="@color/colorWhite"
-        android:textSize="13dp"
-        android:layout_marginTop="10dp"/>
-
-</LinearLayout>
+</ScrollView>
