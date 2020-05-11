@@ -9,6 +9,8 @@
     <ListView
         android:id="@android:id/list"
         android:layout_width="match_parent"
+        android:divider="@color/colorLightGray"
+        android:dividerHeight="14dp"
         android:layout_height="wrap_content" />
 
 </LinearLayout>

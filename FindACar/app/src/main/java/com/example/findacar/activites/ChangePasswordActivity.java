@@ -13,7 +13,7 @@ public class ChangePasswordActivity extends AppCompatActivity {
     private TextView oldPassword;
     private TextView newPassword;
     private TextView confirmPassword;
-    private Button btnOk;
+    private Button btnConfirm;
     private Button btnCancel;
 
     @Override
@@ -23,7 +23,7 @@ public class ChangePasswordActivity extends AppCompatActivity {
         oldPassword = findViewById(R.id.oldPassword);
         newPassword = findViewById(R.id.newPassword);
         confirmPassword = findViewById(R.id.confirmPassword);
-        btnOk = (Button) findViewById(R.id.buttonOk);
-        btnCancel = (Button) findViewById(R.id.buttonCancel);
+        btnConfirm = (Button) findViewById(R.id.btnConfirm);
+        btnCancel = (Button) findViewById(R.id.btnCancel);
     }
 }

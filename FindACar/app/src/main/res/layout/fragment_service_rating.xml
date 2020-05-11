@@ -140,7 +140,7 @@
         android:layout_height="wrap_content"
         android:layout_marginEnd="76dp"
         android:layout_marginRight="30dp"
-        android:background="@drawable/button_background_cancel"
+        android:background="@drawable/button_background_search"
         android:text="@string/btnCancel"
         android:textColor="@color/colorWhite"
         app:layout_constraintBottom_toTopOf="@+id/guideline55"
