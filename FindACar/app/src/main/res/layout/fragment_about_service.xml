@@ -8,13 +8,6 @@
     tools:context=".fragments.AboutServiceFragment">
 
 
-    <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/guideline71"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.13" />
-
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline63"
@@ -28,7 +21,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        app:layout_constraintGuide_percent="0.99" />
+        app:layout_constraintGuide_percent="0.96" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline66"
@@ -42,7 +35,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.01" />
+        app:layout_constraintGuide_percent="0.02" />
 
     <View
         android:id="@+id/divider"
@@ -58,23 +51,24 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        app:layout_constraintGuide_percent="0.46" />
+        app:layout_constraintGuide_begin="149dp" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline69"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.29" />
+        app:layout_constraintGuide_begin="229dp" />
 
     <ImageView
         android:id="@+id/imageView4"
-        android:layout_width="155dp"
-        android:layout_height="186dp"
+        android:layout_width="138dp"
+        android:layout_height="205dp"
+        android:layout_marginLeft="5dp"
         android:src="@drawable/ic_about"
         app:layout_constraintBottom_toTopOf="@id/guideline69"
         app:layout_constraintEnd_toStartOf="@id/guideline68"
-        app:layout_constraintHorizontal_bias="0.558"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="@id/guideline66"
         app:layout_constraintTop_toTopOf="@id/guideline67"
         app:layout_constraintVertical_bias="1.0" />
@@ -84,89 +78,25 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.86" />
-
-    <TextView
-        android:id="@+id/textView16"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:text=" Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque vitae neque tempor velit blandit pulvinar eu a metus. Nulla facilisi. Quisque molestie vel metus quis gravida. Integer efficitur fermentum lectus sit amet consequat. Nullam condimentum turpis nec dui euismod, in congue neque pharetra. Maecenas cursus rhoncus rutrum. Phasellus accumsan metus ut ante sollicitudin tincidunt. Fusce dictum nulla lorem, quis pellentesque est suscipit ac. Mauris mattis ex quis ipsum venenatis ornare."
-        android:textAppearance="@style/TextAppearance.AppCompat.Body1"
-        app:layout_constraintBottom_toTopOf="@id/guideline73"
-        app:layout_constraintEnd_toStartOf="@id/guideline65"
-        app:layout_constraintHorizontal_bias="0.88"
-        app:layout_constraintStart_toStartOf="@id/guideline66" />
+        app:layout_constraintGuide_percent="0.9" />
 
     <View
         android:id="@+id/divider4"
         android:layout_width="0dp"
         android:layout_height="3dp"
         android:layout_marginTop="8dp"
-        android:layout_marginBottom="8dp"
         android:background="@color/colorLightGray"
-        app:layout_constraintBottom_toTopOf="@id/cardViewAddress"
         app:layout_constraintEnd_toStartOf="@id/guideline65"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="@id/guideline66"
         app:layout_constraintTop_toTopOf="@id/guideline69" />
-
-    <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/guideline79"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.54" />
 
     <androidx.cardview.widget.CardView xmlns:cardView="http://schemas.android.com/tools"
         android:id="@+id/cardView"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_marginTop="5dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginLeft="16dp"
         app:layout_constraintBottom_toTopOf="@id/guideline69"
-        app:layout_constraintEnd_toStartOf="@id/guideline65"
-        app:layout_constraintStart_toStartOf="@id/guideline68"
-        app:layout_constraintTop_toTopOf="@id/guideline71"
-        app:cardCornerRadius="15dp"
-        cardView:cardCornerRadius="50dp">
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Phone"
-            android:textColor="@color/colorPrimary"
-            android:textSize="17dp"
-            android:layout_marginTop="5dp"
-            android:textStyle="bold"
-            android:layout_gravity="center_horizontal"/>
-
-        <TextView
-            android:id="@+id/textView13"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:paddingLeft="10dp"
-            android:layout_marginTop="40dp"
-            android:textSize="12dp"
-            android:text="Landline:  +38111/3298-448"/>
-
-        <TextView
-            android:id="@+id/textView14"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:paddingLeft="10dp"
-            android:textSize="12dp"
-            android:layout_marginTop="60dp"
-            android:text="Mobile:     +38164/4928-218"/>
-
-        </androidx.cardview.widget.CardView>
-
-    <androidx.cardview.widget.CardView xmlns:cardView="http://schemas.android.com/tools"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginLeft="16dp"
-        app:layout_constraintBottom_toTopOf="@id/guideline71"
         app:layout_constraintEnd_toStartOf="@id/guideline65"
         app:layout_constraintStart_toStartOf="@id/guideline68"
         app:layout_constraintTop_toTopOf="@id/guideline67"
@@ -174,37 +104,91 @@
         cardView:cardCornerRadius="50dp">
 
         <TextView
-            android:id="@+id/textView10"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Email"
+            android:text="Contact"
             android:textColor="@color/colorPrimary"
+            android:textSize="20dp"
+            android:layout_marginTop="3dp"
             android:textStyle="bold"
-            android:layout_gravity="center_horizontal"
-            android:layout_marginTop="10dp"
-            android:textSize="17dp"
-            />
+            android:layout_gravity="center_horizontal"/>
 
         <TextView
-            android:id="@+id/textView11"
+            android:id="@+id/textView13"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="servis1@gmail.com"
             android:layout_gravity="center_horizontal"
+            android:layout_marginTop="115dp"
+            android:textSize="12dp"
+            android:text="Landline phone:  011/3298-448"/>
+
+        <TextView
+            android:id="@+id/textView14"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="12dp"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="133dp"
+            android:text="Mobile phone:     064/4928-218"/>
+
+        <TextView
+            android:id="@+id/textView15"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="14dp"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="160dp"
+            android:text="Email"/>
+
+        <TextView
+            android:id="@+id/textView16"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="177dp"
+            android:textStyle="bold"
+            android:text="servis1@gmail.com"/>
+
+
+        <TextView
+            android:id="@+id/textView23"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:layout_marginTop="45dp"
-            />
+            android:textStyle="bold"
+            android:layout_gravity="center_horizontal"
+            android:text="Kneza Mihaila 23" />
+        <TextView
+            android:id="@+id/textView24"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:scrollbars="vertical"
+            android:layout_marginTop="65dp"
+            android:layout_gravity="center_horizontal"
+            android:text="Belgrade, 11000" />
+        <TextView
+            android:id="@+id/textView27"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:scrollbars="vertical"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="85dp"
+            android:text="Serbia" />
+
     </androidx.cardview.widget.CardView>
+
+
 
     <androidx.cardview.widget.CardView xmlns:cardView="http://schemas.android.com/tools"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:layout_marginStart="10dp"
+        android:layout_marginStart="15dp"
         android:layout_marginLeft="10dp"
-        android:layout_marginTop="17dp"
+        android:layout_marginTop="20dp"
         android:layout_marginRight="5dp"
         app:layout_constraintBottom_toTopOf="@id/guideline73"
         app:layout_constraintEnd_toStartOf="@id/guideline65"
-        app:layout_constraintStart_toStartOf="@id/guideline68"
+        app:layout_constraintStart_toStartOf="@id/guideline66"
         app:layout_constraintTop_toBottomOf="@id/guideline69"
         app:layout_constraintVertical_bias="0.491"
         app:cardCornerRadius="15dp"
@@ -217,7 +201,7 @@
             android:text="About us"
             android:layout_marginTop="10dp"
             android:textColor="@color/colorPrimary"
-            android:textSize="17dp"
+            android:textSize="24dp"
             android:textStyle="bold"
             android:layout_gravity="center_horizontal"/>
         <TextView
@@ -227,102 +211,11 @@
             android:paddingTop="5dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:scrollbars="vertical"
-            android:text="Service 1 car agency based in Novi Sad has an excellent ratio of price and quality of vehicles. Our vehicles are not older than five years and all are technically correct. We offer you rental of new cars with complete equipment at extremely favorable rental conditions. It is up to you to choose the vehicle that suits you and enjoy a carefree and comfortable ride. We guarantee: professionalism, reliability, safety"
+            android:layout_gravity="center_horizontal"
+            android:text="Service 1 car agency based in Belgrade has an excellent ratio of price and quality of vehicles. Our vehicles are not older than five years and all are technically correct. We offer you rental of new cars with complete equipment at extremely favorable rental conditions. It is up to you to choose the vehicle that suits you and enjoy a carefree and comfortable ride. We guarantee: professionalism, reliability, safety"
             />
     </androidx.cardview.widget.CardView>
 
-    <androidx.cardview.widget.CardView xmlns:cardView="http://schemas.android.com/tools"
-        android:layout_width="0dp"
-        android:id="@+id/cardViewAddress"
-        android:background="@color/colorLightGray"
-        android:layout_height="160dp"
-        android:elevation="8dp"
-        cardView:cardElevation="10dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginLeft="8dp"
-        android:paddingTop="10dp"
-        android:paddingLeft="10dp"
-        app:cardCornerRadius="15dp"
-        cardView:cardCornerRadius="50dp"
-        android:layout_marginTop="16dp"
-        android:clipToPadding="false"
-        android:clipChildren="false"
-        cardView:cardUseCompatPadding="true"
-        app:layout_constraintBottom_toTopOf="@id/guideline79"
-        app:layout_constraintEnd_toStartOf="@id/guideline68"
-        app:layout_constraintStart_toStartOf="@id/guideline66"
-        app:layout_constraintTop_toBottomOf="@id/guideline69">
-
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Address"
-            android:layout_marginTop="10dp"
-            android:layout_gravity="center_horizontal"
-            android:textColor="@color/colorPrimary"
-            android:textStyle="bold"
-            android:textSize="18dp"
-            />
-        <TextView
-            android:id="@+id/textView23"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:paddingLeft="15dp"
-            android:layout_marginTop="55dp"
-            android:textStyle="bold"
-            android:textSize="15dp"
-            android:text="Kneza Mihaila 23" />
-        <TextView
-            android:id="@+id/textView24"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:scrollbars="vertical"
-            android:paddingTop="5dp"
-            android:layout_marginTop="80dp"
-            android:paddingLeft="15dp"
-            android:text="Beograd, 11000" />
-        <TextView
-            android:id="@+id/textView27"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:scrollbars="vertical"
-            android:paddingTop="5dp"
-            android:layout_marginTop="100dp"
-            android:paddingLeft="15dp"
-            android:text="Serbia" />
-    </androidx.cardview.widget.CardView>
-
-
-    <androidx.cardview.widget.CardView xmlns:cardView="http://schemas.android.com/tools"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginLeft="8dp"
-        android:layout_marginTop="6dp"
-        app:cardCornerRadius="15dp"
-        cardView:cardCornerRadius="50dp"
-        app:layout_constraintBottom_toTopOf="@id/guideline73"
-        app:layout_constraintEnd_toStartOf="@id/guideline68"
-        app:layout_constraintStart_toStartOf="@id/guideline66"
-        app:layout_constraintTop_toBottomOf="@id/guideline79">
-
-        <TextView
-            android:id="@+id/textView26"
-            android:scrollbars="vertical"
-            android:layout_width="100dp"
-            android:paddingLeft="5dp"
-            android:paddingTop="5dp"
-            android:layout_marginTop="5dp"
-            android:textStyle="bold"
-            android:layout_gravity="center_horizontal"
-            android:textSize="17dp"
-            android:layout_height="wrap_content"
-            android:text=" Additional information"
-            android:textColor="@color/colorPrimary"/>
-
-    </androidx.cardview.widget.CardView>
 
     <Button
         android:id="@+id/btnReviews"
@@ -334,9 +227,8 @@
         android:textColor="@color/colorWhite"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@id/guideline65"
-        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="@id/guideline66"
         app:layout_constraintTop_toTopOf="@id/guideline73"
-        app:layout_constraintVertical_bias="0.5" />
+        app:layout_constraintVertical_bias="1.0" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

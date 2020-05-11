@@ -45,6 +45,7 @@ public class CarServiceDetailsActivity extends AppCompatActivity implements Bott
     //    AppBarLayout.LayoutParams params = (AppBarLayout.LayoutParams) toolbar.getLayoutParams();
     //    params.setScrollFlags(0);
 
+
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
 

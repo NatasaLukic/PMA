@@ -39,11 +39,11 @@ public class AboutServiceFragment extends Fragment {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_about_service, container, false);
         TextView about = (TextView)view.findViewById(R.id.textView22);
-        TextView additionalInfo = (TextView)view.findViewById(R.id.textView26);
-        TextView address = (TextView)view.findViewById(R.id.textView23);
+      //  TextView additionalInfo = (TextView)view.findViewById(R.id.textView26);
+      //  TextView address = (TextView)view.findViewById(R.id.textView23);
         about.setMovementMethod(new ScrollingMovementMethod());
-        additionalInfo.setMovementMethod(new ScrollingMovementMethod());
-        address.setMovementMethod(new ScrollingMovementMethod());
+        //additionalInfo.setMovementMethod(new ScrollingMovementMethod());
+       // address.setMovementMethod(new ScrollingMovementMethod());
 
         Button btnReviews = (Button)view.findViewById(R.id.btnReviews) ;
         btnReviews.setOnClickListener(new View.OnClickListener() {
