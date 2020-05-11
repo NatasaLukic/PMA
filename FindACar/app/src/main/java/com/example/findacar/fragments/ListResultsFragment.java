@@ -50,9 +50,7 @@ public class ListResultsFragment extends ListFragment {
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-        Toast.makeText(getActivity(), "onActivityFragmentCreated()", Toast.LENGTH_SHORT).show();
-
-        CarServicesAdapter adapter = new CarServicesAdapter(getActivity());
+            CarServicesAdapter adapter = new CarServicesAdapter(getActivity());
         setListAdapter(adapter);
     }
 }

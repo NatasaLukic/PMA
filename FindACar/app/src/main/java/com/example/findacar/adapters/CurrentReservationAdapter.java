@@ -81,7 +81,7 @@ public class CurrentReservationAdapter extends BaseAdapter {
         buttonCancel.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Toast.makeText(activity, "on cancel button click", Toast.LENGTH_SHORT).show();
+
             }
         });
 
