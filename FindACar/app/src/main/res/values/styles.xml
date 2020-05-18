@@ -50,6 +50,11 @@
 
     <style name="TextAppearance.BottomNavigationView"></style>
 
+    <style name="RatingBar" parent="Theme.AppCompat">
+        <item name="colorControlNormal">@color/duskYellow</item>
+        <item name="colorControlActivated">@color/colorLightGray</item>
+    </style>
+
     <style name="TextAppearance">b</style>
 
     <style name="BottomNavigationView">

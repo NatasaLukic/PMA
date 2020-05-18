@@ -66,7 +66,7 @@ public class ServiceReviewsFragment extends DialogFragment {
         // Inflate the layout for this fragment
         View view =  inflater.inflate(R.layout.fragment_service_reviews, container, false);
         ListView reviewList = (ListView) view.findViewById(R.id.reviews);
-        reviewList.setAdapter(new ReviewsAdapter(Reviews.getReviews(), getActivity()));
+       // reviewList.setAdapter(new ReviewsAdapter(Reviews.getReviews(), getActivity()));
         return view;
     }
 }

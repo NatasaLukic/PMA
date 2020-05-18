@@ -1,8 +1,14 @@
 package com.example.findacar.fragments;
 
+import android.graphics.Color;
+import android.graphics.PorterDuff;
+import android.graphics.drawable.Drawable;
+import android.graphics.drawable.LayerDrawable;
+import android.media.Rating;
 import android.os.Bundle;
 
 import androidx.annotation.Nullable;
+import androidx.core.content.ContextCompat;
 import androidx.fragment.app.DialogFragment;
 import androidx.fragment.app.Fragment;
 
@@ -13,6 +19,7 @@ import android.view.Window;
 import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.ListView;
+import android.widget.RatingBar;
 
 import com.example.findacar.R;
 
@@ -50,8 +57,17 @@ public class ServiceRatingFragment extends DialogFragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View dialogView = inflater.inflate(R.layout.fragment_service_rating, container, false);
-        return  dialogView ;
+        View view = inflater.inflate(R.layout.fragment_service_rating, container, false);
+
+        RatingBar rating = (RatingBar) view.findViewById(R.id.ratingBar);
+
+        LayerDrawable stars = (LayerDrawable) rating.getProgressDrawable();
+
+        stars.getDrawable(2).setColorFilter(ContextCompat.getColor(getContext(), R.color.gold), PorterDuff.Mode.SRC_ATOP);
+
+      //  drawable.setColorFilter(Color.parseColor("#DAA520"), PorterDuff.Mode.SRC_ATOP);
+
+        return  view;
     }
     @Override
     public void onStart() {

@@ -2,6 +2,9 @@ package com.example.findacar.adapters;
 
 import android.app.Activity;
 
+import android.graphics.Color;
+import android.graphics.PorterDuff;
+import android.graphics.drawable.Drawable;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
@@ -75,6 +78,10 @@ public class PreviousReservationAdapter extends BaseAdapter {
         Button buttonCancel = (Button) vi.findViewById(R.id.button2);
         buttonCancel.setVisibility(View.GONE);
         RatingBar ratingBar = vi.findViewById(R.id.ratingBar3);
+
+        Drawable drawable = ratingBar.getProgressDrawable();
+        drawable.setColorFilter(Color.parseColor("#DAA520"), PorterDuff.Mode.SRC_ATOP);
+
         ratingBar.setEnabled(false);
         if (position == 1){
             ratingBar.setVisibility(View.VISIBLE);
