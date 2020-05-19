@@ -62,9 +62,9 @@ public class VehicleActivity extends AppCompatActivity {
         fuel.setText(vehicle.getFuel());
 
         TextView yearOfProd = (TextView) findViewById(R.id.yearOfProd);
-        yearOfProd.setText("Year of production - " + vehicle.getYearOfProd());
+        yearOfProd.setText(Integer.toString(vehicle.getYearOfProd()));
 
-        date.setText("Vehicle registrated until - " + vehicle.getRegistratedUntil());
+        date.setText(vehicle.getRegistratedUntil());
         nDoors.setText(Integer.toString(vehicle.getNumOfDoors()));
         nSeats.setText(Integer.toString(vehicle.getNumOfSeats()));
 
