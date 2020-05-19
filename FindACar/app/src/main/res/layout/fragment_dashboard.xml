@@ -27,7 +27,7 @@
             android:id="@+id/search_text"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Search for a car"
+            android:text="@string/search_for_a_car"
             android:layout_gravity="center"
             android:textSize="28dp"
             android:textColor="@color/colorPrimary"
@@ -52,7 +52,7 @@
                 android:elevation="3dp"
                 android:iconifiedByDefault="false"
                 android:queryBackground="@android:color/transparent"
-                android:queryHint="Search place here" />
+                android:queryHint="@string/search_place_here" />
 
 
 
@@ -115,7 +115,7 @@
                         android:layout_height="35dp"
                         android:layout_centerHorizontal="true"
                         android:layout_marginLeft="35dp"
-                        android:hint="Pick up"
+                        android:hint="@string/pick_up_date"
                         android:textColorHint="@color/colorDarkGray"
                         android:textSize="22dp" />
                 </androidx.cardview.widget.CardView>
@@ -169,7 +169,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="35dp"
-                        android:hint="Return "
+                        android:hint="@string/return_date"
                         android:textColorHint="@color/colorDarkGray"
                         android:textSize="22dp" />
 
@@ -189,7 +189,7 @@
                     android:layout_marginTop="20dp"
                     android:layout_marginBottom="20dp"
                     android:background="@drawable/button_background_search"
-                    android:text="Search"
+                    android:text="@string/search"
                     android:textColor="@color/colorWhite"
                     android:textSize="17dp"
 

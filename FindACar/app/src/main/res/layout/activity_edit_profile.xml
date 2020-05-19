@@ -20,7 +20,7 @@
         android:layout_marginBottom="20dp"
 
         android:gravity="center"
-        android:text="Edit profile"
+        android:text="@string/edit_profile"
         android:textColor="@color/colorPrimary"
         android:textSize="36dp" />
 
@@ -77,7 +77,7 @@
             android:layout_height="wrap_content"
             android:textSize="13dp"
             android:background="@drawable/button_background_search"
-            android:text="Confirm"
+            android:text="@string/confirm"
             android:layout_margin="10dp"
             android:textColor="@color/colorWhite"/>
 
@@ -87,7 +87,7 @@
             android:layout_height="wrap_content"
             android:textSize="13dp"
             android:background="@drawable/button_background_search"
-            android:text="Cancel"
+            android:text="@string/cancel"
             android:layout_margin="10dp"
             android:textColor="@color/colorWhite"/>
     </LinearLayout>

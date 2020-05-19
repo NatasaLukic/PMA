@@ -1,54 +1,53 @@
 <resources>
     <string name="app_name">FindACar</string>
-    <!-- Strings related to login -->
-    <string name="prompt_email">Email</string>
-    <string name="prompt_password">Password</string>
-    <string name="action_sign_in">Sign in or register</string>
-    <string name="action_sign_in_short">Sign in</string>
-    <string name="welcome">"Welcome !"</string>
-    <string name="invalid_username">Not a valid username</string>
-    <string name="invalid_password">Password must be >5 characters</string>
-    <string name="login_failed">"Login failed"</string>
-    <string name="title_activity_search_results">SearchResults</string>
-    <string name="tab_text_1">Tab 1</string>
-    <string name="tab_text_2">Tab 2</string>
-    <string name="profile_title">Profile</string>
-    <string name="Name">Name</string>
-    <string name="surname">Surname</string>
-    <string name="name">Name</string>
-    <string name="email">Email</string>
-    <string name="btn_change_pass">Change password</string>
-    <string name="btn_my_reservations">My reservations</string>
-    <string name="title_activity_user_profile">activity_user_profile</string>
-    <!-- Strings used for fragments for navigation -->
-    <string name="first_fragment_label">First Fragment</string>
-    <string name="second_fragment_label">Second Fragment</string>
-    <string name="next">Next</string>
-    <string name="previous">Previous</string>
-    <string name="hello_first_fragment">Hello first fragment</string>
-    <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
 
-
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
-
-    <string name="edit">Edit</string>
-    <string name="btnOk">Ok</string>
-    <string name="btnCancel">Cancel</string>
-    <string name="oldPassword">Enter old password</string>
-    <string name="newPassword">Enter new password</string>
-    <string name="confirmPassword">Confirm new password</string>
-    <string name="title_activity_dashboard">DashboardActivity</string>
+    <string name="choose_language">Choose language:</string>
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
-    <string name="nav_header_title">Android Studio</string>
-    <string name="nav_header_subtitle">android.studio@android.com</string>
-    <string name="nav_header_desc">Navigation header</string>
-    <string name="action_settings">Settings</string>
 
-    <string name="menu_home">Home</string>
-    <string name="menu_gallery">Gallery</string>
-    <string name="menu_slideshow">Slideshow</string>
+    <!--Navigation menu-->
+    <string name="dashboard">Dashboard</string>
+    <string name="my_profile">My profile</string>
+    <string name="reservations">Reservations</string>
+    <string name="settings">Settings</string>
+    <string name="language">Language</string>
+    <string name="log_out">Log out</string>
 
-    <string name="home_second">Home Second</string>
+    <!--My profile-->
+    <string name="first_name">First Name</string>
+    <string name="last_name">Last Name</string>
+    <string name="email">Email</string>
+    <string name="edit_profile">Edit profile</string>
+    <string name="change_password">Change password</string>
+
+    <!--Change password-->
+    <string name="old_password">Old password</string>
+    <string name="new_password">New password</string>
+    <string name="confirm_password">Confirm password</string>
+
+    <!--Button-->
+    <string name="confirm">Confirm</string>
+    <string name="cancel">Cancel</string>
+    <string name="search">Search</string>
+
+    <!--Dashboard-->
+    <string name="search_for_a_car">Search for a car</string>
+    <string name="search_place_here">Search place here</string>
+    <string name="pick_up_date">Pick up</string>
+    <string name="return_date">Return</string>
+    <string name="date">Date</string>
+    <string name="time">Time</string>
+
+    <string name="list">List</string>
+    <string name="map">Map</string>
+
+    <!--Vehicle details-->
+    <string name="name_of_car">Name of car</string>
+    <string name="without_deposit">*Without deposit</string>
+    <string name="unlimited_mileage">*Unlimited mileage</string>
+    <string name="car_specification">CAR SPECIFICATION</string>
+
+    <!--About-->
+    <string name="contact">Contact</string>
+
 </resources>

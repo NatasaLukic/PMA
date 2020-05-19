@@ -3,10 +3,11 @@
     xmlns:tools="http://schemas.android.com/tools"
     tools:showIn="navigation_view">
     <group android:checkableBehavior="single">
-        <item android:id="@+id/nav_dashboard" android:icon="@drawable/ic_home_black_24dp" android:title="Dashboard"/>
-        <item android:id="@+id/nav_user_profile" android:icon="@drawable/ic_account_circle_black_24dp" android:title="My profile"/>
-        <item android:id="@+id/nav_reservations" android:icon="@drawable/ic_format_list_numbered_black_24dp" android:title="Reservations"/>
-        <item android:id="@+id/nav_settings" android:icon="@drawable/ic_settings_black_24dp" android:title="Settings"/>
-        <item android:id="@+id/nav_logout" android:icon="@drawable/ic_adb_black_24dp" android:title="Log out"/>
+        <item android:id="@+id/nav_dashboard" android:icon="@drawable/ic_home_black_24dp" android:title="@string/dashboard"/>
+        <item android:id="@+id/nav_user_profile" android:icon="@drawable/ic_account_circle_black_24dp" android:title="@string/my_profile"/>
+        <item android:id="@+id/nav_reservations" android:icon="@drawable/ic_format_list_numbered_black_24dp" android:title="@string/reservations"/>
+        <item android:id="@+id/nav_settings" android:icon="@drawable/ic_settings_black_24dp" android:title="@string/settings"/>
+        <item android:id="@+id/nav_language" android:icon="@drawable/ic_translate_black_24dp" android:title="@string/language"/>
+        <item android:id="@+id/nav_logout" android:icon="@drawable/ic_adb_black_24dp" android:title="@string/log_out"/>
     </group>
 </menu>

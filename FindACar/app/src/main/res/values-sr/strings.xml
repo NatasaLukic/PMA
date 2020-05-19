@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">FindACar</string>
+
+    <string name="choose_language">Izaberite jezik:</string>
+    <string name="navigation_drawer_open">Otvori</string>
+    <string name="navigation_drawer_close">Zatvori</string>
+
+    <!--Navigation menu-->
+    <string name="dashboard">Pocetna</string>
+    <string name="my_profile">Moj profil</string>
+    <string name="reservations">Rezervacije</string>
+    <string name="settings">Podesavanja</string>
+    <string name="language">Jezik</string>
+    <string name="log_out">Izloguj se</string>
+
+    <!--My profile-->
+    <string name="first_name">Ime</string>
+    <string name="last_name">Prezime</string>
+    <string name="email">Email</string>
+    <string name="edit_profile">Izmeni profil</string>
+    <string name="change_password">Izmeni lozinku</string>
+
+    <!--Change password-->
+    <string name="old_password">Stara lozinka</string>
+    <string name="new_password">Nova lozinka</string>
+    <string name="confirm_password">Potvrdite lozinku</string>
+
+    <!--Button-->
+    <string name="confirm">Potvrdi</string>
+    <string name="cancel">Otkazi</string>
+    <string name="search">Pretrazi</string>
+
+    <!--Dashboard-->
+    <string name="search_for_a_car">Pronadjite auto</string>
+    <string name="search_place_here">Pronadjite mesto ovde</string>
+    <string name="pick_up_date">Preuzmi</string>
+    <string name="return_date">Vrati</string>
+    <string name="date">Datum</string>
+    <string name="time">Vreme</string>
+
+    <string name="list">Lista</string>
+    <string name="map">Mapa</string>
+
+    <!--Vehicle details-->
+    <string name="name_of_car">Naziv auta</string>
+    <string name="without_deposit">*Bez depozita</string>
+    <string name="unlimited_mileage">*Unlimited mileage</string>
+    <string name="car_specification">CAR SPECIFICATION</string>
+
+    <!--About-->
+    <string name="contact">Kontakt</string>
+
+</resources>

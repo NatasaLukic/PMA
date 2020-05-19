@@ -56,7 +56,7 @@
             android:layout_marginTop="20dp"
             android:fontFamily="@font/fjord_one"
             android:gravity="left"
-            android:text="*Without deposit"
+            android:text="@string/without_deposit"
             android:textSize="15dp" />
 
         <TextView
@@ -68,7 +68,7 @@
             android:layout_marginBottom="15dp"
             android:fontFamily="@font/fjord_one"
             android:gravity="left"
-            android:text="*Unlimited mileage"
+            android:text="@string/unlimited_mileage"
             android:textSize="15dp" />
 
         <View
@@ -91,7 +91,7 @@
             android:layout_height="wrap_content"
             android:clickable="false"
             android:layout_centerHorizontal="true"
-            android:text="Name of car"
+            android:text="@string/name_of_car"
             android:textSize="27dp"
             android:layout_marginLeft="15dp"
             android:textStyle="bold"
@@ -137,7 +137,7 @@
             android:layout_marginTop="10dp"
             android:layout_marginBottom="10dp"
             app:fontFamily="@font/fjord_one"
-            android:text="CAR SPECIFICATIONS"
+            android:text="@string/car_specification"
             android:textSize="20dp" />
 
 

@@ -125,7 +125,7 @@
         android:layout_marginStart="34dp"
         android:layout_marginLeft="0dp"
         android:background="@drawable/button_background_search"
-        android:text="@string/btnOk"
+        android:text="@string/confirm"
         android:textColor="@color/colorWhite"
         app:layout_constraintBottom_toTopOf="@+id/guideline55"
         app:layout_constraintEnd_toStartOf="@+id/guideline57"
@@ -141,7 +141,7 @@
         android:layout_marginEnd="76dp"
         android:layout_marginRight="30dp"
         android:background="@drawable/button_background_search"
-        android:text="@string/btnCancel"
+        android:text="@string/cancel"
         android:textColor="@color/colorWhite"
         app:layout_constraintBottom_toTopOf="@+id/guideline55"
         app:layout_constraintEnd_toStartOf="@+id/guideline24"
@@ -149,7 +149,7 @@
         app:layout_constraintStart_toStartOf="@+id/guideline58"
         app:layout_constraintTop_toTopOf="@+id/guideline54"
         app:layout_constraintVertical_bias="0.4"
-        tools:text="@string/btnCancel" />
+         />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline57"
