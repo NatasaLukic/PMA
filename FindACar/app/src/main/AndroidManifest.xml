@@ -9,7 +9,8 @@
         android:icon="@mipmap/ic_launcher_car"
         android:label="@string/app_name"
         android:supportsRtl="true"
-        android:theme="@style/AppTheme">
+        android:theme="@style/AppTheme"
+        android:networkSecurityConfig="@xml/network_security_config">
         <activity android:name=".activites.EditProfileActivity"></activity>
         <activity android:name=".activites.VehicleActivity" />
         <activity android:name=".activites.DashboardActivity" />
