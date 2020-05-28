@@ -21,6 +21,9 @@
     <string name="edit_profile">Izmeni profil</string>
     <string name="change_password">Izmeni lozinku</string>
 
+    <!--Sign up-->
+    <string name="password">Lozinka</string>
+
     <!--Change password-->
     <string name="old_password">Stara lozinka</string>
     <string name="new_password">Nova lozinka</string>
