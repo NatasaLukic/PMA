@@ -105,7 +105,8 @@ public class DashboardFragment extends Fragment {
             public void onClick(View view) {
                 place = spinner.getSelectedItem().toString();
 
-                SearchDTO searchDTO = new SearchDTO(place, datepickUp, dateReturn);
+                SearchDTO searchDTO = new SearchDTO(place, datepickUp + " " + timePickUp,
+                        dateReturn + " " + timeReturn);
 
                 Call<List<CarService>> call = ServiceUtils.reviewerService.searchCity(searchDTO);
 
@@ -120,6 +121,8 @@ public class DashboardFragment extends Fragment {
                             Intent intent = new Intent(getActivity(), SearchResultsActivity.class);
                             Gson gson = new Gson();
                             intent.putExtra("services", gson.toJson(list));
+                            intent.putExtra("pickUp", datepickUp + " " + timePickUp);
+                            intent.putExtra("return", dateReturn + " " + timeReturn);
                             intent.putExtra("place", place);
                             startActivity(intent);
 
@@ -155,7 +158,7 @@ public class DashboardFragment extends Fragment {
             public void onDateSet(DatePicker datePicker, int year, int month, int day) {
                 month = month + 1;
 
-                datepickUp = month + "/" + day + "/" + year;
+                datepickUp = year + "-" + month + "-" + day;
                 pickUpDate.setText(datepickUp);
                 pickUpDate.setTextColor(getResources().getColor(R.color.colorDarkGray));
 
@@ -201,7 +204,7 @@ public class DashboardFragment extends Fragment {
             public void onDateSet(DatePicker datePicker, int year, int month, int day) {
                 month = month + 1;
 
-                dateReturn = month + "/" + day + "/" + year;
+                dateReturn = year + "-" + month + "-" + day;
                 returnDate.setText(dateReturn);
                 returnDate.setTextColor(getResources().getColor(R.color.colorDarkGray));
 

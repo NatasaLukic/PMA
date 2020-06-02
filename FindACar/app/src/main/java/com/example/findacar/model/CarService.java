@@ -11,6 +11,8 @@ import java.util.List;
 
 public class CarService implements Parcelable, Serializable {
 
+    @SerializedName("id")
+    @Expose
     private long id;
 
     @SerializedName("name")

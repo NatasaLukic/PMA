@@ -2,6 +2,7 @@ package com.example.findacar.adapters;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.os.Parcelable;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
@@ -13,6 +14,7 @@ import com.example.findacar.R;
 import com.example.findacar.activites.VehicleActivity;
 import com.example.findacar.model.Vehicle;
 
+import java.io.Serializable;
 import java.util.List;
 
 public class VehiclesAdapter extends BaseAdapter {
@@ -61,7 +63,7 @@ public class VehiclesAdapter extends BaseAdapter {
         seats.setText(Integer.toString(vehicle.getSeats()));
         doors.setText(Integer.toString(vehicle.getDoors()));
         type.setText(vehicle.getType());
-        price.setText("Price:");
+        price.setText("Price: " + vehicle.getPriceForDays() + " RSD");
 
         TextView date = (TextView) vi.findViewById(R.id.reg);
         TextView autom = (TextView) vi.findViewById(R.id.aut);
@@ -82,8 +84,7 @@ public class VehiclesAdapter extends BaseAdapter {
             public void onClick(View v) {
 
                 Intent intent = new Intent(activity, VehicleActivity.class);
-                intent.putExtra("name", vehicle.getName());
-                intent.putExtra("position", position);
+                intent.putExtra("vehicle", (Serializable) vehicle);
 
                 activity.startActivity(intent);
             }

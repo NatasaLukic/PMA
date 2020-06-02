@@ -3,64 +3,91 @@ package com.example.findacar.model;
 import android.os.Parcel;
 import android.os.Parcelable;
 
+import androidx.room.ColumnInfo;
+import androidx.room.Entity;
+import androidx.room.PrimaryKey;
+
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
 import java.io.Serializable;
 
+@Entity(tableName="Vehicle")
 public class Vehicle implements Serializable, Parcelable {
 
+    @PrimaryKey(autoGenerate = true)
+    private long id;
+
+    @ColumnInfo(name = "name")
     @SerializedName("name")
     @Expose
     private String name;
 
+
+    @ColumnInfo(name = "description")
     @SerializedName("description")
     @Expose
     private String description;
 
+
+    @ColumnInfo(name = "seats")
     @SerializedName("seats")
     @Expose
     private int seats;
 
+    @ColumnInfo(name = "doors")
     @SerializedName("doors")
     @Expose
     private int doors;
 
+    @ColumnInfo(name = "cases")
     @SerializedName("cases")
     @Expose
     private int cases;
 
+    @ColumnInfo(name = "type")
     @SerializedName("type")
     @Expose
     private String type;
 
+    @ColumnInfo(name = "airCond")
     @SerializedName("airCond")
     @Expose
     private boolean airCond;
 
+    @ColumnInfo(name = "autom")
     @SerializedName("autom")
     @Expose
     private boolean autom;
 
+    @ColumnInfo(name = "regUntil")
     @SerializedName("regUntil")
     @Expose
     private String regUntil;
 
+    @ColumnInfo(name = "prodYear")
     @SerializedName("prodYear")
     @Expose
     private int prodYear;
 
+    @ColumnInfo(name = "fuel")
     @SerializedName("fuel")
     @Expose
     private String fuel;
 
+    @ColumnInfo(name = "deposit")
     @SerializedName("deposit")
     @Expose
     private boolean deposit;
 
+    @ColumnInfo(name = "mileage")
     @SerializedName("mileage")
     @Expose
     private String mileage;
+
+    @SerializedName("priceForDays")
+    @Expose
+    private double priceForDays;
 
     // private int image;
     // private ArrayList<Integer> images;
@@ -79,6 +106,7 @@ public class Vehicle implements Serializable, Parcelable {
     }
 
     protected Vehicle(Parcel in) {
+        id = in.readLong();
         name = in.readString();
         description = in.readString();
         seats = in.readInt();
@@ -92,28 +120,7 @@ public class Vehicle implements Serializable, Parcelable {
         fuel = in.readString();
         deposit = in.readByte() != 0;
         mileage = in.readString();
-    }
-
-    @Override
-    public void writeToParcel(Parcel dest, int flags) {
-        dest.writeString(name);
-        dest.writeString(description);
-        dest.writeInt(seats);
-        dest.writeInt(doors);
-        dest.writeInt(cases);
-        dest.writeString(type);
-        dest.writeByte((byte) (airCond ? 1 : 0));
-        dest.writeByte((byte) (autom ? 1 : 0));
-        dest.writeString(regUntil);
-        dest.writeInt(prodYear);
-        dest.writeString(fuel);
-        dest.writeByte((byte) (deposit ? 1 : 0));
-        dest.writeString(mileage);
-    }
-
-    @Override
-    public int describeContents() {
-        return 0;
+        priceForDays = in.readDouble();
     }
 
     public static final Creator<Vehicle> CREATOR = new Creator<Vehicle>() {
@@ -230,5 +237,45 @@ public class Vehicle implements Serializable, Parcelable {
 
     public void setMileage(String mileage) {
         this.mileage = mileage;
+    }
+
+    public long getId() {
+        return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
+    }
+
+    public double getPriceForDays() {
+        return priceForDays;
+    }
+
+    public void setPriceForDays(double priceForDays) {
+        this.priceForDays = priceForDays;
+    }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeLong(id);
+        dest.writeString(name);
+        dest.writeString(description);
+        dest.writeInt(seats);
+        dest.writeInt(doors);
+        dest.writeInt(cases);
+        dest.writeString(type);
+        dest.writeByte((byte) (airCond ? 1 : 0));
+        dest.writeByte((byte) (autom ? 1 : 0));
+        dest.writeString(regUntil);
+        dest.writeInt(prodYear);
+        dest.writeString(fuel);
+        dest.writeByte((byte) (deposit ? 1 : 0));
+        dest.writeString(mileage);
+        dest.writeDouble(priceForDays);
     }
 }

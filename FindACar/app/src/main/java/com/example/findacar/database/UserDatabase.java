@@ -13,7 +13,7 @@ import com.example.findacar.model.User;
 public abstract class UserDatabase extends RoomDatabase {
 
     private static UserDatabase userDatabase;
-    private static  String DATABASE_NAME = "findacar";
+    private static  String DATABASE_NAME = "user";
 
     public synchronized static UserDatabase getInstance(Context context) {
         if(userDatabase == null) {

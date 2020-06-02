@@ -39,8 +39,6 @@ public class VehicleActivity extends AppCompatActivity {
             }
         });
 
-        int position = getIntent().getIntExtra("position", 0);
-
         ViewPager vp = findViewById(R.id.slider);
         //VehiclePhotosAdapter vpa = new VehiclePhotosAdapter(this, position);
         //vp.setAdapter(vpa);
