@@ -56,7 +56,7 @@ public class ReviewsAdapter  extends BaseAdapter {
         Drawable drawable = rating.getProgressDrawable();
         drawable.setColorFilter(Color.parseColor("#DAA520"), PorterDuff.Mode.SRC_ATOP);
 
-        user.setText(review.getUser().getName() + " " + review.getUser().getSurname());
+        //user.setText(review.getUser().getName() + " " + review.getUser().getSurname());
         date.setText("15/04/2020");
         comment.setText(review.getComment());
         rating.setRating(review.getRate());

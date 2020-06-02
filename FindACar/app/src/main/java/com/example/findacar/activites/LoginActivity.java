@@ -15,7 +15,9 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.findacar.R;
+import com.example.findacar.database.UserDatabase;
 import com.example.findacar.model.LogInModel;
+import com.example.findacar.model.User;
 import com.example.findacar.service.ServiceUtils;
 
 import okhttp3.ResponseBody;
@@ -28,6 +30,7 @@ public class LoginActivity extends AppCompatActivity {
     private EditText email;
     private EditText password;
     private ProgressBar progressBar;
+    UserDatabase userDatabase;
 
     Button callSignUp, callLogin;
 
@@ -35,6 +38,10 @@ public class LoginActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
+
+        userDatabase = UserDatabase.getInstance(this);
+        User order = new User("ilinkaIphone X", "kovacevic", "il@gmail.com", "ilinka");
+        userDatabase.userDao().insert(order);
 
         callLogin = findViewById(R.id.login);
         callSignUp = findViewById(R.id.signup_screen);
