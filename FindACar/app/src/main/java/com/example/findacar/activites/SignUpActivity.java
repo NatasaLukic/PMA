@@ -150,14 +150,17 @@ public class SignUpActivity extends AppCompatActivity {
     }
 
     private boolean isPasswordValid(String password) {
-        if (isEmptyOrNull(password) || password.length() > 8) {
+        if (isEmptyOrNull(password) || password.length() < 5) {
             return false;
         }
         return true;
     }
 
     public static final Pattern VALID_EMAIL_ADDRESS_REGEX =
-            Pattern.compile("^[A-Z0-9._%+-]+@[A-Z0-9.-]+\\.[A-Z]{2,6}$", Pattern.CASE_INSENSITIVE);
+            Pattern.compile("^[a-zA-Z0-9_+&*-]+(?:\\."+
+                    "[a-zA-Z0-9_+&*-]+)*@" +
+                    "(?:[a-zA-Z0-9-]+\\.)+[a-z" +
+                    "A-Z]{2,7}$", Pattern.CASE_INSENSITIVE);
 
     public static boolean isEmailValid(String emailStr) {
         Matcher matcher = VALID_EMAIL_ADDRESS_REGEX.matcher(emailStr);
