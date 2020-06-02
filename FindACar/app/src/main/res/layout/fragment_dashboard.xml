@@ -39,22 +39,19 @@
             android:layout_height="match_parent"
             android:layout_gravity="center"
             android:orientation="vertical">
-            <SearchView
-                android:id="@+id/search_bar"
+
+
+            <Spinner
+                android:id="@+id/spinner"
                 android:layout_width="300dp"
-                android:layout_height="wrap_content"
-                android:layout_below="@id/car_icon"
-                android:focusable="false"
-                android:layout_gravity="center"
-                android:layout_marginTop="25dp"
-                android:layout_marginBottom="20dp"
+                android:overlapAnchor="false"
+                android:drawSelectorOnTop="true"
+                android:layout_height="50dp"
+                android:spinnerMode="dropdown"
                 android:background="@drawable/border_search"
-                android:elevation="3dp"
-                android:iconifiedByDefault="false"
-                android:queryBackground="@android:color/transparent"
-                android:queryHint="@string/search_place_here" />
-
-
+                android:layout_marginTop="15dp"
+                android:layout_marginBottom="15dp"
+                android:layout_gravity="center_horizontal" />
 
             <LinearLayout
                 android:id="@+id/dateAndTimePickerLayout"

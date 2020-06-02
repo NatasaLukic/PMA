@@ -11,12 +11,15 @@ import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.Spinner;
+import android.widget.SpinnerAdapter;
 import android.widget.TimePicker;
 
 import androidx.fragment.app.Fragment;
 
 import com.example.findacar.R;
 import com.example.findacar.activites.SearchResultsActivity;
+import com.example.findacar.adapters.SpinnerForSearchAdapter;
 
 import java.util.Calendar;
 
@@ -24,6 +27,8 @@ public class DashboardFragment extends Fragment {
 
     private EditText pickUpDate;
     private EditText returnDate;
+
+    private String [] items = {"","Beograd", "Nis", "Novi Sad"};
 
     private EditText pickUpTime;
     private EditText returnTime;
@@ -46,6 +51,12 @@ public class DashboardFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         super.onCreateView(inflater, container, savedInstanceState);
         View view = inflater.inflate(R.layout.fragment_dashboard, container, false);
+
+        final Spinner spinner = view.findViewById(R.id.spinner);
+        SpinnerAdapter spinnerAdapter = new SpinnerForSearchAdapter(getContext(),
+                R.layout.spinner_item, items);
+
+        spinner.setAdapter(spinnerAdapter);
 
         pickUpDate = (EditText) view.findViewById(R.id.datePickUp);
         returnDate = (EditText) view.findViewById(R.id.dateReturn);

@@ -1,31 +1,74 @@
 package com.example.findacar.model;
 
-public class User {
-    private String name;
-    private String surname;
+import androidx.room.ColumnInfo;
+import androidx.room.Entity;
+import androidx.room.PrimaryKey;
+
+import java.io.Serializable;
+
+@Entity(tableName = "user")
+public class User implements Serializable {
+    @PrimaryKey(autoGenerate = true)
+    private int id;
+
+    @ColumnInfo(name = "firstName")
+    private String firstName;
+
+    @ColumnInfo(name = "lastName")
+    private String lastName;
+
+    @ColumnInfo(name = "email")
     private String email;
-    private String passHash;
 
-    public User(String name, String surname, String email, String passHash) {
-        this.name = name;
-        this.surname = surname;
+    @ColumnInfo(name = "password")
+    private String password;
+
+    public User(String firstName, String lastName, String email, String password) {
+        this.firstName = firstName;
+        this.lastName = lastName;
         this.email = email;
-        this.passHash = passHash;
+        this.password = password;
     }
 
-    public String getName() {
-        return name;
+    public int getId() {
+        return id;
     }
 
-    public String getSurname() {
-        return surname;
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public String getFirstName() {
+        return firstName;
+    }
+
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
+    }
+
+    public String getLastName() {
+        return lastName;
+    }
+
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
     }
 
     public String getEmail() {
         return email;
     }
 
-    public String getPassHash() {
-        return passHash;
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
     }
 }
+
+

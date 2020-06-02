@@ -15,7 +15,7 @@ public class Reservations {
     public static List<Reservation> getCurrentReservations(){
 
         List<Reservation> reservations = new ArrayList<>();
-        User user = new User("Pera", "Peric", "pera@gmail.com", "");
+        /*User user = new User("Pera", "Peric", "pera@gmail.com", "");
         Vehicle v1 = new Vehicle("Toyota Aygo", 4, 2, "Economy",true,
                 true, R.drawable.toyota_aygo, "12/11/2020");
 
@@ -35,14 +35,14 @@ public class Reservations {
 
         reservations.add(r1);
         reservations.add(r2);
-        reservations.add(r3);
+        reservations.add(r3);*/
         return reservations;
     }
 
     public static List<Reservation> getPreviousReservations(){
 
         List<Reservation> reservations = new ArrayList<>();
-        User user = new User("Pera", "Peric", "pera@gmail.com", "");
+        /*User user = new User("Pera", "Peric", "pera@gmail.com", "");
         Vehicle v1 = new Vehicle("Toyota Aygo", 4, 2, "Economy",true,
                 true, R.drawable.toyota_aygo, "12/11/2020");
 
@@ -63,7 +63,7 @@ public class Reservations {
 
         reservations.add(r1);
         reservations.add(r2);
-        reservations.add(r3);
+        reservations.add(r3);*/
         return reservations;
     }
 }
