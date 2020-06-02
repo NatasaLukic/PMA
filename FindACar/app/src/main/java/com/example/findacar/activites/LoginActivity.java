@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.app.ActivityOptions;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.util.Pair;
 import android.view.View;
 import android.widget.Button;
@@ -20,6 +21,9 @@ import com.example.findacar.model.LogInModel;
 import com.example.findacar.model.User;
 import com.example.findacar.service.ServiceUtils;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -31,6 +35,7 @@ public class LoginActivity extends AppCompatActivity {
     private EditText password;
     private ProgressBar progressBar;
     UserDatabase userDatabase;
+    List<User> usersList = new ArrayList<>();
 
     Button callSignUp, callLogin;
 
@@ -40,8 +45,7 @@ public class LoginActivity extends AppCompatActivity {
         setContentView(R.layout.activity_login);
 
         userDatabase = UserDatabase.getInstance(this);
-        User order = new User("ilinkaIphone X", "kovacevic", "il@gmail.com", "ilinka");
-        userDatabase.userDao().insert(order);
+
 
         callLogin = findViewById(R.id.login);
         callSignUp = findViewById(R.id.signup_screen);
@@ -106,10 +110,20 @@ public class LoginActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(LoginActivity.this,SignUpActivity.class);
+                storeInDB();
                 startActivity(intent);
             }
         });
 
+    }
+
+    public void storeInDB() {
+        User order = new User("ilinkaIphone X", "kovacevic", "il@gmail.com", "ilinka");
+        userDatabase.userDao().insert(order);
+        usersList.addAll(userDatabase.userDao().getAll());
+        Log.d("--------------" , "DATA------------->");
+        for (int i = 0 ; i < usersList.size() ; i++)
+            Log.d("value is" , usersList.get(i).getFirstName() + ", " + usersList.get(i).getLastName());
     }
 
 
