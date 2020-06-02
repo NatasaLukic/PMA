@@ -31,6 +31,7 @@ import java.util.List;
 
 public class AboutServiceFragment extends Fragment {
 
+    private TextView about;
 
     public AboutServiceFragment() {
         // Required empty public constructor
