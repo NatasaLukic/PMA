@@ -65,7 +65,7 @@ public class CurrentReservationAdapter extends BaseAdapter {
         canCancel.setVisibility(View.VISIBLE);
 
         ImageView carPhoto = (ImageView) vi.findViewById(R.id.car_photo);
-        carPhoto.setImageResource(reservation.getVehicle().getImage());
+        carPhoto.setImageResource(R.drawable.dacia_logan);
 
         vehicleServiceName.setText(reservation.getVehicle().getName());
         SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-mm-dd");

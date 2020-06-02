@@ -18,6 +18,7 @@ import com.example.findacar.R;
 import com.example.findacar.fragments.AboutServiceFragment;
 import com.example.findacar.fragments.FilterFragment;
 import com.example.findacar.fragments.VehicleListFragment;
+import com.example.findacar.model.Vehicle;
 import com.google.android.material.appbar.AppBarLayout;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
@@ -69,7 +70,9 @@ public class CarServiceDetailsActivity extends AppCompatActivity implements Bott
             }
         });
 
-        Fragment fragment = new VehicleListFragment();
+        List<Vehicle> vehicles = (List<Vehicle>) getIntent().getSerializableExtra("vehicles");
+
+        Fragment fragment = new VehicleListFragment(vehicles);
         currentFragment = fragment;
         FragmentTransaction ft = getSupportFragmentManager().beginTransaction().setTransition((FragmentTransaction.TRANSIT_FRAGMENT_OPEN))
                 .replace(R.id.listOfVehicles, fragment);

@@ -1,6 +1,5 @@
 package com.example.findacar.fragments;
 
-import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.annotation.Nullable;
@@ -10,29 +9,27 @@ import androidx.fragment.app.ListFragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
-import android.widget.ListView;
-import android.widget.TextView;
-import android.widget.Toast;
 
 import com.example.findacar.R;
-import com.example.findacar.activites.CarServiceDetailsActivity;
-import com.example.findacar.activites.VehicleActivity;
-import com.example.findacar.adapters.CarServicesAdapter;
 import com.example.findacar.adapters.VehiclesAdapter;
-import com.example.findacar.mockupData.CarServices;
-import com.example.findacar.mockupData.Vehicles;
-import com.example.findacar.model.CarService;
 import com.example.findacar.model.Vehicle;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+
+import java.util.List;
 
 /**
  * A simple {@link Fragment} subclass.
  */
 public class VehicleListFragment extends ListFragment {
 
+    private List<Vehicle> list;
+
     public VehicleListFragment() {
         // Required empty public constructor
+    }
+
+    public VehicleListFragment(List<Vehicle> vehicles) {
+        this.list = vehicles;
     }
 
 
@@ -51,7 +48,7 @@ public class VehicleListFragment extends ListFragment {
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
 
-        VehiclesAdapter adapter = new VehiclesAdapter(getActivity());
+        VehiclesAdapter adapter = new VehiclesAdapter(getActivity(), this.list);
         setListAdapter(adapter);
     }
 

@@ -2,8 +2,7 @@ package com.example.findacar.adapters;
 
 import android.app.Activity;
 import android.content.Intent;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
+import android.os.Parcelable;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
@@ -13,29 +12,29 @@ import android.widget.TextView;
 
 import com.example.findacar.R;
 import com.example.findacar.activites.VehicleActivity;
-import com.example.findacar.mockupData.CarServices;
-import com.example.findacar.mockupData.Vehicles;
-import com.example.findacar.model.CarService;
 import com.example.findacar.model.Vehicle;
 
-import org.w3c.dom.Text;
+import java.io.Serializable;
+import java.util.List;
 
 public class VehiclesAdapter extends BaseAdapter {
 
     public Activity activity;
+    public List<Vehicle> vehicles;
 
-    public VehiclesAdapter(Activity activity){
+    public VehiclesAdapter(Activity activity, List<Vehicle> vehicles){
         this.activity = activity;
+        this.vehicles = vehicles;
     }
 
     @Override
     public int getCount() {
-        return Vehicles.getVehicles().size();
+        return this.vehicles.size();
     }
 
     @Override
     public Object getItem(int position) {
-        return Vehicles.getVehicles().get(position);
+        return this.vehicles.get(position);
     }
 
     @Override
@@ -48,7 +47,7 @@ public class VehiclesAdapter extends BaseAdapter {
 
         View vi = convertView;
 
-        final Vehicle vehicle = Vehicles.getVehicles().get(position);
+        final Vehicle vehicle = this.vehicles.get(position);
 
         if(convertView==null)
             vi = activity.getLayoutInflater().inflate(R.layout.vehicle_item, null);
@@ -61,19 +60,19 @@ public class VehiclesAdapter extends BaseAdapter {
         TextView type = (TextView) vi.findViewById(R.id.type);
 
         name.setText(vehicle.getName());
-        seats.setText(Integer.toString(vehicle.getNumOfSeats()));
-        doors.setText(Integer.toString(vehicle.getNumOfDoors()));
+        seats.setText(Integer.toString(vehicle.getSeats()));
+        doors.setText(Integer.toString(vehicle.getDoors()));
         type.setText(vehicle.getType());
-        price.setText("Price: 19.200 RSD");
+        price.setText("Price: " + vehicle.getPriceForDays() + " RSD");
 
         TextView date = (TextView) vi.findViewById(R.id.reg);
         TextView autom = (TextView) vi.findViewById(R.id.aut);
 
-        date.setText("Vehicle registrated until " + vehicle.getRegistratedUntil());
+        date.setText("Vehicle registrated until " + vehicle.getRegUntil());
 
         Button details = (Button) vi.findViewById(R.id.button);
 
-        if (vehicle.isAutomTrans() == true) {
+        if (vehicle.isAutom() == true) {
             autom.setText("Automatic");
         } else {
             autom.setText("Manual");
@@ -85,15 +84,14 @@ public class VehiclesAdapter extends BaseAdapter {
             public void onClick(View v) {
 
                 Intent intent = new Intent(activity, VehicleActivity.class);
-                intent.putExtra("name", vehicle.getName());
-                intent.putExtra("position", position);
+                intent.putExtra("vehicle", (Serializable) vehicle);
 
                 activity.startActivity(intent);
             }
         });
 
 
-        image.setImageResource(vehicle.getImage());
+        image.setImageResource(R.drawable.dacia_logan);
 
         return vi;
     }

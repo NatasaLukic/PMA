@@ -7,8 +7,15 @@ import androidx.viewpager.widget.ViewPager;
 import android.os.Bundle;
 import com.example.findacar.R;
 import com.example.findacar.adapters.TabAdapter;
+import com.example.findacar.model.CarService;
 import com.google.android.material.tabs.TabItem;
 import com.google.android.material.tabs.TabLayout;
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
+
+import java.lang.reflect.Type;
+import java.util.ArrayList;
+import java.util.List;
 
 public class SearchResultsActivity extends AppCompatActivity {
 
@@ -29,7 +36,7 @@ public class SearchResultsActivity extends AppCompatActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
 
-        getSupportActionBar().setTitle("Search results: Novi Sad");
+        getSupportActionBar().setTitle("Search results: " + getIntent().getStringExtra("place"));
         getSupportActionBar().setElevation(0);
 
         tabLayout = (TabLayout) findViewById(R.id.tabLayout);
@@ -37,7 +44,12 @@ public class SearchResultsActivity extends AppCompatActivity {
         tab2 = (TabItem) findViewById(R.id.map);
 
         viewPager = (ViewPager) findViewById(R.id.viewPager);
-        tabAdapter = new TabAdapter(getSupportFragmentManager(), tabLayout.getTabCount());
+        Gson gson = new Gson();
+        String gsonS = getIntent().getStringExtra("services");
+        Type type = new TypeToken<List<CarService>>(){}.getType();
+
+        ArrayList<CarService> services = gson.fromJson(gsonS, type);
+        tabAdapter = new TabAdapter(getSupportFragmentManager(), tabLayout.getTabCount(), services);
         viewPager.setAdapter(tabAdapter);
 
         //tabLayout.setTabTextColors(R.color.colorPrimary, R.color.whiteTransp);

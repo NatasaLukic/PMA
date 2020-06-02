@@ -5,8 +5,6 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.viewpager.widget.ViewPager;
 
 import com.example.findacar.R;
-import com.example.findacar.adapters.VehiclePhotosAdapter;
-import com.example.findacar.mockupData.Vehicles;
 import com.example.findacar.model.Vehicle;
 
 import android.os.Bundle;
@@ -14,11 +12,10 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import org.w3c.dom.Text;
-
 public class VehicleActivity extends AppCompatActivity {
 
     private boolean clicked = false;
+    private Vehicle vehicle;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,6 +24,7 @@ public class VehicleActivity extends AppCompatActivity {
 
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+        vehicle = (Vehicle) getIntent().getSerializableExtra("vehicle");
 
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
@@ -41,11 +39,9 @@ public class VehicleActivity extends AppCompatActivity {
             }
         });
 
-        int position = getIntent().getIntExtra("position", 0);
-
         ViewPager vp = findViewById(R.id.slider);
-        VehiclePhotosAdapter vpa = new VehiclePhotosAdapter(this, position);
-        vp.setAdapter(vpa);
+        //VehiclePhotosAdapter vpa = new VehiclePhotosAdapter(this, position);
+        //vp.setAdapter(vpa);
 
         TextView name = (TextView) findViewById(R.id.name);
 
@@ -53,20 +49,18 @@ public class VehicleActivity extends AppCompatActivity {
         TextView nDoors = (TextView) findViewById(R.id.numOfDoors);
         TextView nSeats = (TextView) findViewById(R.id.numOfSeats);
 
-        Vehicle vehicle = Vehicles.getVehicles().get(position);
-
         TextView numOfBags = (TextView) findViewById(R.id.numOfBags);
-        numOfBags.setText(Integer.toString(vehicle.getNumOfCases()));
+        numOfBags.setText(Integer.toString(vehicle.getCases()));
 
         TextView fuel = (TextView) findViewById(R.id.fuel);
         fuel.setText(vehicle.getFuel());
 
         TextView yearOfProd = (TextView) findViewById(R.id.yearOfProd);
-        yearOfProd.setText(Integer.toString(vehicle.getYearOfProd()));
+        yearOfProd.setText(Integer.toString(vehicle.getProdYear()));
 
-        date.setText(vehicle.getRegistratedUntil());
-        nDoors.setText(Integer.toString(vehicle.getNumOfDoors()));
-        nSeats.setText(Integer.toString(vehicle.getNumOfSeats()));
+        date.setText(vehicle.getRegUntil());
+        nDoors.setText(Integer.toString(vehicle.getDoors()));
+        nSeats.setText(Integer.toString(vehicle.getSeats()));
 
         ImageView airC = (ImageView) findViewById(R.id.airC);
         TextView airC_text = (TextView) findViewById(R.id.airC_text);
@@ -101,7 +95,7 @@ public class VehicleActivity extends AppCompatActivity {
             airC_text.setVisibility(View.INVISIBLE);
         }
 
-        if(vehicle.isAutomTrans() == true){
+        if(vehicle.isAutom() == true){
             auto_text.setText("Automatic");
         } else {
             auto_text.setText("Manual");
