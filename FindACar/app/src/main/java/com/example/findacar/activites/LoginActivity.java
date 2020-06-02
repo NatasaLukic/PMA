@@ -40,8 +40,6 @@ public class LoginActivity extends AppCompatActivity {
         setContentView(R.layout.activity_login);
 
         userDatabase = UserDatabase.getInstance(this);
-        User order = new User("ilinkaIphone X", "kovacevic", "il@gmail.com", "ilinka");
-        userDatabase.userDao().insert(order);
 
         callLogin = findViewById(R.id.login);
         callSignUp = findViewById(R.id.signup_screen);
@@ -106,6 +104,8 @@ public class LoginActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(LoginActivity.this,SignUpActivity.class);
+                User order = new User("ilinkaIphone X", "kovacevic", "il@gmail.com", "ilinka");
+                userDatabase.userDao().insert(order);
                 startActivity(intent);
             }
         });
