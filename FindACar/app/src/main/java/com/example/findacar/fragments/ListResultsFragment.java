@@ -7,6 +7,7 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.ListFragment;
 
+import android.os.Parcelable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -18,14 +19,24 @@ import com.example.findacar.activites.CarServiceDetailsActivity;
 import com.example.findacar.adapters.CarServicesAdapter;
 import com.example.findacar.mockupData.CarServices;
 import com.example.findacar.model.CarService;
+import com.example.findacar.model.Vehicle;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * A simple {@link Fragment} subclass.
  */
 public class ListResultsFragment extends ListFragment {
 
+    private List<CarService> list;
+
     public ListResultsFragment() {
         // Required empty public constructor
+    }
+
+    public ListResultsFragment(List<CarService> l) {
+        this.list = l;
     }
 
     @Override
@@ -39,10 +50,10 @@ public class ListResultsFragment extends ListFragment {
     public void onListItemClick(ListView l, View v, int position, long id) {
         super.onListItemClick(l, v, position, id);
 
-        CarService s = CarServices.getCarServices().get(position);
+        CarService s = this.list.get(position);
 
         Intent intent = new Intent(getActivity(), CarServiceDetailsActivity.class);
-        intent.putExtra("service", s.getName());
+        intent.putExtra("vehicles", (ArrayList<Vehicle>) s.getVehicles());
         startActivity(intent);
 
     }
@@ -50,7 +61,7 @@ public class ListResultsFragment extends ListFragment {
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-            CarServicesAdapter adapter = new CarServicesAdapter(getActivity());
+            CarServicesAdapter adapter = new CarServicesAdapter(getActivity(), this.list);
         setListAdapter(adapter);
     }
 }

@@ -11,22 +11,26 @@ import com.example.findacar.R;
 import com.example.findacar.model.CarService;
 import com.example.findacar.mockupData.CarServices;
 
+import java.util.List;
+
 public class CarServicesAdapter extends BaseAdapter {
 
     public Activity activity;
+    public List<CarService> list;
 
-    public CarServicesAdapter(Activity activity) {
+    public CarServicesAdapter(Activity activity, List<CarService> list) {
         this.activity = activity;
+        this.list = list;
     }
 
     @Override
     public int getCount() {
-        return CarServices.getCarServices().size();
+        return this.list.size();
     }
 
     @Override
     public Object getItem(int position) {
-        return CarServices.getCarServices().get(position);
+        return this.list.get(position);
     }
 
     @Override
@@ -37,7 +41,8 @@ public class CarServicesAdapter extends BaseAdapter {
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
         View vi = convertView;
-        CarService service = CarServices.getCarServices().get(position);
+
+        CarService service = this.list.get(position);
 
         if(convertView==null)
             vi = activity.getLayoutInflater().inflate(R.layout.carservices_list, null);
@@ -46,7 +51,7 @@ public class CarServicesAdapter extends BaseAdapter {
         TextView address = (TextView)vi.findViewById(R.id.address);
 
         name.setText(service.getName());
-        address.setText(service.getAddress());
+        address.setText(service.getAddress().getCity());
 
         return  vi;
     }

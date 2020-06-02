@@ -9,8 +9,6 @@ import androidx.viewpager.widget.PagerAdapter;
 import androidx.viewpager.widget.ViewPager;
 
 import com.example.findacar.R;
-import com.example.findacar.mockupData.Vehicles;
-import com.example.findacar.model.Vehicle;
 
 import java.util.ArrayList;
 
@@ -18,12 +16,12 @@ public class VehiclePhotosAdapter extends PagerAdapter {
 
     private Context mContext;
     private int position;
-    private ArrayList<Integer> images;
+    private ArrayList<Integer> images = new ArrayList<Integer>();
 
     public VehiclePhotosAdapter(Context context, int position){
         this.mContext = context;
         this.position = position;
-        this.images = Vehicles.getVehicles().get(position).getImages();
+        this.images.add(R.drawable.nissan_1_2);
     }
 
     @Override
