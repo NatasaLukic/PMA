@@ -7,14 +7,13 @@ import androidx.room.Room;
 import androidx.room.RoomDatabase;
 
 import com.example.findacar.dao.VehicleDao;
-import com.example.findacar.model.CarService;
 import com.example.findacar.model.Vehicle;
 
 @Database(entities = {Vehicle.class},  version = 1)
 public abstract class VehicleDatabase extends RoomDatabase {
 
     private static VehicleDatabase vehicleDatabase;
-    private static  String DATABASE_NAME = "vehicle";
+    private static String DATABASE_NAME = "vehicle";
 
     public synchronized static VehicleDatabase getInstance(Context context) {
         if(vehicleDatabase == null) {

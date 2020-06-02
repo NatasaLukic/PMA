@@ -113,22 +113,10 @@ public class LoginActivity extends AppCompatActivity {
                 User order = new User("ilinkaIphone X", "kovacevic", "il@gmail.com", "ilinka");
                 userDatabase.userDao().insert(order);
 
-                storeInDB();
-
                 startActivity(intent);
             }
         });
 
     }
-
-    public void storeInDB() {
-        User order = new User("ilinkaIphone X", "kovacevic", "il@gmail.com", "ilinka");
-        userDatabase.userDao().insert(order);
-        usersList.addAll(userDatabase.userDao().getAll());
-        Log.d("--------------" , "DATA------------->");
-        for (int i = 0 ; i < usersList.size() ; i++)
-            Log.d("value is" , usersList.get(i).getFirstName() + ", " + usersList.get(i).getLastName());
-    }
-
 
 }
