@@ -22,7 +22,7 @@ public class Review  implements Parcelable, Serializable {
     private String comment;
     @Expose
     @SerializedName("rate")
-    private double rate;
+    private float rate;
     @Expose
     @SerializedName("date")
     private Date date;
@@ -47,11 +47,11 @@ public class Review  implements Parcelable, Serializable {
         this.comment = comment;
     }
 
-    public double getRate() {
+    public float getRate() {
         return rate;
     }
 
-    public void setRate(double rate) {
+    public void setRate(float rate) {
         this.rate = rate;
     }
 
@@ -86,9 +86,9 @@ public class Review  implements Parcelable, Serializable {
 
 
     protected Review(Parcel in) {
-        id = Long.valueOf(in.readString());
+        id = in.readLong();
         comment = in.readString();
-        rate = Double.parseDouble(in.readString());
+        rate = in.readFloat();
         SimpleDateFormat formatter = new SimpleDateFormat("dd/MMM/yyyy", Locale.ENGLISH);
         try {
             date = formatter.parse(in.readString());
@@ -99,9 +99,9 @@ public class Review  implements Parcelable, Serializable {
 
     @Override
     public void writeToParcel(Parcel dest, int flags) {
-        dest.writeString(id.toString());
+        dest.writeLong(id);
         dest.writeString(comment);
-        dest.writeString(String.valueOf(rate));
+        dest.writeFloat(rate);
         dest.writeString(date.toString());
         dest.writeParcelable(user, flags);
     }
