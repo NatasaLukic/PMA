@@ -6,6 +6,7 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 
+import android.content.Intent;
 import android.content.res.ColorStateList;
 import android.graphics.Color;
 import android.opengl.Visibility;
@@ -18,17 +19,29 @@ import com.example.findacar.R;
 import com.example.findacar.fragments.AboutServiceFragment;
 import com.example.findacar.fragments.FilterFragment;
 import com.example.findacar.fragments.VehicleListFragment;
+import com.example.findacar.model.CarService;
+import com.example.findacar.model.Review;
 import com.example.findacar.model.Vehicle;
+import com.example.findacar.service.ServiceUtils;
 import com.google.android.material.appbar.AppBarLayout;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
 
+import java.lang.reflect.Type;
+import java.util.ArrayList;
 import java.util.List;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class CarServiceDetailsActivity extends AppCompatActivity implements BottomNavigationView.OnNavigationItemSelectedListener {
 
     private BottomNavigationView bottomNavigationView;
     private BottomNavigationView bottomNavigationViewFilter;
     private Fragment currentFragment;
+    private CarService carService;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,6 +49,7 @@ public class CarServiceDetailsActivity extends AppCompatActivity implements Bott
         setContentView(R.layout.activity_car_service_details);
 
         bottomNavigationView = findViewById(R.id.bottom_toolbar);
+
 
         //bottomNavigationView.setItemTextColor(Color.WHITE);
         bottomNavigationView.setOnNavigationItemSelectedListener(this);
@@ -46,11 +60,14 @@ public class CarServiceDetailsActivity extends AppCompatActivity implements Bott
     //    AppBarLayout.LayoutParams params = (AppBarLayout.LayoutParams) toolbar.getLayoutParams();
     //    params.setScrollFlags(0);
 
-
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
-
-        getSupportActionBar().setTitle(getIntent().getStringExtra("service"));
+        // TODO Iscupati carService objekat iz Intent-a
+        Gson gson = new Gson();
+        String gsonS = getIntent().getStringExtra("carService");
+        Type type = new TypeToken<CarService>(){}.getType();
+        carService = gson.fromJson(gsonS, type);
+        getSupportActionBar().setTitle(carService.getName());
 
         toolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
@@ -94,7 +111,7 @@ public class CarServiceDetailsActivity extends AppCompatActivity implements Bott
                 break;
 
             case R.id.about:
-                Fragment f2 = new AboutServiceFragment();
+                Fragment f2 = new AboutServiceFragment(this.carService);
                 bottomNavigationView.setVisibility(View.GONE);
                 currentFragment = f2;
                 getSupportFragmentManager().beginTransaction().replace(R.id.listOfVehicles,

@@ -1,21 +1,42 @@
 package com.example.findacar.model;
 
-import java.time.LocalDate;
-import java.util.Date;
+import android.os.Parcel;
+import android.os.Parcelable;
 
-public class Review {
+import com.google.gson.annotations.Expose;
+import com.google.gson.annotations.SerializedName;
+
+import java.io.Serializable;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+
+import java.util.Date;
+import java.util.Locale;
+
+public class Review  implements Parcelable, Serializable {
+    @Expose
+    @SerializedName("id")
+    private Long id;
+    @Expose
+    @SerializedName("comment")
     private String comment;
-    private int rate;
+    @Expose
+    @SerializedName("rate")
+    private double rate;
+    @Expose
+    @SerializedName("date")
     private Date date;
+    @Expose
+    @SerializedName("user")
     private User user;
     private CarService service;
 
-    public Review(String comment, int rate, Date date, User user, CarService service) {
-        this.comment = comment;
-        this.rate = rate;
-        this.date = date;
-        this.user = user;
-        this.service = service;
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public String getComment() {
@@ -26,11 +47,11 @@ public class Review {
         this.comment = comment;
     }
 
-    public int getRate() {
+    public double getRate() {
         return rate;
     }
 
-    public void setRate(int rate) {
+    public void setRate(double rate) {
         this.rate = rate;
     }
 
@@ -57,4 +78,43 @@ public class Review {
     public void setService(CarService service) {
         this.service = service;
     }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+
+    protected Review(Parcel in) {
+        id = Long.valueOf(in.readString());
+        comment = in.readString();
+        rate = Double.parseDouble(in.readString());
+        SimpleDateFormat formatter = new SimpleDateFormat("dd/MMM/yyyy", Locale.ENGLISH);
+        try {
+            date = formatter.parse(in.readString());
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeString(id.toString());
+        dest.writeString(comment);
+        dest.writeString(String.valueOf(rate));
+        dest.writeString(date.toString());
+        dest.writeParcelable(user, flags);
+    }
+
+    public static final Creator<Review> CREATOR = new Creator<Review>() {
+        @Override
+        public Review createFromParcel(Parcel in) {
+            return new Review(in);
+        }
+
+        @Override
+        public Review[] newArray(int size) {
+            return new Review[size];
+        }
+    };
 }

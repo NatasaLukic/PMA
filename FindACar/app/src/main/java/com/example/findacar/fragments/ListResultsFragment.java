@@ -19,9 +19,11 @@ import com.example.findacar.activites.CarServiceDetailsActivity;
 import com.example.findacar.adapters.CarServicesAdapter;
 import com.example.findacar.mockupData.CarServices;
 import com.example.findacar.model.CarService;
+import com.example.findacar.model.Review;
 import com.example.findacar.model.SearchVehiclesDTO;
 import com.example.findacar.model.Vehicle;
 import com.example.findacar.service.ServiceUtils;
+import com.google.gson.Gson;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -58,13 +60,13 @@ public class ListResultsFragment extends ListFragment {
 
         System.out.println("asdasdsad");
 
-        CarService s = this.list.get(position);
-        System.out.println(s.getEmail());
+        final CarService carService = this.list.get(position);
+        System.out.println(carService.getEmail());
         Intent intent = getActivity().getIntent();
 
         SearchVehiclesDTO searchVehiclesDTO = new SearchVehiclesDTO();
 
-        searchVehiclesDTO.setId(s.getId());
+        searchVehiclesDTO.setId(carService.getId());
         searchVehiclesDTO.setPickUpDate(intent.getStringExtra("pickUp"));
         searchVehiclesDTO.setReturnDate(intent.getStringExtra("return"));
 
@@ -79,9 +81,28 @@ public class ListResultsFragment extends ListFragment {
 
                     response.body();
                     List<Vehicle> vehicles = response.body();
-                    Intent intent1 = new Intent(getActivity(), CarServiceDetailsActivity.class);
+                    final Intent intent1 = new Intent(getActivity(), CarServiceDetailsActivity.class);
                     intent1.putExtra("vehicles", (ArrayList<Vehicle>) vehicles);
-                    startActivity(intent1);
+
+                    Call<List<Review>> call1 = ServiceUtils.reviewerService.getCarServiceReviews(carService.getId());
+                    call1.enqueue(new Callback<List<Review>>() {
+                        @Override
+                        public void onResponse(Call<List<Review>> call, Response<List<Review>> response) {
+                            if(response.isSuccessful()){
+                                // TODO Zasto u polje rating ubacuje 0.0????????????????????????
+                                List<Review> list = response.body();
+                                carService.setReviews(list);
+                                Gson gson = new Gson();
+                                intent1.putExtra("carService", gson.toJson(carService));
+                                startActivity(intent1);
+                            }
+                        }
+
+                        @Override
+                        public void onFailure(Call<List<Review>> call, Throwable t) {
+                            System.out.println(t.getMessage());
+                        }
+                    });
 
                 }
 
@@ -92,6 +113,8 @@ public class ListResultsFragment extends ListFragment {
 
             }
         });
+
+
 
 
     }

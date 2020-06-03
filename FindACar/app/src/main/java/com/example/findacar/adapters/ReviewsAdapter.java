@@ -14,6 +14,8 @@ import com.example.findacar.R;
 import com.example.findacar.mockupData.Reviews;
 import com.example.findacar.model.Review;
 
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.List;
 
 public class ReviewsAdapter  extends BaseAdapter {
@@ -23,6 +25,11 @@ public class ReviewsAdapter  extends BaseAdapter {
 
     public ReviewsAdapter(Activity activity) {
         this.mDataset = Reviews.getReviews();
+        this.activity = activity;
+    }
+
+    public ReviewsAdapter(Activity activity, List<Review> reviews) {
+        this.mDataset = reviews != null ? reviews : new ArrayList<Review>();
         this.activity = activity;
     }
 
@@ -56,10 +63,14 @@ public class ReviewsAdapter  extends BaseAdapter {
         Drawable drawable = rating.getProgressDrawable();
         drawable.setColorFilter(Color.parseColor("#DAA520"), PorterDuff.Mode.SRC_ATOP);
 
-        //user.setText(review.getUser().getName() + " " + review.getUser().getSurname());
-        date.setText("15/04/2020");
+        user.setText(review.getUser().getFirstName() + " " + review.getUser().getLastName());
+
+        SimpleDateFormat DateFor = new SimpleDateFormat("dd/MM/yyyy");
+        String stringDate= DateFor.format(review.getDate());
+        date.setText(stringDate);
+
         comment.setText(review.getComment());
-        rating.setRating(review.getRate());
+        rating.setRating((float) review.getRate());
         rating.setEnabled(false);
         return vi;
     }

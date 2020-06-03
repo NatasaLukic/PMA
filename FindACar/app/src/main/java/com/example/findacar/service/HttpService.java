@@ -3,6 +3,7 @@ package com.example.findacar.service;
 import com.example.findacar.model.CarService;
 import com.example.findacar.model.LogInModel;
 import com.example.findacar.model.RegisterDTO;
+import com.example.findacar.model.Review;
 import com.example.findacar.model.SearchDTO;
 import com.example.findacar.model.SearchVehiclesDTO;
 import com.example.findacar.model.Vehicle;
@@ -20,7 +21,7 @@ import retrofit2.http.POST;
 import retrofit2.http.Path;
 
 
-public interface UserService {
+public interface HttpService {
 
     @Headers({
             "User-Agent: Mobile-Android",
@@ -38,5 +39,11 @@ public interface UserService {
 
     @POST("search/findForDates")
     Call<List<Vehicle>> searchDates(@Body SearchVehiclesDTO searchDTO);
+
+    @POST("carservices/{carServiceId}/reviews")
+    Call<ResponseBody> rateCarService(@Path("carServiceId")Long carServiceId, @Body Review review);
+
+    @GET("carservices/{carServiceId}/reviews")
+    Call<List<Review>> getCarServiceReviews(@Path("carServiceId")Long carServiceId);
 
 }

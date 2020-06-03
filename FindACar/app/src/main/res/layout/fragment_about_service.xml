@@ -36,7 +36,7 @@
         android:layout_below="@id/imageView4"
         android:background="@color/colorLightGray"/>
 
-    <androidx.cardview.widget.CardView xmlns:cardView="http://schemas.android.com/tools"
+    <androidx.cardview.widget.CardView
         android:id="@+id/cardView"
         android:layout_width="190dp"
         android:layout_height="wrap_content"
@@ -45,7 +45,7 @@
         android:layout_marginLeft="10dp"
         android:paddingBottom="20dp"
         app:cardCornerRadius="15dp"
-        cardView:cardCornerRadius="50dp">
+        tools:cardCornerRadius="50dp">
 
         <TextView
             android:layout_width="wrap_content"
@@ -63,17 +63,17 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
             android:layout_marginTop="115dp"
-            android:textSize="12dp"
-            android:text="Landline phone:  011/3298-448"/>
+            android:text="Landline phone:  "
+            android:textSize="12dp" />
 
         <TextView
             android:id="@+id/textView14"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textSize="12dp"
             android:layout_gravity="center_horizontal"
             android:layout_marginTop="133dp"
-            android:text="Mobile phone:     064/4928-218"/>
+            android:text="Mobile phone:     "
+            android:textSize="12dp" />
 
         <TextView
             android:id="@+id/textView15"
