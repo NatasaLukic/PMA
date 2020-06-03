@@ -70,7 +70,7 @@ public class ReviewsAdapter  extends BaseAdapter {
         date.setText(stringDate);
 
         comment.setText(review.getComment());
-        rating.setRating((float) review.getRate());
+        rating.setRating((float) review.getRating());
         rating.setEnabled(false);
         return vi;
     }
