@@ -51,6 +51,7 @@ public class CarServiceDetailsActivity extends AppCompatActivity implements Bott
     private BottomNavigationView bottomNavigationViewFilter;
     private Fragment currentFragment;
     private CarService carService;
+    private List<Vehicle> vehicles;
 
 
     private String nameOfPhoto = "photo_";
@@ -83,7 +84,7 @@ public class CarServiceDetailsActivity extends AppCompatActivity implements Bott
             public void onClick(View v) {
 
                     if(currentFragment instanceof FilterFragment || currentFragment instanceof AboutServiceFragment){
-                        Fragment f = new VehicleListFragment();
+                        Fragment f = new VehicleListFragment(vehicles);
 
                         bottomNavigationView.setVisibility(View.VISIBLE);
                         getSupportFragmentManager().beginTransaction().setTransition((FragmentTransaction.TRANSIT_FRAGMENT_OPEN))
@@ -109,7 +110,7 @@ public class CarServiceDetailsActivity extends AppCompatActivity implements Bott
                     int counter = 0;
                     response.body();
                     Gson gson = new Gson();
-                    List<Vehicle> vehicles = response.body();
+                    vehicles = response.body();
                     /*
                     //copy list
                     ArrayList<Vehicle> vehicles1 = new ArrayList<Vehicle>(vehicles);
