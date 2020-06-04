@@ -1,6 +1,8 @@
 package com.example.findacar.fragments;
 
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.os.Bundle;
 
 import androidx.annotation.Nullable;
@@ -8,6 +10,8 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.ListFragment;
 
 import android.os.Parcelable;
+import android.util.Base64;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -22,7 +26,15 @@ import com.example.findacar.model.CarService;
 import com.example.findacar.model.SearchVehiclesDTO;
 import com.example.findacar.model.Vehicle;
 import com.example.findacar.service.ServiceUtils;
+import com.google.gson.Gson;
 
+import java.io.BufferedInputStream;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -59,7 +71,6 @@ public class ListResultsFragment extends ListFragment {
         System.out.println("asdasdsad");
 
         CarService s = this.list.get(position);
-        System.out.println(s.getEmail());
         Intent intent = getActivity().getIntent();
 
         SearchVehiclesDTO searchVehiclesDTO = new SearchVehiclesDTO();
@@ -68,31 +79,9 @@ public class ListResultsFragment extends ListFragment {
         searchVehiclesDTO.setPickUpDate(intent.getStringExtra("pickUp"));
         searchVehiclesDTO.setReturnDate(intent.getStringExtra("return"));
 
-        Call<List<Vehicle>> call = ServiceUtils.reviewerService.searchDates(searchVehiclesDTO);
-
-        call.enqueue(new Callback<List<Vehicle>>() {
-            @Override
-            public void onResponse(Call<List<Vehicle>> call, Response<List<Vehicle>> response) {
-
-                if(response.isSuccessful()){
-                    System.out.println("usao");
-
-                    response.body();
-                    List<Vehicle> vehicles = response.body();
-                    Intent intent1 = new Intent(getActivity(), CarServiceDetailsActivity.class);
-                    intent1.putExtra("vehicles", (ArrayList<Vehicle>) vehicles);
-                    startActivity(intent1);
-
-                }
-
-            }
-
-            @Override
-            public void onFailure(Call<List<Vehicle>> call, Throwable t) {
-
-            }
-        });
-
+        Intent intent1 = new Intent(getActivity(), CarServiceDetailsActivity.class);
+        intent1.putExtra("searchForVehicles", (Serializable) searchVehiclesDTO);
+        startActivity(intent1);
 
     }
 
@@ -102,4 +91,5 @@ public class ListResultsFragment extends ListFragment {
             CarServicesAdapter adapter = new CarServicesAdapter(getActivity(), this.list);
         setListAdapter(adapter);
     }
+
 }

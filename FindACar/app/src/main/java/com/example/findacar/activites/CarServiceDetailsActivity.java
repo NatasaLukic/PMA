@@ -7,28 +7,49 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 
 import android.content.res.ColorStateList;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.Color;
 import android.opengl.Visibility;
 import android.os.Bundle;
+import android.util.Base64;
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.findacar.R;
 import com.example.findacar.fragments.AboutServiceFragment;
 import com.example.findacar.fragments.FilterFragment;
 import com.example.findacar.fragments.VehicleListFragment;
+import com.example.findacar.model.CarService;
+import com.example.findacar.model.SearchVehiclesDTO;
 import com.example.findacar.model.Vehicle;
+import com.example.findacar.service.ServiceUtils;
 import com.google.android.material.appbar.AppBarLayout;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
 
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.lang.reflect.Type;
+import java.util.ArrayList;
 import java.util.List;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class CarServiceDetailsActivity extends AppCompatActivity implements BottomNavigationView.OnNavigationItemSelectedListener {
 
     private BottomNavigationView bottomNavigationView;
     private BottomNavigationView bottomNavigationViewFilter;
     private Fragment currentFragment;
+
+    private String nameOfPhoto = "photo_";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,10 +63,6 @@ public class CarServiceDetailsActivity extends AppCompatActivity implements Bott
 
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-
-    //    AppBarLayout.LayoutParams params = (AppBarLayout.LayoutParams) toolbar.getLayoutParams();
-    //    params.setScrollFlags(0);
-
 
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
@@ -70,14 +87,64 @@ public class CarServiceDetailsActivity extends AppCompatActivity implements Bott
             }
         });
 
-        List<Vehicle> vehicles = (List<Vehicle>) getIntent().getSerializableExtra("vehicles");
+        SearchVehiclesDTO searchVehiclesDTO = (SearchVehiclesDTO) getIntent().getSerializableExtra("searchForVehicles");
+        Call<List<Vehicle>> call = ServiceUtils.reviewerService.searchDates(searchVehiclesDTO);
 
-        Fragment fragment = new VehicleListFragment(vehicles);
-        currentFragment = fragment;
-        FragmentTransaction ft = getSupportFragmentManager().beginTransaction().setTransition((FragmentTransaction.TRANSIT_FRAGMENT_OPEN))
-                .replace(R.id.listOfVehicles, fragment);
+        call.enqueue(new Callback<List<Vehicle>>() {
+            @Override
+            public void onResponse(Call<List<Vehicle>> call, Response<List<Vehicle>> response) {
+                System.out.println("nesto");
+                if(response.isSuccessful()){
+                    System.out.println("usao");
 
-        ft.commit();
+                    int counter = 0;
+                    response.body();
+                    Gson gson = new Gson();
+                    List<Vehicle> vehicles = response.body();
+                    /*
+                    //copy list
+                    ArrayList<Vehicle> vehicles1 = new ArrayList<Vehicle>(vehicles);
+
+                    for(int i=0; i<vehicles.size(); i++){
+                        counter++;
+                        try {
+                            String urPath = returnUri(vehicles.get(i).getImageFile(), counter);
+                            vehicles1.get(i).setImageFile(null);
+                            vehicles1.get(i).setImagePath(urPath);
+                            Log.e("putanja", vehicles1.get(i).getImagePath());
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                        }
+
+                    }
+*/
+                    Fragment fragment = new VehicleListFragment(vehicles);
+                    currentFragment = fragment;
+                    FragmentTransaction ft = getSupportFragmentManager().beginTransaction().setTransition((FragmentTransaction.TRANSIT_FRAGMENT_OPEN))
+                            .replace(R.id.listOfVehicles, fragment);
+
+                    ft.commit();
+
+                } else {
+                    System.out.println("usoa fail");
+                }
+
+            }
+
+            @Override
+            public void onFailure(Call<List<Vehicle>> call, Throwable t) {
+                Toast.makeText(CarServiceDetailsActivity.this, "Error in API Call", Toast.LENGTH_SHORT).show();
+                Log.e("TAG", "Error occurred...", t);
+            }
+        });
+
+
+        Gson gson = new Gson();
+        String gsonS = getIntent().getStringExtra("vehicles");
+        Type type = new TypeToken<List<Vehicle>>(){}.getType();
+
+        ArrayList<Vehicle> vehicles = gson.fromJson(gsonS, type);
+
 
     }
 
@@ -102,5 +169,19 @@ public class CarServiceDetailsActivity extends AppCompatActivity implements Bott
                 break;
         }
         return true;
+    }
+
+
+
+    public String returnUri(String image, int counter) throws IOException {
+        File f = new File(getCacheDir(), nameOfPhoto+counter);
+
+        FileOutputStream outStream = new FileOutputStream(f);
+        byte[] bytes = Base64.decode(image, Base64.DEFAULT);
+        Bitmap bitmap = BitmapFactory.decodeByteArray(bytes , 0, bytes.length);
+        bitmap.compress(Bitmap.CompressFormat.JPEG, 75, outStream);
+        outStream.close();
+
+        return f.getAbsolutePath();
     }
 }

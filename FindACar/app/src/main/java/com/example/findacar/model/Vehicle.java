@@ -12,8 +12,11 @@ import com.google.gson.annotations.SerializedName;
 
 import java.io.Serializable;
 
+import okhttp3.MultipartBody;
+import retrofit2.http.Multipart;
+
 @Entity(tableName="Vehicle")
-public class Vehicle implements Serializable, Parcelable {
+public class Vehicle implements Serializable {
 
     @PrimaryKey(autoGenerate = true)
     private long id;
@@ -89,7 +92,12 @@ public class Vehicle implements Serializable, Parcelable {
     @Expose
     private double priceForDays;
 
-    // private int image;
+    @SerializedName("imageFile")
+    @Expose
+    private String imageFile;
+
+    private String imagePath;
+
     // private ArrayList<Integer> images;
 
 
@@ -104,36 +112,6 @@ public class Vehicle implements Serializable, Parcelable {
         this.airCond = airCond;
         this.autom = autom;
     }
-
-    protected Vehicle(Parcel in) {
-        id = in.readLong();
-        name = in.readString();
-        description = in.readString();
-        seats = in.readInt();
-        doors = in.readInt();
-        cases = in.readInt();
-        type = in.readString();
-        airCond = in.readByte() != 0;
-        autom = in.readByte() != 0;
-        regUntil = in.readString();
-        prodYear = in.readInt();
-        fuel = in.readString();
-        deposit = in.readByte() != 0;
-        mileage = in.readString();
-        priceForDays = in.readDouble();
-    }
-
-    public static final Creator<Vehicle> CREATOR = new Creator<Vehicle>() {
-        @Override
-        public Vehicle createFromParcel(Parcel in) {
-            return new Vehicle(in);
-        }
-
-        @Override
-        public Vehicle[] newArray(int size) {
-            return new Vehicle[size];
-        }
-    };
 
     public String getName() {
         return name;
@@ -255,27 +233,19 @@ public class Vehicle implements Serializable, Parcelable {
         this.priceForDays = priceForDays;
     }
 
-    @Override
-    public int describeContents() {
-        return 0;
+    public String getImageFile() {
+        return imageFile;
     }
 
-    @Override
-    public void writeToParcel(Parcel dest, int flags) {
-        dest.writeLong(id);
-        dest.writeString(name);
-        dest.writeString(description);
-        dest.writeInt(seats);
-        dest.writeInt(doors);
-        dest.writeInt(cases);
-        dest.writeString(type);
-        dest.writeByte((byte) (airCond ? 1 : 0));
-        dest.writeByte((byte) (autom ? 1 : 0));
-        dest.writeString(regUntil);
-        dest.writeInt(prodYear);
-        dest.writeString(fuel);
-        dest.writeByte((byte) (deposit ? 1 : 0));
-        dest.writeString(mileage);
-        dest.writeDouble(priceForDays);
+    public void setImageFile(String imageFile) {
+        this.imageFile = imageFile;
+    }
+
+    public String getImagePath() {
+        return imagePath;
+    }
+
+    public void setImagePath(String imagePath) {
+        this.imagePath = imagePath;
     }
 }
