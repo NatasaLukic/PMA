@@ -1,21 +1,35 @@
 package com.example.findacar.model;
 
-import java.time.LocalDate;
+import com.google.gson.annotations.Expose;
+import com.google.gson.annotations.SerializedName;
+
+import java.io.Serializable;
 import java.util.Date;
 
-public class Review {
+public class Review  implements Serializable {
+    @Expose
+    @SerializedName("id")
+    private Long id;
+    @Expose
+    @SerializedName("comment")
     private String comment;
-    private int rate;
+    @Expose
+    @SerializedName("rating")
+    private float rating;
+    @Expose
+    @SerializedName("date")
     private Date date;
+    @Expose
+    @SerializedName("user")
     private User user;
     private CarService service;
 
-    public Review(String comment, int rate, Date date, User user, CarService service) {
-        this.comment = comment;
-        this.rate = rate;
-        this.date = date;
-        this.user = user;
-        this.service = service;
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public String getComment() {
@@ -26,12 +40,12 @@ public class Review {
         this.comment = comment;
     }
 
-    public int getRate() {
-        return rate;
+    public float getRating() {
+        return rating;
     }
 
-    public void setRate(int rate) {
-        this.rate = rate;
+    public void setRating(float rating) {
+        this.rating = rating;
     }
 
     public Date getDate() {
@@ -57,4 +71,5 @@ public class Review {
     public void setService(CarService service) {
         this.service = service;
     }
+
 }

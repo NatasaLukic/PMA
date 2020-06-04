@@ -6,6 +6,7 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 
+import android.content.Intent;
 import android.content.res.ColorStateList;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -24,6 +25,7 @@ import com.example.findacar.fragments.AboutServiceFragment;
 import com.example.findacar.fragments.FilterFragment;
 import com.example.findacar.fragments.VehicleListFragment;
 import com.example.findacar.model.CarService;
+import com.example.findacar.model.Review;
 import com.example.findacar.model.SearchVehiclesDTO;
 import com.example.findacar.model.Vehicle;
 import com.example.findacar.service.ServiceUtils;
@@ -48,6 +50,8 @@ public class CarServiceDetailsActivity extends AppCompatActivity implements Bott
     private BottomNavigationView bottomNavigationView;
     private BottomNavigationView bottomNavigationViewFilter;
     private Fragment currentFragment;
+    private CarService carService;
+
 
     private String nameOfPhoto = "photo_";
 
@@ -58,16 +62,21 @@ public class CarServiceDetailsActivity extends AppCompatActivity implements Bott
 
         bottomNavigationView = findViewById(R.id.bottom_toolbar);
 
+
         //bottomNavigationView.setItemTextColor(Color.WHITE);
         bottomNavigationView.setOnNavigationItemSelectedListener(this);
 
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
+    //    AppBarLayout.LayoutParams params = (AppBarLayout.LayoutParams) toolbar.getLayoutParams();
+    //    params.setScrollFlags(0);
+
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
 
-        getSupportActionBar().setTitle(getIntent().getStringExtra("service"));
+        carService = (CarService) getIntent().getSerializableExtra("carService");
+        getSupportActionBar().setTitle(carService.getName());
 
         toolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
@@ -87,7 +96,7 @@ public class CarServiceDetailsActivity extends AppCompatActivity implements Bott
             }
         });
 
-        SearchVehiclesDTO searchVehiclesDTO = (SearchVehiclesDTO) getIntent().getSerializableExtra("searchForVehicles");
+        final SearchVehiclesDTO searchVehiclesDTO = (SearchVehiclesDTO) getIntent().getSerializableExtra("searchForVehicles");
         Call<List<Vehicle>> call = ServiceUtils.reviewerService.searchDates(searchVehiclesDTO);
 
         call.enqueue(new Callback<List<Vehicle>>() {
@@ -115,9 +124,27 @@ public class CarServiceDetailsActivity extends AppCompatActivity implements Bott
                         } catch (IOException e) {
                             e.printStackTrace();
                         }
-
                     }
 */
+                    Call<List<Review>> call1 = ServiceUtils.reviewerService.getCarServiceReviews(searchVehiclesDTO.getId());
+                    call1.enqueue(new Callback<List<Review>>() {
+                        @Override
+                        public void onResponse(Call<List<Review>> call, Response<List<Review>> response) {
+                            if(response.isSuccessful()){
+                                // TODO Zasto u polje rating ubacuje 0.0????????????????????????
+                                List<Review> list = response.body();
+                                carService.setReviews(list);
+                                //Gson gson = new Gson();
+                               // intent1.putExtra("carService", gson.toJson(carService));
+                               // startActivity(intent1);
+                            }
+                        }
+
+                        @Override
+                        public void onFailure(Call<List<Review>> call, Throwable t) {
+                            System.out.println(t.getMessage());
+                        }
+                    });
                     Fragment fragment = new VehicleListFragment(vehicles);
                     currentFragment = fragment;
                     FragmentTransaction ft = getSupportFragmentManager().beginTransaction().setTransition((FragmentTransaction.TRANSIT_FRAGMENT_OPEN))
@@ -138,14 +165,6 @@ public class CarServiceDetailsActivity extends AppCompatActivity implements Bott
             }
         });
 
-
-        Gson gson = new Gson();
-        String gsonS = getIntent().getStringExtra("vehicles");
-        Type type = new TypeToken<List<Vehicle>>(){}.getType();
-
-        ArrayList<Vehicle> vehicles = gson.fromJson(gsonS, type);
-
-
     }
 
     @Override
@@ -161,7 +180,7 @@ public class CarServiceDetailsActivity extends AppCompatActivity implements Bott
                 break;
 
             case R.id.about:
-                Fragment f2 = new AboutServiceFragment();
+                Fragment f2 = new AboutServiceFragment(this.carService);
                 bottomNavigationView.setVisibility(View.GONE);
                 currentFragment = f2;
                 getSupportFragmentManager().beginTransaction().replace(R.id.listOfVehicles,

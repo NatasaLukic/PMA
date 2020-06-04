@@ -23,6 +23,7 @@ import com.example.findacar.activites.CarServiceDetailsActivity;
 import com.example.findacar.adapters.CarServicesAdapter;
 import com.example.findacar.mockupData.CarServices;
 import com.example.findacar.model.CarService;
+import com.example.findacar.model.Review;
 import com.example.findacar.model.SearchVehiclesDTO;
 import com.example.findacar.model.Vehicle;
 import com.example.findacar.service.ServiceUtils;
@@ -70,18 +71,22 @@ public class ListResultsFragment extends ListFragment {
 
         System.out.println("asdasdsad");
 
-        CarService s = this.list.get(position);
+        final CarService carService = this.list.get(position);
+        System.out.println(carService.getEmail());
+
         Intent intent = getActivity().getIntent();
 
         SearchVehiclesDTO searchVehiclesDTO = new SearchVehiclesDTO();
 
-        searchVehiclesDTO.setId(s.getId());
+        searchVehiclesDTO.setId(carService.getId());
         searchVehiclesDTO.setPickUpDate(intent.getStringExtra("pickUp"));
         searchVehiclesDTO.setReturnDate(intent.getStringExtra("return"));
 
         Intent intent1 = new Intent(getActivity(), CarServiceDetailsActivity.class);
         intent1.putExtra("searchForVehicles", (Serializable) searchVehiclesDTO);
+        intent1.putExtra("carService", (Serializable) carService);
         startActivity(intent1);
+
 
     }
 
