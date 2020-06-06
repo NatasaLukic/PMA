@@ -71,16 +71,6 @@ public class AboutServiceFragment extends Fragment {
         email = (TextView)view.findViewById(R.id.textView16);
 
         populateView();
-     //   getChildFragmentManager().beginTransaction().add(R.id.listReviews, new ReviewFragment()).commit();
-        final LinearLayout layout = view.findViewById(R.id.listRev);
-        ListAdapter adapter = new ReviewsAdapter(getActivity(), carService.getReviews());
-
-        final int adapterCount = adapter.getCount();
-
-        for (int i = 0; i < adapterCount; i++) {
-            View item = adapter.getView(i, null, null);
-            layout.addView(item);
-        }
 
         return view;
     }

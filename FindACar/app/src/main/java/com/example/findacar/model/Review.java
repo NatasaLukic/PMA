@@ -1,35 +1,51 @@
 package com.example.findacar.model;
 
+import androidx.room.ColumnInfo;
+import androidx.room.Embedded;
+import androidx.room.Entity;
+import androidx.room.Ignore;
+import androidx.room.PrimaryKey;
+
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
 import java.io.Serializable;
 import java.util.Date;
 
+@Entity(tableName = "review")
 public class Review  implements Serializable {
-    @Expose
-    @SerializedName("id")
-    private Long id;
+
+    @PrimaryKey(autoGenerate = true)
+    private int reviewId;
+
+    public long vehicleOwnerId;
+
     @Expose
     @SerializedName("comment")
+    @ColumnInfo(name = "comment")
     private String comment;
+
     @Expose
     @SerializedName("rating")
+    @ColumnInfo(name = "rating")
     private float rating;
+
     @Expose
     @SerializedName("date")
+    @ColumnInfo(name = "date")
     private Date date;
+
     @Expose
     @SerializedName("user")
+    @Ignore
     private User user;
-    private CarService service;
 
-    public Long getId() {
-        return id;
+    public int getReviewId() {
+        return reviewId;
     }
 
-    public void setId(Long id) {
-        this.id = id;
+    public void setReviewId(int reviewId) {
+        this.reviewId = reviewId;
     }
 
     public String getComment() {
@@ -64,12 +80,5 @@ public class Review  implements Serializable {
         this.user = user;
     }
 
-    public CarService getService() {
-        return service;
-    }
-
-    public void setService(CarService service) {
-        this.service = service;
-    }
 
 }

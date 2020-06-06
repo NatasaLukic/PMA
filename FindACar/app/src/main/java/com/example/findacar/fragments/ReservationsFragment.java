@@ -10,14 +10,26 @@ import androidx.viewpager.widget.ViewPager;
 
 import com.example.findacar.R;
 import com.example.findacar.adapters.ResTabAdapter;
+import com.example.findacar.model.Reservation;
 import com.google.android.material.tabs.TabItem;
 import com.google.android.material.tabs.TabLayout;
+
+import java.util.List;
 
 public class ReservationsFragment extends Fragment {
     private TabLayout tabLayout;
     private ViewPager viewPager;
     private TabItem currentRes, previousRes;
     public ResTabAdapter tabAdapter;
+    private List<Reservation> res;
+
+    public ReservationsFragment(){
+
+    }
+
+    public ReservationsFragment(List<Reservation> res){
+        this.res = res;
+    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -31,7 +43,7 @@ public class ReservationsFragment extends Fragment {
         previousRes = (TabItem) view.findViewById(R.id.prevResTabId);
 
         viewPager = (ViewPager) view.findViewById(R.id.viewPagerRes);
-        tabAdapter = new ResTabAdapter(getActivity().getSupportFragmentManager(), tabLayout.getTabCount());
+        tabAdapter = new ResTabAdapter(getActivity().getSupportFragmentManager(), tabLayout.getTabCount(), res);
         viewPager.setAdapter(tabAdapter);
 
         tabLayout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {

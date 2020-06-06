@@ -56,7 +56,7 @@ public class PreviousReservationAdapter extends BaseAdapter {
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
         View vi = convertView;
-        Reservation reservation = (Reservation) getItem(position);
+        Reservation reservation = this.mDataset.get(position);
         if(convertView==null){
             vi = activity.getLayoutInflater().inflate(R.layout.fragment_reservation, null);
         }

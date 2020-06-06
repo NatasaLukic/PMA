@@ -35,5 +35,5 @@ public class ServiceUtils {
             .client(test())
             .build();
 
-    public static HttpService reviewerService = retrofit.create(HttpService.class);
+    public static HttpService findACarService = retrofit.create(HttpService.class);
 }
