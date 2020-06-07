@@ -25,6 +25,7 @@ import com.example.findacar.fragments.AboutServiceFragment;
 import com.example.findacar.fragments.FilterFragment;
 import com.example.findacar.fragments.VehicleListFragment;
 import com.example.findacar.model.CarService;
+import com.example.findacar.model.FilterVehicles;
 import com.example.findacar.model.Review;
 import com.example.findacar.model.SearchVehiclesDTO;
 import com.example.findacar.model.Vehicle;
@@ -45,7 +46,7 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class CarServiceDetailsActivity extends AppCompatActivity implements BottomNavigationView.OnNavigationItemSelectedListener {
+public class CarServiceDetailsActivity extends AppCompatActivity implements BottomNavigationView.OnNavigationItemSelectedListener, ICarServiceDetails {
 
     private BottomNavigationView bottomNavigationView;
     private BottomNavigationView bottomNavigationViewFilter;
@@ -70,8 +71,8 @@ public class CarServiceDetailsActivity extends AppCompatActivity implements Bott
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-    //    AppBarLayout.LayoutParams params = (AppBarLayout.LayoutParams) toolbar.getLayoutParams();
-    //    params.setScrollFlags(0);
+        //    AppBarLayout.LayoutParams params = (AppBarLayout.LayoutParams) toolbar.getLayoutParams();
+        //    params.setScrollFlags(0);
 
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
@@ -83,17 +84,17 @@ public class CarServiceDetailsActivity extends AppCompatActivity implements Bott
             @Override
             public void onClick(View v) {
 
-                    if(currentFragment instanceof FilterFragment || currentFragment instanceof AboutServiceFragment){
-                        Fragment f = new VehicleListFragment(vehicles);
+                if (currentFragment instanceof FilterFragment || currentFragment instanceof AboutServiceFragment) {
+                    Fragment f = new VehicleListFragment(vehicles);
 
-                        bottomNavigationView.setVisibility(View.VISIBLE);
-                        getSupportFragmentManager().beginTransaction().setTransition((FragmentTransaction.TRANSIT_FRAGMENT_OPEN))
-                                .replace(R.id.listOfVehicles, f).commit();
-                        currentFragment = f;
-                    } else if (currentFragment instanceof VehicleListFragment) {
+                    bottomNavigationView.setVisibility(View.VISIBLE);
+                    getSupportFragmentManager().beginTransaction().setTransition((FragmentTransaction.TRANSIT_FRAGMENT_OPEN))
+                            .replace(R.id.listOfVehicles, f).commit();
+                    currentFragment = f;
+                } else if (currentFragment instanceof VehicleListFragment) {
 
-                        finish();
-                    }
+                    finish();
+                }
             }
         });
 
@@ -104,7 +105,7 @@ public class CarServiceDetailsActivity extends AppCompatActivity implements Bott
             @Override
             public void onResponse(Call<List<Vehicle>> call, Response<List<Vehicle>> response) {
                 System.out.println("nesto");
-                if(response.isSuccessful()){
+                if (response.isSuccessful()) {
                     System.out.println("usao");
 
                     int counter = 0;
@@ -131,13 +132,12 @@ public class CarServiceDetailsActivity extends AppCompatActivity implements Bott
                     call1.enqueue(new Callback<List<Review>>() {
                         @Override
                         public void onResponse(Call<List<Review>> call, Response<List<Review>> response) {
-                            if(response.isSuccessful()){
-                                // TODO Zasto u polje rating ubacuje 0.0????????????????????????
+                            if (response.isSuccessful()) {
                                 List<Review> list = response.body();
                                 carService.setReviews(list);
                                 //Gson gson = new Gson();
-                               // intent1.putExtra("carService", gson.toJson(carService));
-                               // startActivity(intent1);
+                                // intent1.putExtra("carService", gson.toJson(carService));
+                                // startActivity(intent1);
                             }
                         }
 
@@ -171,7 +171,7 @@ public class CarServiceDetailsActivity extends AppCompatActivity implements Bott
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
 
-        switch (menuItem.getItemId()){
+        switch (menuItem.getItemId()) {
             case R.id.filter:
                 Fragment f = new FilterFragment();
                 currentFragment = f;
@@ -192,16 +192,86 @@ public class CarServiceDetailsActivity extends AppCompatActivity implements Bott
     }
 
 
-
     public String returnUri(String image, int counter) throws IOException {
-        File f = new File(getCacheDir(), nameOfPhoto+counter);
+        File f = new File(getCacheDir(), nameOfPhoto + counter);
 
         FileOutputStream outStream = new FileOutputStream(f);
         byte[] bytes = Base64.decode(image, Base64.DEFAULT);
-        Bitmap bitmap = BitmapFactory.decodeByteArray(bytes , 0, bytes.length);
+        Bitmap bitmap = BitmapFactory.decodeByteArray(bytes, 0, bytes.length);
         bitmap.compress(Bitmap.CompressFormat.JPEG, 75, outStream);
         outStream.close();
 
         return f.getAbsolutePath();
+    }
+
+    @Override
+    public void filterList(FilterVehicles filterVehicles) {
+        ArrayList<Vehicle> filtered = new ArrayList<>();
+
+        for (Vehicle v : vehicles) {
+            if (checkVehicle(v, filterVehicles)) {
+                filtered.add(v);
+            }
+        }
+        navigateToVehicleList(filtered);
+    }
+
+    @Override
+    public void navigateToVehicleList(ArrayList<Vehicle> vehicles) {
+        Fragment fragment = new VehicleListFragment(vehicles);
+        currentFragment = fragment;
+        FragmentTransaction ft = getSupportFragmentManager().beginTransaction().setTransition((FragmentTransaction.TRANSIT_FRAGMENT_OPEN))
+                .replace(R.id.listOfVehicles, fragment);
+
+        ft.commit();
+    }
+
+    private boolean checkVehicle(Vehicle vehicle, FilterVehicles filter) {
+
+        if (!filter.getMotor().isEmpty() && !(filter.getMotor().contains(vehicle.getFuel()))) {
+            return false;
+        }
+
+        if (!filter.getNumOfBags().isEmpty() && vehicle.getCases() < 2) {
+            return false;
+        }
+
+        /*if (filter.getNumOfBags().isEmpty() && vehicle.getCases() > 2) {
+            return false;
+        }*/
+
+        if (!filter.getTransmission().isEmpty()) {
+            if (vehicle.isAutom()) {
+                if (filterByTransmissionManual(filter.getTransmission()) && !filterByTransmissionAutomatic(filter.getTransmission()) ) {
+                    return false;
+                }
+            } else {
+                if (!filterByTransmissionManual(filter.getTransmission()) && filterByTransmissionAutomatic(filter.getTransmission()) ) {
+                    return false;
+                }
+            }
+
+        }
+
+        if (!filter.getVahicleType().isEmpty() && !(filter.getVahicleType().contains(vehicle.getType()))) {
+            return false;
+        }
+
+        if (filter.isAirCond() && !vehicle.isAirCond()) {
+            return false;
+        }
+        if (!filter.isAirCond() && vehicle.isAirCond()) {
+            return false;
+        }
+
+        return true;
+    }
+
+    private boolean filterByTransmissionAutomatic(ArrayList<String> filter) {
+        return filter.contains("Automatic") || filter.contains("Automatski");
+    }
+
+    private boolean filterByTransmissionManual(ArrayList<String> filter){
+       return filter.contains("Manual") || filter.contains("Rucni");
     }
 }

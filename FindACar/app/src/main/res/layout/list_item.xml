@@ -2,7 +2,8 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="55dip"
-    android:orientation="horizontal" >
+    android:orientation="horizontal"
+    android:descendantFocusability="blocksDescendants">
 
     <TextView
         android:id="@+id/lblListItem"
@@ -23,8 +24,8 @@
             android:layout_marginRight="30dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-
-        android:buttonTint="@drawable/item_color_state_checkbox" />
+        android:buttonTint="@drawable/item_color_state_checkbox"
+            android:focusable="false"/>
     </RelativeLayout>
 
 

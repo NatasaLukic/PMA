@@ -5,12 +5,15 @@ import android.os.Parcelable;
 
 import androidx.room.ColumnInfo;
 import androidx.room.Entity;
+import androidx.room.Ignore;
 import androidx.room.PrimaryKey;
+import androidx.room.Relation;
 
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
 import java.io.Serializable;
+import java.util.List;
 
 import okhttp3.MultipartBody;
 import retrofit2.http.Multipart;
@@ -19,6 +22,11 @@ import retrofit2.http.Multipart;
 public class Vehicle implements Serializable {
 
     @PrimaryKey(autoGenerate = true)
+    private long vehicleId;
+
+    @SerializedName("id")
+    @Expose
+    @Ignore
     private long id;
 
     @ColumnInfo(name = "name")
@@ -98,19 +106,28 @@ public class Vehicle implements Serializable {
 
     private String imagePath;
 
+    @SerializedName("reviews")
+    @Expose
+    @Ignore
+    private List<Review> reviews;
+
     // private ArrayList<Integer> images;
 
 
-    public Vehicle(String name, String description, int seats, int doors, int cases,
-                   String type, boolean airCond, boolean autom) {
-        this.name = name;
-        this.description = description;
-        this.seats = seats;
-        this.doors = doors;
-        this.cases = cases;
-        this.type = type;
-        this.airCond = airCond;
-        this.autom = autom;
+    public long getVehicleId() {
+        return vehicleId;
+    }
+
+    public void setVehicleId(long vehicleId) {
+        this.vehicleId = vehicleId;
+    }
+
+    public long getId() {
+        return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
     }
 
     public String getName() {
@@ -217,14 +234,6 @@ public class Vehicle implements Serializable {
         this.mileage = mileage;
     }
 
-    public long getId() {
-        return id;
-    }
-
-    public void setId(long id) {
-        this.id = id;
-    }
-
     public double getPriceForDays() {
         return priceForDays;
     }
@@ -247,5 +256,13 @@ public class Vehicle implements Serializable {
 
     public void setImagePath(String imagePath) {
         this.imagePath = imagePath;
+    }
+
+    public List<Review> getReviews() {
+        return reviews;
+    }
+
+    public void setReviews(List<Review> reviews) {
+        this.reviews = reviews;
     }
 }
