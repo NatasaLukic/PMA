@@ -73,13 +73,16 @@ public class LoginActivity extends AppCompatActivity {
                 logIn.setEmail(emailSend);
                 logIn.setPassword(passwordSend);
 
-                Call<Boolean> call = ServiceUtils.reviewerService.login(logIn);
+                Call<Boolean> call = ServiceUtils.findACarService.login(logIn);
 
                 call.enqueue(new Callback<Boolean>() {
                     @Override
                     public void onResponse(Call<Boolean> call, Response<Boolean> response) {
 
                         if (response.body() == true ){
+
+                            User order = new User("ilinkaIphone X", "kovacevic", "il@gmail.com", "ilinka");
+                            userDatabase.userDao().insert(order);
 
                             Intent intent = new Intent(LoginActivity.this,DashboardActivity.class);
                             intent.putExtra("user", emailSend);
@@ -109,9 +112,6 @@ public class LoginActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(LoginActivity.this,SignUpActivity.class);
-
-                User order = new User("ilinkaIphone X", "kovacevic", "il@gmail.com", "ilinka");
-                userDatabase.userDao().insert(order);
 
                 startActivity(intent);
             }

@@ -1,21 +1,51 @@
 package com.example.findacar.model;
 
-import java.time.LocalDate;
+import androidx.room.ColumnInfo;
+import androidx.room.Embedded;
+import androidx.room.Entity;
+import androidx.room.Ignore;
+import androidx.room.PrimaryKey;
+
+import com.google.gson.annotations.Expose;
+import com.google.gson.annotations.SerializedName;
+
+import java.io.Serializable;
 import java.util.Date;
 
-public class Review {
-    private String comment;
-    private int rate;
-    private Date date;
-    private User user;
-    private CarService service;
+@Entity(tableName = "review")
+public class Review  implements Serializable {
 
-    public Review(String comment, int rate, Date date, User user, CarService service) {
-        this.comment = comment;
-        this.rate = rate;
-        this.date = date;
-        this.user = user;
-        this.service = service;
+    @PrimaryKey(autoGenerate = true)
+    private int reviewId;
+
+    public long vehicleOwnerId;
+
+    @Expose
+    @SerializedName("comment")
+    @ColumnInfo(name = "comment")
+    private String comment;
+
+    @Expose
+    @SerializedName("rating")
+    @ColumnInfo(name = "rating")
+    private float rating;
+
+    @Expose
+    @SerializedName("date")
+    @ColumnInfo(name = "date")
+    private Date date;
+
+    @Expose
+    @SerializedName("user")
+    @Ignore
+    private User user;
+
+    public int getReviewId() {
+        return reviewId;
+    }
+
+    public void setReviewId(int reviewId) {
+        this.reviewId = reviewId;
     }
 
     public String getComment() {
@@ -26,12 +56,12 @@ public class Review {
         this.comment = comment;
     }
 
-    public int getRate() {
-        return rate;
+    public float getRating() {
+        return rating;
     }
 
-    public void setRate(int rate) {
-        this.rate = rate;
+    public void setRating(float rating) {
+        this.rating = rating;
     }
 
     public Date getDate() {
@@ -50,11 +80,5 @@ public class Review {
         this.user = user;
     }
 
-    public CarService getService() {
-        return service;
-    }
 
-    public void setService(CarService service) {
-        this.service = service;
-    }
 }

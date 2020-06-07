@@ -108,7 +108,7 @@ public class DashboardFragment extends Fragment {
                 SearchDTO searchDTO = new SearchDTO(place, datepickUp + " " + timePickUp,
                         dateReturn + " " + timeReturn);
 
-                Call<List<CarService>> call = ServiceUtils.reviewerService.searchCity(searchDTO);
+                Call<List<CarService>> call = ServiceUtils.findACarService.searchCity(searchDTO);
 
                 call.enqueue(new Callback<List<CarService>>() {
                     @Override

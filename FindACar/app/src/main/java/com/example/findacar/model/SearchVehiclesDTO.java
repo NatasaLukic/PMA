@@ -3,7 +3,9 @@ package com.example.findacar.model;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-public class SearchVehiclesDTO {
+import java.io.Serializable;
+
+public class SearchVehiclesDTO implements Serializable {
 
     @SerializedName("id")
     @Expose

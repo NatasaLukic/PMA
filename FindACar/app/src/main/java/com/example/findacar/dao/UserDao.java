@@ -18,4 +18,8 @@ public interface UserDao {
     // get all data query
     @Query("SELECT * FROM user")
     List<User> getAll();
+
+
+    @Query("SELECT email FROM user WHERE id=:id ")
+    String loadSingle(int id);
 }

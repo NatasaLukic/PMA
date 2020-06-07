@@ -2,7 +2,6 @@ package com.example.findacar.adapters;
 
 import android.app.Activity;
 import android.content.Intent;
-import android.os.Parcelable;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
@@ -13,6 +12,7 @@ import android.widget.TextView;
 import com.example.findacar.R;
 import com.example.findacar.activites.VehicleActivity;
 import com.example.findacar.model.Vehicle;
+import com.squareup.picasso.Picasso;
 
 import java.io.Serializable;
 import java.util.List;
@@ -21,6 +21,8 @@ public class VehiclesAdapter extends BaseAdapter {
 
     public Activity activity;
     public List<Vehicle> vehicles;
+    //public static final String SERVICE_API_PATH = "http://192.168.0.35:8057/";
+    public static final String SERVICE_API_PATH = "http://192.168.0.15:8057/";
 
     public VehiclesAdapter(Activity activity, List<Vehicle> vehicles){
         this.activity = activity;
@@ -90,8 +92,10 @@ public class VehiclesAdapter extends BaseAdapter {
             }
         });
 
+        String m = vehicle.getImageFile();
 
-        image.setImageResource(R.drawable.dacia_logan);
+        Picasso.get().load(SERVICE_API_PATH + "search/getImage/" +m)
+                .resize(300,300).into(image);
 
         return vi;
     }

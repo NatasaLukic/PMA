@@ -6,6 +6,7 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.ListFragment;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,6 +17,16 @@ import com.example.findacar.R;
 
 import com.example.findacar.adapters.PreviousReservationAdapter;
 import com.example.findacar.mockupData.Reservations;
+import com.example.findacar.model.Reservation;
+import com.example.findacar.model.Review;
+import com.example.findacar.service.ServiceUtils;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -24,8 +35,17 @@ import com.example.findacar.mockupData.Reservations;
  */
 public class PreviousReservationsFragment extends ListFragment {
 
+    private List<Reservation> reservations;
+
     public PreviousReservationsFragment() {
         // Required empty public constructor
+
+    }
+
+    public PreviousReservationsFragment(List<Reservation> res) {
+        // Required empty public constructor
+        this.reservations = res;
+
     }
 
     /**
@@ -49,7 +69,9 @@ public class PreviousReservationsFragment extends ListFragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-    }
+
+
+        }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -66,7 +88,8 @@ public class PreviousReservationsFragment extends ListFragment {
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-        PreviousReservationAdapter adapter = new PreviousReservationAdapter(getActivity(), Reservations.getPreviousReservations());
+
+        PreviousReservationAdapter adapter = new PreviousReservationAdapter(getActivity(), reservations);
         setListAdapter(adapter);
     }
 

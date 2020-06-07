@@ -1,5 +1,8 @@
 package com.example.findacar.model;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
 import androidx.room.ColumnInfo;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
@@ -7,7 +10,7 @@ import androidx.room.PrimaryKey;
 import java.io.Serializable;
 
 @Entity(tableName = "user")
-public class User implements Serializable {
+public class User implements Parcelable, Serializable {
     @PrimaryKey(autoGenerate = true)
     private int id;
 
@@ -69,6 +72,41 @@ public class User implements Serializable {
     public void setPassword(String password) {
         this.password = password;
     }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    protected User(Parcel in) {
+        email = in.readString();
+        id = Integer.parseInt(in.readString());
+        firstName = in.readString();
+        lastName = in.readString();
+        password = in.readString();
+
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeString(String.valueOf(id));
+        dest.writeString(firstName);
+        dest.writeString(lastName);
+        dest.writeString(email);
+        dest.writeString(password);
+    }
+
+    public static final Creator<User> CREATOR = new Creator<User>() {
+        @Override
+        public User createFromParcel(Parcel in) {
+            return new User(in);
+        }
+
+        @Override
+        public User[] newArray(int size) {
+            return new User[size];
+        }
+    };
 }
 
 

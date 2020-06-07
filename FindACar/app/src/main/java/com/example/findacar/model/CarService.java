@@ -7,6 +7,7 @@ import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 
 public class CarService implements Parcelable, Serializable {
@@ -39,7 +40,11 @@ public class CarService implements Parcelable, Serializable {
     @Expose
     private List<Vehicle> vehicles;
 
-    public CarService(){
+    @SerializedName("landlinePhone")
+    @Expose
+    private String landlinePhone;
+
+    public CarService() {
 
     }
 
@@ -48,7 +53,7 @@ public class CarService implements Parcelable, Serializable {
         this.address = address;
     }
 
-    public CarService(String name, Address address, String phone, String email, String about,List<Vehicle> vehicles) {
+    public CarService(String name, Address address, String phone, String email, String about, List<Vehicle> vehicles) {
         this.name = name;
         this.address = address;
         this.phone = phone;
@@ -113,12 +118,23 @@ public class CarService implements Parcelable, Serializable {
         this.vehicles = vehicles;
     }
 
+
+    public String getLandlinePhone() {
+        return landlinePhone;
+    }
+
+    public void setLandlinePhone(String landlinePhone) {
+        this.landlinePhone = landlinePhone;
+    }
+
     protected CarService(Parcel in) {
         name = in.readString();
         address = in.readParcelable(Address.class.getClassLoader());
         phone = in.readString();
         email = in.readString();
         about = in.readString();
+        landlinePhone = in.readString();
+
     }
 
     @Override
@@ -128,6 +144,7 @@ public class CarService implements Parcelable, Serializable {
         dest.writeString(phone);
         dest.writeString(email);
         dest.writeString(about);
+        dest.writeString(landlinePhone);
     }
 
     @Override
@@ -146,4 +163,5 @@ public class CarService implements Parcelable, Serializable {
             return new CarService[size];
         }
     };
+
 }

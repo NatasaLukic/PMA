@@ -1,5 +1,6 @@
 package com.example.findacar.service;
 
+
 import java.util.concurrent.TimeUnit;
 
 import okhttp3.OkHttpClient;
@@ -15,6 +16,7 @@ public class ServiceUtils {
     //public static final String SERVICE_API_PATH = "http://192.168.0.13:8057/";
 
 
+
     public static OkHttpClient test(){
         HttpLoggingInterceptor interceptor = new HttpLoggingInterceptor();
         interceptor.setLevel(HttpLoggingInterceptor.Level.BODY);
@@ -28,12 +30,11 @@ public class ServiceUtils {
         return client;
     }
 
-
     public static Retrofit retrofit = new Retrofit.Builder()
             .baseUrl(SERVICE_API_PATH)
             .addConverterFactory(GsonConverterFactory.create())
             .client(test())
             .build();
 
-    public static UserService reviewerService = retrofit.create(UserService.class);
+    public static HttpService findACarService = retrofit.create(HttpService.class);
 }

@@ -416,10 +416,39 @@
                 android:background="@color/colorLightGray"
                 android:layout_below="@id/specs"/>
 
-        <Button
+
+            <androidx.cardview.widget.CardView xmlns:cardView="http://schemas.android.com/tools"
+                android:layout_width="335dp"
+                android:layout_marginTop="15dp"
+                android:layout_centerHorizontal="true"
+                android:layout_below="@id/lin2"
+                android:layout_height="wrap_content"
+                app:cardCornerRadius="15dp"
+                android:id="@+id/cardV"
+                cardView:cardCornerRadius="50dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="REVIEWS"
+                    android:textSize="20dp"
+                    app:fontFamily="@font/fjord_one"
+                    android:layout_gravity="center_horizontal"
+                    android:textColor="@color/colorPrimary"/>
+
+                <LinearLayout
+                    android:id="@+id/listRev"
+                    android:layout_marginTop="30dp"
+                    android:orientation="vertical"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"/>
+
+            </androidx.cardview.widget.CardView>
+
+            <Button
             android:layout_width="220dp"
             android:layout_height="40dp"
-            android:layout_below="@id/lin2"
+            android:layout_below="@id/cardV"
             android:layout_marginTop="20dp"
             android:layout_marginBottom="20dp"
             android:text="Book"
