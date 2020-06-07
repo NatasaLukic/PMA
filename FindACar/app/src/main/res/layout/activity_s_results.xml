@@ -17,36 +17,21 @@
         android:popupTheme="@style/ThemeOverlay.AppCompat.Light"
         android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
         app:elevation="0dp" />
-
-    <com.google.android.material.tabs.TabLayout
-        android:id="@+id/tabLayout"
+    <Button
+        android:id="@+id/btnViewMap"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:tabBackground="@color/colorPrimary"
-        app:tabIndicatorColor="@android:color/white"
-        app:tabTextColor="@android:color/white">
-
-        <com.google.android.material.tabs.TabItem
-            android:id="@+id/list"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:fontFamily="@font/architects_daughter"
-            android:text="@string/list" />
-
-        <com.google.android.material.tabs.TabItem
-            android:id="@+id/map"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:fontFamily="@font/architects_daughter"
-            android:text="@string/map" />
-
-
-    </com.google.android.material.tabs.TabLayout>
-
-    <androidx.viewpager.widget.ViewPager
-        android:id="@+id/viewPager"
+        android:textSize="13dp"
+        android:background="@drawable/button_background_search"
+        android:text="@string/view_on_map"
+        android:layout_margin="10dp"
+        android:textColor="@color/colorWhite"/>
+    <RelativeLayout
+        android:id="@+id/search_results"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:gravity="center"></RelativeLayout>
 
-    </androidx.viewpager.widget.ViewPager>
+
+
 </LinearLayout>

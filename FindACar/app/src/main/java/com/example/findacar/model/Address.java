@@ -12,15 +12,28 @@ public class Address implements Parcelable, Serializable {
     private String country;
     private String postalCode;
 
+    private double x;
+    private double y;
+
+
     public Address(){
 
     }
-
     public Address(String street, String city, String country, String postalCode) {
         this.street = street;
         this.city = city;
         this.country = country;
         this.postalCode = postalCode;
+
+    }
+
+    public Address(String street, String city, String country, String postalCode, double x, double y) {
+        this.street = street;
+        this.city = city;
+        this.country = country;
+        this.postalCode = postalCode;
+        this.x = x;
+        this.y = y;
     }
 
     public String getStreet() {
@@ -60,6 +73,22 @@ public class Address implements Parcelable, Serializable {
         city = in.readString();
         country = in.readString();
         postalCode = in.readString();
+    }
+
+    public double getX() {
+        return x;
+    }
+
+    public double getY() {
+        return y;
+    }
+
+    public void setX(double x) {
+        this.x = x;
+    }
+
+    public void setY(double y) {
+        this.y = y;
     }
 
     @Override
