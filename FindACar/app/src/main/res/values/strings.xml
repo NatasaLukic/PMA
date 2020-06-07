@@ -53,7 +53,39 @@
     <!--About-->
     <string name="contact">Contact</string>
 
+
     <string name="view_on_map">View on map</string>
+
+    <!--Vehicle filtering-->
+    <string name="carType">Type of car</string>
+    <string name="motor">Motor</string>
+    <string name="transmission">Transmission</string>
+    <string name="numOfBags">Number of bags</string>
+    <string name="airCond">Air conditioning</string>
+
+    <string-array name="carType">
+        <item>Small</item>
+        <item>Medium</item>
+        <item>Large</item>
+        <item>Economy</item>
+    </string-array>
+    <string-array name="motor">
+        <item>Petrol</item>
+        <item>Diesel</item>
+    </string-array>
+    <string-array name="transmission">
+        <item>Automatic</item>
+        <item>Manual</item>
+    </string-array>
+    <string-array name="numOfBags">
+        <item>2 and more</item>
+    </string-array>
+    <string-array name="airCond">
+        <item>Yes</item>
+    </string-array>
+
+
+
 
 
 </resources>

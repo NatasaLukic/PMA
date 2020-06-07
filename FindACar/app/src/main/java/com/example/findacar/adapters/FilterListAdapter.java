@@ -9,6 +9,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseExpandableListAdapter;
 import android.widget.CheckBox;
+import android.widget.CompoundButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -24,14 +25,29 @@ public class FilterListAdapter extends BaseExpandableListAdapter {
     private List<String> listDataHeader = new ArrayList<String>();
     private HashMap<String, List<String>> listDataChild = new HashMap<String, List<String>>();
 
+    // Hashmap for keeping track of our checkbox check states
+    private HashMap<Integer, boolean[]> mChildCheckStates;
+
     public FilterListAdapter(Context context, List<String> listDataHeader,
                              HashMap<String, List<String>> listChildData) {
 
         this.context = context;
         this.listDataHeader = listDataHeader;
         this.listDataChild = listChildData;
+        mChildCheckStates = new HashMap<>();
     }
 
+    public List<String> getListDataHeader() {
+        return listDataHeader;
+    }
+
+    public HashMap<String, List<String>> getListDataChild() {
+        return listDataChild;
+    }
+
+    public HashMap<Integer, boolean[]> getmChildCheckStates() {
+        return mChildCheckStates;
+    }
 
     @Override
     public int getGroupCount() {
@@ -84,20 +100,20 @@ public class FilterListAdapter extends BaseExpandableListAdapter {
 
         ImageView imageView = (ImageView) convertView.findViewById(R.id.picFilter);
 
-        if(headerTitle.equals("Motor")){
+        if (headerTitle.equals(context.getString(R.string.motor))) {
             imageView.setImageResource(R.drawable.ic_fuel);
-        } else if (headerTitle.equals("Type of car")){
+        } else if (headerTitle.equals(context.getString(R.string.carType))) {
 
             imageView.setImageResource(R.drawable.ic_directions_car_black_filter);
-        } else if (headerTitle.equals("Number of bags")){
+        } else if (headerTitle.equals(context.getString(R.string.numOfBags))) {
 
             imageView.setImageResource(R.drawable.ic_suitcase);
 
-        } else if (headerTitle.equals("Transmission")){
+        } else if (headerTitle.equals(context.getString(R.string.transmission))) {
 
             imageView.setImageResource(R.drawable.ic_manual);
 
-        } else if (headerTitle.equals("Air conditioning")){
+        } else if (headerTitle.equals(context.getString(R.string.airCond))) {
 
             imageView.setImageResource(R.drawable.ic_air_cond);
         }
@@ -109,25 +125,47 @@ public class FilterListAdapter extends BaseExpandableListAdapter {
     }
 
     @Override
-    public View getChildView(int groupPosition, final int childPosition,
+    public View getChildView(final int groupPosition, final int childPosition,
                              boolean isLastChild, View convertView, ViewGroup parent) {
 
         String childText = (String) getChild(groupPosition, childPosition);
-
         if (convertView == null) {
             LayoutInflater infalInflater = (LayoutInflater) context
                     .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
             convertView = infalInflater.inflate(R.layout.list_item, null);
         }
-
         TextView txtListChild = (TextView) convertView
                 .findViewById(R.id.lblListItem);
-
-        CheckBox checkBox = convertView.findViewById(R.id.check);
-
-        checkBox.setChecked(false);
-
         txtListChild.setText(childText);
+        final CheckBox checkBox = convertView.findViewById(R.id.check);
+        /*
+         * You have to set the onCheckChangedListener to null
+         * before restoring check states because each call to
+         * "setChecked" is accompanied by a call to the
+         * onCheckChangedListener
+         */
+        checkBox.setOnCheckedChangeListener(null);
+        if (mChildCheckStates.containsKey(groupPosition)) {
+            boolean[] checked = mChildCheckStates.get(groupPosition);
+            checkBox.setChecked(checked[childPosition]);
+
+        } else {
+            boolean[] checked = new boolean[getChildrenCount(groupPosition)];
+            mChildCheckStates.put(groupPosition, checked);
+            checkBox.setChecked(false);
+        }
+
+        checkBox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                boolean[] checked = mChildCheckStates.get(groupPosition);
+                checked[childPosition] = isChecked;
+                mChildCheckStates.remove(groupPosition);
+                mChildCheckStates.put(groupPosition, checked);
+            }
+        });
+
         return convertView;
     }
 

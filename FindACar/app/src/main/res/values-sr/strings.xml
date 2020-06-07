@@ -54,6 +54,35 @@
     <!--About-->
     <string name="contact">Kontakt</string>
 
+
     <string name="view_on_map">Pogledaj na mapi</string>
+
+    <!--Vehicle filtering-->
+    <string name="carType">Vrsta</string>
+    <string name="motor">Motor</string>
+    <string name="transmission">Menjac</string>
+    <string name="numOfBags">Airbag</string>
+    <string name="airCond">Klima</string>
+
+    <string-array name="carType">
+        <item>Malo</item>
+        <item>Srednje</item>
+        <item>Veliko</item>
+        <item>Economy</item>
+    </string-array>
+    <string-array name="motor">
+        <item>Benzin</item>
+        <item>Diesel</item>
+    </string-array>
+    <string-array name="transmission">
+        <item>Automatski</item>
+        <item>Rucni</item>
+    </string-array>
+    <string-array name="numOfBags">
+        <item>2 i vise</item>
+    </string-array>
+    <string-array name="airCond">
+        <item>Da</item>
+    </string-array>
 
 </resources>
