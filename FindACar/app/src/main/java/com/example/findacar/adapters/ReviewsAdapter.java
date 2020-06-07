@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.graphics.Color;
 import android.graphics.PorterDuff;
 import android.graphics.drawable.Drawable;
+import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
@@ -23,13 +24,8 @@ public class ReviewsAdapter  extends BaseAdapter {
     private List<Review> mDataset;
     public Activity activity;
 
-    public ReviewsAdapter(Activity activity) {
-        this.mDataset = Reviews.getReviews();
-        this.activity = activity;
-    }
-
     public ReviewsAdapter(Activity activity, List<Review> reviews) {
-        this.mDataset = reviews != null ? reviews : new ArrayList<Review>();
+        this.mDataset = reviews;
         this.activity = activity;
     }
 
@@ -50,8 +46,10 @@ public class ReviewsAdapter  extends BaseAdapter {
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
+
+        Log.e("VVVVVVVV", String.valueOf(mDataset.size()));
         View vi = convertView;
-        Review review = (Review) getItem(position);
+        Review review = mDataset.get(position);
         if (convertView == null) {
             vi = activity.getLayoutInflater().inflate(R.layout.fragment_review, null);
         }
@@ -65,9 +63,11 @@ public class ReviewsAdapter  extends BaseAdapter {
 
         user.setText(review.getUser().getFirstName() + " " + review.getUser().getLastName());
 
-        SimpleDateFormat DateFor = new SimpleDateFormat("dd/MM/yyyy");
+        SimpleDateFormat DateFor = new SimpleDateFormat("yyyy-MM-dd");
         String stringDate= DateFor.format(review.getDate());
         date.setText(stringDate);
+
+
 
         comment.setText(review.getComment());
         rating.setRating((float) review.getRating());

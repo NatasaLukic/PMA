@@ -84,7 +84,7 @@ public class CarServiceDetailsActivity extends AppCompatActivity implements Bott
             @Override
             public void onClick(View v) {
 
-                if (currentFragment instanceof FilterFragment || currentFragment instanceof AboutServiceFragment) {
+                if(currentFragment instanceof FilterFragment || currentFragment instanceof AboutServiceFragment){
                     Fragment f = new VehicleListFragment(vehicles);
 
                     bottomNavigationView.setVisibility(View.VISIBLE);
@@ -99,13 +99,13 @@ public class CarServiceDetailsActivity extends AppCompatActivity implements Bott
         });
 
         final SearchVehiclesDTO searchVehiclesDTO = (SearchVehiclesDTO) getIntent().getSerializableExtra("searchForVehicles");
-        Call<List<Vehicle>> call = ServiceUtils.reviewerService.searchDates(searchVehiclesDTO);
+        Call<List<Vehicle>> call = ServiceUtils.findACarService.searchDates(searchVehiclesDTO);
 
         call.enqueue(new Callback<List<Vehicle>>() {
             @Override
             public void onResponse(Call<List<Vehicle>> call, Response<List<Vehicle>> response) {
                 System.out.println("nesto");
-                if (response.isSuccessful()) {
+                if(response.isSuccessful()){
                     System.out.println("usao");
 
                     int counter = 0;
@@ -115,7 +115,6 @@ public class CarServiceDetailsActivity extends AppCompatActivity implements Bott
                     /*
                     //copy list
                     ArrayList<Vehicle> vehicles1 = new ArrayList<Vehicle>(vehicles);
-
                     for(int i=0; i<vehicles.size(); i++){
                         counter++;
                         try {
@@ -128,24 +127,6 @@ public class CarServiceDetailsActivity extends AppCompatActivity implements Bott
                         }
                     }
 */
-                    Call<List<Review>> call1 = ServiceUtils.reviewerService.getCarServiceReviews(searchVehiclesDTO.getId());
-                    call1.enqueue(new Callback<List<Review>>() {
-                        @Override
-                        public void onResponse(Call<List<Review>> call, Response<List<Review>> response) {
-                            if (response.isSuccessful()) {
-                                List<Review> list = response.body();
-                                carService.setReviews(list);
-                                //Gson gson = new Gson();
-                                // intent1.putExtra("carService", gson.toJson(carService));
-                                // startActivity(intent1);
-                            }
-                        }
-
-                        @Override
-                        public void onFailure(Call<List<Review>> call, Throwable t) {
-                            System.out.println(t.getMessage());
-                        }
-                    });
                     Fragment fragment = new VehicleListFragment(vehicles);
                     currentFragment = fragment;
                     FragmentTransaction ft = getSupportFragmentManager().beginTransaction().setTransition((FragmentTransaction.TRANSIT_FRAGMENT_OPEN))
@@ -154,7 +135,7 @@ public class CarServiceDetailsActivity extends AppCompatActivity implements Bott
                     ft.commit();
 
                 } else {
-                    System.out.println("usoa fail");
+
                 }
 
             }

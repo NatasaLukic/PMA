@@ -20,14 +20,23 @@ import android.widget.TextView;
 import com.example.findacar.R;
 import com.example.findacar.adapters.ReviewsAdapter;
 import com.example.findacar.adapters.VehiclesAdapter;
+import com.example.findacar.model.Review;
+
+import java.util.List;
 
 /**
  * A simple {@link Fragment} subclass.
  */
 public class ReviewFragment extends ListFragment {
 
+    private List<Review> reviews;
+
     public ReviewFragment() {
         // Required empty public constructor
+    }
+
+    public ReviewFragment(List<Review> reviews) {
+        this.reviews = reviews;
     }
 
 
@@ -47,7 +56,7 @@ public class ReviewFragment extends ListFragment {
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
 
-        ReviewsAdapter adapter = new ReviewsAdapter(getActivity());
+        ReviewsAdapter adapter = new ReviewsAdapter(getActivity(), this.reviews);
         setListAdapter(adapter);
     }
 }

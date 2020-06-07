@@ -40,10 +40,6 @@ public class CarService implements Parcelable, Serializable {
     @Expose
     private List<Vehicle> vehicles;
 
-    @SerializedName("reviews")
-    @Expose
-    private List<Review> reviews;
-
     @SerializedName("landlinePhone")
     @Expose
     private String landlinePhone;
@@ -122,13 +118,6 @@ public class CarService implements Parcelable, Serializable {
         this.vehicles = vehicles;
     }
 
-    public List<Review> getReviews() {
-        return reviews;
-    }
-
-    public void setReviews(List<Review> reviews) {
-        this.reviews = reviews;
-    }
 
     public String getLandlinePhone() {
         return landlinePhone;
@@ -145,7 +134,6 @@ public class CarService implements Parcelable, Serializable {
         email = in.readString();
         about = in.readString();
         landlinePhone = in.readString();
-        reviews = in.readArrayList(Review.class.getClassLoader());
 
     }
 
@@ -157,7 +145,6 @@ public class CarService implements Parcelable, Serializable {
         dest.writeString(email);
         dest.writeString(about);
         dest.writeString(landlinePhone);
-        dest.writeList(reviews);
     }
 
     @Override

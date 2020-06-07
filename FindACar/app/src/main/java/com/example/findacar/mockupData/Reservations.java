@@ -18,7 +18,6 @@ public class Reservations {
 
         User user = new User("Pera", "Peric", "pera@gmail.com", "");
         //Vehicle v1 = new Vehicle("Dacia Sandero", "Desc", 4,5,3,"Economy",true,true);
-
         /*User user = new User("Pera", "Peric", "pera@gmail.com", "");
         Vehicle v1 = new Vehicle("Toyota Aygo", 4, 2, "Economy",true,
                 true, R.drawable.toyota_aygo, "12/11/2020");

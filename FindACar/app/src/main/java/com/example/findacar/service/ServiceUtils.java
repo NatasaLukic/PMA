@@ -10,9 +10,11 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class ServiceUtils {
 
-    //public static final String SERVICE_API_PATH = "";
+    public static final String SERVICE_API_PATH = "";
     //public static final String SERVICE_API_PATH = "http://192.168.0.35:8057/";
     //public static final String SERVICE_API_PATH = "http://192.168.0.15:8057/";
+    //public static final String SERVICE_API_PATH = "http://192.168.0.13:8057/";
+
 
 
 
@@ -35,5 +37,5 @@ public class ServiceUtils {
             .client(test())
             .build();
 
-    public static HttpService reviewerService = retrofit.create(HttpService.class);
+    public static HttpService findACarService = retrofit.create(HttpService.class);
 }

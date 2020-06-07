@@ -121,7 +121,7 @@ public class SignUpActivity extends AppCompatActivity {
     }
 
     private void sendRegisterRequest(RegisterDTO registerDTO) {
-        Call<ResponseBody> call = ServiceUtils.reviewerService.register(registerDTO);
+        Call<ResponseBody> call = ServiceUtils.findACarService.register(registerDTO);
         call.enqueue(new Callback<ResponseBody>() {
             @Override
             public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {

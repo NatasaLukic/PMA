@@ -78,7 +78,7 @@ public class FilterFragment extends Fragment {
 
             @Override
             public void onGroupExpand(int groupPosition) {
-                Toast.makeText(getContext(), "Group expanded\t" + groupPosition, Toast.LENGTH_SHORT).show();
+                //Toast.makeText(getContext(), "Group expanded\t" + groupPosition, Toast.LENGTH_SHORT).show();
             }
         });
 
@@ -86,7 +86,7 @@ public class FilterFragment extends Fragment {
 
             @Override
             public void onGroupCollapse(int groupPosition) {
-                Toast.makeText(getContext(), "Group collapsed\t" + groupPosition, Toast.LENGTH_SHORT).show();
+                //Toast.makeText(getContext(), "Group collapsed\t" + groupPosition, Toast.LENGTH_SHORT).show();
 
             }
         });

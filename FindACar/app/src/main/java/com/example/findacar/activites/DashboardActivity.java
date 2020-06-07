@@ -13,20 +13,30 @@ import android.content.DialogInterface;
 import android.content.SharedPreferences;
 import android.content.res.Configuration;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.MenuItem;
 
 import com.example.findacar.R;
 import com.example.findacar.fragments.DashboardFragment;
 import com.example.findacar.fragments.ReservationsFragment;
 import com.example.findacar.fragments.UserProfileFragment;
+import com.example.findacar.model.Reservation;
+import com.example.findacar.service.ServiceUtils;
 import com.google.android.material.navigation.NavigationView;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Locale;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class DashboardActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
     private DrawerLayout drawer;
     public NavigationView navigationView;
+    public List<Reservation> res;
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {
@@ -36,6 +46,31 @@ public class DashboardActivity extends AppCompatActivity implements NavigationVi
 
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+
+        String email = getIntent().getStringExtra("user");
+        Log.e("TAD", email);
+
+        Call<List<Reservation>> call = ServiceUtils.findACarService.getUserReservations(email);
+
+        call.enqueue(new Callback<List<Reservation>>() {
+            @Override
+            public void onResponse(Call<List<Reservation>> call, Response<List<Reservation>> response) {
+
+                if(response.isSuccessful()){
+                    res = response.body();
+
+
+                } else {
+                    res = new ArrayList<Reservation>();
+                }
+            }
+
+            @Override
+            public void onFailure(Call<List<Reservation>> call, Throwable t) {
+                Log.e("ERROR", t.getMessage());
+                res = new ArrayList<Reservation>();
+            }
+        });
 
         drawer = findViewById(R.id.drawer_layout);
         navigationView = findViewById(R.id.nav_view);
@@ -60,7 +95,7 @@ public class DashboardActivity extends AppCompatActivity implements NavigationVi
                 getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container , new UserProfileFragment()).commit();
                 break;
             case R.id.nav_reservations:
-                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container , new ReservationsFragment()).commit();
+                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container , new ReservationsFragment(res)).commit();
                 break;
             case R.id.nav_settings:
                 break;
