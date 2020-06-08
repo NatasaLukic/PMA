@@ -67,8 +67,6 @@ public class ReviewsAdapter  extends BaseAdapter {
         String stringDate= DateFor.format(review.getDate());
         date.setText(stringDate);
 
-
-
         comment.setText(review.getComment());
         rating.setRating((float) review.getRating());
         rating.setEnabled(false);

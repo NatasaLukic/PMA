@@ -5,6 +5,7 @@ import com.example.findacar.model.LogInModel;
 import com.example.findacar.model.RegisterDTO;
 import com.example.findacar.model.Reservation;
 import com.example.findacar.model.Review;
+import com.example.findacar.model.ReviewDTO;
 import com.example.findacar.model.SearchDTO;
 import com.example.findacar.model.SearchVehiclesDTO;
 import com.example.findacar.model.Vehicle;
@@ -50,5 +51,8 @@ public interface HttpService {
 
     @GET("user/res/{email}")
     Call<List<Reservation>> getUserReservations(@Path("email")String email);
+
+    @POST("reviews/add")
+    Call<ResponseBody> addReview(@Body ReviewDTO commentDTO);
 
 }

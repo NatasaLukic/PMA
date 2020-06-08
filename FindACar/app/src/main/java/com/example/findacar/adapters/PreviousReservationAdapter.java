@@ -25,17 +25,25 @@ import com.example.findacar.R;
 import com.example.findacar.fragments.ServiceRatingFragment;
 import com.example.findacar.mockupData.Reservations;
 import com.example.findacar.model.Reservation;
+import com.squareup.picasso.Picasso;
+
+import org.w3c.dom.Text;
 
 import java.text.SimpleDateFormat;
 import java.util.List;
 
-public class PreviousReservationAdapter extends BaseAdapter {
+public class PreviousReservationAdapter extends BaseAdapter implements PreviousReservationsHelper {
     private List<Reservation> mDataset;
     public Activity activity;
+    private String email;
+    //public static final String SERVICE_API_PATH = "http://192.168.0.35:8057/";
+    public static final String SERVICE_API_PATH = "http://192.168.0.15:8057/";
 
-    public PreviousReservationAdapter(Activity activity, List<Reservation> mDataset) {
+
+    public PreviousReservationAdapter(Activity activity, List<Reservation> mDataset, String email) {
         this.activity = activity;
         this.mDataset = mDataset;
+        this.email = email;
     }
 
     @Override
@@ -54,9 +62,9 @@ public class PreviousReservationAdapter extends BaseAdapter {
     }
 
     @Override
-    public View getView(int position, View convertView, ViewGroup parent) {
+    public View getView(final int position, View convertView, ViewGroup parent) {
         View vi = convertView;
-        Reservation reservation = this.mDataset.get(position);
+        final Reservation reservation = this.mDataset.get(position);
         if(convertView==null){
             vi = activity.getLayoutInflater().inflate(R.layout.fragment_reservation, null);
         }
@@ -64,14 +72,16 @@ public class PreviousReservationAdapter extends BaseAdapter {
         TextView datePickUp = (TextView)vi.findViewById(R.id.textViewReservationDatePickUp);
         TextView datReturn = (TextView)vi.findViewById(R.id.textViewReservationDateReturn);
         TextView price = (TextView)vi.findViewById(R.id.textViewReservationPrice);
-        TextView textView5 = (TextView)vi.findViewById(R.id.textView5);
-        textView5.setVisibility(View.GONE);
+        TextView comment = (TextView)vi.findViewById(R.id.textView5);
+
 
         ImageView carPhoto = (ImageView) vi.findViewById(R.id.car_photo);
-        carPhoto.setImageResource(R.drawable.dacia_logan);
+        Picasso.get().load(SERVICE_API_PATH + "search/getImage/" + reservation.getVehicle().getImageFile())
+                .resize(300,300).into(carPhoto);
+        //carPhoto.setImageResource(R.drawable.dacia_logan);
 
         vehicleServiceName.setText(reservation.getVehicle().getName());
-        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-mm-dd");
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
         datePickUp.setText(dateFormat.format(reservation.getPickUpDate()));
         datReturn.setText(dateFormat.format(reservation.getReturnDate()));
         Button buttonRate = (Button) vi.findViewById(R.id.button5);
@@ -82,15 +92,17 @@ public class PreviousReservationAdapter extends BaseAdapter {
         Drawable drawable = ratingBar.getProgressDrawable();
         drawable.setColorFilter(Color.parseColor("#DAA520"), PorterDuff.Mode.SRC_ATOP);
 
-        ratingBar.setEnabled(false);
-        if (position == 1){
+        if (reservation.getReview() != null){
             ratingBar.setVisibility(View.VISIBLE);
-            buttonRate.setEnabled(true);
-            ratingBar.setRating(4);
+            ratingBar.setRating(reservation.getReview().getRating());
+            buttonRate.setVisibility(View.GONE);
+            comment.setVisibility(View.VISIBLE);
+            comment.setText(reservation.getReview().getComment());
         }else {
             ratingBar.setVisibility(View.GONE);
-            buttonRate.setEnabled(true);
+            comment.setVisibility(View.GONE);
             buttonRate.setVisibility(View.VISIBLE);
+            final View finalVi = vi;
             buttonRate.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
@@ -101,7 +113,7 @@ public class PreviousReservationAdapter extends BaseAdapter {
                     }
                     ft.addToBackStack(null);
                     // Create and show the dialog.
-                    DialogFragment newFragment = new ServiceRatingFragment();
+                    DialogFragment newFragment = new ServiceRatingFragment(reservation, email, PreviousReservationAdapter.this, position, finalVi);
                     newFragment.show(ft, "dialog");
                 }
             });
@@ -109,4 +121,27 @@ public class PreviousReservationAdapter extends BaseAdapter {
         }
         return vi;
     }
+
+    @Override
+    public void closeButton(int position, View view, String comment, String rating) {
+
+        View v = getView(position, view, null);
+        System.out.println(position);
+        Button b = (Button) v.findViewById(R.id.button5);
+        b.setVisibility(View.GONE);
+
+        System.out.println(comment);
+
+        RatingBar ratingBar = (RatingBar) v.findViewById(R.id.ratingBar3);
+        ratingBar.setVisibility(View.VISIBLE);
+        Drawable drawable = ratingBar.getProgressDrawable();
+        drawable.setColorFilter(Color.parseColor("#DAA520"), PorterDuff.Mode.SRC_ATOP);
+        ratingBar.setRating(Float.parseFloat(rating));
+
+        TextView commentText = (TextView) v.findViewById(R.id.textView5);
+        commentText.setText(comment);
+        commentText.setVisibility(View.VISIBLE);
+    }
+
+
 }

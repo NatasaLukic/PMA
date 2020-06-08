@@ -36,15 +36,17 @@ import retrofit2.Response;
 public class PreviousReservationsFragment extends ListFragment {
 
     private List<Reservation> reservations;
+    private String email;
 
     public PreviousReservationsFragment() {
         // Required empty public constructor
 
     }
 
-    public PreviousReservationsFragment(List<Reservation> res) {
+    public PreviousReservationsFragment(List<Reservation> res, String email) {
         // Required empty public constructor
         this.reservations = res;
+        this.email = email;
 
     }
 
@@ -89,7 +91,7 @@ public class PreviousReservationsFragment extends ListFragment {
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
 
-        PreviousReservationAdapter adapter = new PreviousReservationAdapter(getActivity(), reservations);
+        PreviousReservationAdapter adapter = new PreviousReservationAdapter(getActivity(), reservations, email);
         setListAdapter(adapter);
     }
 

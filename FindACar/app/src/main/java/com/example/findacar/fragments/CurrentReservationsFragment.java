@@ -13,11 +13,22 @@ import androidx.fragment.app.ListFragment;
 import com.example.findacar.R;
 import com.example.findacar.adapters.CurrentReservationAdapter;
 import com.example.findacar.mockupData.Reservations;
+import com.example.findacar.model.Reservation;
+
+import java.util.List;
 
 public class CurrentReservationsFragment extends ListFragment {
 
+    private List<Reservation> res;
+    private String email;
     public CurrentReservationsFragment() {
     }
+
+    public CurrentReservationsFragment(List<Reservation> res, String email) {
+        this.res = res;
+        this.email = email;
+    }
+
 
     /**
      * Use this factory method to create a new instance of
@@ -52,7 +63,7 @@ public class CurrentReservationsFragment extends ListFragment {
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-        CurrentReservationAdapter adapter = new CurrentReservationAdapter(getActivity(), Reservations.getCurrentReservations());
+        CurrentReservationAdapter adapter = new CurrentReservationAdapter(getActivity(), res);
         setListAdapter(adapter);
     }
 

@@ -21,8 +21,8 @@ public class VehiclesAdapter extends BaseAdapter {
 
     public Activity activity;
     public List<Vehicle> vehicles;
-    public static final String SERVICE_API_PATH = "http://192.168.0.35:8057/";
-    //public static final String SERVICE_API_PATH = "http://192.168.0.15:8057/";
+    //public static final String SERVICE_API_PATH = "http://192.168.0.35:8057/";
+    public static final String SERVICE_API_PATH = "http://192.168.0.15:8057/";
 
     public VehiclesAdapter(Activity activity, List<Vehicle> vehicles){
         this.activity = activity;
