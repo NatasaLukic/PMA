@@ -6,6 +6,7 @@ import androidx.viewpager.widget.ViewPager;
 
 import com.example.findacar.R;
 import com.example.findacar.adapters.ReviewsAdapter;
+import com.example.findacar.adapters.VehiclePhotosAdapter;
 import com.example.findacar.fragments.ReviewFragment;
 import com.example.findacar.model.CarService;
 import com.example.findacar.model.Review;
@@ -152,9 +153,9 @@ public class VehicleActivity extends AppCompatActivity {
 
         TextView auto_text = (TextView) findViewById(R.id.auto_text);
 
-        //ViewPager vp = findViewById(R.id.slider);
-        //VehiclePhotosAdapter vpa = new VehiclePhotosAdapter(this, position);
-        //vp.setAdapter(vpa);
+        ViewPager vp = findViewById(R.id.slider);
+        VehiclePhotosAdapter vpa = new VehiclePhotosAdapter(this, vehicle.getVehiclePhotos());
+        vp.setAdapter(vpa);
 
 
         if(vehicle.isAirCond() == false) {
