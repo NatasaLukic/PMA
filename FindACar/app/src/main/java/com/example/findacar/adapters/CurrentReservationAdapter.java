@@ -21,6 +21,8 @@ import androidx.fragment.app.FragmentPagerAdapter;
 import com.example.findacar.R;
 import com.example.findacar.mockupData.Reservations;
 import com.example.findacar.model.Reservation;
+import com.example.findacar.service.HttpService;
+import com.example.findacar.service.ServiceUtils;
 import com.squareup.picasso.Picasso;
 
 import java.text.DateFormat;
@@ -30,6 +32,11 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
+
+import okhttp3.ResponseBody;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class CurrentReservationAdapter extends BaseAdapter implements CurrentReservationHelper {
 
@@ -59,9 +66,9 @@ public class CurrentReservationAdapter extends BaseAdapter implements CurrentRes
     }
 
     @Override
-    public View getView(int position, View convertView, ViewGroup parent) {
+    public View getView(final int position, View convertView, ViewGroup parent) {
         View vi = convertView;
-        Reservation reservation = (Reservation) getItem(position);
+        final Reservation reservation = (Reservation) getItem(position);
 
         if(convertView==null)
             vi = activity.getLayoutInflater().inflate(R.layout.fragment_reservation, null);
@@ -91,13 +98,9 @@ public class CurrentReservationAdapter extends BaseAdapter implements CurrentRes
         Button buttonRate = (Button) vi.findViewById(R.id.button5);
         buttonRate.setVisibility(View.GONE);
         Button buttonCancel = (Button) vi.findViewById(R.id.button2);
+        buttonCancel.setEnabled(true);
         buttonCancel.setVisibility(View.VISIBLE);
-        buttonCancel.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-
-            }
-        });
+        final View finalVi = vi;
 
         try {
             if (passed(reservation.getPickUpDate(), reservation.getVehicle().getCancel())){
@@ -115,9 +118,26 @@ public class CurrentReservationAdapter extends BaseAdapter implements CurrentRes
         Button button = vi.findViewById(R.id.button2);
 
         button.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
 
+            @Override
+            public void onClick(View view) {
+
+                Call<ResponseBody> call = ServiceUtils.findACarService.cancelRes(reservation.getId());
+
+                call.enqueue(new Callback<ResponseBody>() {
+                    @Override
+                    public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
+
+                        if(response.isSuccessful()){
+                            getView(position, finalVi, null).setVisibility(View.GONE);
+                        }
+                    }
+
+                    @Override
+                    public void onFailure(Call<ResponseBody> call, Throwable t) {
+
+                    }
+                });
             }
         });
 

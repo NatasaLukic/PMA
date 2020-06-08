@@ -55,4 +55,7 @@ public interface HttpService {
     @POST("reviews/add")
     Call<ResponseBody> addReview(@Body ReviewDTO commentDTO);
 
+    @GET("/user/res/cancelRes/{id}")
+    Call<ResponseBody> cancelRes(@Path("id") long id);
+
 }
