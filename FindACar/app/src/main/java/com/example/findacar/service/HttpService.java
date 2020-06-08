@@ -1,6 +1,7 @@
 package com.example.findacar.service;
 
 import com.example.findacar.model.CarService;
+import com.example.findacar.model.CreateReservationDTO;
 import com.example.findacar.model.LogInModel;
 import com.example.findacar.model.RegisterDTO;
 import com.example.findacar.model.Reservation;
@@ -43,8 +44,8 @@ public interface HttpService {
     @POST("search/findForDates")
     Call<List<Vehicle>> searchDates(@Body SearchVehiclesDTO searchDTO);
 
-    @POST("carservices/{carServiceId}/reviews")
-    Call<ResponseBody> rateCarService(@Path("carServiceId")Long carServiceId, @Body Review review);
+    @POST("reservations")
+    Call<ResponseBody> createReservation(@Body CreateReservationDTO reservationDTO);
 
     @GET("vehicles/{vehicleId}/reviews")
     Call<List<Review>> getVehicleReviews(@Path("vehicleId")Long vehicleId);

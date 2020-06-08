@@ -124,6 +124,9 @@ public class DashboardFragment extends Fragment {
                             intent.putExtra("pickUp", datepickUp + " " + timePickUp);
                             intent.putExtra("return", dateReturn + " " + timeReturn);
                             intent.putExtra("place", place);
+
+                            String email = getActivity().getIntent().getStringExtra("user");
+                            intent.putExtra("email", email);
                             startActivity(intent);
 
                         }

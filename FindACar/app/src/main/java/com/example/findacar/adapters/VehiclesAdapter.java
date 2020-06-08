@@ -11,6 +11,7 @@ import android.widget.TextView;
 
 import com.example.findacar.R;
 import com.example.findacar.activites.VehicleActivity;
+import com.example.findacar.model.CarService;
 import com.example.findacar.model.Vehicle;
 import com.squareup.picasso.Picasso;
 
@@ -21,12 +22,18 @@ public class VehiclesAdapter extends BaseAdapter {
 
     public Activity activity;
     public List<Vehicle> vehicles;
+    String pickupDateTime;
+    String returnDateTime;
     //public static final String SERVICE_API_PATH = "http://192.168.0.35:8057/";
     public static final String SERVICE_API_PATH = "http://192.168.0.15:8057/";
 
     public VehiclesAdapter(Activity activity, List<Vehicle> vehicles){
         this.activity = activity;
         this.vehicles = vehicles;
+        Intent intent = activity.getIntent();
+        pickupDateTime = intent.getStringExtra("pickUp");
+        returnDateTime = intent.getStringExtra("return");
+
     }
 
     @Override
@@ -84,10 +91,15 @@ public class VehiclesAdapter extends BaseAdapter {
 
             @Override
             public void onClick(View v) {
+                CarService carService = (CarService) activity.getIntent().getSerializableExtra("carService");
+                String email = activity.getIntent().getStringExtra("email");
 
                 Intent intent = new Intent(activity, VehicleActivity.class);
                 intent.putExtra("vehicle", (Serializable) vehicle);
-
+                intent.putExtra("pickupDateTime", pickupDateTime);
+                intent.putExtra("returnDateTime", returnDateTime);
+                intent.putExtra("carService", (Serializable) carService);
+                intent.putExtra("email", email);
                 activity.startActivity(intent);
             }
         });

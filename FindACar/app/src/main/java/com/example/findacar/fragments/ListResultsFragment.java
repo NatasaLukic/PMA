@@ -81,10 +81,11 @@ public class ListResultsFragment extends ListFragment {
         searchVehiclesDTO.setId(carService.getId());
         searchVehiclesDTO.setPickUpDate(intent.getStringExtra("pickUp"));
         searchVehiclesDTO.setReturnDate(intent.getStringExtra("return"));
+        String email = getActivity().getIntent().getStringExtra("email");
 
         Intent intent1 = new Intent(getActivity(), CarServiceDetailsActivity.class);
         intent1.putExtra("searchForVehicles", (Serializable) searchVehiclesDTO);
-        intent1.putExtra("carService", (Serializable) carService);
+        intent1.putExtra("email", email);
         startActivity(intent1);
 
 

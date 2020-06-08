@@ -8,6 +8,8 @@ import com.example.findacar.R;
 import com.example.findacar.adapters.ReviewsAdapter;
 import com.example.findacar.fragments.ReviewFragment;
 import com.example.findacar.model.CarService;
+import com.example.findacar.model.CreateReservationDTO;
+import com.example.findacar.model.Reservation;
 import com.example.findacar.model.Review;
 import com.example.findacar.model.Vehicle;
 import com.example.findacar.service.ServiceUtils;
@@ -16,14 +18,17 @@ import com.google.gson.JsonElement;
 import com.google.gson.reflect.TypeToken;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListAdapter;
 import android.widget.TextView;
 
+import java.io.Serializable;
 import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -37,6 +42,7 @@ public class VehicleActivity extends AppCompatActivity {
 
     private boolean clicked = false;
     private Vehicle vehicle;
+    private CreateReservationDTO reservation = new CreateReservationDTO();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,6 +52,13 @@ public class VehicleActivity extends AppCompatActivity {
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         vehicle = (Vehicle) getIntent().getSerializableExtra("vehicle");
+        reservation.setVehicle(vehicle);
+        reservation.setPickUpDate(getIntent().getStringExtra("pickupDateTime"));
+        reservation.setReturnDate(getIntent().getStringExtra("returnDateTime"));
+        reservation.setPrice(vehicle.getPriceForDays());
+
+        String email = getIntent().getStringExtra("email");
+        reservation.setUserEmail(email);
 
         populateVehicleView();
 
@@ -156,6 +169,18 @@ public class VehicleActivity extends AppCompatActivity {
         //VehiclePhotosAdapter vpa = new VehiclePhotosAdapter(this, position);
         //vp.setAdapter(vpa);
 
+        Button btnBook = findViewById(R.id.book);
+        btnBook.setOnClickListener(new View.OnClickListener(){
+
+            @Override
+            public void onClick(View v) {
+                CarService carService = (CarService) getIntent().getSerializableExtra("carService");
+                Intent intent = new Intent(VehicleActivity.this, CarReservationActivity.class);
+                //intent.putExtra("vehicle", (Serializable) vehicle);
+                intent.putExtra("reservation", (Serializable) reservation);
+                VehicleActivity.this.startActivity(intent);
+            }
+        });
 
         if(vehicle.isAirCond() == false) {
             airC.setVisibility(View.INVISIBLE);

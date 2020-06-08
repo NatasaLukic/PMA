@@ -79,12 +79,12 @@ public class LoginActivity extends AppCompatActivity {
                     @Override
                     public void onResponse(Call<Boolean> call, Response<Boolean> response) {
 
-                        if (response.body() == true ){
+                        if (response.body() == true) {
 
                             User order = new User("ilinkaIphone X", "kovacevic", "il@gmail.com", "ilinka");
                             userDatabase.userDao().insert(order);
 
-                            Intent intent = new Intent(LoginActivity.this,DashboardActivity.class);
+                            Intent intent = new Intent(LoginActivity.this, DashboardActivity.class);
                             intent.putExtra("user", emailSend);
                             startActivity(intent);
 
@@ -111,7 +111,7 @@ public class LoginActivity extends AppCompatActivity {
         callSignUp.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(LoginActivity.this,SignUpActivity.class);
+                Intent intent = new Intent(LoginActivity.this, SignUpActivity.class);
 
                 startActivity(intent);
             }
