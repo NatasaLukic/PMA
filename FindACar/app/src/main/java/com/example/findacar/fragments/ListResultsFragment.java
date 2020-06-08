@@ -85,6 +85,8 @@ public class ListResultsFragment extends ListFragment {
 
         Intent intent1 = new Intent(getActivity(), CarServiceDetailsActivity.class);
         intent1.putExtra("searchForVehicles", (Serializable) searchVehiclesDTO);
+        // TODO Iscupati iz intenta servis
+        intent1.putExtra("carService", (Serializable) carService);
         intent1.putExtra("email", email);
         startActivity(intent1);
 

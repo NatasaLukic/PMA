@@ -177,7 +177,7 @@ public class VehicleActivity extends AppCompatActivity {
             public void onClick(View v) {
                 CarService carService = (CarService) getIntent().getSerializableExtra("carService");
                 Intent intent = new Intent(VehicleActivity.this, CarReservationActivity.class);
-                //intent.putExtra("vehicle", (Serializable) vehicle);
+                intent.putExtra("carService", (Serializable) carService);
                 intent.putExtra("reservation", (Serializable) reservation);
                 VehicleActivity.this.startActivity(intent);
             }

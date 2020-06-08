@@ -26,7 +26,6 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 public class CarReservationActivity extends AppCompatActivity {
-    private Vehicle vehicle;
     private CreateReservationDTO reservation;
     public static final String SERVICE_API_PATH = "http://192.168.0.35:8057/";
     //public static final String SERVICE_API_PATH = "http://192.168.0.15:8057/";
@@ -36,7 +35,6 @@ public class CarReservationActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_car_reservation);
         reservation = (CreateReservationDTO) getIntent().getSerializableExtra("reservation");
-        vehicle = reservation.getVehicle();
         populateVehicleView();
     }
 
@@ -49,23 +47,24 @@ public class CarReservationActivity extends AppCompatActivity {
         TextView nSeats = (TextView) findViewById(R.id.numOfSeats);
 
         TextView numOfBags = (TextView) findViewById(R.id.numOfBags);
-        numOfBags.setText(Integer.toString(vehicle.getCases()));
+        numOfBags.setText(Integer.toString(reservation.getVehicle().getCases()));
 
         TextView fuel = (TextView) findViewById(R.id.fuel);
-        fuel.setText(vehicle.getFuel());
+        fuel.setText(reservation.getVehicle().getFuel());
 
         TextView pickupDate = (TextView) findViewById(R.id.yearOfProd);
         pickupDate.setText(reservation.getPickUpDate());
 
         TextView serviceInfo = findViewById(R.id.hint3);
         CarService carService = (CarService) getIntent().getSerializableExtra("carService");
-        serviceInfo.setText(carService.getAddress().getStreet() + ", "  + carService.getAddress().getCity() + " "+ carService.getAddress().getPostalCode() + ", " + carService.getAddress().getCountry());
+        serviceInfo.setText(carService.getAddress().getStreet() + ", "  + carService.getAddress().getCity() + " "+ carService.getAddress().getPostalCode() + ", " + carService.getAddress().getCountry()
+        + "\n" + carService.getEmail() +", " + carService.getPhone());
 
         TextView returnDate = (TextView) findViewById(R.id.reg);
         returnDate.setText(reservation.getReturnDate());
 
-        nDoors.setText(Integer.toString(vehicle.getDoors()));
-        nSeats.setText(Integer.toString(vehicle.getSeats()));
+        nDoors.setText(Integer.toString(reservation.getVehicle().getDoors()));
+        nSeats.setText(Integer.toString(reservation.getVehicle().getSeats()));
 
         TextView totalCost = findViewById(R.id.totalCost);
         totalCost.setText(String.valueOf(reservation.getPrice()) + " RSD");
@@ -87,7 +86,9 @@ public class CarReservationActivity extends AppCompatActivity {
                         if (response.isSuccessful()) {
                             Toast.makeText(CarReservationActivity.this, "Success!", Toast.LENGTH_SHORT).show();
                             Intent intent = new Intent(CarReservationActivity.this, DashboardActivity.class);
+                            intent.putExtra("user", reservation.getUserEmail());
                             startActivity(intent);
+
                         } else {
                             Toast.makeText(CarReservationActivity.this, "Something went wrong.", Toast.LENGTH_SHORT).show();
                         }
@@ -112,20 +113,20 @@ public class CarReservationActivity extends AppCompatActivity {
         });
 
 
-        if(vehicle.isAirCond() == false) {
+        if(reservation.getVehicle().isAirCond() == false) {
             airC.setVisibility(View.INVISIBLE);
             airC_text.setVisibility(View.INVISIBLE);
         }
 
-        if(vehicle.isAutom() == true){
+        if(reservation.getVehicle().isAutom() == true){
             auto_text.setText("Automatic");
         } else {
             auto_text.setText("Manual");
         }
 
-        name.setText(vehicle.getName());
+        name.setText(reservation.getVehicle().getName());
         ImageView image = (ImageView)findViewById(R.id.slider);
-        String m = vehicle.getImageFile();
+        String m = reservation.getVehicle().getImageFile();
 
         Picasso.get().load(SERVICE_API_PATH + "search/getImage/" +m)
                 .resize(300,300).into(image);

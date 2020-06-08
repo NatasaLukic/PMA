@@ -12,6 +12,7 @@ import android.widget.TextView;
 import com.example.findacar.R;
 import com.example.findacar.activites.VehicleActivity;
 import com.example.findacar.model.CarService;
+import com.example.findacar.model.SearchVehiclesDTO;
 import com.example.findacar.model.Vehicle;
 import com.squareup.picasso.Picasso;
 
@@ -24,15 +25,17 @@ public class VehiclesAdapter extends BaseAdapter {
     public List<Vehicle> vehicles;
     String pickupDateTime;
     String returnDateTime;
+    public static final String SERVICE_API_PATH = "";
     //public static final String SERVICE_API_PATH = "http://192.168.0.35:8057/";
-    public static final String SERVICE_API_PATH = "http://192.168.0.15:8057/";
+    //public static final String SERVICE_API_PATH = "http://192.168.0.15:8057/";
 
     public VehiclesAdapter(Activity activity, List<Vehicle> vehicles){
         this.activity = activity;
         this.vehicles = vehicles;
         Intent intent = activity.getIntent();
-        pickupDateTime = intent.getStringExtra("pickUp");
-        returnDateTime = intent.getStringExtra("return");
+        SearchVehiclesDTO searchVehiclesDTO = (SearchVehiclesDTO) intent.getSerializableExtra("searchForVehicles");
+        pickupDateTime = searchVehiclesDTO.getPickUpDate();
+        returnDateTime = searchVehiclesDTO.getReturnDate();
 
     }
 
