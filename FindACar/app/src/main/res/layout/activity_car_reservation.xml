@@ -39,6 +39,7 @@
             android:fontFamily="@font/fjord_one"
             android:gravity="center_horizontal"
             android:text="SERVICE INFORMATION"
+            android:layout_centerHorizontal="true"
             android:textColor="@color/colorPrimary"
             android:textSize="20dp" />
 
@@ -51,6 +52,7 @@
             android:layout_marginBottom="15dp"
             android:fontFamily="@font/fjord_one"
             android:gravity="center_horizontal"
+            android:layout_centerHorizontal="true"
             android:text="Rent a Car NS Branka Bajica 12, Novi Sad, "
             android:textSize="15dp" />
 
