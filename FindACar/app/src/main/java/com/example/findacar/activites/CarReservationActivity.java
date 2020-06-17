@@ -84,7 +84,8 @@ public class CarReservationActivity extends AppCompatActivity {
                     @Override
                     public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
                         if (response.isSuccessful()) {
-                            Toast.makeText(CarReservationActivity.this, "Success!", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(CarReservationActivity.this, "\n" +
+                                    "You have successfully booked the car!", Toast.LENGTH_SHORT).show();
                             Intent intent = new Intent(CarReservationActivity.this, DashboardActivity.class);
                             intent.putExtra("user", reservation.getUserEmail());
                             startActivity(intent);

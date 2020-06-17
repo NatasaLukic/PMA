@@ -92,7 +92,7 @@ public class ServiceRatingFragment extends DialogFragment {
 
         stars.getDrawable(2).setColorFilter(ContextCompat.getColor(getContext(), R.color.gold), PorterDuff.Mode.SRC_ATOP);
 
-      //  drawable.setColorFilter(Color.parseColor("#DAA520"), PorterDuff.Mode.SRC_ATOP);
+        //  drawable.setColorFilter(Color.parseColor("#DAA520"), PorterDuff.Mode.SRC_ATOP);
 
         Button confirm = view.findViewById(R.id.buttonConfirm);
         Button cancel = view.findViewById(R.id.buttonCancel);
@@ -113,9 +113,10 @@ public class ServiceRatingFragment extends DialogFragment {
                     @Override
                     public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
 
-                        if(response.isSuccessful()){
-                                getDialog().dismiss();
-                                previousReservationAdapter.closeButton(position, view2, m, s);
+                        if (response.isSuccessful()) {
+                            getDialog().dismiss();
+                            previousReservationAdapter.closeButton(position, view2, m, s);
+
                         } else {
                             Log.e("r", String.valueOf(response));
                         }
@@ -138,8 +139,9 @@ public class ServiceRatingFragment extends DialogFragment {
             }
         });
 
-        return  view;
+        return view;
     }
+
     @Override
     public void onStart() {
         super.onStart();
