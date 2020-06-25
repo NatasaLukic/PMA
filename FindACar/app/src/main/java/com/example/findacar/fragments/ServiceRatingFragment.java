@@ -21,7 +21,7 @@ import android.widget.RatingBar;
 import com.example.findacar.R;
 import com.example.findacar.adapters.PreviousReservationAdapter;
 import com.example.findacar.model.Reservation;
-import com.example.findacar.modelDTO.ReviewDTO;
+import com.example.findacar.modelDTO.CreateReviewDTO;
 import com.example.findacar.service.ServiceUtils;
 
 import okhttp3.ResponseBody;
@@ -99,7 +99,7 @@ public class ServiceRatingFragment extends DialogFragment {
                 final String m = String.valueOf(editText.getText());
                 final String s = String.valueOf(rating.getRating());
 
-                ReviewDTO reviewDTO = new ReviewDTO(reservation.getId(), editText.getText().toString(), String.valueOf(rating.getRating()), email);
+                CreateReviewDTO reviewDTO = new CreateReviewDTO(reservation.getId(), editText.getText().toString(), String.valueOf(rating.getRating()), email);
 
                 Call<ResponseBody> call = ServiceUtils.findACarService.addReview(reviewDTO);
 
