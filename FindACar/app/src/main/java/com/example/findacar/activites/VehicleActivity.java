@@ -7,34 +7,28 @@ import androidx.viewpager.widget.ViewPager;
 import com.example.findacar.R;
 import com.example.findacar.adapters.ReviewsAdapter;
 import com.example.findacar.adapters.VehiclePhotosAdapter;
-import com.example.findacar.fragments.ReviewFragment;
+import com.example.findacar.database.UserDatabase;
 import com.example.findacar.model.CarService;
-import com.example.findacar.model.CreateReservationDTO;
-import com.example.findacar.model.Reservation;
+import com.example.findacar.model.UserVehicleCrossRef;
+import com.example.findacar.modelDTO.CreateReservationDTO;
 import com.example.findacar.model.Review;
 import com.example.findacar.model.Vehicle;
 import com.example.findacar.service.ServiceUtils;
-import com.google.gson.Gson;
-import com.google.gson.JsonElement;
-import com.google.gson.reflect.TypeToken;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListAdapter;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.io.Serializable;
-import java.lang.reflect.Type;
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
+import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -44,12 +38,14 @@ public class VehicleActivity extends AppCompatActivity {
     private boolean clicked = false;
     private Vehicle vehicle;
     private CreateReservationDTO reservation = new CreateReservationDTO();
+    private UserDatabase userDatabase;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_vehicle);
 
+        userDatabase = UserDatabase.getInstance(this);
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         vehicle = (Vehicle) getIntent().getSerializableExtra("vehicle");
@@ -71,6 +67,10 @@ public class VehicleActivity extends AppCompatActivity {
 
                     response.body();
                     List<Review> reviews = response.body();
+
+                    for(Review review: reviews){
+                        review.setNameUser(review.getUser().getFirstName() + " " + review.getUser().getLastName());
+                    }
                     vehicle.setReviews(reviews);
                     LinearLayout layout = findViewById(R.id.listRev);
 
@@ -114,6 +114,37 @@ public class VehicleActivity extends AppCompatActivity {
 
                 notClickedImage.setVisibility(View.GONE);
                 clickedImage.setVisibility(View.VISIBLE);
+
+                Call<ResponseBody> call = ServiceUtils.findACarService
+                        .addFavorite(getIntent().getStringExtra("email"), vehicle.getId());
+
+                call.enqueue(new Callback<ResponseBody>() {
+                    @Override
+                    public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
+
+                        if(response.isSuccessful()){
+                            Toast.makeText(VehicleActivity.this, "Added to list of favorites", Toast.LENGTH_SHORT);
+
+
+                            String email = getIntent().getStringExtra("email");
+                            long userId = userDatabase.userDao().loadSingleByEmail(email);
+                            long vehicleId = userDatabase.userDao().insertVehicle(vehicle);
+
+                            UserVehicleCrossRef userVehicleCrossRef = new UserVehicleCrossRef();
+                            userVehicleCrossRef.userId = userId;
+                            userVehicleCrossRef.vehicleId = vehicleId;
+                            userDatabase.userDao().insert(userVehicleCrossRef);
+
+                        }
+                    }
+
+                    @Override
+                    public void onFailure(Call<ResponseBody> call, Throwable t) {
+
+                    }
+                });
+
+
 
             }
         });

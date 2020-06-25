@@ -36,8 +36,8 @@ public class PreviousReservationAdapter extends BaseAdapter implements PreviousR
     private List<Reservation> mDataset;
     public Activity activity;
     private String email;
-    public static final String SERVICE_API_PATH = "http://192.168.0.35:8057/";
-    //public static final String SERVICE_API_PATH = "http://192.168.0.15:8057/";
+    //public static final String SERVICE_API_PATH = "http://192.168.0.35:8057/";
+    public static final String SERVICE_API_PATH = "http://192.168.0.15:8057/";
 
 
     public PreviousReservationAdapter(Activity activity, List<Reservation> mDataset, String email) {

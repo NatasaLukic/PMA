@@ -4,8 +4,6 @@ import android.app.DatePickerDialog;
 import android.app.TimePickerDialog;
 import android.content.Intent;
 import android.os.Bundle;
-import android.os.Parcelable;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,33 +14,21 @@ import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.SpinnerAdapter;
 import android.widget.TimePicker;
-import android.widget.Toast;
 
 import androidx.fragment.app.Fragment;
 
 import com.example.findacar.R;
-import com.example.findacar.activites.DashboardActivity;
-import com.example.findacar.activites.LoginActivity;
 import com.example.findacar.activites.SearchResultsActivity;
 import com.example.findacar.adapters.SpinnerForSearchAdapter;
 import com.example.findacar.model.CarService;
-import com.example.findacar.model.SearchDTO;
-import com.example.findacar.model.Vehicle;
+import com.example.findacar.modelDTO.SearchDTO;
 import com.example.findacar.service.ServiceUtils;
 import com.google.gson.Gson;
 
-import java.io.Serializable;
-import java.text.DateFormat;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
-import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;

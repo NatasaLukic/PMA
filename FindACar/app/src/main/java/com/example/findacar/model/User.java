@@ -5,14 +5,19 @@ import android.os.Parcelable;
 
 import androidx.room.ColumnInfo;
 import androidx.room.Entity;
+import androidx.room.Ignore;
 import androidx.room.PrimaryKey;
 
 import java.io.Serializable;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
 
 @Entity(tableName = "user")
-public class User implements Parcelable, Serializable {
+public class User implements Serializable {
+
     @PrimaryKey(autoGenerate = true)
-    private int id;
+    private long userId;
 
     @ColumnInfo(name = "firstName")
     private String firstName;
@@ -26,6 +31,9 @@ public class User implements Parcelable, Serializable {
     @ColumnInfo(name = "password")
     private String password;
 
+    @Ignore
+    private List<Vehicle> favorites;
+
     public User(String firstName, String lastName, String email, String password) {
         this.firstName = firstName;
         this.lastName = lastName;
@@ -33,12 +41,12 @@ public class User implements Parcelable, Serializable {
         this.password = password;
     }
 
-    public int getId() {
-        return id;
+    public long getUserId() {
+        return userId;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public void setUserId(long userId) {
+        this.userId = userId;
     }
 
     public String getFirstName() {
@@ -73,40 +81,13 @@ public class User implements Parcelable, Serializable {
         this.password = password;
     }
 
-    @Override
-    public int describeContents() {
-        return 0;
+    public List<Vehicle> getFavorites() {
+        return favorites;
     }
 
-    protected User(Parcel in) {
-        email = in.readString();
-        id = Integer.parseInt(in.readString());
-        firstName = in.readString();
-        lastName = in.readString();
-        password = in.readString();
-
+    public void setFavorites(List<Vehicle> favorites) {
+        this.favorites = favorites;
     }
-
-    @Override
-    public void writeToParcel(Parcel dest, int flags) {
-        dest.writeString(String.valueOf(id));
-        dest.writeString(firstName);
-        dest.writeString(lastName);
-        dest.writeString(email);
-        dest.writeString(password);
-    }
-
-    public static final Creator<User> CREATOR = new Creator<User>() {
-        @Override
-        public User createFromParcel(Parcel in) {
-            return new User(in);
-        }
-
-        @Override
-        public User[] newArray(int size) {
-            return new User[size];
-        }
-    };
 }
 
 

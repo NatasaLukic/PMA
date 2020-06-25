@@ -1,10 +1,10 @@
-package com.example.findacar.model;
+package com.example.findacar.modelDTO;
 
 import com.google.gson.annotations.SerializedName;
 
 import java.io.Serializable;
 
-public class LogInModel implements Serializable {
+public class LogInDTO implements Serializable {
 
     @SerializedName("email")
     private String email;
@@ -12,7 +12,7 @@ public class LogInModel implements Serializable {
     @SerializedName("password")
     private String password;
 
-    public LogInModel() {
+    public LogInDTO() {
     }
 
     public String getEmail() {

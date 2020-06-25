@@ -12,13 +12,9 @@ import android.widget.Toast;
 
 import com.example.findacar.R;
 import com.example.findacar.model.CarService;
-import com.example.findacar.model.CreateReservationDTO;
-import com.example.findacar.model.Reservation;
-import com.example.findacar.model.Vehicle;
+import com.example.findacar.modelDTO.CreateReservationDTO;
 import com.example.findacar.service.ServiceUtils;
 import com.squareup.picasso.Picasso;
-
-import java.io.Serializable;
 
 import okhttp3.ResponseBody;
 import retrofit2.Call;
@@ -27,8 +23,8 @@ import retrofit2.Response;
 
 public class CarReservationActivity extends AppCompatActivity {
     private CreateReservationDTO reservation;
-    public static final String SERVICE_API_PATH = "http://192.168.0.35:8057/";
-    //public static final String SERVICE_API_PATH = "http://192.168.0.15:8057/";
+    //public static final String SERVICE_API_PATH = "http://192.168.0.35:8057/";
+    public static final String SERVICE_API_PATH = "http://192.168.0.15:8057/";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

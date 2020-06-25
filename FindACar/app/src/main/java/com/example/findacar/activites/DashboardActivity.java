@@ -19,10 +19,16 @@ import android.util.Log;
 import android.view.MenuItem;
 
 import com.example.findacar.R;
+import com.example.findacar.database.UserDatabase;
 import com.example.findacar.fragments.DashboardFragment;
+import com.example.findacar.fragments.FavoriteVehiclesFragment;
 import com.example.findacar.fragments.ReservationsFragment;
 import com.example.findacar.fragments.UserProfileFragment;
 import com.example.findacar.model.Reservation;
+import com.example.findacar.model.Review;
+import com.example.findacar.model.UserWithVehiclesAndReviews;
+import com.example.findacar.model.Vehicle;
+import com.example.findacar.model.VehicleWithReviews;
 import com.example.findacar.service.ServiceUtils;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -48,6 +54,8 @@ public class DashboardActivity extends AppCompatActivity implements NavigationVi
     public List<Reservation> prev = new ArrayList<Reservation>();
     public List<Reservation> active = new ArrayList<Reservation>();
     public String email;
+    public UserDatabase userDatabase;
+    public List<VehicleWithReviews> vehiclesWithReviews;
 
     public String getEmail() {
         return email;
@@ -63,10 +71,11 @@ public class DashboardActivity extends AppCompatActivity implements NavigationVi
         super.onCreate(savedInstanceState);
         loadLanguage();
         setContentView(R.layout.activity_dashboard);
+        email = getIntent().getStringExtra("user");
 
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        email = getIntent().getStringExtra("user");
+
         SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
         preferences.edit().putString("user", email).apply();
 
@@ -121,6 +130,9 @@ public class DashboardActivity extends AppCompatActivity implements NavigationVi
                 break;
             case R.id.nav_reservations:
                 getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container , new ReservationsFragment(email)).commit();
+                break;
+            case R.id.nav_favorites:
+                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new FavoriteVehiclesFragment(email)).commit();
                 break;
             case R.id.nav_settings:
                 break;

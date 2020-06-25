@@ -42,8 +42,8 @@ public class CurrentReservationAdapter extends BaseAdapter implements CurrentRes
 
     private List<Reservation> mDataset;
     public Activity activity;
-    public static final String SERVICE_API_PATH = "http://192.168.0.35:8057/";
-    //public static final String SERVICE_API_PATH = "http://192.168.0.15:8057/";
+    //public static final String SERVICE_API_PATH = "http://192.168.0.35:8057/";
+    public static final String SERVICE_API_PATH = "http://192.168.0.15:8057/";
 
     public CurrentReservationAdapter(Activity activity, List<Reservation> mDataset) {
         this.activity = activity;

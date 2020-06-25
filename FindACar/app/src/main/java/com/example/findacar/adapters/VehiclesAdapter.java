@@ -12,7 +12,7 @@ import android.widget.TextView;
 import com.example.findacar.R;
 import com.example.findacar.activites.VehicleActivity;
 import com.example.findacar.model.CarService;
-import com.example.findacar.model.SearchVehiclesDTO;
+import com.example.findacar.modelDTO.SearchVehiclesDTO;
 import com.example.findacar.model.Vehicle;
 import com.squareup.picasso.Picasso;
 
@@ -26,8 +26,8 @@ public class VehiclesAdapter extends BaseAdapter {
     String pickupDateTime;
     String returnDateTime;
     //public static final String SERVICE_API_PATH = "";
-    public static final String SERVICE_API_PATH = "http://192.168.0.26:8057/";
-    //public static final String SERVICE_API_PATH = "http://192.168.0.15:8057/";
+    //public static final String SERVICE_API_PATH = "http://192.168.0.26:8057/";
+    public static final String SERVICE_API_PATH = "http://192.168.0.15:8057/";
 
     public VehiclesAdapter(Activity activity, List<Vehicle> vehicles){
         this.activity = activity;

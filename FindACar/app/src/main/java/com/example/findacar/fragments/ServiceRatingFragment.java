@@ -1,22 +1,17 @@
 package com.example.findacar.fragments;
 
-import android.graphics.Color;
 import android.graphics.PorterDuff;
-import android.graphics.drawable.Drawable;
 import android.graphics.drawable.LayerDrawable;
-import android.media.Rating;
 import android.os.Bundle;
 
 import androidx.annotation.Nullable;
 import androidx.core.content.ContextCompat;
 import androidx.fragment.app.DialogFragment;
-import androidx.fragment.app.Fragment;
 
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.Window;
 import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
@@ -26,8 +21,7 @@ import android.widget.RatingBar;
 import com.example.findacar.R;
 import com.example.findacar.adapters.PreviousReservationAdapter;
 import com.example.findacar.model.Reservation;
-import com.example.findacar.model.Review;
-import com.example.findacar.model.ReviewDTO;
+import com.example.findacar.modelDTO.ReviewDTO;
 import com.example.findacar.service.ServiceUtils;
 
 import okhttp3.ResponseBody;

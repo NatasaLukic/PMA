@@ -10,7 +10,7 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.example.findacar.R;
-import com.example.findacar.model.RegisterDTO;
+import com.example.findacar.modelDTO.RegisterDTO;
 import com.example.findacar.service.ServiceUtils;
 
 import java.util.regex.Matcher;

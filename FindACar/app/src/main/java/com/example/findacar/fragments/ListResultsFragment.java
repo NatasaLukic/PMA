@@ -1,47 +1,25 @@
 package com.example.findacar.fragments;
 
 import android.content.Intent;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.os.Bundle;
 
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.ListFragment;
 
-import android.os.Parcelable;
-import android.util.Base64;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ListView;
-import android.widget.Toast;
 
 import com.example.findacar.R;
 import com.example.findacar.activites.CarServiceDetailsActivity;
 import com.example.findacar.adapters.CarServicesAdapter;
-import com.example.findacar.mockupData.CarServices;
 import com.example.findacar.model.CarService;
-import com.example.findacar.model.Review;
-import com.example.findacar.model.SearchVehiclesDTO;
-import com.example.findacar.model.Vehicle;
-import com.example.findacar.service.ServiceUtils;
-import com.google.gson.Gson;
+import com.example.findacar.modelDTO.SearchVehiclesDTO;
 
-import java.io.BufferedInputStream;
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
-import java.io.IOException;
 import java.io.Serializable;
-import java.util.ArrayList;
 import java.util.List;
-
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
 
 /**
  * A simple {@link Fragment} subclass.

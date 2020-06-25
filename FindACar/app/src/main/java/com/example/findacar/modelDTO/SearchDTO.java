@@ -1,4 +1,4 @@
-package com.example.findacar.model;
+package com.example.findacar.modelDTO;
 
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;

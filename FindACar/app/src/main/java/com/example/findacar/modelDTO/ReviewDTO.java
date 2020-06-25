@@ -1,4 +1,4 @@
-package com.example.findacar.model;
+package com.example.findacar.modelDTO;
 
 public class ReviewDTO {
 

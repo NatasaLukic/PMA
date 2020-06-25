@@ -27,8 +27,8 @@ public class VehiclePhotosAdapter extends PagerAdapter {
     private int position;
     private List<String> urls = new ArrayList<String>();
     //public static final String SERVICE_API_PATH = "";
-    public static final String SERVICE_API_PATH = "http://192.168.0.26:8057/";
-    //public static final String SERVICE_API_PATH = "http://192.168.0.15:8057/";
+    //public static final String SERVICE_API_PATH = "http://192.168.0.26:8057/";
+    public static final String SERVICE_API_PATH = "http://192.168.0.15:8057/";
 
 
     public VehiclePhotosAdapter(Context context, List<VehiclePhoto> photos){

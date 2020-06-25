@@ -1,4 +1,6 @@
-package com.example.findacar.model;
+package com.example.findacar.modelDTO;
+
+import com.example.findacar.model.Vehicle;
 
 import java.io.Serializable;
 
