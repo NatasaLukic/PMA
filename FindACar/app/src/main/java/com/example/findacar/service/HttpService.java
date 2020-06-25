@@ -6,7 +6,7 @@ import com.example.findacar.modelDTO.LogInDTO;
 import com.example.findacar.modelDTO.RegisterDTO;
 import com.example.findacar.model.Reservation;
 import com.example.findacar.model.Review;
-import com.example.findacar.modelDTO.ReviewDTO;
+import com.example.findacar.modelDTO.CreateReviewDTO;
 import com.example.findacar.modelDTO.SearchDTO;
 import com.example.findacar.modelDTO.SearchVehiclesDTO;
 import com.example.findacar.model.Vehicle;
@@ -52,7 +52,7 @@ public interface HttpService {
     Call<List<Reservation>> getUserReservations(@Path("email")String email);
 
     @POST("reviews/add")
-    Call<ResponseBody> addReview(@Body ReviewDTO commentDTO);
+    Call<ResponseBody> addReview(@Body CreateReviewDTO commentDTO);
 
     @GET("/user/res/cancelRes/{id}")
     Call<ResponseBody> cancelRes(@Path("id") long id);
