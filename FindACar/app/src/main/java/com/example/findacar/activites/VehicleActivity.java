@@ -69,7 +69,7 @@ public class VehicleActivity extends AppCompatActivity {
                     List<Review> reviews = response.body();
 
                     for(Review review: reviews){
-                        review.setNameUser(review.getUser().getFirstName() + " " + review.getUser().getLastName());
+                        review.setNameUser(review.getNameUser());
                     }
                     vehicle.setReviews(reviews);
                     LinearLayout layout = findViewById(R.id.listRev);
