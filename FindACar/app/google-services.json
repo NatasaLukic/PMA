@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "194286187733",
+    "firebase_url": "https://androidpushnotifications-d7071.firebaseio.com",
+    "project_id": "androidpushnotifications-d7071",
+    "storage_bucket": "androidpushnotifications-d7071.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:194286187733:android:4ca5eb4b6be980b4991e5c",
+        "android_client_info": {
+          "package_name": "com.example.findacar"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "194286187733-ubeee3tllukfgkbtv0tq361avlc85gg7.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDjWE2mr0KD7eF-mN-gc3eFnJtB8XKDhDk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "194286187733-ubeee3tllukfgkbtv0tq361avlc85gg7.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -1,22 +1,17 @@
 package com.example.findacar.fragments;
 
-import android.graphics.Color;
 import android.graphics.PorterDuff;
-import android.graphics.drawable.Drawable;
 import android.graphics.drawable.LayerDrawable;
-import android.media.Rating;
 import android.os.Bundle;
 
 import androidx.annotation.Nullable;
 import androidx.core.content.ContextCompat;
 import androidx.fragment.app.DialogFragment;
-import androidx.fragment.app.Fragment;
 
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.Window;
 import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
@@ -26,8 +21,7 @@ import android.widget.RatingBar;
 import com.example.findacar.R;
 import com.example.findacar.adapters.PreviousReservationAdapter;
 import com.example.findacar.model.Reservation;
-import com.example.findacar.model.Review;
-import com.example.findacar.model.ReviewDTO;
+import com.example.findacar.modelDTO.CreateReviewDTO;
 import com.example.findacar.service.ServiceUtils;
 
 import okhttp3.ResponseBody;
@@ -92,7 +86,7 @@ public class ServiceRatingFragment extends DialogFragment {
 
         stars.getDrawable(2).setColorFilter(ContextCompat.getColor(getContext(), R.color.gold), PorterDuff.Mode.SRC_ATOP);
 
-      //  drawable.setColorFilter(Color.parseColor("#DAA520"), PorterDuff.Mode.SRC_ATOP);
+        //  drawable.setColorFilter(Color.parseColor("#DAA520"), PorterDuff.Mode.SRC_ATOP);
 
         Button confirm = view.findViewById(R.id.buttonConfirm);
         Button cancel = view.findViewById(R.id.buttonCancel);
@@ -105,7 +99,7 @@ public class ServiceRatingFragment extends DialogFragment {
                 final String m = String.valueOf(editText.getText());
                 final String s = String.valueOf(rating.getRating());
 
-                ReviewDTO reviewDTO = new ReviewDTO(reservation.getId(), editText.getText().toString(), String.valueOf(rating.getRating()), email);
+                CreateReviewDTO reviewDTO = new CreateReviewDTO(reservation.getId(), editText.getText().toString(), String.valueOf(rating.getRating()), email);
 
                 Call<ResponseBody> call = ServiceUtils.findACarService.addReview(reviewDTO);
 
@@ -113,9 +107,10 @@ public class ServiceRatingFragment extends DialogFragment {
                     @Override
                     public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
 
-                        if(response.isSuccessful()){
-                                getDialog().dismiss();
-                                previousReservationAdapter.closeButton(position, view2, m, s);
+                        if (response.isSuccessful()) {
+                            getDialog().dismiss();
+                            previousReservationAdapter.closeButton(position, view2, m, s);
+
                         } else {
                             Log.e("r", String.valueOf(response));
                         }
@@ -138,8 +133,9 @@ public class ServiceRatingFragment extends DialogFragment {
             }
         });
 
-        return  view;
+        return view;
     }
+
     @Override
     public void onStart() {
         super.onStart();

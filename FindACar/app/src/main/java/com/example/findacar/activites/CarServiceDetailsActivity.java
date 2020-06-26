@@ -6,18 +6,13 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 
-import android.content.Intent;
-import android.content.res.ColorStateList;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
-import android.graphics.Color;
-import android.opengl.Visibility;
 import android.os.Bundle;
 import android.util.Base64;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.findacar.R;
@@ -26,19 +21,15 @@ import com.example.findacar.fragments.FilterFragment;
 import com.example.findacar.fragments.VehicleListFragment;
 import com.example.findacar.model.CarService;
 import com.example.findacar.model.FilterVehicles;
-import com.example.findacar.model.Review;
-import com.example.findacar.model.SearchVehiclesDTO;
+import com.example.findacar.modelDTO.SearchVehiclesDTO;
 import com.example.findacar.model.Vehicle;
 import com.example.findacar.service.ServiceUtils;
-import com.google.android.material.appbar.AppBarLayout;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.gson.Gson;
-import com.google.gson.reflect.TypeToken;
 
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
-import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.List;
 

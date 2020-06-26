@@ -2,25 +2,28 @@ package com.example.findacar.activites;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.app.ActivityOptions;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
-import android.util.Pair;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ImageView;
 import android.widget.ProgressBar;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.findacar.R;
 import com.example.findacar.database.UserDatabase;
-import com.example.findacar.model.LogInModel;
+import com.example.findacar.modelDTO.LogInDTO;
 import com.example.findacar.model.User;
 import com.example.findacar.service.ServiceUtils;
+import com.google.gson.Gson;
+import com.google.gson.internal.LinkedTreeMap;
+import com.google.gson.reflect.TypeToken;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -68,25 +71,44 @@ public class LoginActivity extends AppCompatActivity {
                 final String emailSend = email.getText().toString();
                 String passwordSend = password.getText().toString();
 
-                LogInModel logIn = new LogInModel();
+                LogInDTO logIn = new LogInDTO();
 
                 logIn.setEmail(emailSend);
                 logIn.setPassword(passwordSend);
 
-                Call<Boolean> call = ServiceUtils.findACarService.login(logIn);
+                Call<Object> call = ServiceUtils.findACarService.login(logIn);
 
-                call.enqueue(new Callback<Boolean>() {
+                call.enqueue(new Callback<Object>() {
                     @Override
-                    public void onResponse(Call<Boolean> call, Response<Boolean> response) {
+                    public void onResponse(Call<Object> call, Response<Object> response) {
 
-                        if (response.body() == true ){
+                        if (response.isSuccessful()) {
 
-                            User order = new User("ilinkaIphone X", "kovacevic", "il@gmail.com", "ilinka");
-                            userDatabase.userDao().insert(order);
+                            if(response.body() instanceof Boolean){
 
-                            Intent intent = new Intent(LoginActivity.this,DashboardActivity.class);
-                            intent.putExtra("user", emailSend);
-                            startActivity(intent);
+                                System.out.println("boolean usao");
+
+                                callLogin.setVisibility(View.VISIBLE);
+                                callSignUp.setVisibility(View.VISIBLE);
+                                progressBar.setVisibility(View.GONE);
+
+
+                            } else {
+                                LinkedTreeMap<Object,Object> u = (LinkedTreeMap) response.body();
+
+                                if(!checkIfExists(emailSend)){
+
+                                    User user = new User((String)u.get("firstName"),
+                                            (String)u.get("lastName"),(String) u.get("email"),
+                                            (String)u.get("password"));
+                                    userDatabase.userDao().insert(user);
+
+                                };
+
+                                Intent intent = new Intent(LoginActivity.this, DashboardActivity.class);
+                                intent.putExtra("user", emailSend);
+                                startActivity(intent);
+                            }
 
                         } else {
                             Toast.makeText(LoginActivity.this, "Try again", Toast.LENGTH_SHORT).show();
@@ -99,7 +121,7 @@ public class LoginActivity extends AppCompatActivity {
                     }
 
                     @Override
-                    public void onFailure(Call<Boolean> call, Throwable t) {
+                    public void onFailure(Call<Object> call, Throwable t) {
                         System.out.println(t.getMessage());
                     }
                 });
@@ -111,12 +133,22 @@ public class LoginActivity extends AppCompatActivity {
         callSignUp.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(LoginActivity.this,SignUpActivity.class);
+                Intent intent = new Intent(LoginActivity.this, SignUpActivity.class);
 
                 startActivity(intent);
             }
         });
 
+    }
+
+    private boolean checkIfExists(String emailSend) {
+
+        String firstName = userDatabase.userDao().loadSingle(emailSend);
+
+        if(firstName == null)
+            return false;
+
+        return true;
     }
 
 }

@@ -12,6 +12,9 @@ public class Reservation {
     private Review review;
     private double price;
 
+    public Reservation() {
+    }
+
     public Reservation(User user, Vehicle vehicle, Date pickUpDate, Date returnDate, double price) {
         this.user = user;
         this.vehicle = vehicle;
@@ -24,27 +27,55 @@ public class Reservation {
         return id;
     }
 
+    public void setId(long id) {
+        this.id = id;
+    }
+
     public User getUser() {
         return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
     }
 
     public Vehicle getVehicle() {
         return vehicle;
     }
 
-    public Review getReview() {
-        return review;
+    public void setVehicle(Vehicle vehicle) {
+        this.vehicle = vehicle;
     }
 
     public Date getPickUpDate() {
         return pickUpDate;
     }
 
+    public void setPickUpDate(Date pickUpDate) {
+        this.pickUpDate = pickUpDate;
+    }
+
     public Date getReturnDate() {
         return returnDate;
     }
 
+    public void setReturnDate(Date returnDate) {
+        this.returnDate = returnDate;
+    }
+
+    public Review getReview() {
+        return review;
+    }
+
+    public void setReview(Review review) {
+        this.review = review;
+    }
+
     public double getPrice() {
         return price;
+    }
+
+    public void setPrice(double price) {
+        this.price = price;
     }
 }

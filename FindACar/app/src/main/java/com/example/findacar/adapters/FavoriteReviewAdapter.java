@@ -12,19 +12,21 @@ import android.widget.RatingBar;
 import android.widget.TextView;
 
 import com.example.findacar.R;
-import com.example.findacar.mockupData.Reviews;
 import com.example.findacar.model.Review;
 
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 import java.util.List;
 
-public class ReviewsAdapter  extends BaseAdapter {
+public class FavoriteReviewAdapter extends BaseAdapter {
 
     private List<Review> mDataset;
     public Activity activity;
 
-    public ReviewsAdapter(Activity activity, List<Review> reviews) {
+    public FavoriteReviewAdapter(){
+
+    }
+
+    public FavoriteReviewAdapter(Activity activity, List<Review> reviews) {
         this.mDataset = reviews;
         this.activity = activity;
     }

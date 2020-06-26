@@ -1,5 +1,5 @@
 apply plugin: 'com.android.application'
-
+apply plugin: 'com.google.gms.google-services'
 android {
     compileSdkVersion 29
     buildToolsVersion "29.0.3"
@@ -41,18 +41,23 @@ dependencies {
     implementation 'com.squareup.retrofit2:retrofit:2.3.0'
     implementation 'com.squareup.retrofit2:converter-gson:2.3.0'
     implementation 'com.squareup.okhttp3:logging-interceptor:3.12.1'
+    //Add Firebase Core//
+    implementation 'com.google.firebase:firebase-core:16.0.1'
+    //Add FCM//
+    implementation 'com.google.firebase:firebase-messaging:17.3.4'
+
 
     def lifecycle_version = "2.0.0"
     implementation "android.arch.lifecycle:extensions:$lifecycle_version"
     annotationProcessor "android.arch.lifecycle:compiler:$lifecycle_version"
 
     // Room components
-    def roomVersion = '2.2.5'
+    def roomVersion = '2.2.0'
     implementation "android.arch.persistence.room:runtime:$roomVersion"
     annotationProcessor "android.arch.persistence.room:compiler:$roomVersion"
     androidTestImplementation "android.arch.persistence.room:testing:$roomVersion"
-    implementation 'androidx.room:room-runtime:2.1.0'
-    annotationProcessor 'androidx.room:room-compiler:2.1.0'
+    implementation 'androidx.room:room-runtime:2.2.0'
+    annotationProcessor 'androidx.room:room-compiler:2.2.0'
     implementation 'com.squareup.picasso:picasso:2.71828'
 
     implementation 'com.google.android.gms:play-services-maps:16.0.0'

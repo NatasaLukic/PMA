@@ -1,13 +1,13 @@
-package com.example.findacar.model;
+package com.example.findacar.modelDTO;
 
-public class ReviewDTO {
+public class CreateReviewDTO {
 
     private long resId;
     private String comment;
     private String rating;
     private String email;
 
-    public ReviewDTO(long resId, String comment, String rating, String email) {
+    public CreateReviewDTO(long resId, String comment, String rating, String email) {
         this.resId = resId;
         this.comment = comment;
         this.rating = rating;

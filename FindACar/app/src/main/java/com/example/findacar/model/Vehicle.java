@@ -1,24 +1,17 @@
 package com.example.findacar.model;
 
-import android.os.Parcel;
-import android.os.Parcelable;
 
 import androidx.room.ColumnInfo;
 import androidx.room.Entity;
 import androidx.room.Ignore;
 import androidx.room.PrimaryKey;
-import androidx.room.Relation;
-
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
 import java.io.Serializable;
 import java.util.List;
 
-import okhttp3.MultipartBody;
-import retrofit2.http.Multipart;
-
-@Entity(tableName="Vehicle")
+@Entity(tableName="vehicle")
 public class Vehicle implements Serializable {
 
     @PrimaryKey(autoGenerate = true)
@@ -34,12 +27,14 @@ public class Vehicle implements Serializable {
     @Expose
     private String name;
 
-
     @ColumnInfo(name = "description")
     @SerializedName("description")
     @Expose
     private String description;
 
+    @ColumnInfo(name= "version")
+    @SerializedName("version")
+    private long version;
 
     @ColumnInfo(name = "seats")
     @SerializedName("seats")
@@ -119,6 +114,8 @@ public class Vehicle implements Serializable {
     @Expose
     @Ignore
     private List<Review> reviews;
+
+
 
     // private ArrayList<Integer> images;
 
@@ -285,6 +282,14 @@ public class Vehicle implements Serializable {
 
     public List<VehiclePhoto> getVehiclePhotos() {
         return vehiclePhotos;
+    }
+
+    public long getVersion() {
+        return version;
+    }
+
+    public void setVersion(long version) {
+        this.version = version;
     }
 }
 

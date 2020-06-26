@@ -5,11 +5,17 @@ import android.content.Context;
 import androidx.room.Database;
 import androidx.room.Room;
 import androidx.room.RoomDatabase;
+import androidx.room.TypeConverters;
 
+import com.example.findacar.converters.Converters;
 import com.example.findacar.dao.UserDao;
+import com.example.findacar.model.Review;
 import com.example.findacar.model.User;
+import com.example.findacar.model.UserVehicleCrossRef;
+import com.example.findacar.model.Vehicle;
 
-@Database(entities = {User.class},  version = 1)
+@Database(entities = {User.class, Vehicle.class, Review.class, UserVehicleCrossRef.class},  version = 1)
+@TypeConverters({Converters.class})
 public abstract class UserDatabase extends RoomDatabase {
 
     private static UserDatabase userDatabase;

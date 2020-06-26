@@ -24,10 +24,12 @@ public class SearchResultsActivity extends AppCompatActivity {
 
     private Button btnViewMap;
     private Gson gson = new Gson();
+    String pickupDateTime;
+    String returnDateTime;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-
+        String email = getIntent().getStringExtra("email");
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_s_results);
 
@@ -40,10 +42,13 @@ public class SearchResultsActivity extends AppCompatActivity {
         getSupportActionBar().setTitle("Search results: " + getIntent().getStringExtra("place"));
         getSupportActionBar().setElevation(0);
 
+        pickupDateTime = getIntent().getStringExtra("pickUp");
+        returnDateTime = getIntent().getStringExtra("return");
         //List of services
 
         String gsonS = getIntent().getStringExtra("services");
-        Type type = new TypeToken<List<CarService>>(){}.getType();
+        Type type = new TypeToken<List<CarService>>() {
+        }.getType();
 
         final ArrayList<CarService> services = gson.fromJson(gsonS, type);
 

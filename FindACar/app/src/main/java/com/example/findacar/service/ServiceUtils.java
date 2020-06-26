@@ -16,8 +16,6 @@ public class ServiceUtils {
     //public static final String SERVICE_API_PATH = "http://192.168.0.13:8057/";
 
 
-
-
     public static OkHttpClient test(){
         HttpLoggingInterceptor interceptor = new HttpLoggingInterceptor();
         interceptor.setLevel(HttpLoggingInterceptor.Level.BODY);

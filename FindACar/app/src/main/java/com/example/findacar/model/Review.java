@@ -40,6 +40,25 @@ public class Review  implements Serializable {
     @Ignore
     private User user;
 
+    @ColumnInfo(name="nameUser")
+    private String nameUser;
+
+    public String getNameUser() {
+        return nameUser;
+    }
+
+    public void setNameUser(String nameUser) {
+        this.nameUser = nameUser;
+    }
+
+    public long getVehicleOwnerId() {
+        return vehicleOwnerId;
+    }
+
+    public void setVehicleOwnerId(long vehicleOwnerId) {
+        this.vehicleOwnerId = vehicleOwnerId;
+    }
+
     public int getReviewId() {
         return reviewId;
     }
