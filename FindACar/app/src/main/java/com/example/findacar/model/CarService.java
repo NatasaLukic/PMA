@@ -10,7 +10,7 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-public class CarService implements Parcelable, Serializable {
+public class CarService implements Serializable {
 
     @SerializedName("id")
     @Expose
@@ -127,41 +127,5 @@ public class CarService implements Parcelable, Serializable {
         this.landlinePhone = landlinePhone;
     }
 
-    protected CarService(Parcel in) {
-        name = in.readString();
-        address = in.readParcelable(Address.class.getClassLoader());
-        phone = in.readString();
-        email = in.readString();
-        about = in.readString();
-        landlinePhone = in.readString();
-
-    }
-
-    @Override
-    public void writeToParcel(Parcel dest, int flags) {
-        dest.writeString(name);
-        dest.writeParcelable(address, flags);
-        dest.writeString(phone);
-        dest.writeString(email);
-        dest.writeString(about);
-        dest.writeString(landlinePhone);
-    }
-
-    @Override
-    public int describeContents() {
-        return 0;
-    }
-
-    public static final Creator<CarService> CREATOR = new Creator<CarService>() {
-        @Override
-        public CarService createFromParcel(Parcel in) {
-            return new CarService(in);
-        }
-
-        @Override
-        public CarService[] newArray(int size) {
-            return new CarService[size];
-        }
-    };
 
 }

@@ -3,10 +3,13 @@ package com.example.findacar.model;
 import java.util.Date;
 
 public class Reservation {
+
+    private long id;
     private User user;
     private Vehicle vehicle;
     private Date pickUpDate;
     private Date returnDate;
+    private Review review;
     private double price;
 
     public Reservation(User user, Vehicle vehicle, Date pickUpDate, Date returnDate, double price) {
@@ -17,12 +20,20 @@ public class Reservation {
         this.price = price;
     }
 
+    public long getId() {
+        return id;
+    }
+
     public User getUser() {
         return user;
     }
 
     public Vehicle getVehicle() {
         return vehicle;
+    }
+
+    public Review getReview() {
+        return review;
     }
 
     public Date getPickUpDate() {

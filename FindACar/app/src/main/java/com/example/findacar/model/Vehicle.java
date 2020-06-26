@@ -106,6 +106,15 @@ public class Vehicle implements Serializable {
 
     private String imagePath;
 
+    @SerializedName("vehiclePhotos")
+    @Expose
+    @Ignore
+    private List<VehiclePhoto> vehiclePhotos;
+
+    @SerializedName("cancel")
+    @Expose
+    private int cancel;
+
     @SerializedName("reviews")
     @Expose
     @Ignore
@@ -264,6 +273,18 @@ public class Vehicle implements Serializable {
 
     public void setReviews(List<Review> reviews) {
         this.reviews = reviews;
+    }
+
+    public int getCancel() {
+        return cancel;
+    }
+
+    public void setCancel(int cancel) {
+        this.cancel = cancel;
+    }
+
+    public List<VehiclePhoto> getVehiclePhotos() {
+        return vehiclePhotos;
     }
 }
 

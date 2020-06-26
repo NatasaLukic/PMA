@@ -10,6 +10,7 @@ import androidx.drawerlayout.widget.DrawerLayout;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.res.Configuration;
 import android.os.Bundle;
@@ -24,7 +25,9 @@ import com.example.findacar.model.Reservation;
 import com.example.findacar.service.ServiceUtils;
 import com.google.android.material.navigation.NavigationView;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.Locale;
 
@@ -36,7 +39,18 @@ public class DashboardActivity extends AppCompatActivity implements NavigationVi
 
     private DrawerLayout drawer;
     public NavigationView navigationView;
-    public List<Reservation> res;
+    public List<Reservation> prev = new ArrayList<Reservation>();
+    public List<Reservation> active = new ArrayList<Reservation>();
+    public String email;
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {
@@ -47,30 +61,8 @@ public class DashboardActivity extends AppCompatActivity implements NavigationVi
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        String email = getIntent().getStringExtra("user");
+        email = getIntent().getStringExtra("user");
         Log.e("TAD", email);
-
-        Call<List<Reservation>> call = ServiceUtils.findACarService.getUserReservations(email);
-
-        call.enqueue(new Callback<List<Reservation>>() {
-            @Override
-            public void onResponse(Call<List<Reservation>> call, Response<List<Reservation>> response) {
-
-                if(response.isSuccessful()){
-                    res = response.body();
-
-
-                } else {
-                    res = new ArrayList<Reservation>();
-                }
-            }
-
-            @Override
-            public void onFailure(Call<List<Reservation>> call, Throwable t) {
-                Log.e("ERROR", t.getMessage());
-                res = new ArrayList<Reservation>();
-            }
-        });
 
         drawer = findViewById(R.id.drawer_layout);
         navigationView = findViewById(R.id.nav_view);
@@ -95,7 +87,7 @@ public class DashboardActivity extends AppCompatActivity implements NavigationVi
                 getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container , new UserProfileFragment()).commit();
                 break;
             case R.id.nav_reservations:
-                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container , new ReservationsFragment(res)).commit();
+                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container , new ReservationsFragment(email)).commit();
                 break;
             case R.id.nav_settings:
                 break;
@@ -103,6 +95,8 @@ public class DashboardActivity extends AppCompatActivity implements NavigationVi
                 showLanguageChangeDialog();
                 break;
             case R.id.nav_logout:
+                Intent intent = new Intent(DashboardActivity.this, LoginActivity.class);
+                startActivity(intent);
                 break;
         }
         navigationView.setCheckedItem(menuItem.getItemId());
@@ -157,4 +151,5 @@ public class DashboardActivity extends AppCompatActivity implements NavigationVi
         AlertDialog mDialog = mBuilder.create();
         mDialog.show();
     }
+
 }

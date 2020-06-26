@@ -5,7 +5,7 @@ import android.os.Parcelable;
 
 import java.io.Serializable;
 
-public class Address implements Parcelable, Serializable {
+public class Address implements Serializable {
 
     private String street;
     private String city;
@@ -68,13 +68,6 @@ public class Address implements Parcelable, Serializable {
         this.postalCode = postalCode;
     }
 
-    protected Address(Parcel in) {
-        street = in.readString();
-        city = in.readString();
-        country = in.readString();
-        postalCode = in.readString();
-    }
-
     public double getX() {
         return x;
     }
@@ -91,28 +84,5 @@ public class Address implements Parcelable, Serializable {
         this.y = y;
     }
 
-    @Override
-    public void writeToParcel(Parcel dest, int flags) {
-        dest.writeString(street);
-        dest.writeString(city);
-        dest.writeString(country);
-        dest.writeString(postalCode);
-    }
 
-    @Override
-    public int describeContents() {
-        return 0;
-    }
-
-    public static final Creator<Address> CREATOR = new Creator<Address>() {
-        @Override
-        public Address createFromParcel(Parcel in) {
-            return new Address(in);
-        }
-
-        @Override
-        public Address[] newArray(int size) {
-            return new Address[size];
-        }
-    };
 }
