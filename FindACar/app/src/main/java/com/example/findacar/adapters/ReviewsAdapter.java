@@ -61,7 +61,7 @@ public class ReviewsAdapter  extends BaseAdapter {
         Drawable drawable = rating.getProgressDrawable();
         drawable.setColorFilter(Color.parseColor("#DAA520"), PorterDuff.Mode.SRC_ATOP);
 
-        user.setText(review.getUser().getFirstName() + " " + review.getUser().getLastName());
+        user.setText(review.getNameUser());
 
         SimpleDateFormat DateFor = new SimpleDateFormat("yyyy-MM-dd");
         String stringDate= DateFor.format(review.getDate());
