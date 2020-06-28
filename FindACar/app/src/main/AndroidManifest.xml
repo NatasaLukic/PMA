@@ -20,7 +20,9 @@
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".activites.LoginActivity"
-            android:theme="@style/AppTheme.NoActionBar" />
+            android:theme="@style/AppTheme.NoActionBar"
+            android:noHistory="true"
+            android:excludeFromRecents="true"/>
         <activity android:name=".activites.ChangePasswordActivity" />
         <activity android:name=".activites.CarServiceDetailsActivity" />
         <activity android:name=".activites.SearchResultsActivity" />

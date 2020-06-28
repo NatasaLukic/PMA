@@ -16,6 +16,7 @@ import com.example.findacar.database.UserDatabase;
 import com.example.findacar.modelDTO.LogInDTO;
 import com.example.findacar.model.User;
 import com.example.findacar.service.ServiceUtils;
+import com.example.findacar.service.SessionService;
 import com.google.gson.Gson;
 import com.google.gson.internal.LinkedTreeMap;
 import com.google.gson.reflect.TypeToken;
@@ -39,14 +40,14 @@ public class LoginActivity extends AppCompatActivity {
     private ProgressBar progressBar;
     UserDatabase userDatabase;
     List<User> usersList = new ArrayList<>();
-
+    private SessionService sessionService;
     Button callSignUp, callLogin;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
-
+        sessionService = SessionService.getInstance(getApplicationContext());
         userDatabase = UserDatabase.getInstance(this);
 
         callLogin = findViewById(R.id.login);
@@ -84,7 +85,7 @@ public class LoginActivity extends AppCompatActivity {
 
                         if (response.isSuccessful()) {
 
-                            if(response.body() instanceof Boolean){
+                            if (response.body() instanceof Boolean) {
 
                                 System.out.println("boolean usao");
 
@@ -94,20 +95,23 @@ public class LoginActivity extends AppCompatActivity {
 
 
                             } else {
-                                LinkedTreeMap<Object,Object> u = (LinkedTreeMap) response.body();
+                                LinkedTreeMap<Object, Object> u = (LinkedTreeMap) response.body();
 
-                                if(!checkIfExists(emailSend)){
+                                if (!checkIfExists(emailSend)) {
 
-                                    User user = new User((String)u.get("firstName"),
-                                            (String)u.get("lastName"),(String) u.get("email"),
-                                            (String)u.get("password"));
+                                    User user = new User((String) u.get("firstName"),
+                                            (String) u.get("lastName"), (String) u.get("email"),
+                                            (String) u.get("password"));
                                     userDatabase.userDao().insert(user);
 
-                                };
-
+                                }
+                                ;
+                                sessionService.setBooleanValue(SessionService.LOGGED_IN_PREF, true);
+                                sessionService.insertStringValue(SessionService.EMAIL, emailSend);
                                 Intent intent = new Intent(LoginActivity.this, DashboardActivity.class);
                                 intent.putExtra("user", emailSend);
                                 startActivity(intent);
+                                finish();
                             }
 
                         } else {
@@ -125,6 +129,7 @@ public class LoginActivity extends AppCompatActivity {
                         System.out.println(t.getMessage());
                     }
                 });
+
 
             }
         });
@@ -145,7 +150,7 @@ public class LoginActivity extends AppCompatActivity {
 
         String firstName = userDatabase.userDao().loadSingle(emailSend);
 
-        if(firstName == null)
+        if (firstName == null)
             return false;
 
         return true;
