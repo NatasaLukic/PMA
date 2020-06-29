@@ -14,7 +14,6 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.res.Configuration;
 import android.os.Bundle;
-import android.preference.PreferenceManager;
 import android.util.Log;
 import android.view.MenuItem;
 
@@ -25,19 +24,16 @@ import com.example.findacar.fragments.FavoriteVehiclesFragment;
 import com.example.findacar.fragments.ReservationsFragment;
 import com.example.findacar.fragments.UserProfileFragment;
 import com.example.findacar.model.Reservation;
-import com.example.findacar.model.Review;
-import com.example.findacar.model.UserWithVehiclesAndReviews;
-import com.example.findacar.model.Vehicle;
 import com.example.findacar.model.VehicleWithReviews;
 import com.example.findacar.service.ServiceUtils;
 import com.example.findacar.service.SessionService;
+import com.example.findacar.utils.IReservationsHelper;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.iid.FirebaseInstanceId;
 import com.google.firebase.iid.InstanceIdResult;
 
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -48,7 +44,7 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class DashboardActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
+public class DashboardActivity extends AppCompatActivity implements IReservationsHelper, NavigationView.OnNavigationItemSelectedListener {
 
     private DrawerLayout drawer;
     public NavigationView navigationView;
@@ -71,8 +67,9 @@ public class DashboardActivity extends AppCompatActivity implements NavigationVi
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         loadLanguage();
-        setContentView(R.layout.activity_dashboard);
         email = getIntent().getStringExtra("user");
+        getData(email);
+        setContentView(R.layout.activity_dashboard);
 
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -204,4 +201,51 @@ public class DashboardActivity extends AppCompatActivity implements NavigationVi
         finish();
     }
 
+    private void getData(String userEmail){
+        Call<List<Reservation>> call = ServiceUtils.findACarService.getUserReservations(userEmail);
+
+        call.enqueue(new Callback<List<Reservation>>() {
+            @Override
+            public void onResponse(Call<List<Reservation>> call, Response<List<Reservation>> response) {
+
+                if(response.isSuccessful()){
+                    List<Reservation> res = response.body();
+
+                    for(Reservation r : res){
+                        if(checkDate(r) == true){
+                            active.add(r);
+                        } else {
+                            prev.add(r);
+                        }
+                    }
+                }
+            }
+            @Override
+            public void onFailure(Call<List<Reservation>> call, Throwable t) {
+                System.out.println("aaaaaaaaaaaaaaa");
+                Log.e("ERROR", t.getMessage());
+            }
+        });
+
+    }
+
+    public boolean checkDate(Reservation r){
+
+        if (new Date().after(r.getReturnDate())) {
+            return false;
+        } else {
+            return true;
+        }
+    }
+
+
+    @Override
+    public List<Reservation> getPrevious() {
+        return prev;
+    }
+
+    @Override
+    public List<Reservation> getCurrent() {
+        return active;
+    }
 }

@@ -10,15 +10,12 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.CheckBox;
 import android.widget.ExpandableListView;
-import android.widget.Toast;
 
 import com.example.findacar.R;
-import com.example.findacar.activites.ICarServiceDetails;
+import com.example.findacar.utils.ICarServiceDetails;
 import com.example.findacar.adapters.FilterListAdapter;
 import com.example.findacar.model.FilterVehicles;
-import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import java.util.ArrayList;
 import java.util.Arrays;

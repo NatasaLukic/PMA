@@ -24,6 +24,7 @@ import com.example.findacar.model.FilterVehicles;
 import com.example.findacar.modelDTO.SearchVehiclesDTO;
 import com.example.findacar.model.Vehicle;
 import com.example.findacar.service.ServiceUtils;
+import com.example.findacar.utils.ICarServiceDetails;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.gson.Gson;
 

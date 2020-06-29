@@ -1,6 +1,11 @@
 package com.example.findacar.service;
 
 
+import com.example.findacar.utils.DateDeserializer;
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+
+import java.util.Date;
 import java.util.concurrent.TimeUnit;
 
 import okhttp3.OkHttpClient;
@@ -29,9 +34,17 @@ public class ServiceUtils {
         return client;
     }
 
+    public static Gson gson = new GsonBuilder()
+            .registerTypeAdapter(Date.class, new DateDeserializer())
+            .enableComplexMapKeySerialization()
+            .serializeNulls()
+            .setPrettyPrinting()
+            .setVersion(1.0)
+            .create();
+
     public static Retrofit retrofit = new Retrofit.Builder()
             .baseUrl(SERVICE_API_PATH)
-            .addConverterFactory(GsonConverterFactory.create())
+            .addConverterFactory(GsonConverterFactory.create(gson))
             .client(test())
             .build();
 

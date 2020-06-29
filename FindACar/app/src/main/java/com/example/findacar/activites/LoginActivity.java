@@ -105,7 +105,7 @@ public class LoginActivity extends AppCompatActivity {
                                     userDatabase.userDao().insert(user);
 
                                 }
-                                ;
+
                                 sessionService.setBooleanValue(SessionService.LOGGED_IN_PREF, true);
                                 sessionService.insertStringValue(SessionService.EMAIL, emailSend);
                                 Intent intent = new Intent(LoginActivity.this, DashboardActivity.class);

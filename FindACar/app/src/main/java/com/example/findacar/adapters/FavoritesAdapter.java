@@ -84,12 +84,11 @@ public class FavoritesAdapter extends BaseAdapter {
 
         int adapterCount = adapter.getCount();
         System.out.println("ima reviewa " + adapterCount);
-
+        // TODO FIX THIS
         for (int i = 0; i < adapterCount; i++) {
             View item = adapter.getView(i, null, null);
             layout.addView(item);
         }
-
         return vi;
     }
 }

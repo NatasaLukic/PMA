@@ -19,6 +19,7 @@ import com.google.firebase.iid.FirebaseInstanceId;
 import com.google.firebase.messaging.FirebaseMessagingService;
 import com.google.firebase.messaging.RemoteMessage;
 
+import java.util.Objects;
 import java.util.Random;
 
 import okhttp3.ResponseBody;
@@ -87,10 +88,15 @@ public class MessagingService extends FirebaseMessagingService {
         super.onNewToken(s);
         // Get updated InstanceID token.
         sessionService = SessionService.getInstance(getApplicationContext());
-        String refreshedToken = FirebaseInstanceId.getInstance().getInstanceId().getResult().getToken();
+        String refreshedToken = null;
+        try {
+            refreshedToken = FirebaseInstanceId.getInstance().getInstanceId().getResult().getToken();
+        } catch (Exception exc) {
+
+        }
 
         String email = sessionService.getStringValue(SessionService.EMAIL);
-        if (email != null){
+        if (email != null && refreshedToken != null) {
             Call<ResponseBody> call = ServiceUtils.findACarService.sendFcmToken(email, refreshedToken);
             call.enqueue(new Callback<ResponseBody>() {
                 @Override
