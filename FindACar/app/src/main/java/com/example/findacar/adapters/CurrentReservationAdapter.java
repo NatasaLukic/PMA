@@ -40,7 +40,7 @@ import retrofit2.Response;
 
 public class CurrentReservationAdapter extends BaseAdapter implements CurrentReservationHelper {
 
-    private List<Reservation> mDataset;
+    private List<Reservation> mDataset = new ArrayList<>();
     public Activity activity;
     //public static final String SERVICE_API_PATH = "http://192.168.0.35:8057/";
     public static final String SERVICE_API_PATH = "http://192.168.0.15:8057/";

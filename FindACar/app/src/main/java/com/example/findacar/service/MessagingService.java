@@ -19,6 +19,7 @@ import com.google.firebase.iid.FirebaseInstanceId;
 import com.google.firebase.messaging.FirebaseMessagingService;
 import com.google.firebase.messaging.RemoteMessage;
 
+import java.util.Objects;
 import java.util.Random;
 
 import okhttp3.ResponseBody;
@@ -31,7 +32,7 @@ public class MessagingService extends FirebaseMessagingService {
     private static final String ADMIN_CHANNEL_ID = "admin_channel";
     private static final String notifications_admin_channel_name = "Global channel";
     private static final String notifications_admin_channel_description = "Notifications sent from the app admin";
-
+    private SessionService sessionService;
     private NotificationManager notificationManager = null;
 
     @Override
@@ -86,20 +87,29 @@ public class MessagingService extends FirebaseMessagingService {
     public void onNewToken(String s) {
         super.onNewToken(s);
         // Get updated InstanceID token.
-        String refreshedToken = FirebaseInstanceId.getInstance().getInstanceId().getResult().getToken();
-        SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
-        String email = preferences.getString("user", "");
-        Call<ResponseBody> call = ServiceUtils.findACarService.sendFcmToken(email, refreshedToken);
-        call.enqueue(new Callback<ResponseBody>() {
-            @Override
-            public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
-            }
+        sessionService = SessionService.getInstance(getApplicationContext());
+        String refreshedToken = null;
+        try {
+            refreshedToken = FirebaseInstanceId.getInstance().getInstanceId().getResult().getToken();
+        } catch (Exception exc) {
 
-            @Override
-            public void onFailure(Call<ResponseBody> call, Throwable t) {
-                System.out.println(t.getMessage());
-            }
-        });
+        }
+
+        String email = sessionService.getStringValue(SessionService.EMAIL);
+        if (email != null && refreshedToken != null) {
+            Call<ResponseBody> call = ServiceUtils.findACarService.sendFcmToken(email, refreshedToken);
+            call.enqueue(new Callback<ResponseBody>() {
+                @Override
+                public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
+                }
+
+                @Override
+                public void onFailure(Call<ResponseBody> call, Throwable t) {
+                    System.out.println(t.getMessage());
+                }
+            });
+        }
+
 
     }
 
