@@ -9,6 +9,8 @@ import android.util.Log;
 
 import com.example.findacar.R;
 import com.example.findacar.model.CarService;
+import com.google.android.gms.location.FusedLocationProviderClient;
+import com.google.android.gms.location.LocationServices;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
@@ -27,6 +29,8 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     private ArrayList<CarService> services = new ArrayList<CarService>();
     private ArrayList<LatLng> locationList = new ArrayList<LatLng>();
 
+    FusedLocationProviderClient client;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -34,6 +38,8 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
                 .findFragmentById(R.id.map);
+
+        client = LocationServices.getFusedLocationProviderClient(this);
 
         mapFragment.getMapAsync(this);
 
