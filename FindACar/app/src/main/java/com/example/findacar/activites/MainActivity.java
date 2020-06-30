@@ -1,7 +1,9 @@
 package com.example.findacar.activites;
 
 import androidx.appcompat.app.AppCompatActivity;
+
 import com.example.findacar.R;
+import com.example.findacar.service.SessionService;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -14,10 +16,12 @@ import android.widget.TextView;
 
 public class MainActivity extends AppCompatActivity {
 
-    private static int SPLASH_SCREEN =5000;
+    private static int SPLASH_SCREEN = 5000;
     Animation topAnimation, bottomAnimation;
     ImageView image;
     TextView logo;
+    private SessionService sessionService;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -33,15 +37,25 @@ public class MainActivity extends AppCompatActivity {
         image.setAnimation(topAnimation);
         logo.setAnimation(bottomAnimation);
 
+        sessionService = SessionService.getInstance(getApplicationContext());
         new Handler().postDelayed(
                 new Runnable() {
                     @Override
                     public void run() {
-                        Intent intent = new Intent(MainActivity.this, LoginActivity.class);
+                        Intent intent;
+                        if (!sessionService.getBooleanValue(SessionService.LOGGED_IN_PREF) ||
+                                sessionService.getStringValue(SessionService.EMAIL) == null) {
+                            intent = new Intent(MainActivity.this, LoginActivity.class);
+                        } else {
+                            intent = new Intent(MainActivity.this, DashboardActivity.class);
+                            intent.putExtra("user", sessionService.getStringValue(SessionService.EMAIL));
+
+                        }
                         startActivity(intent);
                         finish();
                     }
                 }, SPLASH_SCREEN
         );
     }
+
 }

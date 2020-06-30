@@ -1,4 +1,4 @@
-package com.example.findacar.activites;
+package com.example.findacar.utils;
 
 import com.example.findacar.model.FilterVehicles;
 import com.example.findacar.model.Vehicle;
