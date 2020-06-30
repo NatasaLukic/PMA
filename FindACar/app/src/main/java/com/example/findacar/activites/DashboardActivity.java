@@ -8,11 +8,16 @@ import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 
 import android.app.Activity;
+import android.app.AlarmManager;
 import android.app.AlertDialog;
+import android.app.PendingIntent;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.res.Configuration;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.util.Log;
@@ -25,20 +30,18 @@ import com.example.findacar.fragments.FavoriteVehiclesFragment;
 import com.example.findacar.fragments.ReservationsFragment;
 import com.example.findacar.fragments.UserProfileFragment;
 import com.example.findacar.model.Reservation;
-import com.example.findacar.model.Review;
 import com.example.findacar.model.UserWithVehiclesAndReviews;
-import com.example.findacar.model.Vehicle;
 import com.example.findacar.model.VehicleWithReviews;
+import com.example.findacar.modelDTO.LogInDTO;
 import com.example.findacar.service.ServiceUtils;
+import com.example.findacar.service.SyncService;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.iid.FirebaseInstanceId;
 import com.google.firebase.iid.InstanceIdResult;
 
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 import java.util.Locale;
 
@@ -49,6 +52,12 @@ import retrofit2.Response;
 
 public class DashboardActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
+    public static final int TYPE_WIFI = 1;
+    public static final int TYPE_MOBILE = 2;
+    public static final int TYPE_NOT_CONNECTED = 1;
+
+    public static String SYNC_DATA = "SYNC_DATA";
+
     private DrawerLayout drawer;
     public NavigationView navigationView;
     public List<Reservation> prev = new ArrayList<Reservation>();
@@ -56,6 +65,14 @@ public class DashboardActivity extends AppCompatActivity implements NavigationVi
     public String email;
     public UserDatabase userDatabase;
     public List<VehicleWithReviews> vehiclesWithReviews;
+
+    private static final int RQ_SYNC_SERVICE = 1101;
+
+    private PendingIntent pendingIntent;
+    private AlarmManager alarmManager;
+
+    private String synctime;
+    private boolean allowSync;
 
     public String getEmail() {
         return email;
@@ -78,6 +95,30 @@ public class DashboardActivity extends AppCompatActivity implements NavigationVi
 
         SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
         preferences.edit().putString("user", email).apply();
+        userDatabase = UserDatabase.getInstance(this);
+
+        //Sinhronizacija
+
+        System.out.println("email " + email);
+        long userId = userDatabase.userDao().loadSingleByEmail(email);
+
+        UserWithVehiclesAndReviews userWithVehiclesAndReviews = userDatabase.userDao()
+                .getUserWithVehiclesAndReviews(userId);
+
+        System.out.println("Broj u listi " + userWithVehiclesAndReviews.vehiclesWithReviews.size());
+
+        if (userWithVehiclesAndReviews.vehiclesWithReviews.size() > 0){
+
+            alarmManager = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
+
+            Intent alarmIntent = new Intent(this, SyncService.class);
+            alarmIntent.putExtra("email", email);
+            pendingIntent = PendingIntent.getService(this, 0, alarmIntent, 0);
+            alarmManager.setRepeating(AlarmManager.RTC_WAKEUP, System.currentTimeMillis(),
+                    60000*5, pendingIntent); // na 5 min
+
+        }
+
 
         Log.e("TAD", email);
         FirebaseInstanceId.getInstance().getInstanceId()
@@ -195,6 +236,23 @@ public class DashboardActivity extends AppCompatActivity implements NavigationVi
 
         AlertDialog mDialog = mBuilder.create();
         mDialog.show();
+    }
+
+    public static int getConnectivityStatus(Context context){
+
+        ConnectivityManager cm = (ConnectivityManager) context
+                .getSystemService(Context.CONNECTIVITY_SERVICE);
+
+        NetworkInfo activeNetwork = cm.getActiveNetworkInfo();
+        if (null != activeNetwork) {
+            if (activeNetwork.getType() == ConnectivityManager.TYPE_WIFI)
+                return TYPE_WIFI;
+
+            if (activeNetwork.getType() == ConnectivityManager.TYPE_MOBILE)
+                return TYPE_MOBILE;
+        }
+
+        return TYPE_NOT_CONNECTED;
     }
 
 }

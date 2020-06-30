@@ -20,6 +20,9 @@ public class Review  implements Serializable {
 
     public long vehicleOwnerId;
 
+    @ColumnInfo(name="id")
+    public long id;
+
     @Expose
     @SerializedName("comment")
     @ColumnInfo(name = "comment")
@@ -99,5 +102,11 @@ public class Review  implements Serializable {
         this.user = user;
     }
 
+    public long getId() {
+        return id;
+    }
 
+    public void setId(long id) {
+        this.id = id;
+    }
 }

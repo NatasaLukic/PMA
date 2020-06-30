@@ -1,15 +1,18 @@
 package com.example.findacar.dao;
 
 import androidx.room.Dao;
+import androidx.room.Delete;
 import androidx.room.Insert;
 import androidx.room.Query;
 import androidx.room.Transaction;
+import androidx.room.Update;
 
 import com.example.findacar.model.Review;
 import com.example.findacar.model.User;
 import com.example.findacar.model.UserVehicleCrossRef;
 import com.example.findacar.model.UserWithVehiclesAndReviews;
 import com.example.findacar.model.Vehicle;
+import com.example.findacar.model.VehicleWithReviews;
 
 import java.util.List;
 
@@ -21,6 +24,9 @@ public abstract class UserDao {
 
     @Insert
     public abstract long insert(Vehicle vehicle);
+
+    @Update
+    public abstract void update(Vehicle vehicle);
 
     @Insert
     public abstract void insertAll(List<Review> reviews);
@@ -41,6 +47,23 @@ public abstract class UserDao {
     @Query("SELECT * FROM user where userId=:userId")
     public abstract UserWithVehiclesAndReviews getUserWithVehiclesAndReviews(long userId);
 
+    @Transaction
+    @Query("SELECT * FROM vehicle where vehicleId=:vehicleId")
+    public abstract Vehicle getVehicle(long vehicleId);
+
+    @Transaction
+    @Query("SELECT * FROM vehicle where vehicleId=:vehicleId")
+    public abstract VehicleWithReviews getVehicleWithReviews(long vehicleId);
+
+    @Transaction
+    @Query("SELECT * FROM review where id=:id")
+    public abstract Review getReview(long id);
+
+    public void insertReview(Review review){
+
+
+    }
+
     public long insertVehicle(Vehicle vehicle) {
 
         long vehicleId = insert(vehicle);
@@ -54,7 +77,6 @@ public abstract class UserDao {
 
     public void insertReviewsForVehicle(long vehicleId, List<Review> reviews){
 
-
         for(Review review : reviews){
             review.setVehicleOwnerId(vehicleId);
         }
@@ -63,6 +85,16 @@ public abstract class UserDao {
     }
 
 
+    public void insertNewReviewsForVehicle(long newVersion, long vehicleId, List<Review> reviews){
 
+        Vehicle v = getVehicle(vehicleId);
+        v.setVersion(newVersion);
+        update(v);
 
+        for(Review review : reviews){
+            review.setVehicleOwnerId(vehicleId);
+        }
+
+        insertAll(reviews);
+    }
 }

@@ -10,6 +10,8 @@ import com.example.findacar.modelDTO.CreateReviewDTO;
 import com.example.findacar.modelDTO.SearchDTO;
 import com.example.findacar.modelDTO.SearchVehiclesDTO;
 import com.example.findacar.model.Vehicle;
+import com.example.findacar.modelDTO.SyncRequestDTO;
+import com.example.findacar.modelDTO.SyncResponseDTO;
 
 import java.util.List;
 
@@ -63,4 +65,6 @@ public interface HttpService {
     @POST("/user/addFavorite/{email}/{idVehicle}")
     Call<ResponseBody> addFavorite(@Path("email") String email, @Path("idVehicle") long idVehicle);
 
+    @POST("/sync/check")
+    Call<List<SyncResponseDTO>> checkSync(@Body List<SyncRequestDTO> vehicles);
 }

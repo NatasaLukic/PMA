@@ -5,13 +5,20 @@ import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.Button;
+import android.widget.ExpandableListView;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListAdapter;
 import android.widget.TextView;
 
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.ListFragment;
+
 import com.example.findacar.R;
 import com.example.findacar.activites.VehicleActivity;
+import com.example.findacar.fragments.FavoritesReviewListFragment;
 import com.example.findacar.model.Review;
 import com.example.findacar.model.Vehicle;
 import com.example.findacar.model.VehicleWithReviews;
@@ -20,6 +27,7 @@ import java.util.List;
 
 public class FavoritesAdapter extends BaseAdapter {
 
+    private ListFragment fragment;
     private Activity activity;
     private List<VehicleWithReviews> vehicles;
 
@@ -27,9 +35,10 @@ public class FavoritesAdapter extends BaseAdapter {
 
     }
 
-    public FavoritesAdapter(Activity activity, List<VehicleWithReviews> vehicles) {
-        this.activity = activity;
+    public FavoritesAdapter(ListFragment fragment, List<VehicleWithReviews> vehicles, Activity activity) {
+        this.fragment = fragment;
         this.vehicles = vehicles;
+        this.activity = activity;
 
     }
 
@@ -54,7 +63,7 @@ public class FavoritesAdapter extends BaseAdapter {
         View vi = convertView;
 
         Vehicle vehicle = this.vehicles.get(position).vehicle;
-        List<Review> reviews = this.vehicles.get(position).reviews;
+        final List<Review> reviews = this.vehicles.get(position).reviews;
 
         if (convertView == null)
             vi = activity.getLayoutInflater().inflate(R.layout.fragment_one_favorite_vehicle, null);
@@ -76,8 +85,32 @@ public class FavoritesAdapter extends BaseAdapter {
             autom.setText("Automatic");
         } else {
             autom.setText("Manual");
-        }
 
+        }
+        ExpandableListView expandableListView_data;
+
+        ExpandableListView expandableListView = vi.findViewById(R.id.expand_list_review);
+
+      //  AppCompatActivity activity = (AppCompatActivity) finalVi.getContext();
+     //   Fragment myFragment = new FavoritesReviewListFragment(reviews, fragment);
+      //  activity.getSupportFragmentManager().beginTransaction().replace(R.id.layout_reviews, myFragment).commit();
+
+     //   fragment.getChildFragmentManager().beginTransaction().add(R.id.layout_reviews, myFragment).commit();
+
+
+/*
+        Button button  = (Button) vi.findViewById(R.id.buttonReviews);
+
+
+        button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+*/
+              /*
+            }
+        });*/
+
+/*
         LinearLayout layout = vi.findViewById(R.id.listRev2);
 
         ListAdapter adapter = new FavoriteReviewAdapter(activity, reviews);
@@ -89,7 +122,7 @@ public class FavoritesAdapter extends BaseAdapter {
             View item = adapter.getView(i, null, null);
             layout.addView(item);
         }
-
+*/
         return vi;
     }
 }
