@@ -62,7 +62,7 @@ public class FavoriteVehiclesFragment extends ListFragment {
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
 
-        FavoritesAdapter adapter = new FavoritesAdapter(getActivity(), this.list);
+        FavoritesAdapter adapter = new FavoritesAdapter(this, this.list, getActivity());
         setListAdapter(adapter);
     }
 

@@ -19,7 +19,6 @@ public class Vehicle implements Serializable {
 
     @SerializedName("id")
     @Expose
-    @Ignore
     private long id;
 
     @ColumnInfo(name = "name")

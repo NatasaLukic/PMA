@@ -65,8 +65,8 @@
 
     <ImageView
         android:id="@+id/vehiclePhoto"
-        android:layout_width="160dp"
-        android:layout_height="151dp"
+        android:layout_width="148dp"
+        android:layout_height="124dp"
         android:layout_below="@+id/line1"
         android:layout_marginLeft="20dp"
         android:layout_weight="0" />
@@ -149,29 +149,16 @@
         android:layout_toRightOf="@id/vehiclePhoto"
         android:src="@drawable/ic_seat" />
 
-    <androidx.cardview.widget.CardView xmlns:cardView="http://schemas.android.com/tools"
-        android:layout_width="335dp"
-        android:layout_marginTop="5dp"
-        android:layout_centerHorizontal="true"
-        android:layout_below="@id/vehiclePhoto"
-        android:layout_height="wrap_content"
-        android:id="@+id/cardV"
-        cardView:cardCornerRadius="50dp">
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="REVIEWS"
-            android:textSize="17dp"
-            android:layout_gravity="center_horizontal"
-            android:textColor="@color/colorPrimary"/>
-
-        <LinearLayout
-            android:id="@+id/listRev2"
-            android:layout_marginTop="30dp"
-            android:orientation="vertical"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"/>
-
-    </androidx.cardview.widget.CardView>
+   <Button
+       android:id="@+id/buttonReviews"
+       android:layout_width="wrap_content"
+       android:layout_height="wrap_content"
+       android:text="Reviews"
+       android:layout_below="@id/vehiclePhoto"
+       android:layout_centerHorizontal="true"
+       android:textColor="@color/colorWhite"
+       android:layout_marginTop="5dp"
+       android:layout_marginBottom="5dp"
+       android:background="@drawable/button_background_search"
+       />
 </RelativeLayout>

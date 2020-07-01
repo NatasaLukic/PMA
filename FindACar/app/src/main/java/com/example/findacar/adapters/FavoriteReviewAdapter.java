@@ -11,6 +11,8 @@ import android.widget.BaseAdapter;
 import android.widget.RatingBar;
 import android.widget.TextView;
 
+import androidx.fragment.app.ListFragment;
+
 import com.example.findacar.R;
 import com.example.findacar.model.Review;
 
@@ -21,14 +23,15 @@ public class FavoriteReviewAdapter extends BaseAdapter {
 
     private List<Review> mDataset;
     public Activity activity;
+    public ListFragment fragment;
 
     public FavoriteReviewAdapter(){
 
     }
 
-    public FavoriteReviewAdapter(Activity activity, List<Review> reviews) {
+    public FavoriteReviewAdapter(ListFragment fragment, List<Review> reviews) {
         this.mDataset = reviews;
-        this.activity = activity;
+        this.fragment = fragment;
     }
 
     @Override
@@ -53,7 +56,7 @@ public class FavoriteReviewAdapter extends BaseAdapter {
         View vi = convertView;
         Review review = mDataset.get(position);
         if (convertView == null) {
-            vi = activity.getLayoutInflater().inflate(R.layout.fragment_review, null);
+            vi = fragment.getLayoutInflater().inflate(R.layout.fragment_review, null);
         }
         TextView user = (TextView) vi.findViewById(R.id.user);
         TextView date = (TextView) vi.findViewById(R.id.date);

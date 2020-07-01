@@ -8,12 +8,18 @@ import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 
 import android.app.Activity;
+import android.app.AlarmManager;
 import android.app.AlertDialog;
+import android.app.PendingIntent;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.res.Configuration;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.util.Log;
 import android.view.MenuItem;
 
@@ -24,8 +30,11 @@ import com.example.findacar.fragments.FavoriteVehiclesFragment;
 import com.example.findacar.fragments.ReservationsFragment;
 import com.example.findacar.fragments.UserProfileFragment;
 import com.example.findacar.model.Reservation;
+import com.example.findacar.model.UserWithVehiclesAndReviews;
 import com.example.findacar.model.VehicleWithReviews;
+import com.example.findacar.modelDTO.LogInDTO;
 import com.example.findacar.service.ServiceUtils;
+import com.example.findacar.service.SyncService;
 import com.example.findacar.service.SessionService;
 import com.example.findacar.utils.IReservationsHelper;
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -46,6 +55,12 @@ import retrofit2.Response;
 
 public class DashboardActivity extends AppCompatActivity implements IReservationsHelper, NavigationView.OnNavigationItemSelectedListener {
 
+    public static final int TYPE_WIFI = 1;
+    public static final int TYPE_MOBILE = 2;
+    public static final int TYPE_NOT_CONNECTED = 0;
+
+    public static String SYNC_DATA = "SYNC_DATA";
+
     private DrawerLayout drawer;
     public NavigationView navigationView;
     public List<Reservation> prev = new ArrayList<Reservation>();
@@ -54,6 +69,10 @@ public class DashboardActivity extends AppCompatActivity implements IReservation
     public UserDatabase userDatabase;
     public List<VehicleWithReviews> vehiclesWithReviews;
     private SessionService sessionService;
+
+    private PendingIntent pendingIntent;
+    private AlarmManager alarmManager;
+
 
     public String getEmail() {
         return email;
@@ -73,6 +92,34 @@ public class DashboardActivity extends AppCompatActivity implements IReservation
 
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+
+        SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
+        preferences.edit().putString("user", email).apply();
+        userDatabase = UserDatabase.getInstance(this);
+
+        //Sinhronizacija
+
+        System.out.println("email " + email);
+        long userId = userDatabase.userDao().loadSingleByEmail(email);
+
+        UserWithVehiclesAndReviews userWithVehiclesAndReviews = userDatabase.userDao()
+                .getUserWithVehiclesAndReviews(userId);
+
+//        System.out.println("Broj u listi " + userWithVehiclesAndReviews.vehiclesWithReviews.size());
+
+        if (userWithVehiclesAndReviews.vehiclesWithReviews.size() > 0){
+
+            alarmManager = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
+
+            Intent alarmIntent = new Intent(this, SyncService.class);
+            alarmIntent.putExtra("email", email);
+            pendingIntent = PendingIntent.getService(this, 0, alarmIntent, 0);
+            alarmManager.setRepeating(AlarmManager.RTC_WAKEUP, System.currentTimeMillis(),
+                    60000*5, pendingIntent); // na 5 min
+
+        }
+
+
         sessionService = SessionService.getInstance(getApplicationContext());
         sessionService.insertStringValue("user", email);
 
@@ -193,6 +240,25 @@ public class DashboardActivity extends AppCompatActivity implements IReservation
         mDialog.show();
     }
 
+
+    public static int getConnectivityStatus(Context context){
+
+        ConnectivityManager cm = (ConnectivityManager) context
+                .getSystemService(Context.CONNECTIVITY_SERVICE);
+
+        NetworkInfo activeNetwork = cm.getActiveNetworkInfo();
+        if (null != activeNetwork) {
+            if (activeNetwork.getType() == ConnectivityManager.TYPE_WIFI)
+                return TYPE_WIFI;
+
+            if (activeNetwork.getType() == ConnectivityManager.TYPE_MOBILE)
+                return TYPE_MOBILE;
+        }
+
+        return TYPE_NOT_CONNECTED;
+    }
+
+
     private void logOut() {
         sessionService.remove(SessionService.EMAIL);
         sessionService.remove(SessionService.LOGGED_IN_PREF);
@@ -248,4 +314,5 @@ public class DashboardActivity extends AppCompatActivity implements IReservation
     public List<Reservation> getCurrent() {
         return active;
     }
+
 }
