@@ -132,7 +132,7 @@ public class DashboardFragment extends Fragment {
                     if (addresses != null & addresses.size() > 0) {
                         //city from current location
                         place = addresses.get(0).getLocality();
-                    }
+                        Log.i("MAPA", "Grad je : " + place);                    }
 
                 } else {
                     //city from db
@@ -185,6 +185,9 @@ public class DashboardFragment extends Fragment {
                                 intent.putExtra("place", place);
                                 intent.putExtra("currentLocationX", currentLocationX);
                                 intent.putExtra("currentLocationY", currentLocationY);
+                                String email = getActivity().getIntent().getStringExtra("user");
+                                intent.putExtra("email", email);
+                                startActivity(intent);
                             }
                         }
 
@@ -294,6 +297,10 @@ public class DashboardFragment extends Fragment {
                 if (location != null) {
                     currentLocationX = location.getLatitude();
                     currentLocationY = location.getLongitude();
+                    Log.i("Mapa", "currentX  je: " + currentLocationX);
+                    Log.i("Mapa", "currentY  je: " + currentLocationY);
+
+
                 }
             }
         });
