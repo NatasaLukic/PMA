@@ -1,13 +1,21 @@
 package com.example.findacar.fragments;
 
+import android.Manifest;
 import android.app.DatePickerDialog;
 import android.app.TimePickerDialog;
 import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.location.Address;
+import android.location.Geocoder;
+import android.location.Location;
+import android.location.LocationManager;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -15,6 +23,7 @@ import android.widget.Spinner;
 import android.widget.SpinnerAdapter;
 import android.widget.TimePicker;
 
+import androidx.core.app.ActivityCompat;
 import androidx.fragment.app.Fragment;
 
 import com.example.findacar.R;
@@ -23,22 +32,33 @@ import com.example.findacar.adapters.SpinnerForSearchAdapter;
 import com.example.findacar.model.CarService;
 import com.example.findacar.modelDTO.SearchDTO;
 import com.example.findacar.service.ServiceUtils;
+import com.google.android.gms.location.FusedLocationProviderClient;
+import com.google.android.gms.location.LocationServices;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.Task;
 import com.google.gson.Gson;
 
+import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
+import java.util.Locale;
 
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
 public class DashboardFragment extends Fragment {
+    FusedLocationProviderClient client;
+    private double currentLocationX;
+    private double currentLocationY;
 
     private EditText pickUpDate;
     private EditText returnDate;
 
     private String place;
+    private CheckBox checkBoxCurrentLocation;
     private String datepickUp;
     private String dateReturn;
 
@@ -67,6 +87,7 @@ public class DashboardFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         super.onCreateView(inflater, container, savedInstanceState);
+
         View view = inflater.inflate(R.layout.fragment_dashboard, container, false);
 
         final Spinner spinner = view.findViewById(R.id.spinner);
@@ -81,15 +102,40 @@ public class DashboardFragment extends Fragment {
         pickUpTime = (EditText) view.findViewById(R.id.timePickUp);
         returnTime = (EditText) view.findViewById(R.id.timeReturn);
 
+        checkBoxCurrentLocation = (CheckBox) view.findViewById(R.id.checkBoxCurrentLocation);
+
         ImageView imagePickUp = (ImageView) view.findViewById(R.id.imageCal2);
         ImageView imageReturn = (ImageView) view.findViewById(R.id.imageCal);
 
 
         Button next = view.findViewById(R.id.goNext);
 
+        client = LocationServices.getFusedLocationProviderClient(getActivity());
+
+        if (ActivityCompat.checkSelfPermission(getActivity(), Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
+            getCurrentLocation();
+        }
         next.setOnClickListener(new View.OnClickListener() {
             public void onClick(View view) {
-                place = spinner.getSelectedItem().toString();
+                //if current location is checked - search
+                if(checkBoxCurrentLocation.isChecked()) {
+                    Geocoder geocoder = new Geocoder(getContext(), Locale.ENGLISH);
+                    List<Address> addresses = new ArrayList<>();
+                    try {
+                        addresses = geocoder.getFromLocation(45.2440732, 19.8189861, 1);
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+
+                    if (addresses != null & addresses.size() > 0) {
+                        //city from current location
+                        place = addresses.get(0).getLocality();
+                    }
+
+                } else {
+                    //city from db
+                    place = spinner.getSelectedItem().toString();
+                }
 
                 SearchDTO searchDTO = new SearchDTO(place, datepickUp + " " + timePickUp,
                         dateReturn + " " + timeReturn);
@@ -99,17 +145,41 @@ public class DashboardFragment extends Fragment {
                 call.enqueue(new Callback<List<CarService>>() {
                     @Override
                     public void onResponse(Call<List<CarService>> call, Response<List<CarService>> response) {
-                        System.out.println("ovo je odg " + response.body());
                         if(response.isSuccessful()){
                             response.body();
 
                             List<CarService> list = response.body();
+                            //if current location is checked - search
+                            if (checkBoxCurrentLocation.isChecked()) {
+                                //current location object
+                                Location currentLocation = new Location(LocationManager.GPS_PROVIDER);
+                                currentLocation.setLatitude(currentLocationX);
+                                currentLocation.setLongitude(currentLocationY);
+                                float distance = 0;
+                                Location tempLocation = new Location(LocationManager.GPS_PROVIDER);
+                                for (int i = 0; i < list.size(); i++) {
+                                    tempLocation.setLatitude(list.get(i).getAddress().getX());
+                                    tempLocation.setLongitude(list.get(i).getAddress().getY());
+
+                                    distance = currentLocation.distanceTo(tempLocation);
+                                    Log.i("Mapa", "razdaljinaaaaaaaaaaa je: " + distance);
+
+                                    if (distance / 1000 > 2) {
+                                        //outside radius area, remove from list
+                                        list.remove(list.get(i));
+                                    }
+                                }
+                            }
+
+
                             Intent intent = new Intent(getActivity(), SearchResultsActivity.class);
                             Gson gson = new Gson();
                             intent.putExtra("services", gson.toJson(list));
                             intent.putExtra("pickUp", datepickUp + " " + timePickUp);
                             intent.putExtra("return", dateReturn + " " + timeReturn);
                             intent.putExtra("place", place);
+                            intent.putExtra("currentLocationX",currentLocationX);
+                            intent.putExtra("currentLocationY",currentLocationY);
 
                             String email = getActivity().getIntent().getStringExtra("user");
                             intent.putExtra("email", email);
@@ -214,5 +284,18 @@ public class DashboardFragment extends Fragment {
         cal.set(Calendar.HOUR_OF_DAY, hour);
         cal.set(Calendar.MINUTE, minute);
         return cal.getTime();
+    }
+
+    private void getCurrentLocation() {
+        Task<Location> task = client.getLastLocation();
+        task.addOnSuccessListener(new OnSuccessListener<Location>() {
+            @Override
+            public void onSuccess(Location location) {
+                if (location != null) {
+                    currentLocationX = location.getLatitude();
+                    currentLocationY = location.getLongitude();
+                }
+            }
+        });
     }
 }

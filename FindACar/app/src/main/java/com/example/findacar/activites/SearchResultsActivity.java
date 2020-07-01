@@ -21,6 +21,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class SearchResultsActivity extends AppCompatActivity {
+    private double currentLocationX;
+    private double currentLocationY;
 
     private Button btnViewMap;
     private Gson gson = new Gson();
@@ -44,6 +46,8 @@ public class SearchResultsActivity extends AppCompatActivity {
 
         pickupDateTime = getIntent().getStringExtra("pickUp");
         returnDateTime = getIntent().getStringExtra("return");
+        currentLocationX = getIntent().getDoubleExtra("currentLocationX",0);
+        currentLocationY = getIntent().getDoubleExtra("currentLocationY",0);
         //List of services
 
         String gsonS = getIntent().getStringExtra("services");
@@ -62,8 +66,12 @@ public class SearchResultsActivity extends AppCompatActivity {
         btnViewMap.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
                 Intent intent = new Intent(SearchResultsActivity.this, MapsActivity.class);
                 intent.putExtra("services", gson.toJson(services));
+                intent.putExtra("currentLocationX",currentLocationX);
+                intent.putExtra("currentLocationY",currentLocationY);
+
                 startActivity(intent);
             }
         });
@@ -76,4 +84,6 @@ public class SearchResultsActivity extends AppCompatActivity {
         onBackPressed();
         return true;
     }
+
+
 }
