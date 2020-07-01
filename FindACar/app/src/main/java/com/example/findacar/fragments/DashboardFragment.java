@@ -22,11 +22,13 @@ import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.SpinnerAdapter;
 import android.widget.TimePicker;
+import android.widget.Toast;
 
 import androidx.core.app.ActivityCompat;
 import androidx.fragment.app.Fragment;
 
 import com.example.findacar.R;
+import com.example.findacar.activites.DashboardActivity;
 import com.example.findacar.activites.SearchResultsActivity;
 import com.example.findacar.adapters.SpinnerForSearchAdapter;
 import com.example.findacar.model.CarService;
@@ -140,62 +142,60 @@ public class DashboardFragment extends Fragment {
                 SearchDTO searchDTO = new SearchDTO(place, datepickUp + " " + timePickUp,
                         dateReturn + " " + timeReturn);
 
-                Call<List<CarService>> call = ServiceUtils.findACarService.searchCity(searchDTO);
+                int status = DashboardActivity.getConnectivityStatus(getContext());
 
-                call.enqueue(new Callback<List<CarService>>() {
-                    @Override
-                    public void onResponse(Call<List<CarService>> call, Response<List<CarService>> response) {
-                        if(response.isSuccessful()){
-                            response.body();
+                if(status == DashboardActivity.TYPE_WIFI) {
 
-                            List<CarService> list = response.body();
-                            //if current location is checked - search
-                            if (checkBoxCurrentLocation.isChecked()) {
-                                //current location object
-                                Location currentLocation = new Location(LocationManager.GPS_PROVIDER);
-                                currentLocation.setLatitude(currentLocationX);
-                                currentLocation.setLongitude(currentLocationY);
-                                float distance = 0;
-                                Location tempLocation = new Location(LocationManager.GPS_PROVIDER);
-                                for (int i = 0; i < list.size(); i++) {
-                                    tempLocation.setLatitude(list.get(i).getAddress().getX());
-                                    tempLocation.setLongitude(list.get(i).getAddress().getY());
+                    Call<List<CarService>> call = ServiceUtils.findACarService.searchCity(searchDTO);
+                    call.enqueue(new Callback<List<CarService>>() {
+                        @Override
+                        public void onResponse(Call<List<CarService>> call, Response<List<CarService>> response) {
+                            if (response.isSuccessful()) {
+                                response.body();
 
-                                    distance = currentLocation.distanceTo(tempLocation);
-                                    Log.i("Mapa", "razdaljinaaaaaaaaaaa je: " + distance);
+                                List<CarService> list = response.body();
+                                //if current location is checked - search
+                                if (checkBoxCurrentLocation.isChecked()) {
+                                    //current location object
+                                    Location currentLocation = new Location(LocationManager.GPS_PROVIDER);
+                                    currentLocation.setLatitude(currentLocationX);
+                                    currentLocation.setLongitude(currentLocationY);
+                                    float distance = 0;
+                                    Location tempLocation = new Location(LocationManager.GPS_PROVIDER);
+                                    for (int i = 0; i < list.size(); i++) {
+                                        tempLocation.setLatitude(list.get(i).getAddress().getX());
+                                        tempLocation.setLongitude(list.get(i).getAddress().getY());
 
-                                    if (distance / 1000 > 2) {
-                                        //outside radius area, remove from list
-                                        list.remove(list.get(i));
+                                        distance = currentLocation.distanceTo(tempLocation);
+                                        Log.i("Mapa", "razdaljinaaaaaaaaaaa je: " + distance);
+
+                                        if (distance / 1000 > 2) {
+                                            //outside radius area, remove from list
+                                            list.remove(list.get(i));
+                                        }
                                     }
                                 }
+
+
+                                Intent intent = new Intent(getActivity(), SearchResultsActivity.class);
+                                Gson gson = new Gson();
+                                intent.putExtra("services", gson.toJson(list));
+                                intent.putExtra("pickUp", datepickUp + " " + timePickUp);
+                                intent.putExtra("return", dateReturn + " " + timeReturn);
+                                intent.putExtra("place", place);
+                                intent.putExtra("currentLocationX", currentLocationX);
+                                intent.putExtra("currentLocationY", currentLocationY);
                             }
-
-
-                            Intent intent = new Intent(getActivity(), SearchResultsActivity.class);
-                            Gson gson = new Gson();
-                            intent.putExtra("services", gson.toJson(list));
-                            intent.putExtra("pickUp", datepickUp + " " + timePickUp);
-                            intent.putExtra("return", dateReturn + " " + timeReturn);
-                            intent.putExtra("place", place);
-                            intent.putExtra("currentLocationX",currentLocationX);
-                            intent.putExtra("currentLocationY",currentLocationY);
-
-                            String email = getActivity().getIntent().getStringExtra("user");
-                            intent.putExtra("email", email);
-                            startActivity(intent);
-
                         }
 
-
-                    }
-
-                    @Override
-                    public void onFailure(Call<List<CarService>> call, Throwable t) {
-                        System.out.println(t.getMessage());
-                    }
-                });
-
+                        @Override
+                        public void onFailure(Call<List<CarService>> call, Throwable t) {
+                            System.out.println(t.getMessage());
+                        }
+                    });
+                } else {
+                    Toast.makeText(getContext(), "No connection!", Toast.LENGTH_SHORT).show();
+                }
             }
         });
 

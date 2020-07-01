@@ -25,8 +25,8 @@ public class VehiclesAdapter extends BaseAdapter {
     public List<Vehicle> vehicles;
     String pickupDateTime;
     String returnDateTime;
-    //public static final String SERVICE_API_PATH = "";
-    public static final String SERVICE_API_PATH = "http://192.168.0.26:8057/";
+    public static final String SERVICE_API_PATH = "";
+    //public static final String SERVICE_API_PATH = "http://192.168.0.26:8057/";
     //public static final String SERVICE_API_PATH = "http://192.168.0.15:8057/";
 
     public VehiclesAdapter(Activity activity, List<Vehicle> vehicles){
@@ -109,6 +109,7 @@ public class VehiclesAdapter extends BaseAdapter {
 
         String m = vehicle.getImageFile();
 
+        Picasso.get().setIndicatorsEnabled(true);
         Picasso.get().load(SERVICE_API_PATH + "search/getImage/" +m)
                 .resize(300,300).into(image);
 

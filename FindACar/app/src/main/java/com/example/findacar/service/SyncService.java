@@ -48,32 +48,34 @@ public class SyncService extends Service {
             call.enqueue(new Callback<List<SyncResponseDTO>>() {
                 @Override
                 public void onResponse(Call<List<SyncResponseDTO>> call, Response<List<SyncResponseDTO>> response) {
-                    if (response.code() == 200){
+                    if (response.code() == 200) {
                         List<SyncResponseDTO> news = response.body();
 
-                        for(SyncResponseDTO syncResponseDTO : news){
+                        if (news.size() != 0){
 
-                            List<Review> reviewsNew = syncResponseDTO.getNewReviews();
+                            for (SyncResponseDTO syncResponseDTO : news) {
 
-                            System.out.println("Ovo su novi");
+                                List<Review> reviewsNew = syncResponseDTO.getNewReviews();
 
-                            List<Review> forDatabase = new ArrayList<Review>();
+                                System.out.println("Ovo su novi");
 
-                            for(Review review : reviewsNew){
-                                System.out.println("omm " + review.getComment());
+                                List<Review> forDatabase = new ArrayList<Review>();
 
-                                if(userDatabase.userDao().getReview(review.id) != null){
-                                    // postoji
-                                } else {
-                                    // nov komentar
-                                    forDatabase.add(review);
+                                for (Review review : reviewsNew) {
+                                    System.out.println("omm " + review.getComment());
+
+                                    if (userDatabase.userDao().getReview(review.id) != null) {
+                                        // postoji
+                                    } else {
+                                        // nov komentar
+                                        forDatabase.add(review);
+                                    }
                                 }
+
+                                userDatabase.userDao().insertNewReviewsForVehicle(syncResponseDTO.getNewVersion(), syncResponseDTO.getVehicleId(), forDatabase);
+
                             }
-
-                            userDatabase.userDao().insertNewReviewsForVehicle(syncResponseDTO.getNewVersion(), syncResponseDTO.getVehicleId(), forDatabase);
-
-                        }
-
+                    }
 
                     }else{
                         Log.d("REZ","Meesage recieved: "+response.code());
