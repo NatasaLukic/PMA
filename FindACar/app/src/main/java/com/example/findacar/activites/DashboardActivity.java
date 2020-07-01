@@ -57,7 +57,7 @@ public class DashboardActivity extends AppCompatActivity implements IReservation
 
     public static final int TYPE_WIFI = 1;
     public static final int TYPE_MOBILE = 2;
-    public static final int TYPE_NOT_CONNECTED = 1;
+    public static final int TYPE_NOT_CONNECTED = 0;
 
     public static String SYNC_DATA = "SYNC_DATA";
 
@@ -70,13 +70,9 @@ public class DashboardActivity extends AppCompatActivity implements IReservation
     public List<VehicleWithReviews> vehiclesWithReviews;
     private SessionService sessionService;
 
-    private static final int RQ_SYNC_SERVICE = 1101;
-
     private PendingIntent pendingIntent;
     private AlarmManager alarmManager;
 
-    private String synctime;
-    private boolean allowSync;
 
     public String getEmail() {
         return email;
@@ -109,7 +105,7 @@ public class DashboardActivity extends AppCompatActivity implements IReservation
         UserWithVehiclesAndReviews userWithVehiclesAndReviews = userDatabase.userDao()
                 .getUserWithVehiclesAndReviews(userId);
 
-        System.out.println("Broj u listi " + userWithVehiclesAndReviews.vehiclesWithReviews.size());
+//        System.out.println("Broj u listi " + userWithVehiclesAndReviews.vehiclesWithReviews.size());
 
         if (userWithVehiclesAndReviews.vehiclesWithReviews.size() > 0){
 

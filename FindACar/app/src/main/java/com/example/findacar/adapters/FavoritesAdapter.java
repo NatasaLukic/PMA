@@ -13,15 +13,21 @@ import android.widget.ListAdapter;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.DialogFragment;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.fragment.app.ListFragment;
 
 import com.example.findacar.R;
 import com.example.findacar.activites.VehicleActivity;
+import com.example.findacar.fragments.FavoriteReviewsFragment;
 import com.example.findacar.fragments.FavoritesReviewListFragment;
+import com.example.findacar.fragments.ServiceRatingFragment;
 import com.example.findacar.model.Review;
 import com.example.findacar.model.Vehicle;
 import com.example.findacar.model.VehicleWithReviews;
+import com.squareup.picasso.NetworkPolicy;
+import com.squareup.picasso.Picasso;
 
 import java.util.List;
 
@@ -30,6 +36,7 @@ public class FavoritesAdapter extends BaseAdapter {
     private ListFragment fragment;
     private Activity activity;
     private List<VehicleWithReviews> vehicles;
+    public static final String SERVICE_API_PATH = "http://192.168.0.15:8057/";
 
     public FavoritesAdapter(){
 
@@ -62,7 +69,7 @@ public class FavoritesAdapter extends BaseAdapter {
 
         View vi = convertView;
 
-        Vehicle vehicle = this.vehicles.get(position).vehicle;
+        final Vehicle vehicle = this.vehicles.get(position).vehicle;
         final List<Review> reviews = this.vehicles.get(position).reviews;
 
         if (convertView == null)
@@ -79,6 +86,10 @@ public class FavoritesAdapter extends BaseAdapter {
         doors.setText(Integer.toString(vehicle.getDoors()));
         type.setText(vehicle.getType());
 
+        Picasso.get().load(SERVICE_API_PATH + "search/getImage/" +vehicle.getImageFile())
+                .networkPolicy(NetworkPolicy.OFFLINE)
+                .resize(300,300).into(image);
+
         TextView autom = (TextView) vi.findViewById(R.id.aut);
 
         if (vehicle.isAutom() == true) {
@@ -87,43 +98,27 @@ public class FavoritesAdapter extends BaseAdapter {
             autom.setText("Manual");
 
         }
-        ExpandableListView expandableListView_data;
 
-        ExpandableListView expandableListView = vi.findViewById(R.id.expand_list_review);
-
-      //  AppCompatActivity activity = (AppCompatActivity) finalVi.getContext();
-     //   Fragment myFragment = new FavoritesReviewListFragment(reviews, fragment);
-      //  activity.getSupportFragmentManager().beginTransaction().replace(R.id.layout_reviews, myFragment).commit();
-
-     //   fragment.getChildFragmentManager().beginTransaction().add(R.id.layout_reviews, myFragment).commit();
-
-
-/*
-        Button button  = (Button) vi.findViewById(R.id.buttonReviews);
-
+        Button button = (Button) vi.findViewById(R.id.buttonReviews);
 
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-*/
-              /*
+
+                FragmentTransaction ft =((AppCompatActivity)activity).getSupportFragmentManager().beginTransaction();
+                Fragment prev =((AppCompatActivity)activity).getSupportFragmentManager().findFragmentByTag("dialog");
+                if (prev != null) {
+                    ft.remove(prev);
+                }
+                ft.addToBackStack(null);
+
+                DialogFragment newFragment = new FavoriteReviewsFragment(reviews);
+                newFragment.show(ft, "dialog");
+
+
             }
-        });*/
+        });
 
-/*
-        LinearLayout layout = vi.findViewById(R.id.listRev2);
-
-        ListAdapter adapter = new FavoriteReviewAdapter(activity, reviews);
-
-        int adapterCount = adapter.getCount();
-        System.out.println("ima reviewa " + adapterCount);
-        // TODO FIX THIS
-        for (int i = 0; i < adapterCount; i++) {
-            View item = adapter.getView(i, null, null);
-            layout.addView(item);
-        }
-
-*/
         return vi;
     }
 }

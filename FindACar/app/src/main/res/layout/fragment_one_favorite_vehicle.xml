@@ -65,8 +65,8 @@
 
     <ImageView
         android:id="@+id/vehiclePhoto"
-        android:layout_width="160dp"
-        android:layout_height="151dp"
+        android:layout_width="148dp"
+        android:layout_height="124dp"
         android:layout_below="@+id/line1"
         android:layout_marginLeft="20dp"
         android:layout_weight="0" />
@@ -149,9 +149,16 @@
         android:layout_toRightOf="@id/vehiclePhoto"
         android:src="@drawable/ic_seat" />
 
-    <ExpandableListView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/aut"
-        android:id="@+id/expand_list_review"/>
+   <Button
+       android:id="@+id/buttonReviews"
+       android:layout_width="wrap_content"
+       android:layout_height="wrap_content"
+       android:text="Reviews"
+       android:layout_below="@id/vehiclePhoto"
+       android:layout_centerHorizontal="true"
+       android:textColor="@color/colorWhite"
+       android:layout_marginTop="5dp"
+       android:layout_marginBottom="5dp"
+       android:background="@drawable/button_background_search"
+       />
 </RelativeLayout>
