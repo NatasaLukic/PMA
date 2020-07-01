@@ -124,7 +124,7 @@ public class DashboardFragment extends Fragment {
                     Geocoder geocoder = new Geocoder(getContext(), Locale.ENGLISH);
                     List<Address> addresses = new ArrayList<>();
                     try {
-                        addresses = geocoder.getFromLocation(45.2440732, 19.8189861, 1);
+                        addresses = geocoder.getFromLocation(currentLocationX, currentLocationY, 1);
                     } catch (IOException e) {
                         e.printStackTrace();
                     }
