@@ -32,7 +32,6 @@ import com.example.findacar.fragments.UserProfileFragment;
 import com.example.findacar.model.Reservation;
 import com.example.findacar.model.UserWithVehiclesAndReviews;
 import com.example.findacar.model.VehicleWithReviews;
-import com.example.findacar.modelDTO.LogInDTO;
 import com.example.findacar.service.ServiceUtils;
 import com.example.findacar.service.SyncService;
 import com.example.findacar.service.SessionService;
@@ -60,6 +59,10 @@ public class DashboardActivity extends AppCompatActivity implements IReservation
     public static final int TYPE_NOT_CONNECTED = 0;
 
     public static String SYNC_DATA = "SYNC_DATA";
+
+    private static int checkedLanguage = 0;
+    private static int checkedRadius = 1;
+    public static int currentRadius = 3;
 
     private DrawerLayout drawer;
     public NavigationView navigationView;
@@ -179,6 +182,7 @@ public class DashboardActivity extends AppCompatActivity implements IReservation
                 getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new FavoriteVehiclesFragment(email)).commit();
                 break;
             case R.id.nav_settings:
+                showSettingsChangeDialog();
                 break;
             case R.id.nav_language:
                 showLanguageChangeDialog();
@@ -222,19 +226,22 @@ public class DashboardActivity extends AppCompatActivity implements IReservation
         final String[] listItems = {"English", "Serbian"};
         AlertDialog.Builder mBuilder = new AlertDialog.Builder(DashboardActivity.this);
         mBuilder.setTitle(R.string.choose_language);
-        mBuilder.setItems(listItems, new DialogInterface.OnClickListener() {
+        mBuilder.setSingleChoiceItems(listItems, checkedLanguage, new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int i) {
                 if (i == 0) {
+                    checkedLanguage = 0;
                     setLocale("en");
                     recreate();
                 } else if (i == 1) {
+                    checkedLanguage = 1;
                     setLocale("sr");
                     recreate();
                 }
                 dialog.dismiss();
             }
         });
+
 
         AlertDialog mDialog = mBuilder.create();
         mDialog.show();
@@ -302,6 +309,43 @@ public class DashboardActivity extends AppCompatActivity implements IReservation
         } else {
             return true;
         }
+    }
+
+    public void showSettingsChangeDialog() {
+        final String[] listItems = {"1km", "3km", "5km", "7km", "9km"};
+        AlertDialog.Builder radiusBuilder = new AlertDialog.Builder(DashboardActivity.this);
+        radiusBuilder.setTitle(R.string.set_radius);
+        radiusBuilder.setSingleChoiceItems(listItems, checkedRadius, new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int i) {
+                if (i == 0) {
+                    checkedRadius = 0;
+                    currentRadius = 1;
+
+                } else if (i == 1) {
+                    checkedRadius = 1;
+                    currentRadius = 3;
+
+                } else if (i == 2) {
+                    checkedRadius = 2;
+                    currentRadius = 5;
+
+                } else if (i == 3) {
+                    checkedRadius = 3;
+                    currentRadius = 7;
+
+                } else if (i == 4) {
+                    checkedRadius = 4;
+                    currentRadius = 9;
+
+                }
+                dialog.dismiss();
+            }
+        });
+
+
+        AlertDialog mDialog = radiusBuilder.create();
+        mDialog.show();
     }
 
 

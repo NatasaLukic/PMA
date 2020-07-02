@@ -5,9 +5,11 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.viewpager.widget.ViewPager;
 
 import com.example.findacar.R;
+import com.example.findacar.adapters.AdditionalServicesAdapter;
 import com.example.findacar.adapters.ReviewsAdapter;
 import com.example.findacar.adapters.VehiclePhotosAdapter;
 import com.example.findacar.database.UserDatabase;
+import com.example.findacar.model.AdditionalService;
 import com.example.findacar.model.CarService;
 import com.example.findacar.model.UserVehicleCrossRef;
 import com.example.findacar.model.UserWithVehiclesAndReviews;
@@ -19,11 +21,16 @@ import com.example.findacar.service.ServiceUtils;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
+import android.view.Gravity;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListAdapter;
+import android.widget.ListView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -125,7 +132,6 @@ public class VehicleActivity extends AppCompatActivity {
             }
         });
 
-        //   getChildFragmentManager().beginTransaction().add(R.id.listReviews, new ReviewFragment()).commit();
 
     }
 
@@ -196,13 +202,10 @@ public class VehicleActivity extends AppCompatActivity {
                 Toast.makeText(VehicleActivity.this, "Could not remove vehicle from list of favorites", Toast.LENGTH_SHORT);
             }
         });
-    }
-
-    public void populateReviews() {
-        //    getSupportFragmentManager().beginTransaction().add(R.id.listRev, new ReviewFragment(vehicle.getReviews())).commit();
-
 
     }
+
+
 
     public void populateVehicleView() {
 
@@ -221,7 +224,9 @@ public class VehicleActivity extends AppCompatActivity {
         TextView yearOfProd = (TextView) findViewById(R.id.yearOfProd);
         yearOfProd.setText(Integer.toString(vehicle.getProdYear()));
 
-        date.setText(vehicle.getRegUntil());
+        String[] strings = vehicle.getRegUntil().split("T");
+
+        date.setText(strings[0]);
         nDoors.setText(Integer.toString(vehicle.getDoors()));
         nSeats.setText(Integer.toString(vehicle.getSeats()));
 
@@ -230,13 +235,43 @@ public class VehicleActivity extends AppCompatActivity {
 
         TextView auto_text = (TextView) findViewById(R.id.auto_text);
 
+        List<AdditionalService> additionalServices = (List<AdditionalService>) getIntent().getSerializableExtra("addServices");
+
+        LinearLayout layout = (LinearLayout) findViewById(R.id.listAdd);
+
+        Log.i("ADD", String.valueOf(additionalServices.size()));
+
+        RelativeLayout add= (RelativeLayout) findViewById(R.id.additional);
+        RelativeLayout infoYears = (RelativeLayout) findViewById(R.id.infoYears);
+
+        if(additionalServices.size() == 0){
+            add.setVisibility(View.GONE);
+            RelativeLayout.LayoutParams lp = (RelativeLayout.LayoutParams) infoYears.getLayoutParams();
+            infoYears.setGravity(Gravity.CENTER_HORIZONTAL);
+            infoYears.getLayoutParams().height = 200;
+            View v = (View) findViewById(R.id.lin2);
+            RelativeLayout.LayoutParams lp2 = (RelativeLayout.LayoutParams) v.getLayoutParams();
+            lp2.addRule(RelativeLayout.BELOW, R.id.infoYears);
+            v.setLayoutParams(lp2);
+        }
+
+        final ListAdapter adapter = new AdditionalServicesAdapter(VehicleActivity.this, additionalServices);
+
+        int adapterCount = adapter.getCount();
+
+        for (int i = 0; i < adapterCount; i++) {
+            View item = adapter.getView(i, null, null);
+            layout.addView(item);
+        }
+
         setLikePictureForVehicle();
+
         ViewPager vp = findViewById(R.id.slider);
         VehiclePhotosAdapter vpa = new VehiclePhotosAdapter(this, vehicle.getVehiclePhotos());
         vp.setAdapter(vpa);
 
         Button btnBook = findViewById(R.id.book);
-        btnBook.setOnClickListener(new View.OnClickListener() {
+        btnBook.setOnClickListener(new View.OnClickListener(){
 
             @Override
             public void onClick(View v) {
@@ -244,16 +279,17 @@ public class VehicleActivity extends AppCompatActivity {
                 Intent intent = new Intent(VehicleActivity.this, CarReservationActivity.class);
                 intent.putExtra("carService", (Serializable) carService);
                 intent.putExtra("reservation", (Serializable) reservation);
+                intent.putExtra("addServ", ((AdditionalServicesAdapter) adapter).getAdditional());
                 VehicleActivity.this.startActivity(intent);
             }
         });
 
-        if (vehicle.isAirCond() == false) {
+        if(vehicle.isAirCond() == false) {
             airC.setVisibility(View.INVISIBLE);
             airC_text.setVisibility(View.INVISIBLE);
         }
 
-        if (vehicle.isAutom() == true) {
+        if(vehicle.isAutom() == true){
             auto_text.setText("Automatic");
         } else {
             auto_text.setText("Manual");
@@ -261,7 +297,6 @@ public class VehicleActivity extends AppCompatActivity {
 
         name.setText(getIntent().getStringExtra("name"));
     }
-
 
     @Override
     protected void onResume() {
@@ -293,4 +328,6 @@ public class VehicleActivity extends AppCompatActivity {
             }
         }
     }
+
+
 }

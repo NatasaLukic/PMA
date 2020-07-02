@@ -3,6 +3,8 @@ package com.example.findacar.model;
 import android.os.Parcel;
 import android.os.Parcelable;
 
+import androidx.room.Ignore;
+
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
@@ -43,6 +45,11 @@ public class CarService implements Serializable {
     @SerializedName("landlinePhone")
     @Expose
     private String landlinePhone;
+
+    @SerializedName("additionalServices")
+    @Expose
+    private List<AdditionalService> additionalServices;
+
 
     public CarService() {
 
@@ -127,5 +134,11 @@ public class CarService implements Serializable {
         this.landlinePhone = landlinePhone;
     }
 
+    public List<AdditionalService> getAdditionalServices() {
+        return additionalServices;
+    }
 
+    public void setAdditionalServices(List<AdditionalService> additionalServices) {
+        this.additionalServices = additionalServices;
+    }
 }

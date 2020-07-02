@@ -11,6 +11,7 @@ import android.widget.TextView;
 
 import com.example.findacar.R;
 import com.example.findacar.activites.VehicleActivity;
+import com.example.findacar.model.AdditionalService;
 import com.example.findacar.model.CarService;
 import com.example.findacar.modelDTO.SearchVehiclesDTO;
 import com.example.findacar.model.Vehicle;
@@ -23,11 +24,12 @@ public class VehiclesAdapter extends BaseAdapter {
 
     public Activity activity;
     public List<Vehicle> vehicles;
+    public List<AdditionalService> additionalServices;
     String pickupDateTime;
     String returnDateTime;
-    public static final String SERVICE_API_PATH = "";
+    //public static final String SERVICE_API_PATH = "";
     //public static final String SERVICE_API_PATH = "http://192.168.0.26:8057/";
-    //public static final String SERVICE_API_PATH = "http://192.168.0.15:8057/";
+    public static final String SERVICE_API_PATH = "http://192.168.0.15:8057/";
 
     public VehiclesAdapter(Activity activity, List<Vehicle> vehicles){
         this.activity = activity;
@@ -36,6 +38,8 @@ public class VehiclesAdapter extends BaseAdapter {
         SearchVehiclesDTO searchVehiclesDTO = (SearchVehiclesDTO) intent.getSerializableExtra("searchForVehicles");
         pickupDateTime = searchVehiclesDTO.getPickUpDate();
         returnDateTime = searchVehiclesDTO.getReturnDate();
+        CarService s = (CarService) intent.getSerializableExtra("carService");
+        additionalServices = s.getAdditionalServices();
 
     }
 
@@ -103,6 +107,7 @@ public class VehiclesAdapter extends BaseAdapter {
                 intent.putExtra("returnDateTime", returnDateTime);
                 intent.putExtra("carService", (Serializable) carService);
                 intent.putExtra("email", email);
+                intent.putExtra("addServices", (Serializable) additionalServices);
                 activity.startActivity(intent);
             }
         });
