@@ -85,4 +85,7 @@
         <item>Da</item>
     </string-array>
 
+    <string name="set_radius">Podesavanje radijusa</string>
+
+
 </resources>

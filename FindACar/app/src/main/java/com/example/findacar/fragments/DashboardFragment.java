@@ -168,8 +168,9 @@ public class DashboardFragment extends Fragment {
 
                                         distance = currentLocation.distanceTo(tempLocation);
                                         Log.i("Mapa", "razdaljinaaaaaaaaaaa je: " + distance);
+                                        Log.i("Mapa", "trenutni radius je: " + DashboardActivity.currentRadius);
 
-                                        if (distance / 1000 > 2) {
+                                        if (distance / 1000 > DashboardActivity.currentRadius) {
                                             //outside radius area, remove from list
                                             list.remove(list.get(i));
                                         }
