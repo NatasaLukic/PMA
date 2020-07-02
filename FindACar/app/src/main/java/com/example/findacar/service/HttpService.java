@@ -70,11 +70,9 @@ public interface HttpService {
     @POST("/sync/check")
     Call<List<SyncResponseDTO>> checkSync(@Body List<SyncRequestDTO> vehicles);
 
-<<<<<<< HEAD
     @POST("user/auth/changePassword/{email}")
     Call<ResponseBody> changePassword(@Path("email") String email, @Body ChangePasswordDTO changePasswordDTO);
-=======
+    
     @DELETE("/user/{email}/favorite-vehicles/{vehicleId}")
     Call<ResponseBody> removeVehicleFromFavorites(@Path("email") String email, @Path("vehicleId") long vehicleId);
->>>>>>> 121f7c47f850a1ee85b7d1480c9fa272a9e504dd
 }
