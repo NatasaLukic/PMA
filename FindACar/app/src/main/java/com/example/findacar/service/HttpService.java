@@ -1,6 +1,7 @@
 package com.example.findacar.service;
 
 import com.example.findacar.model.CarService;
+import com.example.findacar.modelDTO.ChangePasswordDTO;
 import com.example.findacar.modelDTO.CreateReservationDTO;
 import com.example.findacar.modelDTO.LogInDTO;
 import com.example.findacar.modelDTO.RegisterDTO;
@@ -69,6 +70,9 @@ public interface HttpService {
     @POST("/sync/check")
     Call<List<SyncResponseDTO>> checkSync(@Body List<SyncRequestDTO> vehicles);
 
+    @POST("user/auth/changePassword/{email}")
+    Call<ResponseBody> changePassword(@Path("email") String email, @Body ChangePasswordDTO changePasswordDTO);
+    
     @DELETE("/user/{email}/favorite-vehicles/{vehicleId}")
     Call<ResponseBody> removeVehicleFromFavorites(@Path("email") String email, @Path("vehicleId") long vehicleId);
 }
