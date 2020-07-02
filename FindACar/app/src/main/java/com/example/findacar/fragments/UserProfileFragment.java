@@ -19,6 +19,7 @@ public class UserProfileFragment extends Fragment {
     private Button btnEditProfile;
     private Button btnChangePassword;
     private View view;
+    private String email;
 
     public UserProfileFragment() {
         // Required empty public constructor
@@ -27,12 +28,15 @@ public class UserProfileFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         super.onCreateView(inflater, container, savedInstanceState);
+        email = getActivity().getIntent().getStringExtra("user");
+
         view = inflater.inflate(R.layout.fragment_user_profile, container, false);
 
         btnChangePassword = (Button)  view.findViewById(R.id.btnChangePass);
         btnChangePassword.setOnClickListener(new View.OnClickListener() {
             public void onClick(View view) {
                 Intent intent = new Intent(getActivity(), ChangePasswordActivity.class);
+                intent.putExtra("user", email);
                 startActivity(intent);
             }
         });
