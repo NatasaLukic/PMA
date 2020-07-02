@@ -55,7 +55,7 @@ public interface HttpService {
     Call<List<Reservation>> getUserReservations(@Path("email")String email);
 
     @POST("reviews/add")
-    Call<ResponseBody> addReview(@Body CreateReviewDTO commentDTO);
+    Call<List<Reservation>> addReview(@Body CreateReviewDTO commentDTO);
 
     @GET("/user/res/cancelRes/{id}")
     Call<ResponseBody> cancelRes(@Path("id") long id);
