@@ -88,7 +88,7 @@ public class ServiceRatingFragment extends DialogFragment {
     @Override
     public void onAttach(@NonNull Context context) {
         super.onAttach(context);
-        reservationsHelper = (IReservationsHelper)context;
+      //  reservationsHelper = (IReservationsHelper)context;
     }
 
     @Override

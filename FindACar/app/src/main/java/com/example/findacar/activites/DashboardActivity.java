@@ -52,7 +52,7 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class DashboardActivity extends AppCompatActivity implements IReservationsHelper, NavigationView.OnNavigationItemSelectedListener {
+public class DashboardActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
     public static final int TYPE_WIFI = 1;
     public static final int TYPE_MOBILE = 2;
@@ -66,8 +66,6 @@ public class DashboardActivity extends AppCompatActivity implements IReservation
 
     private DrawerLayout drawer;
     public NavigationView navigationView;
-    public List<Reservation> prev = new ArrayList<Reservation>();
-    public List<Reservation> active = new ArrayList<Reservation>();
     public String email;
     public UserDatabase userDatabase;
     public List<VehicleWithReviews> vehiclesWithReviews;
@@ -90,7 +88,6 @@ public class DashboardActivity extends AppCompatActivity implements IReservation
         super.onCreate(savedInstanceState);
         loadLanguage();
         email = getIntent().getStringExtra("user");
-        getData(email);
         setContentView(R.layout.activity_dashboard);
 
         Toolbar toolbar = findViewById(R.id.toolbar);
@@ -274,43 +271,8 @@ public class DashboardActivity extends AppCompatActivity implements IReservation
         finish();
     }
 
-    private void getData(String userEmail) {
-        Call<List<Reservation>> call = ServiceUtils.findACarService.getUserReservations(userEmail);
 
-        call.enqueue(new Callback<List<Reservation>>() {
-            @Override
-            public void onResponse(Call<List<Reservation>> call, Response<List<Reservation>> response) {
 
-                if (response.isSuccessful()) {
-                    List<Reservation> res = response.body();
-
-                    for (Reservation r : res) {
-                        if (checkDate(r) == true) {
-                            active.add(r);
-                        } else {
-                            prev.add(r);
-                        }
-                    }
-                }
-            }
-
-            @Override
-            public void onFailure(Call<List<Reservation>> call, Throwable t) {
-                System.out.println("aaaaaaaaaaaaaaa");
-                Log.e("ERROR", t.getMessage());
-            }
-        });
-
-    }
-
-    public boolean checkDate(Reservation r) {
-
-        if (new Date().after(r.getReturnDate())) {
-            return false;
-        } else {
-            return true;
-        }
-    }
 
     public void showSettingsChangeDialog() {
         final String[] listItems = {"1km", "3km", "5km", "7km", "9km"};
@@ -347,17 +309,6 @@ public class DashboardActivity extends AppCompatActivity implements IReservation
 
         AlertDialog mDialog = radiusBuilder.create();
         mDialog.show();
-    }
-
-
-    @Override
-    public List<Reservation> getPrevious() {
-        return prev;
-    }
-
-    @Override
-    public List<Reservation> getCurrent() {
-        return active;
     }
 
 }
