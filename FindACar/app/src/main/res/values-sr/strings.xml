@@ -86,6 +86,8 @@
     </string-array>
 
     <string name="set_radius">Podesavanje radijusa</string>
+    <string name="gps_network_not_enabled">Ukljucite pristup lokaciji</string>
+    <string name="open_location_settings">Podesavanja</string>
 
 
 </resources>
