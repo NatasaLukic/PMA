@@ -28,11 +28,21 @@ public abstract class UserDao {
     @Update
     public abstract void update(Vehicle vehicle);
 
+    @Delete
+    public abstract void delete(Vehicle vehicle);
+
     @Insert
     public abstract void insertAll(List<Review> reviews);
 
     @Insert
     public abstract void insert(UserVehicleCrossRef userVehicleCrossRef);
+
+    @Delete
+    public abstract void delete(UserVehicleCrossRef userVehicleCrossRef);
+
+    @Query("SELECT * FROM UserVehicleCrossRef WHERE userId=:userId  AND  vehicleId=:vehicleId")
+    public abstract UserVehicleCrossRef findOneByUserIdAndVehicleId(long userId, long vehicleId);
+
 
     @Query("SELECT * FROM user")
     public abstract List<User> getAll();
@@ -52,6 +62,9 @@ public abstract class UserDao {
     public abstract Vehicle getVehicle(long vehicleId);
 
     @Transaction
+    @Query("SELECT * FROM vehicle where id=:id")
+    public abstract Vehicle getVehicleByServerId(long id);
+    @Transaction
     @Query("SELECT * FROM vehicle where vehicleId=:vehicleId")
     public abstract VehicleWithReviews getVehicleWithReviews(long vehicleId);
 
@@ -63,6 +76,10 @@ public abstract class UserDao {
 
 
     }
+
+    @Transaction
+    @Query("DELETE FROM review where vehicleOwnerId=:vehicleId")
+    public abstract void deleteReviewsForVehicle(long vehicleId);
 
     public long insertVehicle(Vehicle vehicle) {
 

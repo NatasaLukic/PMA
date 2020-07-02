@@ -12,6 +12,8 @@ import com.example.findacar.database.UserDatabase;
 import com.example.findacar.model.AdditionalService;
 import com.example.findacar.model.CarService;
 import com.example.findacar.model.UserVehicleCrossRef;
+import com.example.findacar.model.UserWithVehiclesAndReviews;
+import com.example.findacar.model.VehicleWithReviews;
 import com.example.findacar.modelDTO.CreateReservationDTO;
 import com.example.findacar.model.Review;
 import com.example.findacar.model.Vehicle;
@@ -46,11 +48,16 @@ public class VehicleActivity extends AppCompatActivity {
     private Vehicle vehicle;
     private CreateReservationDTO reservation = new CreateReservationDTO();
     private UserDatabase userDatabase;
+    ImageView notClickedImage;
+    ImageView clickedImage;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_vehicle);
+
+        notClickedImage = (ImageView) findViewById(R.id.notClickedImage);
+        clickedImage = (ImageView) findViewById(R.id.clickedImage);
 
         userDatabase = UserDatabase.getInstance(this);
         Toolbar toolbar = findViewById(R.id.toolbar);
@@ -70,12 +77,12 @@ public class VehicleActivity extends AppCompatActivity {
         call1.enqueue(new Callback<List<Review>>() {
             @Override
             public void onResponse(Call<List<Review>> call, Response<List<Review>> response) {
-                if(response.isSuccessful()){
+                if (response.isSuccessful()) {
 
                     response.body();
                     List<Review> reviews = response.body();
 
-                    for(Review review: reviews){
+                    for (Review review : reviews) {
                         review.setNameUser(review.getNameUser());
                     }
                     vehicle.setReviews(reviews);
@@ -111,65 +118,96 @@ public class VehicleActivity extends AppCompatActivity {
             }
         });
 
-
-        final ImageView notClickedImage = (ImageView) findViewById(R.id.notClickedImage);
-        final ImageView clickedImage = (ImageView) findViewById(R.id.clickedImage);
-
         notClickedImage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
-                notClickedImage.setVisibility(View.GONE);
-                clickedImage.setVisibility(View.VISIBLE);
-
-                Call<ResponseBody> call = ServiceUtils.findACarService
-                        .addFavorite(getIntent().getStringExtra("email"), vehicle.getId());
-
-                call.enqueue(new Callback<ResponseBody>() {
-                    @Override
-                    public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
-
-                        if(response.isSuccessful()){
-                            Toast.makeText(VehicleActivity.this, "Added to list of favorites", Toast.LENGTH_SHORT);
-
-
-                            String email = getIntent().getStringExtra("email");
-                            long userId = userDatabase.userDao().loadSingleByEmail(email);
-                            long vehicleId = userDatabase.userDao().insertVehicle(vehicle);
-
-                            UserVehicleCrossRef userVehicleCrossRef = new UserVehicleCrossRef();
-                            userVehicleCrossRef.userId = userId;
-                            userVehicleCrossRef.vehicleId = vehicleId;
-                            userDatabase.userDao().insert(userVehicleCrossRef);
-
-                        }
-                    }
-
-                    @Override
-                    public void onFailure(Call<ResponseBody> call, Throwable t) {
-
-                    }
-                });
-
-
-
+                sendAddToFavoritesRequest();
             }
         });
 
         clickedImage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                sendRemoveFromFavoritesRequest();
+            }
+        });
 
-                notClickedImage.setVisibility(View.VISIBLE);
-                clickedImage.setVisibility(View.GONE);
 
+    }
+
+    private void sendAddToFavoritesRequest() {
+        Call<ResponseBody> call = ServiceUtils.findACarService
+                .addFavorite(getIntent().getStringExtra("email"), vehicle.getId());
+
+        call.enqueue(new Callback<ResponseBody>() {
+            @Override
+            public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
+
+                if (response.isSuccessful()) {
+                    Toast.makeText(VehicleActivity.this, "Added to list of favorites", Toast.LENGTH_SHORT);
+                    String email = getIntent().getStringExtra("email");
+                    long userId = userDatabase.userDao().loadSingleByEmail(email);
+                    long vehicleId = userDatabase.userDao().insertVehicle(vehicle);
+
+                    UserVehicleCrossRef userVehicleCrossRef = new UserVehicleCrossRef();
+                    userVehicleCrossRef.userId = userId;
+                    userVehicleCrossRef.vehicleId = vehicleId;
+                    userDatabase.userDao().insert(userVehicleCrossRef);
+                    notClickedImage.setVisibility(View.GONE);
+                    clickedImage.setVisibility(View.VISIBLE);
+
+                } else {
+                    Toast.makeText(VehicleActivity.this, "Could not add vehicle to list of favorites", Toast.LENGTH_SHORT);
+                }
+            }
+
+            @Override
+            public void onFailure(Call<ResponseBody> call, Throwable t) {
+                Toast.makeText(VehicleActivity.this, "Could not add vehicle to list of favorites", Toast.LENGTH_SHORT);
+            }
+        });
+    }
+
+    private void sendRemoveFromFavoritesRequest() {
+        Call<ResponseBody> call = ServiceUtils.findACarService
+                .removeVehicleFromFavorites(getIntent().getStringExtra("email"), vehicle.getId());
+        call.enqueue(new Callback<ResponseBody>() {
+            @Override
+            public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
+
+                if (response.isSuccessful()) {
+                    String email = getIntent().getStringExtra("email");
+                    long userId = userDatabase.userDao().loadSingleByEmail(email);
+                    Vehicle dbVehicle = userDatabase.userDao().getVehicleByServerId(vehicle.getId());
+                    if (dbVehicle != null) {
+                        long vehicleId = dbVehicle.getVehicleId();
+                        userDatabase.userDao().delete(vehicle);
+
+                        UserVehicleCrossRef temp = userDatabase.userDao().findOneByUserIdAndVehicleId(userId, vehicleId);
+                        userDatabase.userDao().delete(temp);
+                        userDatabase.userDao().deleteReviewsForVehicle(vehicleId);
+
+                        notClickedImage.setVisibility(View.VISIBLE);
+                        clickedImage.setVisibility(View.GONE);
+                        Toast.makeText(VehicleActivity.this, "Removed from list of favorite vehicles.", Toast.LENGTH_SHORT);
+                    }
+
+                } else {
+                    Toast.makeText(VehicleActivity.this, "Could not remove vehicle from list of favorites", Toast.LENGTH_SHORT);
+                }
+            }
+
+            @Override
+            public void onFailure(Call<ResponseBody> call, Throwable t) {
+                Toast.makeText(VehicleActivity.this, "Could not remove vehicle from list of favorites", Toast.LENGTH_SHORT);
             }
         });
 
     }
 
 
-    public void populateVehicleView(){
+
+    public void populateVehicleView() {
 
         TextView name = (TextView) findViewById(R.id.name);
 
@@ -226,6 +264,8 @@ public class VehicleActivity extends AppCompatActivity {
             layout.addView(item);
         }
 
+        setLikePictureForVehicle();
+
         ViewPager vp = findViewById(R.id.slider);
         VehiclePhotosAdapter vpa = new VehiclePhotosAdapter(this, vehicle.getVehiclePhotos());
         vp.setAdapter(vpa);
@@ -257,5 +297,37 @@ public class VehicleActivity extends AppCompatActivity {
 
         name.setText(getIntent().getStringExtra("name"));
     }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        setLikePictureForVehicle();
+    }
+
+    private void setLikePictureForVehicle() {
+        String email = getIntent().getStringExtra("email");
+        long userId = userDatabase.userDao().loadSingleByEmail(email);
+
+        final Vehicle dbVehicle = userDatabase.userDao().getVehicleByServerId(vehicle.getId());
+
+        if (dbVehicle != null) {
+            UserWithVehiclesAndReviews vehicles = userDatabase.userDao().getUserWithVehiclesAndReviews(userId);
+
+            if (vehicles != null && !vehicles.vehiclesWithReviews.isEmpty()) {
+                for (VehicleWithReviews vehicleWithReviews : vehicles.vehiclesWithReviews) {
+                    if (vehicleWithReviews.vehicle.getVehicleId() == dbVehicle.getVehicleId()) {
+                        clickedImage.setVisibility(View.VISIBLE);
+                        notClickedImage.setVisibility(View.GONE);
+                        break;
+                    }
+                }
+
+            } else {
+                clickedImage.setVisibility(View.GONE);
+                notClickedImage.setVisibility(View.VISIBLE);
+            }
+        }
+    }
+
 
 }

@@ -130,7 +130,7 @@ public class SignUpActivity extends AppCompatActivity {
                     Intent intent = new Intent(SignUpActivity.this, LoginActivity.class);
                     startActivity(intent);
                 } else {
-                    Toast.makeText(SignUpActivity.this, "Something went wrong.", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(SignUpActivity.this, "There is already an account with that email address.", Toast.LENGTH_SHORT).show();
                 }
             }
 

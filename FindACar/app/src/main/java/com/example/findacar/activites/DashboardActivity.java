@@ -110,7 +110,7 @@ public class DashboardActivity extends AppCompatActivity implements IReservation
 
 //        System.out.println("Broj u listi " + userWithVehiclesAndReviews.vehiclesWithReviews.size());
 
-        if (userWithVehiclesAndReviews.vehiclesWithReviews.size() > 0){
+        if (userWithVehiclesAndReviews.vehiclesWithReviews.size() > 0) {
 
             alarmManager = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
 
@@ -118,7 +118,7 @@ public class DashboardActivity extends AppCompatActivity implements IReservation
             alarmIntent.putExtra("email", email);
             pendingIntent = PendingIntent.getService(this, 0, alarmIntent, 0);
             alarmManager.setRepeating(AlarmManager.RTC_WAKEUP, System.currentTimeMillis(),
-                    60000*5, pendingIntent); // na 5 min
+                    60000 * 5, pendingIntent); // na 5 min
 
         }
 
@@ -248,7 +248,7 @@ public class DashboardActivity extends AppCompatActivity implements IReservation
     }
 
 
-    public static int getConnectivityStatus(Context context){
+    public static int getConnectivityStatus(Context context) {
 
         ConnectivityManager cm = (ConnectivityManager) context
                 .getSystemService(Context.CONNECTIVITY_SERVICE);
@@ -274,18 +274,18 @@ public class DashboardActivity extends AppCompatActivity implements IReservation
         finish();
     }
 
-    private void getData(String userEmail){
+    private void getData(String userEmail) {
         Call<List<Reservation>> call = ServiceUtils.findACarService.getUserReservations(userEmail);
 
         call.enqueue(new Callback<List<Reservation>>() {
             @Override
             public void onResponse(Call<List<Reservation>> call, Response<List<Reservation>> response) {
 
-                if(response.isSuccessful()){
+                if (response.isSuccessful()) {
                     List<Reservation> res = response.body();
 
-                    for(Reservation r : res){
-                        if(checkDate(r) == true){
+                    for (Reservation r : res) {
+                        if (checkDate(r) == true) {
                             active.add(r);
                         } else {
                             prev.add(r);
@@ -293,6 +293,7 @@ public class DashboardActivity extends AppCompatActivity implements IReservation
                     }
                 }
             }
+
             @Override
             public void onFailure(Call<List<Reservation>> call, Throwable t) {
                 System.out.println("aaaaaaaaaaaaaaa");
@@ -302,7 +303,7 @@ public class DashboardActivity extends AppCompatActivity implements IReservation
 
     }
 
-    public boolean checkDate(Reservation r){
+    public boolean checkDate(Reservation r) {
 
         if (new Date().after(r.getReturnDate())) {
             return false;

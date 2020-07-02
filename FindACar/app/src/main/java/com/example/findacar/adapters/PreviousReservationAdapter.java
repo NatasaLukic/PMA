@@ -115,6 +115,7 @@ public class PreviousReservationAdapter extends BaseAdapter implements PreviousR
                     // Create and show the dialog.
                     DialogFragment newFragment = new ServiceRatingFragment(reservation, email, PreviousReservationAdapter.this, position, finalVi);
                     newFragment.show(ft, "dialog");
+
                 }
             });
 
@@ -143,5 +144,10 @@ public class PreviousReservationAdapter extends BaseAdapter implements PreviousR
         commentText.setVisibility(View.VISIBLE);
     }
 
+    public void setmDataset(List<Reservation> mDataset) {
+        if (mDataset != null){
+            this.mDataset = mDataset;
+        }
 
+    }
 }
