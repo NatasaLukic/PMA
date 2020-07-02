@@ -47,7 +47,7 @@ public class FavoritesReviewListFragment extends ListFragment {
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
 
-        FavoriteReviewAdapter adapter = new FavoriteReviewAdapter(fragment, this.reviews);
+        FavoriteReviewAdapter adapter = new FavoriteReviewAdapter(getActivity(), this.reviews);
         setListAdapter(adapter);
     }
 

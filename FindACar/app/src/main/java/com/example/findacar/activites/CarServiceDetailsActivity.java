@@ -164,19 +164,6 @@ public class CarServiceDetailsActivity extends AppCompatActivity implements Bott
         return true;
     }
 
-
-    public String returnUri(String image, int counter) throws IOException {
-        File f = new File(getCacheDir(), nameOfPhoto + counter);
-
-        FileOutputStream outStream = new FileOutputStream(f);
-        byte[] bytes = Base64.decode(image, Base64.DEFAULT);
-        Bitmap bitmap = BitmapFactory.decodeByteArray(bytes, 0, bytes.length);
-        bitmap.compress(Bitmap.CompressFormat.JPEG, 75, outStream);
-        outStream.close();
-
-        return f.getAbsolutePath();
-    }
-
     @Override
     public void filterList(FilterVehicles filterVehicles) {
         ArrayList<Vehicle> filtered = new ArrayList<>();

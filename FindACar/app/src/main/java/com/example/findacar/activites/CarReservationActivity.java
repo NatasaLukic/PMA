@@ -4,17 +4,30 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
+import android.view.Gravity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.ListAdapter;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.findacar.R;
+import com.example.findacar.adapters.AdditionalServicesAdapter;
+import com.example.findacar.adapters.AdditionalServicesReservationAdapter;
+import com.example.findacar.model.AdditionalService;
 import com.example.findacar.model.CarService;
 import com.example.findacar.modelDTO.CreateReservationDTO;
 import com.example.findacar.service.ServiceUtils;
 import com.squareup.picasso.Picasso;
+
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 import okhttp3.ResponseBody;
 import retrofit2.Call;
@@ -53,6 +66,58 @@ public class CarReservationActivity extends AppCompatActivity {
 
         TextView serviceInfo = findViewById(R.id.hint3);
         CarService carService = (CarService) getIntent().getSerializableExtra("carService");
+
+        HashMap<String, Boolean> map = (HashMap<String, Boolean>) getIntent().getSerializableExtra("addServ");
+
+        List<AdditionalService> additionalServices = carService.getAdditionalServices();
+        List<AdditionalService> additionalServicesRes = new ArrayList<AdditionalService>();
+
+       // for (Map.Entry<String, Boolean> entry : map.entrySet()) {
+            //System.out.println(entry.getKey() + "/" + entry.getValue());
+
+        //}
+
+        double total = reservation.getPrice();
+        for(int i=0; i<additionalServices.size(); i++){
+
+             if (map.containsKey(additionalServices.get(i).getName())){
+                 Log.e("POSTOJI", "DA");
+                 additionalServicesRes.add(additionalServices.get(i));
+                 total += additionalServices.get(i).getPrice();
+             } else {
+                 Log.e("POSTOJI", "NE");
+             }
+
+        }
+
+        LinearLayout layout = (LinearLayout) findViewById(R.id.listAdd2);
+
+        Log.i("ADD", String.valueOf(additionalServices.size()));
+
+        RelativeLayout add= (RelativeLayout) findViewById(R.id.additional2);
+        RelativeLayout infoYears = (RelativeLayout) findViewById(R.id.infoYears2);
+
+        if(additionalServices.size() == 0){
+            add.setVisibility(View.GONE);
+            RelativeLayout.LayoutParams lp = (RelativeLayout.LayoutParams) infoYears.getLayoutParams();
+            infoYears.setGravity(Gravity.CENTER_HORIZONTAL);
+            infoYears.getLayoutParams().height = 200;
+            View v = (View) findViewById(R.id.lin22);
+            RelativeLayout.LayoutParams lp2 = (RelativeLayout.LayoutParams) v.getLayoutParams();
+            lp2.addRule(RelativeLayout.BELOW, R.id.infoYears2);
+            v.setLayoutParams(lp2);
+        }
+
+        final ListAdapter adapter = new AdditionalServicesReservationAdapter(CarReservationActivity.this, additionalServicesRes);
+
+        int adapterCount = adapter.getCount();
+
+        for (int i = 0; i < adapterCount; i++) {
+            View item = adapter.getView(i, null, null);
+            layout.addView(item);
+        }
+
+
         serviceInfo.setText(carService.getAddress().getStreet() + ", "  + carService.getAddress().getCity() + " "+ carService.getAddress().getPostalCode() + ", " + carService.getAddress().getCountry()
         + "\n" + carService.getEmail() +", " + carService.getPhone());
 
@@ -62,8 +127,9 @@ public class CarReservationActivity extends AppCompatActivity {
         nDoors.setText(Integer.toString(reservation.getVehicle().getDoors()));
         nSeats.setText(Integer.toString(reservation.getVehicle().getSeats()));
 
+
         TextView totalCost = findViewById(R.id.totalCost);
-        totalCost.setText(String.valueOf(reservation.getPrice()) + " RSD");
+        totalCost.setText(String.valueOf(total) + " RSD");
 
         ImageView airC = (ImageView) findViewById(R.id.airC);
         TextView airC_text = (TextView) findViewById(R.id.airC_text);

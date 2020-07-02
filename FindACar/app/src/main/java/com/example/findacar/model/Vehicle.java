@@ -114,8 +114,6 @@ public class Vehicle implements Serializable {
     @Ignore
     private List<Review> reviews;
 
-
-
     // private ArrayList<Integer> images;
 
 
@@ -289,6 +287,10 @@ public class Vehicle implements Serializable {
 
     public void setVersion(long version) {
         this.version = version;
+    }
+
+    public void setVehiclePhotos(List<VehiclePhoto> vehiclePhotos) {
+        this.vehiclePhotos = vehiclePhotos;
     }
 }
 

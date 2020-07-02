@@ -304,20 +304,9 @@
 
             <RelativeLayout
                 android:id="@+id/additional"
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/lin3">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentRight="true"
-                    android:layout_marginTop="20dp"
-                    android:id="@+id/prodYearTxt"
-                    android:textSize="13dp"
-                    android:fontFamily="@font/fjord_one"
-                    android:layout_marginRight="18dp"
-                    android:text="Production year" />
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -330,39 +319,35 @@
                     app:fontFamily="@font/fjord_one"
                     android:text="ADDITIONAL SERVICES"/>
 
+              <LinearLayout
+                  android:id="@+id/listAdd"
+                  android:layout_marginLeft="10dp"
+                  android:layout_marginBottom="25dp"
+                  android:layout_marginTop="5dp"
+                  android:orientation="vertical"
+                  android:layout_width="wrap_content"
+                  android:layout_below="@id/addServText"
+                  android:layout_height="wrap_content"/>
 
-                <CheckBox
-                    android:layout_width="wrap_content"
-                    android:id="@+id/checkChild"
-                    android:layout_marginTop="5dp"
-                    android:layout_below="@id/addServText"
-                    android:layout_marginLeft="15dp"
-                    android:layout_height="wrap_content"/>
 
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/infoYears"
+                android:layout_width="wrap_content"
+                android:layout_height="150dp"
+                android:layout_below="@id/lin3"
+                android:layout_toRightOf="@id/additional">
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="7dp"
-                    android:layout_marginTop="10dp"
-                    android:layout_below="@id/addServText"
-                    android:layout_toRightOf="@id/checkChild"
-                    android:text="Children seat" />
-
-                <CheckBox
-                    android:layout_width="wrap_content"
-                    android:layout_below="@id/checkChild"
-                    android:id="@+id/gpsNav"
-                    android:layout_marginLeft="15dp"
-                    android:layout_height="wrap_content"/>
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="7dp"
-                    android:layout_marginTop="5dp"
-                    android:layout_toRightOf="@id/gpsNav"
-                    android:layout_below="@id/checkChild"
-                    android:text="GPS navigation" />
+                    android:layout_alignParentRight="true"
+                    android:layout_marginTop="20dp"
+                    android:id="@+id/prodYearTxt"
+                    android:textSize="13dp"
+                    android:fontFamily="@font/fjord_one"
+                    android:layout_marginRight="18dp"
+                    android:text="Production year" />
 
                 <TextView
                     android:id="@+id/yearOfProd"
