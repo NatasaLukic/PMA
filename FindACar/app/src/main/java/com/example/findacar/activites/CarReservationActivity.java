@@ -36,8 +36,6 @@ import retrofit2.Response;
 
 public class CarReservationActivity extends AppCompatActivity {
     private CreateReservationDTO reservation;
-    //public static final String SERVICE_API_PATH = "http://192.168.0.35:8057/";
-    public static final String SERVICE_API_PATH = "http://192.168.0.15:8057/";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -90,14 +88,13 @@ public class CarReservationActivity extends AppCompatActivity {
 
         }
 
-        LinearLayout layout = (LinearLayout) findViewById(R.id.listAdd2);
-
         Log.i("ADD", String.valueOf(additionalServices.size()));
 
+        LinearLayout layout = (LinearLayout) findViewById(R.id.listAdd2);
         RelativeLayout add= (RelativeLayout) findViewById(R.id.additional2);
         RelativeLayout infoYears = (RelativeLayout) findViewById(R.id.infoYears2);
 
-        if(additionalServices.size() == 0){
+        if(additionalServicesRes.size() == 0){
             add.setVisibility(View.GONE);
             RelativeLayout.LayoutParams lp = (RelativeLayout.LayoutParams) infoYears.getLayoutParams();
             infoYears.setGravity(Gravity.CENTER_HORIZONTAL);
@@ -191,7 +188,7 @@ public class CarReservationActivity extends AppCompatActivity {
         ImageView image = (ImageView)findViewById(R.id.slider);
         String m = reservation.getVehicle().getImageFile();
 
-        Picasso.get().load(SERVICE_API_PATH + "search/getImage/" +m)
+        Picasso.get().load(ServiceUtils.SERVICE_API_PATH + "search/getImage/" +m)
                 .resize(300,300).into(image);
     }
 }

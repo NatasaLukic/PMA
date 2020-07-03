@@ -11,6 +11,11 @@
         android:theme="@style/AppTheme">
 
         <service android:name="com.example.findacar.service.SyncService" />
+        <receiver android:name=".service.ConnectionReceiver">
+            <intent-filter>
+                <action android:name="android.net.conn.CONNECTIVITY_CHANGE"/>
+            </intent-filter>
+        </receiver>
 
         <activity android:name=".activites.MapsActivity"/>
         <activity android:name=".activites.CarReservationActivity"/>
@@ -62,5 +67,7 @@
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE"/>
+    <uses-permission android:name="android.permission.CHANGE_NETWORK_STATE"/>
     <uses-permission android:name="com.google.android.c2dm.permission.RECEIVE" />
 </manifest>

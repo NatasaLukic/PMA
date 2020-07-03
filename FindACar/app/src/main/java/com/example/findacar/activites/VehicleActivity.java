@@ -17,6 +17,7 @@ import com.example.findacar.model.VehicleWithReviews;
 import com.example.findacar.modelDTO.CreateReservationDTO;
 import com.example.findacar.model.Review;
 import com.example.findacar.model.Vehicle;
+import com.example.findacar.service.NetworkUtils;
 import com.example.findacar.service.ServiceUtils;
 
 import android.content.Intent;
@@ -209,7 +210,7 @@ public class VehicleActivity extends AppCompatActivity {
 
     public void populateVehicleView() {
 
-        TextView name = (TextView) findViewById(R.id.name);
+        final TextView name = (TextView) findViewById(R.id.name);
 
         TextView date = (TextView) findViewById(R.id.reg);
         TextView nDoors = (TextView) findViewById(R.id.numOfDoors);
@@ -230,10 +231,10 @@ public class VehicleActivity extends AppCompatActivity {
         nDoors.setText(Integer.toString(vehicle.getDoors()));
         nSeats.setText(Integer.toString(vehicle.getSeats()));
 
-        ImageView airC = (ImageView) findViewById(R.id.airC);
-        TextView airC_text = (TextView) findViewById(R.id.airC_text);
+        final ImageView airC = (ImageView) findViewById(R.id.airC);
+        final TextView airC_text = (TextView) findViewById(R.id.airC_text);
 
-        TextView auto_text = (TextView) findViewById(R.id.auto_text);
+        final TextView auto_text = (TextView) findViewById(R.id.auto_text);
 
         List<AdditionalService> additionalServices = (List<AdditionalService>) getIntent().getSerializableExtra("addServices");
 
@@ -273,14 +274,25 @@ public class VehicleActivity extends AppCompatActivity {
         Button btnBook = findViewById(R.id.book);
         btnBook.setOnClickListener(new View.OnClickListener(){
 
+
             @Override
             public void onClick(View v) {
-                CarService carService = (CarService) getIntent().getSerializableExtra("carService");
-                Intent intent = new Intent(VehicleActivity.this, CarReservationActivity.class);
-                intent.putExtra("carService", (Serializable) carService);
-                intent.putExtra("reservation", (Serializable) reservation);
-                intent.putExtra("addServ", ((AdditionalServicesAdapter) adapter).getAdditional());
-                VehicleActivity.this.startActivity(intent);
+                int status = NetworkUtils.getConnectivityStatus(VehicleActivity.this);
+
+                if(status == NetworkUtils.TYPE_WIFI || status == NetworkUtils.TYPE_MOBILE) {
+
+                    CarService carService = (CarService) getIntent().getSerializableExtra("carService");
+
+                    Intent intent = new Intent(VehicleActivity.this, CarReservationActivity.class);
+                    intent.putExtra("carService", (Serializable) carService);
+                    intent.putExtra("reservation", (Serializable) reservation);
+                    intent.putExtra("addServ", ((AdditionalServicesAdapter) adapter).getAdditional());
+                    startActivity(intent);
+                } else {
+                    Toast.makeText(VehicleActivity.this,
+                            NetworkUtils.getConnectivityStatusString(VehicleActivity.this),
+                            Toast.LENGTH_SHORT).show();
+                }
             }
         });
 

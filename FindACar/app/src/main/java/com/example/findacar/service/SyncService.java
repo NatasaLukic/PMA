@@ -13,7 +13,6 @@ import com.example.findacar.activites.DashboardActivity;
 import com.example.findacar.database.UserDatabase;
 import com.example.findacar.model.Review;
 import com.example.findacar.model.UserWithVehiclesAndReviews;
-import com.example.findacar.model.Vehicle;
 import com.example.findacar.model.VehicleWithReviews;
 import com.example.findacar.modelDTO.SyncRequestDTO;
 import com.example.findacar.modelDTO.SyncResponseDTO;
@@ -21,7 +20,6 @@ import com.example.findacar.modelDTO.SyncResponseDTO;
 import java.util.ArrayList;
 import java.util.List;
 
-import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -36,10 +34,10 @@ public class SyncService extends Service {
 
 
         Intent ints = new Intent(DashboardActivity.SYNC_DATA);
-        int status = DashboardActivity.getConnectivityStatus(getApplicationContext());
+        int status = NetworkUtils.getConnectivityStatus(getApplicationContext());
         ints.putExtra(RESULT_CODE, status);
 
-        if(status == DashboardActivity.TYPE_WIFI){
+        if(status == NetworkUtils.TYPE_WIFI || status == NetworkUtils.TYPE_MOBILE){
 
             userDatabase = UserDatabase.getInstance(getApplicationContext());
             List<SyncRequestDTO> checks = getVehicles();

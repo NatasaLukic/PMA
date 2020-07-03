@@ -8,13 +8,16 @@ import android.widget.BaseAdapter;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.findacar.R;
+import com.example.findacar.activites.DashboardActivity;
 import com.example.findacar.activites.VehicleActivity;
 import com.example.findacar.model.AdditionalService;
 import com.example.findacar.model.CarService;
 import com.example.findacar.modelDTO.SearchVehiclesDTO;
 import com.example.findacar.model.Vehicle;
+import com.example.findacar.service.NetworkUtils;
 import com.example.findacar.service.ServiceUtils;
 import com.squareup.picasso.Picasso;
 
@@ -96,23 +99,30 @@ public class VehiclesAdapter extends BaseAdapter {
 
             @Override
             public void onClick(View v) {
-                CarService carService = (CarService) activity.getIntent().getSerializableExtra("carService");
-                String email = activity.getIntent().getStringExtra("email");
 
-                Intent intent = new Intent(activity, VehicleActivity.class);
-                intent.putExtra("vehicle", (Serializable) vehicle);
-                intent.putExtra("pickupDateTime", pickupDateTime);
-                intent.putExtra("returnDateTime", returnDateTime);
-                intent.putExtra("carService", (Serializable) carService);
-                intent.putExtra("email", email);
-                intent.putExtra("addServices", (Serializable) additionalServices);
-                activity.startActivity(intent);
+                int status = NetworkUtils.getConnectivityStatus(activity);
+
+                if(status == NetworkUtils.TYPE_WIFI || status == NetworkUtils.TYPE_MOBILE) {
+                    CarService carService = (CarService) activity.getIntent().getSerializableExtra("carService");
+                    String email = activity.getIntent().getStringExtra("email");
+
+                    Intent intent = new Intent(activity, VehicleActivity.class);
+                    intent.putExtra("vehicle", (Serializable) vehicle);
+                    intent.putExtra("pickupDateTime", pickupDateTime);
+                    intent.putExtra("returnDateTime", returnDateTime);
+                    intent.putExtra("carService", (Serializable) carService);
+                    intent.putExtra("email", email);
+                    intent.putExtra("addServices", (Serializable) additionalServices);
+                    activity.startActivity(intent);
+                } else {
+                    Toast.makeText(activity, NetworkUtils.getConnectivityStatusString(activity), Toast.LENGTH_SHORT).show();
+                }
             }
         });
 
         String m = vehicle.getImageFile();
 
-        Picasso.get().setIndicatorsEnabled(true);
+        //Picasso.get().setIndicatorsEnabled(true);
         Picasso.get().load(ServiceUtils.SERVICE_API_PATH + "search/getImage/" +m)
                 .resize(300,300).into(image);
 

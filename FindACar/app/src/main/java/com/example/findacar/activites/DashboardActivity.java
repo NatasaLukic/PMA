@@ -14,10 +14,12 @@ import android.app.PendingIntent;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.content.SharedPreferences;
 import android.content.res.Configuration;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
+import android.net.wifi.WifiManager;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.util.Log;
@@ -35,6 +37,7 @@ import com.example.findacar.model.Reservation;
 import com.example.findacar.model.User;
 import com.example.findacar.model.UserWithVehiclesAndReviews;
 import com.example.findacar.model.VehicleWithReviews;
+import com.example.findacar.service.ConnectionReceiver;
 import com.example.findacar.service.ServiceUtils;
 import com.example.findacar.service.SyncService;
 import com.example.findacar.service.SessionService;
@@ -57,10 +60,6 @@ import retrofit2.Response;
 
 public class DashboardActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
-    public static final int TYPE_WIFI = 1;
-    public static final int TYPE_MOBILE = 2;
-    public static final int TYPE_NOT_CONNECTED = 0;
-
     public static String SYNC_DATA = "SYNC_DATA";
 
     private static int checkedLanguage = 0;
@@ -76,6 +75,8 @@ public class DashboardActivity extends AppCompatActivity implements NavigationVi
 
     private PendingIntent pendingIntent;
     private AlarmManager alarmManager;
+
+    private ConnectionReceiver connectionReceiver;
 
 
     public String getEmail() {
@@ -256,25 +257,6 @@ public class DashboardActivity extends AppCompatActivity implements NavigationVi
         mDialog.show();
     }
 
-
-    public static int getConnectivityStatus(Context context) {
-
-        ConnectivityManager cm = (ConnectivityManager) context
-                .getSystemService(Context.CONNECTIVITY_SERVICE);
-
-        NetworkInfo activeNetwork = cm.getActiveNetworkInfo();
-        if (null != activeNetwork) {
-            if (activeNetwork.getType() == ConnectivityManager.TYPE_WIFI)
-                return TYPE_WIFI;
-
-            if (activeNetwork.getType() == ConnectivityManager.TYPE_MOBILE)
-                return TYPE_MOBILE;
-        }
-
-        return TYPE_NOT_CONNECTED;
-    }
-
-
     private void logOut() {
         sessionService.remove(SessionService.EMAIL);
         sessionService.remove(SessionService.LOGGED_IN_PREF);
@@ -322,5 +304,15 @@ public class DashboardActivity extends AppCompatActivity implements NavigationVi
         AlertDialog mDialog = radiusBuilder.create();
         mDialog.show();
     }
+
+    @Override
+    protected void onStart(){
+        IntentFilter intentFilter = new IntentFilter();
+        intentFilter.addAction("android.net.conn.CONNECTIVITY_CHANGE");
+        connectionReceiver = new ConnectionReceiver(this);
+        registerReceiver(connectionReceiver, intentFilter);
+        super.onStart();
+    }
+
 
 }

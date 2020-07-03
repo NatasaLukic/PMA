@@ -41,6 +41,7 @@ import com.example.findacar.activites.SearchResultsActivity;
 import com.example.findacar.adapters.SpinnerForSearchAdapter;
 import com.example.findacar.model.CarService;
 import com.example.findacar.modelDTO.SearchDTO;
+import com.example.findacar.service.NetworkUtils;
 import com.example.findacar.service.ServiceUtils;
 import com.google.android.gms.location.FusedLocationProviderClient;
 import com.google.android.gms.location.LocationServices;
@@ -347,9 +348,9 @@ public class DashboardFragment extends Fragment {
         SearchDTO searchDTO = new SearchDTO(place, datepickUp + " " + timePickUp,
                 dateReturn + " " + timeReturn);
 
-        int status = DashboardActivity.getConnectivityStatus(getContext());
+        int status = NetworkUtils.getConnectivityStatus(getContext());
 
-        if(status == DashboardActivity.TYPE_WIFI) {
+        if(status == NetworkUtils.TYPE_WIFI || status == NetworkUtils.TYPE_MOBILE) {
 
             Call<List<CarService>> call = ServiceUtils.findACarService.searchCity(searchDTO);
             call.enqueue(new Callback<List<CarService>>() {
@@ -403,7 +404,7 @@ public class DashboardFragment extends Fragment {
                 }
             });
         } else {
-            Toast.makeText(getContext(), "No connection!", Toast.LENGTH_SHORT).show();
+            Toast.makeText(getContext(), NetworkUtils.getConnectivityStatusString(getActivity()), Toast.LENGTH_SHORT).show();
         }
     }
 }

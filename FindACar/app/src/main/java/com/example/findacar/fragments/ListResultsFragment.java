@@ -11,12 +11,15 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import com.example.findacar.R;
 import com.example.findacar.activites.CarServiceDetailsActivity;
+import com.example.findacar.activites.DashboardActivity;
 import com.example.findacar.adapters.CarServicesAdapter;
 import com.example.findacar.model.CarService;
 import com.example.findacar.modelDTO.SearchVehiclesDTO;
+import com.example.findacar.service.NetworkUtils;
 
 import java.io.Serializable;
 import java.util.List;
@@ -27,6 +30,7 @@ import java.util.List;
 public class ListResultsFragment extends ListFragment {
 
     private List<CarService> list;
+    private int status;
 
     public ListResultsFragment() {
         // Required empty public constructor
@@ -47,6 +51,8 @@ public class ListResultsFragment extends ListFragment {
     public void onListItemClick(ListView l, View v, int position, long id) {
         super.onListItemClick(l, v, position, id);
 
+        status = NetworkUtils.getConnectivityStatus(getActivity());
+
         System.out.println("asdasdsad");
 
         final CarService carService = this.list.get(position);
@@ -61,14 +67,20 @@ public class ListResultsFragment extends ListFragment {
         searchVehiclesDTO.setReturnDate(intent.getStringExtra("return"));
         String email = getActivity().getIntent().getStringExtra("email");
 
-        Intent intent1 = new Intent(getActivity(), CarServiceDetailsActivity.class);
-        intent1.putExtra("searchForVehicles", (Serializable) searchVehiclesDTO);
-
-        intent1.putExtra("carService", (Serializable) carService);
-        intent1.putExtra("email", email);
-        startActivity(intent1);
+        if(status == NetworkUtils.TYPE_MOBILE || status == NetworkUtils.TYPE_WIFI) {
 
 
+            Intent intent1 = new Intent(getActivity(), CarServiceDetailsActivity.class);
+            intent1.putExtra("searchForVehicles", (Serializable) searchVehiclesDTO);
+
+            intent1.putExtra("carService", (Serializable) carService);
+            intent1.putExtra("email", email);
+            startActivity(intent1);
+
+        } else {
+            Toast.makeText(getContext(), NetworkUtils.getConnectivityStatusString(getActivity()), Toast.LENGTH_SHORT).show();
+
+        }
     }
 
     @Override
