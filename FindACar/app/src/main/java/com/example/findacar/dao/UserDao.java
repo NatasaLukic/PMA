@@ -53,6 +53,9 @@ public abstract class UserDao {
     @Query("SELECT firstName FROM user WHERE email=:email ")
     public abstract String loadSingle(String email);
 
+    @Query("SELECT lastName FROM user WHERE email=:email ")
+    public abstract String loadSingleLastName(String email);
+
     @Transaction
     @Query("SELECT * FROM user where userId=:userId")
     public abstract UserWithVehiclesAndReviews getUserWithVehiclesAndReviews(long userId);

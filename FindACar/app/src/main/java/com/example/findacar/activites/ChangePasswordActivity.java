@@ -1,6 +1,7 @@
 package com.example.findacar.activites;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.Fragment;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -10,6 +11,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.findacar.R;
+import com.example.findacar.fragments.UserProfileFragment;
 import com.example.findacar.modelDTO.ChangePasswordDTO;
 import com.example.findacar.service.ServiceUtils;
 
@@ -47,6 +49,14 @@ public class ChangePasswordActivity extends AppCompatActivity {
                 validateInput(changePasswordDTO);
             }
         });
+
+        btnCancel.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                getFragmentManager().popBackStackImmediate();
+                finish();
+            }
+        });
     }
 
     private void validateInput(ChangePasswordDTO changePasswordDTO) {
@@ -54,7 +64,7 @@ public class ChangePasswordActivity extends AppCompatActivity {
         View focusView = null;
 
         if (isEmptyOrNull(changePasswordDTO.getOldPassword())) {
-            oldPassword.setError("Email is required");
+            oldPassword.setError("Password is required");
             focusView = oldPassword;
             cancel = true;
         } else if (!isPasswordValid(changePasswordDTO.getOldPassword())) {
@@ -64,7 +74,7 @@ public class ChangePasswordActivity extends AppCompatActivity {
         }
 
         if (isEmptyOrNull(changePasswordDTO.getNewPassword())) {
-            newPassword.setError("Email is required");
+            newPassword.setError("Password is required");
             focusView = newPassword;
             cancel = true;
         } else if (!isPasswordValid(changePasswordDTO.getNewPassword())) {
@@ -74,7 +84,7 @@ public class ChangePasswordActivity extends AppCompatActivity {
         }
 
         if (isEmptyOrNull(changePasswordDTO.getConfirmPassword())) {
-            confirmPassword.setError("Email is required");
+            confirmPassword.setError("Password is required");
             focusView = confirmPassword;
             cancel = true;
         } else if (!isPasswordValid(changePasswordDTO.getConfirmPassword())) {
@@ -97,8 +107,8 @@ public class ChangePasswordActivity extends AppCompatActivity {
             public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
                 if (response.isSuccessful()) {
                     Toast.makeText(ChangePasswordActivity.this, "Success!", Toast.LENGTH_SHORT).show();
-                    Intent intent = new Intent(ChangePasswordActivity.this, DashboardActivity.class);
-                    startActivity(intent);
+                    getFragmentManager().popBackStackImmediate();
+                    finish();
                 } else {
                     Toast.makeText(ChangePasswordActivity.this, "Something went wrong.", Toast.LENGTH_SHORT).show();
                 }

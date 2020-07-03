@@ -50,9 +50,9 @@
                 android:textSize="17dp"
                 android:paddingTop="20dp"/>
             <TextView
+                android:id="@+id/userFirstName"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Pera"
                 android:textSize="17dp"
                 android:textColor="@color/colorDarkGray"
                 android:paddingTop="5dp"/>
@@ -65,9 +65,9 @@
                 android:textSize="17dp"
                 android:paddingTop="20dp"/>
             <TextView
+                android:id="@+id/userLastName"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Peric"
                 android:textSize="17dp"
                 android:textColor="@color/colorDarkGray"
                 android:paddingTop="5dp"/>
@@ -80,9 +80,9 @@
                 android:textSize="17dp"
                 android:paddingTop="20dp"/>
             <TextView
+                android:id="@+id/userEmail"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="pera.peric@gmail.com"
                 android:textSize="17dp"
                 android:textColor="@color/colorDarkGray"
                 android:paddingTop="5dp"/>

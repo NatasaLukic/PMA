@@ -3,6 +3,7 @@ package com.example.findacar.service;
 import com.example.findacar.model.CarService;
 import com.example.findacar.modelDTO.ChangePasswordDTO;
 import com.example.findacar.modelDTO.CreateReservationDTO;
+import com.example.findacar.modelDTO.EditProfileDTO;
 import com.example.findacar.modelDTO.LogInDTO;
 import com.example.findacar.modelDTO.RegisterDTO;
 import com.example.findacar.model.Reservation;
@@ -72,7 +73,10 @@ public interface HttpService {
 
     @POST("user/auth/changePassword/{email}")
     Call<ResponseBody> changePassword(@Path("email") String email, @Body ChangePasswordDTO changePasswordDTO);
-    
+
     @DELETE("/user/{email}/favorite-vehicles/{vehicleId}")
     Call<ResponseBody> removeVehicleFromFavorites(@Path("email") String email, @Path("vehicleId") long vehicleId);
+
+    @POST("user/auth/editProfile/{email}")
+    Call<ResponseBody> editProfile(@Path("email") String email, @Body EditProfileDTO editProfileDTO);
 }

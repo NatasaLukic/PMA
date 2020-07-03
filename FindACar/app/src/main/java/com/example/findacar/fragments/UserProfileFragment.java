@@ -6,12 +6,14 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.TextView;
 
 import androidx.fragment.app.Fragment;
 
 import com.example.findacar.R;
 import com.example.findacar.activites.ChangePasswordActivity;
 import com.example.findacar.activites.EditProfileActivity;
+import com.example.findacar.database.UserDatabase;
 
 
 public class UserProfileFragment extends Fragment {
@@ -20,6 +22,10 @@ public class UserProfileFragment extends Fragment {
     private Button btnChangePassword;
     private View view;
     private String email;
+    private TextView firstName;
+    private TextView lastName;
+    private  TextView userEmail;
+    private UserDatabase db;
 
     public UserProfileFragment() {
         // Required empty public constructor
@@ -31,6 +37,16 @@ public class UserProfileFragment extends Fragment {
         email = getActivity().getIntent().getStringExtra("user");
 
         view = inflater.inflate(R.layout.fragment_user_profile, container, false);
+
+        firstName = (TextView) view.findViewById(R.id.userFirstName);
+        lastName = (TextView) view.findViewById(R.id.userLastName);
+        userEmail = (TextView) view.findViewById(R.id.userEmail);
+        db = UserDatabase.getInstance(getActivity());
+        String  firstNameUser = db.userDao().loadSingle(email);
+        String lastNameUser = db.userDao().loadSingleLastName(email);
+        firstName.setText(firstNameUser);
+        lastName.setText(lastNameUser);
+        userEmail.setText(email);
 
         btnChangePassword = (Button)  view.findViewById(R.id.btnChangePass);
         btnChangePassword.setOnClickListener(new View.OnClickListener() {
@@ -45,6 +61,7 @@ public class UserProfileFragment extends Fragment {
         btnEditProfile.setOnClickListener(new View.OnClickListener() {
             public void onClick(View view) {
                 Intent intent = new Intent(getActivity(), EditProfileActivity.class);
+                intent.putExtra("user", email);
                 startActivity(intent);
             }
         });
