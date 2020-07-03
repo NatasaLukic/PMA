@@ -60,6 +60,7 @@
                 android:layout_marginLeft="5dp"
                 android:layout_marginBottom="5dp"
                 android:layout_gravity="center"
+                android:textColor="@color/colorDarkGray"
                 android:textColorHint="@color/colorPrimary"
                 android:text="Use current location?"/>
 

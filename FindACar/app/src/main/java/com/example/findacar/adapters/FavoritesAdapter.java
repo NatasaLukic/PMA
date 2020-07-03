@@ -26,6 +26,7 @@ import com.example.findacar.fragments.ServiceRatingFragment;
 import com.example.findacar.model.Review;
 import com.example.findacar.model.Vehicle;
 import com.example.findacar.model.VehicleWithReviews;
+import com.example.findacar.service.ServiceUtils;
 import com.squareup.picasso.NetworkPolicy;
 import com.squareup.picasso.Picasso;
 
@@ -36,7 +37,6 @@ public class FavoritesAdapter extends BaseAdapter {
     private ListFragment fragment;
     private Activity activity;
     private List<VehicleWithReviews> vehicles;
-    public static final String SERVICE_API_PATH = "http://192.168.0.15:8057/";
 
     public FavoritesAdapter(){
 
@@ -86,7 +86,7 @@ public class FavoritesAdapter extends BaseAdapter {
         doors.setText(Integer.toString(vehicle.getDoors()));
         type.setText(vehicle.getType());
 
-        Picasso.get().load(SERVICE_API_PATH + "search/getImage/" +vehicle.getImageFile())
+        Picasso.get().load(ServiceUtils.SERVICE_API_PATH + "search/getImage/" +vehicle.getImageFile())
                 .networkPolicy(NetworkPolicy.OFFLINE)
                 .resize(300,300).into(image);
 

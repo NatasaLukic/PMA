@@ -91,13 +91,20 @@ public class EditProfileActivity extends AppCompatActivity {
         }
     }
 
-    private void sendRegisterRequest(EditProfileDTO editProfileDTO) {
+    private void sendRegisterRequest(final EditProfileDTO editProfileDTO) {
         Call<ResponseBody> call = ServiceUtils.findACarService.editProfile(email, editProfileDTO);
         call.enqueue(new Callback<ResponseBody>() {
             @Override
             public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
                 if (response.isSuccessful()) {
                     Toast.makeText(EditProfileActivity.this, "Success!", Toast.LENGTH_SHORT).show();
+
+                    User u = db.userDao().getUser(email);
+
+                    u.setFirstName(editProfileDTO.getFirstName());
+                    u.setFirstName(editProfileDTO.getLastName());
+
+                    db.userDao().update(u);
                     getFragmentManager().popBackStackImmediate();
                     finish();
                 } else {

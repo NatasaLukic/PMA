@@ -15,6 +15,7 @@ import com.example.findacar.model.AdditionalService;
 import com.example.findacar.model.CarService;
 import com.example.findacar.modelDTO.SearchVehiclesDTO;
 import com.example.findacar.model.Vehicle;
+import com.example.findacar.service.ServiceUtils;
 import com.squareup.picasso.Picasso;
 
 import java.io.Serializable;
@@ -27,9 +28,6 @@ public class VehiclesAdapter extends BaseAdapter {
     public List<AdditionalService> additionalServices;
     String pickupDateTime;
     String returnDateTime;
-    //public static final String SERVICE_API_PATH = "";
-    //public static final String SERVICE_API_PATH = "http://192.168.0.26:8057/";
-    public static final String SERVICE_API_PATH = "http://192.168.0.15:8057/";
 
     public VehiclesAdapter(Activity activity, List<Vehicle> vehicles){
         this.activity = activity;
@@ -115,7 +113,7 @@ public class VehiclesAdapter extends BaseAdapter {
         String m = vehicle.getImageFile();
 
         Picasso.get().setIndicatorsEnabled(true);
-        Picasso.get().load(SERVICE_API_PATH + "search/getImage/" +m)
+        Picasso.get().load(ServiceUtils.SERVICE_API_PATH + "search/getImage/" +m)
                 .resize(300,300).into(image);
 
         return vi;

@@ -10,6 +10,7 @@ import androidx.viewpager.widget.ViewPager;
 
 import com.example.findacar.R;
 import com.example.findacar.model.VehiclePhoto;
+import com.example.findacar.service.ServiceUtils;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
@@ -26,10 +27,6 @@ public class VehiclePhotosAdapter extends PagerAdapter {
     private Context mContext;
     private int position;
     private List<String> urls = new ArrayList<String>();
-    //public static final String SERVICE_API_PATH = "";
-    //public static final String SERVICE_API_PATH = "http://192.168.0.26:8057/";
-    public static final String SERVICE_API_PATH = "http://192.168.0.15:8057/";
-
 
     public VehiclePhotosAdapter(Context context, List<VehiclePhoto> photos){
         this.mContext = context;
@@ -55,7 +52,7 @@ public class VehiclePhotosAdapter extends PagerAdapter {
 
         ImageView imageView = new ImageView(mContext);
         imageView.setScaleType(ImageView.ScaleType.CENTER_CROP);
-        Picasso.get().load(SERVICE_API_PATH + "search/getImage/" + urls.get(position)).into(imageView);
+        Picasso.get().load(ServiceUtils.SERVICE_API_PATH + "search/getImage/" + urls.get(position)).into(imageView);
         //imageView.setImageResource(images.get(position));
         ((ViewPager) container).addView(imageView, 0);
 

@@ -22,6 +22,8 @@ import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.util.Log;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.TextView;
 
 import com.example.findacar.R;
 import com.example.findacar.database.UserDatabase;
@@ -30,6 +32,7 @@ import com.example.findacar.fragments.FavoriteVehiclesFragment;
 import com.example.findacar.fragments.ReservationsFragment;
 import com.example.findacar.fragments.UserProfileFragment;
 import com.example.findacar.model.Reservation;
+import com.example.findacar.model.User;
 import com.example.findacar.model.UserWithVehiclesAndReviews;
 import com.example.findacar.model.VehicleWithReviews;
 import com.example.findacar.service.ServiceUtils;
@@ -97,6 +100,9 @@ public class DashboardActivity extends AppCompatActivity implements NavigationVi
         preferences.edit().putString("user", email).apply();
         userDatabase = UserDatabase.getInstance(this);
 
+        User logged = userDatabase.userDao().getUser(email);
+
+
         //Sinhronizacija
 
         System.out.println("email " + email);
@@ -153,6 +159,12 @@ public class DashboardActivity extends AppCompatActivity implements NavigationVi
         drawer = findViewById(R.id.drawer_layout);
         navigationView = findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
+
+        View v = navigationView.getHeaderView(0);
+
+        TextView name = v.findViewById(R.id.nameOfUser);
+
+        name.setText(logged.getFirstName() + " " + logged.getLastName());
 
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, drawer, toolbar, 0, 0);
         drawer.addDrawerListener(toggle);

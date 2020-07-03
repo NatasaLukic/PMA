@@ -25,6 +25,7 @@ import com.example.findacar.R;
 import com.example.findacar.fragments.ServiceRatingFragment;
 import com.example.findacar.mockupData.Reservations;
 import com.example.findacar.model.Reservation;
+import com.example.findacar.service.ServiceUtils;
 import com.squareup.picasso.Picasso;
 
 import org.w3c.dom.Text;
@@ -36,8 +37,6 @@ public class PreviousReservationAdapter extends BaseAdapter implements PreviousR
     private List<Reservation> mDataset;
     public Activity activity;
     private String email;
-    //public static final String SERVICE_API_PATH = "http://192.168.0.35:8057/";
-    public static final String SERVICE_API_PATH = "http://192.168.0.15:8057/";
 
 
     public PreviousReservationAdapter(Activity activity, List<Reservation> mDataset, String email) {
@@ -76,7 +75,7 @@ public class PreviousReservationAdapter extends BaseAdapter implements PreviousR
 
 
         ImageView carPhoto = (ImageView) vi.findViewById(R.id.car_photo);
-        Picasso.get().load(SERVICE_API_PATH + "search/getImage/" + reservation.getVehicle().getImageFile())
+        Picasso.get().load(ServiceUtils.SERVICE_API_PATH + "search/getImage/" + reservation.getVehicle().getImageFile())
                 .resize(300,300).into(carPhoto);
         //carPhoto.setImageResource(R.drawable.dacia_logan);
 

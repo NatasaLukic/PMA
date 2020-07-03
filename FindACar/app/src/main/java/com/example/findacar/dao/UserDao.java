@@ -28,6 +28,9 @@ public abstract class UserDao {
     @Update
     public abstract void update(Vehicle vehicle);
 
+    @Update
+    public abstract void update(User user);
+
     @Delete
     public abstract void delete(Vehicle vehicle);
 
@@ -49,6 +52,9 @@ public abstract class UserDao {
 
     @Query("SELECT userId FROM user WHERE email=:email ")
     public abstract long loadSingleByEmail(String email);
+
+    @Query("SELECT * FROM user WHERE email=:email ")
+    public abstract User getUser(String email);
 
     @Query("SELECT firstName FROM user WHERE email=:email ")
     public abstract String loadSingle(String email);
