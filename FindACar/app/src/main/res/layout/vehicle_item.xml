@@ -157,7 +157,7 @@
             android:layout_marginBottom="15dp"
             android:background="@drawable/button_background_search"
             android:fontFamily="serif"
-            android:text="Details"
+            android:text="@string/btnDetails"
             android:textColor="@color/colorWhite">
 
         </Button>

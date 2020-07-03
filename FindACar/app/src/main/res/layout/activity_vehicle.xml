@@ -61,15 +61,41 @@
 
         <TextView
             android:id="@+id/hint3"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@id/hint2"
             android:layout_marginLeft="30dp"
-            android:layout_marginBottom="15dp"
+            android:layout_marginBottom="25dp"
             android:fontFamily="@font/fjord_one"
             android:gravity="left"
             android:text="@string/unlimited_mileage"
             android:textSize="15dp" />
+
+        <TextView
+            android:id="@+id/addFav"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/notClickedImage"
+            android:layout_marginBottom="15dp"
+            android:layout_toRightOf="@id/hint3"
+            android:fontFamily="@font/fjord_one"
+            android:layout_marginLeft="75dp"
+            android:layout_marginTop="3dp"
+            android:text="@string/addFav"
+            android:textSize="11dp" />
+
+        <TextView
+            android:id="@+id/remFav"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/clickedImage"
+            android:layout_marginBottom="15dp"
+            android:layout_toRightOf="@id/hint3"
+            android:fontFamily="@font/fjord_one"
+            android:layout_marginLeft="75dp"
+            android:layout_marginTop="3dp"
+            android:text="@string/removeFav"
+            android:textSize="11dp" />
 
         <View
         android:layout_width="match_parent"
@@ -179,7 +205,7 @@
                 android:layout_marginTop="8dp"
                 app:fontFamily="@font/fjord_one"
                 android:layout_toRightOf="@id/numOfSeats"
-                android:text="seats" />
+                android:text="@string/seats" />
 
 
             <ImageView
@@ -209,7 +235,7 @@
                 android:layout_marginTop="6dp"
                 app:fontFamily="@font/fjord_one"
                 android:layout_toRightOf="@id/numOfDoors"
-                android:text="doors" />
+                android:text="@string/doors" />
 
             <ImageView
                 android:id="@+id/airC"
@@ -237,7 +263,7 @@
                 android:layout_marginTop="8dp"
                 app:fontFamily="@font/fjord_one"
                 android:layout_toRightOf="@id/numOfBags"
-                android:text="bags" />
+                android:text="@string/bags" />
 
             <TextView
                 android:id="@+id/numOfBags"
@@ -256,7 +282,7 @@
                 android:layout_marginLeft="5dp"
                 android:layout_marginTop="32dp"
                 android:layout_toRightOf="@id/airC"
-                android:text="Air conditioning"
+                android:text="@string/airCond"
                 android:textSize="12dp"
                 app:fontFamily="@font/fjord_one" />
 

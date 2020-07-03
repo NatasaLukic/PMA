@@ -33,6 +33,7 @@
     <string name="confirm">Potvrdi</string>
     <string name="cancel">Otkazi</string>
     <string name="search">Pretrazi</string>
+    <string name="close">Zatvori</string>
 
     <!--Dashboard-->
     <string name="search_for_a_car">Pronadjite auto</string>
@@ -50,7 +51,7 @@
     <!--Vehicle details-->
     <string name="name_of_car">Naziv auta</string>
     <string name="without_deposit">*Bez depozita</string>
-    <string name="unlimited_mileage">*Neogranicena kilomteraza</string>
+    <string name="unlimited_mileage">*Neogranicena kilometraza</string>
     <string name="car_specification">KARAKTERISTIKE VOZILA</string>
     <string name="additional_services">DODATNE USLUGE</string>
     <string name="service_info">O SERVISU</string>
@@ -70,6 +71,13 @@
     <string name="numOfBags">Airbag</string>
     <string name="airCond">Klima</string>
     <string name="btnApply">PRIMENI</string>
+    <string name="seats">sedista</string>
+    <string name="bags">kom. prtljaga</string>
+    <string name="doors">vrata</string>
+    <string name="removeFav">Ukloni iz omiljenih</string>
+    <string name="addFav">Dodaj u omiljena</string>
+
+
     <string-array name="carType">
         <item>Malo</item>
         <item>Srednje</item>

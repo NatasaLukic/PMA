@@ -19,6 +19,10 @@ public class ConnectionReceiver extends BroadcastReceiver {
     AlertDialog alert;
 
 
+    public ConnectionReceiver()
+    {
+    }
+
     public ConnectionReceiver(Activity activity)
     {
         this.activity = activity;
@@ -30,7 +34,7 @@ public class ConnectionReceiver extends BroadcastReceiver {
 
         if(intent.getAction().equals("android.net.conn.CONNECTIVITY_CHANGE")){
 
-            status = getConnectivityStatus(context);
+            status = NetworkUtils.getConnectivityStatus(context);
 
             if(status==0) {
 
@@ -44,21 +48,5 @@ public class ConnectionReceiver extends BroadcastReceiver {
 
     }
 
-    public int getConnectivityStatus(Context context) {
-
-        ConnectivityManager cm = (ConnectivityManager) context
-                .getSystemService(Context.CONNECTIVITY_SERVICE);
-
-        NetworkInfo activeNetwork = cm.getActiveNetworkInfo();
-        if (null != activeNetwork) {
-            if (activeNetwork.getType() == ConnectivityManager.TYPE_WIFI)
-                return 1;
-
-            if (activeNetwork.getType() == ConnectivityManager.TYPE_MOBILE)
-                return 2;
-        }
-
-        return 0;
-    }
 
 }

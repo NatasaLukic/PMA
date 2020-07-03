@@ -49,8 +49,10 @@ public class VehicleActivity extends AppCompatActivity {
     private Vehicle vehicle;
     private CreateReservationDTO reservation = new CreateReservationDTO();
     private UserDatabase userDatabase;
-    ImageView notClickedImage;
-    ImageView clickedImage;
+    private ImageView notClickedImage;
+    private ImageView clickedImage;
+    private TextView add;
+    private TextView remove;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -59,6 +61,9 @@ public class VehicleActivity extends AppCompatActivity {
 
         notClickedImage = (ImageView) findViewById(R.id.notClickedImage);
         clickedImage = (ImageView) findViewById(R.id.clickedImage);
+
+        add = (TextView) findViewById(R.id.addFav);
+        remove = (TextView) findViewById(R.id.remFav);
 
         userDatabase = UserDatabase.getInstance(this);
         Toolbar toolbar = findViewById(R.id.toolbar);
@@ -329,6 +334,8 @@ public class VehicleActivity extends AppCompatActivity {
                 for (VehicleWithReviews vehicleWithReviews : vehicles.vehiclesWithReviews) {
                     if (vehicleWithReviews.vehicle.getVehicleId() == dbVehicle.getVehicleId()) {
                         clickedImage.setVisibility(View.VISIBLE);
+                        remove.setVisibility(View.VISIBLE);
+                        add.setVisibility(View.GONE);
                         notClickedImage.setVisibility(View.GONE);
                         break;
                     }
@@ -337,6 +344,8 @@ public class VehicleActivity extends AppCompatActivity {
             } else {
                 clickedImage.setVisibility(View.GONE);
                 notClickedImage.setVisibility(View.VISIBLE);
+                remove.setVisibility(View.GONE);
+                add.setVisibility(View.VISIBLE);
             }
         }
     }

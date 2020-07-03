@@ -32,6 +32,7 @@
     <string name="confirm">Confirm</string>
     <string name="cancel">Cancel</string>
     <string name="search">Search</string>
+    <string name="close">Close</string>
 
     <!--Dashboard-->
     <string name="search_for_a_car">Search for a car</string>
@@ -56,6 +57,11 @@
     <string name="service_info">SERVICE INFORMATION</string>
     <string name="reviews">REVIEWS</string>
     <string name="btnBook">BOOK</string>
+    <string name="seats">seats</string>
+    <string name="bags">bags</string>
+    <string name="doors">doors</string>
+    <string name="removeFav">Remove from favorites</string>
+    <string name="addFav">Add to favorites</string>
 
     <!--About-->
     <string name="contact">Contact</string>
