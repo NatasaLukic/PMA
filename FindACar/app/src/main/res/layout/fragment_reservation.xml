@@ -54,15 +54,15 @@
         android:text="15 april 2020"/>
 
     <TextView
+        android:id="@+id/returnText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@id/textPickUp"
         android:layout_marginLeft="12dp"
-        android:id="@+id/returnText"
         android:layout_marginTop="10dp"
-        android:textSize="17dp"
         android:layout_toRightOf="@id/car_photo"
-        android:text="Return:" />
+        android:text="@string/return_date"
+        android:textSize="17dp" />
 
     <ImageView
         android:id="@+id/car_photo"
@@ -95,8 +95,8 @@
         android:layout_marginTop="10dp"
         android:layout_toRightOf="@id/car_photo"
         android:gravity="center"
-        android:textSize="17dp"
-        android:text="Price:"/>
+        android:text="@string/price"
+        android:textSize="17dp" />
 
     <TextView
         android:id="@+id/textPickUp"
@@ -105,9 +105,9 @@
         android:layout_below="@id/textViewVehicleName"
         android:layout_marginLeft="12dp"
         android:layout_marginTop="35dp"
-        android:textSize="17dp"
         android:layout_toRightOf="@id/car_photo"
-        android:text="Pick up:" />
+        android:text="@string/pick_up_date"
+        android:textSize="17dp" />
 
     <TextView
         android:id="@+id/textViewReservationPrice"
@@ -125,12 +125,12 @@
         android:id="@+id/button5"
         android:layout_width="150dp"
         android:layout_height="35dp"
-        android:background="@drawable/button_background_search"
-        android:text="Rate"
-        android:layout_marginBottom="20dp"
-        android:layout_marginTop="50dp"
         android:layout_below="@id/textView5"
         android:layout_centerHorizontal="true"
+        android:layout_marginTop="50dp"
+        android:layout_marginBottom="20dp"
+        android:background="@drawable/button_background_search"
+        android:text="@string/btnRate"
         android:textColor="@color/colorWhite" />
 
     <RatingBar

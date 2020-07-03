@@ -40,29 +40,37 @@
     <string name="return_date">Return</string>
     <string name="date">Date</string>
     <string name="time">Time</string>
+    <string name="useMyLocation">Use current location?</string>
 
     <string name="list">List</string>
     <string name="map">Map</string>
+    <string name="pickUpValidationMessage">Molimo unesite datum i vreme preuzimanja vozila.</string>
+    <string name="returnValidationMessage">Molimo unesite datum i vreme vracanja vozila</string>
 
     <!--Vehicle details-->
     <string name="name_of_car">Name of car</string>
     <string name="without_deposit">*Without deposit</string>
     <string name="unlimited_mileage">*Unlimited mileage</string>
     <string name="car_specification">CAR SPECIFICATION</string>
+    <string name="additional_services">ADDITIONAL SERVICES</string>
+    <string name="service_info">SERVICE INFORMATION</string>
+    <string name="reviews">REVIEWS</string>
+    <string name="btnBook">BOOK</string>
 
     <!--About-->
     <string name="contact">Contact</string>
-
+    <string name="about">About</string>
 
     <string name="view_on_map">View on map</string>
 
     <!--Vehicle filtering-->
+    <string name="filterPage">Filter vehicles</string>
     <string name="carType">Type of car</string>
     <string name="motor">Motor</string>
     <string name="transmission">Transmission</string>
     <string name="numOfBags">Number of bags</string>
     <string name="airCond">Air conditioning</string>
-
+    <string name="btnApply">APPLY</string>
     <string-array name="carType">
         <item>Small</item>
         <item>Medium</item>
@@ -89,5 +97,13 @@
     <string name="open_location_settings">Settings</string>
     <string name="hello_blank_fragment">hello_blank_fragment</string>
 
-
+    <!--Vehicle list-->
+    <string name="registratedUntil">Vehicle registrated until</string>
+    <string name="price">Price</string>
+    <string name="btnDetails">DETAILS</string>
+    <string name="btnRate">RATE</string>
+    <string name="active">ACTIVE</string>
+    <string name="previous">PREVIOUS</string>
+    <string name="favorites">Favorites</string>
+    <string name="prodYear">Production year</string>
 </resources>

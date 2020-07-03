@@ -309,15 +309,15 @@
                 android:layout_below="@id/lin3">
 
                 <TextView
+                    android:id="@+id/addServText"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:id="@+id/addServText"
-                    android:textColor="@color/colorPrimary"
                     android:layout_marginLeft="15dp"
                     android:layout_marginTop="20dp"
+                    android:text="@string/additional_services"
+                    android:textColor="@color/colorPrimary"
                     android:textSize="13dp"
-                    app:fontFamily="@font/fjord_one"
-                    android:text="ADDITIONAL SERVICES"/>
+                    app:fontFamily="@font/fjord_one" />
 
               <LinearLayout
                   android:id="@+id/listAdd"
@@ -338,16 +338,17 @@
                 android:layout_height="150dp"
                 android:layout_below="@id/lin3"
                 android:layout_toRightOf="@id/additional">
+
                 <TextView
+                    android:id="@+id/prodYearTxt"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentRight="true"
                     android:layout_marginTop="20dp"
-                    android:id="@+id/prodYearTxt"
-                    android:textSize="13dp"
-                    android:fontFamily="@font/fjord_one"
                     android:layout_marginRight="18dp"
-                    android:text="Production year" />
+                    android:fontFamily="@font/fjord_one"
+                    android:text="@string/prodYear"
+                    android:textSize="13dp" />
 
                 <TextView
                     android:id="@+id/yearOfProd"
@@ -367,9 +368,9 @@
                     android:layout_alignParentRight="true"
                     android:layout_marginTop="10dp"
                     android:layout_marginRight="15dp"
-                    android:text=" Registrated until"
-                    android:textSize="13dp"
-                    android:fontFamily="@font/fjord_one"/>
+                    android:fontFamily="@font/fjord_one"
+                    android:text="@string/registratedUntil"
+                    android:textSize="13dp" />
 
                 <TextView
                     android:id="@+id/reg"
@@ -402,7 +403,7 @@
                 android:layout_below="@id/specs"/>
 
 
-            <androidx.cardview.widget.CardView xmlns:cardView="http://schemas.android.com/tools"
+            <androidx.cardview.widget.CardView
                 android:layout_width="335dp"
                 android:layout_marginTop="15dp"
                 android:layout_centerHorizontal="true"
@@ -410,16 +411,16 @@
                 android:layout_height="wrap_content"
                 app:cardCornerRadius="15dp"
                 android:id="@+id/cardV"
-                cardView:cardCornerRadius="50dp">
+                tools:cardCornerRadius="50dp">
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="REVIEWS"
-                    android:textSize="20dp"
-                    app:fontFamily="@font/fjord_one"
                     android:layout_gravity="center_horizontal"
-                    android:textColor="@color/colorPrimary"/>
+                    android:text="@string/reviews"
+                    android:textColor="@color/colorPrimary"
+                    android:textSize="20dp"
+                    app:fontFamily="@font/fjord_one" />
 
                 <LinearLayout
                     android:id="@+id/listRev"
@@ -431,16 +432,16 @@
             </androidx.cardview.widget.CardView>
 
             <Button
-            android:layout_width="220dp"
-            android:layout_height="40dp"
-            android:layout_below="@id/cardV"
-            android:layout_marginTop="20dp"
-            android:layout_marginBottom="20dp"
-            android:text="Book"
-            android:layout_centerHorizontal="true"
-            android:textColor="@color/colorWhite"
-            android:background="@drawable/button_background_search"
-            android:id="@+id/book"/>
+                android:id="@+id/book"
+                android:layout_width="220dp"
+                android:layout_height="40dp"
+                android:layout_below="@id/cardV"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="20dp"
+                android:layout_marginBottom="20dp"
+                android:background="@drawable/button_background_search"
+                android:text="@string/btnBook"
+                android:textColor="@color/colorWhite" />
 
 
     </RelativeLayout>

@@ -11,16 +11,17 @@
     <RelativeLayout
         android:layout_width="fill_parent"
         android:layout_height="wrap_content">
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Filter results"
-        android:layout_centerHorizontal="true"
-        android:gravity="center"
-        android:textSize="24dp"
-        android:layout_marginBottom="15dp"
-        android:layout_marginTop="15dp"
-        android:id="@+id/text_filter"/>
+
+        <TextView
+            android:id="@+id/text_filter"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="15dp"
+            android:layout_marginBottom="15dp"
+            android:gravity="center"
+            android:text="@string/filterPage"
+            android:textSize="24dp" />
 
         <ExpandableListView
             android:id="@+id/expand_list"
@@ -39,14 +40,15 @@
             style="@android:style/ButtonBar"
             android:background="@color/colorWhite">
 
-            <Button android:id="@+id/saveButton"
+            <Button
+                android:id="@+id/saveButton"
                 android:layout_width="wrap_content"
                 android:layout_height="40dp"
-                android:layout_weight="1"
                 android:layout_marginLeft="20dp"
+                android:layout_weight="1"
                 android:background="@drawable/button_background_search"
-                android:textColor="@color/colorWhite"
-                android:text="Apply" />
+                android:text="@string/btnApply"
+                android:textColor="@color/colorWhite" />
 
             <Button android:id="@+id/cancelButton"
                 android:layout_width="wrap_content"

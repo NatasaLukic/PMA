@@ -1,8 +1,10 @@
 package com.example.findacar.modelDTO;
 
+import com.example.findacar.model.AdditionalService;
 import com.example.findacar.model.Vehicle;
 
 import java.io.Serializable;
+import java.util.List;
 
 public class CreateReservationDTO implements Serializable {
     private String userEmail;
@@ -10,6 +12,7 @@ public class CreateReservationDTO implements Serializable {
     private String pickUpDate;
     private String returnDate;
     private double price;
+    private List<AdditionalService> includedAdditionalServices;
 
     public CreateReservationDTO() {
     }
@@ -52,5 +55,13 @@ public class CreateReservationDTO implements Serializable {
 
     public void setPrice(double price) {
         this.price = price;
+    }
+
+    public List<AdditionalService> getIncludedAdditionalServices() {
+        return includedAdditionalServices;
+    }
+
+    public void setIncludedAdditionalServices(List<AdditionalService> includedAdditionalServices) {
+        this.includedAdditionalServices = includedAdditionalServices;
     }
 }

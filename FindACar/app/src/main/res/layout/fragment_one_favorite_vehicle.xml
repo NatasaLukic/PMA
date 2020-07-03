@@ -149,16 +149,15 @@
         android:layout_toRightOf="@id/vehiclePhoto"
         android:src="@drawable/ic_seat" />
 
-   <Button
-       android:id="@+id/buttonReviews"
-       android:layout_width="wrap_content"
-       android:layout_height="wrap_content"
-       android:text="Reviews"
-       android:layout_below="@id/vehiclePhoto"
-       android:layout_centerHorizontal="true"
-       android:textColor="@color/colorWhite"
-       android:layout_marginTop="5dp"
-       android:layout_marginBottom="5dp"
-       android:background="@drawable/button_background_search"
-       />
+    <Button
+        android:id="@+id/buttonReviews"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/vehiclePhoto"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="5dp"
+        android:layout_marginBottom="5dp"
+        android:background="@drawable/button_background_search"
+        android:text="@string/reviews"
+        android:textColor="@color/colorWhite" />
 </RelativeLayout>

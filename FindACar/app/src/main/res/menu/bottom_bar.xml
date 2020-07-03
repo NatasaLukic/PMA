@@ -6,9 +6,10 @@
         android:icon="@drawable/ic_filter_list_black_24dp"
         android:title="Filter"></item>
 
-    <item android:id="@+id/about"
-        android:icon="@drawable/ic_info_outline_black_24dp"
-        android:title="About"></item>
+        <item
+            android:id="@+id/about"
+            android:icon="@drawable/ic_info_outline_black_24dp"
+            android:title="@string/about"></item>
 
     </group>
 </menu>

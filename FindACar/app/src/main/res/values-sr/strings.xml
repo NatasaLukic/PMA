@@ -41,29 +41,35 @@
     <string name="return_date">Vrati</string>
     <string name="date">Datum</string>
     <string name="time">Vreme</string>
-
+    <string name="useMyLocation">Koristi trenutnu lokaciju?</string>
     <string name="list">Lista</string>
     <string name="map">Mapa</string>
+    <string name="pickUpValidationMessage">Please enter pick up date and time.</string>
+    <string name="returnValidationMessage">Please enter return date and time.</string>
 
     <!--Vehicle details-->
     <string name="name_of_car">Naziv auta</string>
     <string name="without_deposit">*Bez depozita</string>
-    <string name="unlimited_mileage">*Unlimited mileage</string>
-    <string name="car_specification">CAR SPECIFICATION</string>
-
+    <string name="unlimited_mileage">*Neogranicena kilomteraza</string>
+    <string name="car_specification">KARAKTERISTIKE VOZILA</string>
+    <string name="additional_services">DODATNE USLUGE</string>
+    <string name="service_info">O SERVISU</string>
+    <string name="reviews">RECENZIJE</string>
+    <string name="btnBook">REZERVISI</string>
     <!--About-->
     <string name="contact">Kontakt</string>
-
+    <string name="about">O servisu</string>
 
     <string name="view_on_map">Pogledaj na mapi</string>
 
     <!--Vehicle filtering-->
+    <string name="filterPage">Filtriranje vozila</string>
     <string name="carType">Vrsta</string>
     <string name="motor">Motor</string>
     <string name="transmission">Menjac</string>
     <string name="numOfBags">Airbag</string>
     <string name="airCond">Klima</string>
-
+    <string name="btnApply">PRIMENI</string>
     <string-array name="carType">
         <item>Malo</item>
         <item>Srednje</item>
@@ -90,5 +96,14 @@
     <string name="open_location_settings">Podesavanja</string>
     <string name="hello_blank_fragment">hello_blank_fragment</string>
 
+    <!--Vehicle list-->
+    <string name="registratedUntil">Vozilo registrovano do</string>
+    <string name="price">Cena</string>
+    <string name="btnDetails">DETALJI</string>
+    <string name="btnRate">OCENI</string>
+    <string name="active">TRENUTNE</string>
+    <string name="previous">PROSLE</string>
+    <string name="favorites">Omiljena vozila</string>
+    <string name="prodYear">Godina proizvodnje</string>
 
 </resources>

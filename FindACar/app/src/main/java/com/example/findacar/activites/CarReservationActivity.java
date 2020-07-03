@@ -36,6 +36,7 @@ import retrofit2.Response;
 
 public class CarReservationActivity extends AppCompatActivity {
     private CreateReservationDTO reservation;
+    List<AdditionalService> additionalServicesRes = new ArrayList<AdditionalService>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -68,7 +69,7 @@ public class CarReservationActivity extends AppCompatActivity {
         HashMap<String, Boolean> map = (HashMap<String, Boolean>) getIntent().getSerializableExtra("addServ");
 
         List<AdditionalService> additionalServices = carService.getAdditionalServices();
-        List<AdditionalService> additionalServicesRes = new ArrayList<AdditionalService>();
+
 
        // for (Map.Entry<String, Boolean> entry : map.entrySet()) {
             //System.out.println(entry.getKey() + "/" + entry.getValue());
@@ -138,6 +139,7 @@ public class CarReservationActivity extends AppCompatActivity {
 
             @Override
             public void onClick(View v) {
+                reservation.setIncludedAdditionalServices(additionalServicesRes);
                 Call<ResponseBody> call = ServiceUtils.findACarService.createReservation(reservation);
                 call.enqueue(new Callback<ResponseBody>() {
                     @Override

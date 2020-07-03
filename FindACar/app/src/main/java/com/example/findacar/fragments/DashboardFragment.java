@@ -345,6 +345,16 @@ public class DashboardFragment extends Fragment {
     }
 
     private void getSearchData() {
+
+        if (isEmptyOrNull(datepickUp) || isEmptyOrNull(timePickUp)){
+            Toast.makeText(getActivity(), getString(R.string.pickUpValidationMessage), Toast.LENGTH_SHORT).show();
+            return;
+        }
+        if (isEmptyOrNull(dateReturn) || isEmptyOrNull(timeReturn)){
+            Toast.makeText(getActivity(), getString(R.string.returnValidationMessage), Toast.LENGTH_SHORT).show();
+            return;
+        }
+
         SearchDTO searchDTO = new SearchDTO(place, datepickUp + " " + timePickUp,
                 dateReturn + " " + timeReturn);
 
@@ -406,5 +416,12 @@ public class DashboardFragment extends Fragment {
         } else {
             Toast.makeText(getContext(), NetworkUtils.getConnectivityStatusString(getActivity()), Toast.LENGTH_SHORT).show();
         }
+    }
+
+    private boolean isEmptyOrNull(String input) {
+        if (input == null) {
+            return true;
+        }
+        return input.isEmpty();
     }
 }

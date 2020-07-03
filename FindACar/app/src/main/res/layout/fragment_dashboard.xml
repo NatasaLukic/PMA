@@ -57,12 +57,12 @@
                 android:id="@+id/checkBoxCurrentLocation"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_gravity="center"
                 android:layout_marginLeft="5dp"
                 android:layout_marginBottom="5dp"
-                android:layout_gravity="center"
+                android:text="@string/useMyLocation"
                 android:textColor="@color/colorDarkGray"
-                android:textColorHint="@color/colorPrimary"
-                android:text="Use current location?"/>
+                android:textColorHint="@color/colorPrimary" />
 
             <LinearLayout
                 android:id="@+id/dateAndTimePickerLayout"

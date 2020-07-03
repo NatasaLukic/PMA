@@ -34,12 +34,12 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@id/slider"
+            android:layout_centerHorizontal="true"
             android:layout_marginLeft="30dp"
             android:layout_marginTop="20dp"
             android:fontFamily="@font/fjord_one"
             android:gravity="center_horizontal"
-            android:text="SERVICE INFORMATION"
-            android:layout_centerHorizontal="true"
+            android:text="@string/service_info"
             android:textColor="@color/colorPrimary"
             android:textSize="20dp" />
 
@@ -282,15 +282,15 @@
                 android:layout_below="@id/lin3">
 
                 <TextView
+                    android:id="@+id/addServText2"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:id="@+id/addServText2"
-                    android:textColor="@color/colorPrimary"
                     android:layout_marginLeft="15dp"
                     android:layout_marginTop="20dp"
+                    android:text="@string/additional_services"
+                    android:textColor="@color/colorPrimary"
                     android:textSize="13dp"
-                    app:fontFamily="@font/fjord_one"
-                    android:text="ADDITIONAL SERVICES"/>
+                    app:fontFamily="@font/fjord_one" />
 
                 <LinearLayout
                     android:id="@+id/listAdd2"
@@ -311,16 +311,17 @@
                 android:layout_height="150dp"
                 android:layout_below="@id/lin3"
                 android:layout_toRightOf="@id/additional2">
+
                 <TextView
+                    android:id="@+id/prodYearTxt"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentRight="true"
                     android:layout_marginTop="20dp"
-                    android:id="@+id/prodYearTxt"
-                    android:textSize="13dp"
-                    android:fontFamily="@font/fjord_one"
                     android:layout_marginRight="18dp"
-                    android:text="Production year" />
+                    android:fontFamily="@font/fjord_one"
+                    android:text="@string/pick_up_date"
+                    android:textSize="13dp" />
 
                 <TextView
                     android:id="@+id/yearOfProd"
@@ -340,9 +341,9 @@
                     android:layout_alignParentRight="true"
                     android:layout_marginTop="10dp"
                     android:layout_marginRight="15dp"
-                    android:text=" Registrated until"
-                    android:textSize="13dp"
-                    android:fontFamily="@font/fjord_one"/>
+                    android:fontFamily="@font/fjord_one"
+                    android:text="@string/return_date"
+                    android:textSize="13dp" />
 
                 <TextView
                     android:id="@+id/reg"
@@ -420,7 +421,7 @@
                 android:layout_marginBottom="20dp"
                 android:background="@drawable/button_background_search"
                 android:gravity="center"
-                android:text="Book"
+                android:text="@android:string/ok"
                 android:textColor="@color/colorWhite" />
 
             <Button
@@ -435,7 +436,7 @@
                 android:layout_toRightOf="@id/book"
                 android:background="@drawable/button_background_search"
                 android:gravity="center"
-                android:text="Cancel"
+                android:text="@string/cancel"
                 android:textColor="@color/colorWhite" />
 
 
