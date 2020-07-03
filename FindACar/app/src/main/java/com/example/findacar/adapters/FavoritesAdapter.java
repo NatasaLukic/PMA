@@ -1,15 +1,11 @@
 package com.example.findacar.adapters;
 
 import android.app.Activity;
-import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.Button;
-import android.widget.ExpandableListView;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
-import android.widget.ListAdapter;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -19,10 +15,7 @@ import androidx.fragment.app.FragmentTransaction;
 import androidx.fragment.app.ListFragment;
 
 import com.example.findacar.R;
-import com.example.findacar.activites.VehicleActivity;
 import com.example.findacar.fragments.FavoriteReviewsFragment;
-import com.example.findacar.fragments.FavoritesReviewListFragment;
-import com.example.findacar.fragments.ServiceRatingFragment;
 import com.example.findacar.model.Review;
 import com.example.findacar.model.Vehicle;
 import com.example.findacar.model.VehicleWithReviews;

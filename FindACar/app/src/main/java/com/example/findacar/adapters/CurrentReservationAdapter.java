@@ -42,8 +42,6 @@ public class CurrentReservationAdapter extends BaseAdapter implements CurrentRes
 
     private List<Reservation> mDataset = new ArrayList<>();
     public Activity activity;
-    //public static final String SERVICE_API_PATH = "http://192.168.0.35:8057/";
-    public static final String SERVICE_API_PATH = "http://192.168.0.15:8057/";
 
     public CurrentReservationAdapter(Activity activity, List<Reservation> mDataset) {
         this.activity = activity;
@@ -82,7 +80,7 @@ public class CurrentReservationAdapter extends BaseAdapter implements CurrentRes
 
         ImageView carPhoto = (ImageView) vi.findViewById(R.id.car_photo);
 
-        Picasso.get().load(SERVICE_API_PATH + "search/getImage/" + reservation.getVehicle().getImageFile())
+        Picasso.get().load(ServiceUtils.SERVICE_API_PATH + "search/getImage/" + reservation.getVehicle().getImageFile())
                 .resize(300,300).into(carPhoto);
 
         vehicleServiceName.setText(reservation.getVehicle().getName());
