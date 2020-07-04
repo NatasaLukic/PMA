@@ -27,10 +27,11 @@ Funkcionalnosti podržane aplikacijom:
 * Lista omiljenih vozila
 <p>&nbsp;</p>
 
-Detaljnija specifikacija ovde
-&nbsp;
+Detaljnija specifikacija: FindACar.pdf
+
 Serverska aplikacija na linku: [FindACarServer](https://github.com/IvanaaM/FindACarServer)
-&nbsp;
+
+
 Demo video na linku: 
 
 <p>&nbsp;</p>
