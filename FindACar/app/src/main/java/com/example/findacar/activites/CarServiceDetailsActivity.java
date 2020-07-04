@@ -6,6 +6,7 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 
+import android.content.IntentFilter;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
@@ -23,6 +24,7 @@ import com.example.findacar.model.CarService;
 import com.example.findacar.model.FilterVehicles;
 import com.example.findacar.modelDTO.SearchVehiclesDTO;
 import com.example.findacar.model.Vehicle;
+import com.example.findacar.service.ConnectionReceiver;
 import com.example.findacar.service.ServiceUtils;
 import com.example.findacar.utils.ICarServiceDetails;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
@@ -45,6 +47,7 @@ public class CarServiceDetailsActivity extends AppCompatActivity implements Bott
     private Fragment currentFragment;
     private CarService carService;
     private List<Vehicle> vehicles;
+    private ConnectionReceiver connectionReceiver;
 
 
     private String nameOfPhoto = "photo_";
@@ -234,4 +237,20 @@ public class CarServiceDetailsActivity extends AppCompatActivity implements Bott
     private boolean filterByTransmissionManual(ArrayList<String> filter){
        return filter.contains("Manual") || filter.contains("Rucni");
     }
+
+    @Override
+    protected void onResume(){
+        IntentFilter intentFilter = new IntentFilter();
+        intentFilter.addAction("android.net.conn.CONNECTIVITY_CHANGE");
+        connectionReceiver = new ConnectionReceiver();
+        registerReceiver(connectionReceiver, intentFilter);
+        super.onResume();
+    }
+
+    @Override
+    protected void onPause(){
+        unregisterReceiver(connectionReceiver);
+        super.onPause();
+    }
+
 }

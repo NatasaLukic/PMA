@@ -17,10 +17,12 @@ import com.example.findacar.model.VehicleWithReviews;
 import com.example.findacar.modelDTO.CreateReservationDTO;
 import com.example.findacar.model.Review;
 import com.example.findacar.model.Vehicle;
+import com.example.findacar.service.ConnectionReceiver;
 import com.example.findacar.service.NetworkUtils;
 import com.example.findacar.service.ServiceUtils;
 
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Gravity;
@@ -53,6 +55,8 @@ public class VehicleActivity extends AppCompatActivity {
     private ImageView clickedImage;
     private TextView add;
     private TextView remove;
+    private ConnectionReceiver connectionReceiver;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -320,8 +324,12 @@ public class VehicleActivity extends AppCompatActivity {
 
     @Override
     protected void onResume() {
-        super.onResume();
         setLikePictureForVehicle();
+        IntentFilter intentFilter = new IntentFilter();
+        intentFilter.addAction("android.net.conn.CONNECTIVITY_CHANGE");
+        connectionReceiver = new ConnectionReceiver();
+        registerReceiver(connectionReceiver, intentFilter);
+        super.onResume();
     }
 
     private void setLikePictureForVehicle() {
@@ -351,6 +359,12 @@ public class VehicleActivity extends AppCompatActivity {
                // add.setVisibility(View.VISIBLE);
             }
         }
+    }
+
+    @Override
+    protected void onPause(){
+        unregisterReceiver(connectionReceiver);
+        super.onPause();
     }
 
 

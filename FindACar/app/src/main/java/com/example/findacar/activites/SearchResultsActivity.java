@@ -6,6 +6,7 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -13,6 +14,7 @@ import android.widget.Button;
 import com.example.findacar.R;
 import com.example.findacar.fragments.ListResultsFragment;
 import com.example.findacar.model.CarService;
+import com.example.findacar.service.ConnectionReceiver;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
@@ -23,6 +25,8 @@ import java.util.List;
 public class SearchResultsActivity extends AppCompatActivity {
     private double currentLocationX;
     private double currentLocationY;
+
+    private ConnectionReceiver connectionReceiver;
 
     private Button btnViewMap;
     private Gson gson = new Gson();
@@ -83,6 +87,20 @@ public class SearchResultsActivity extends AppCompatActivity {
     public boolean onSupportNavigateUp() {
         onBackPressed();
         return true;
+    }
+    @Override
+    protected void onResume(){
+        IntentFilter intentFilter = new IntentFilter();
+        intentFilter.addAction("android.net.conn.CONNECTIVITY_CHANGE");
+        connectionReceiver = new ConnectionReceiver();
+        registerReceiver(connectionReceiver, intentFilter);
+        super.onResume();
+    }
+
+    @Override
+    protected void onPause(){
+        unregisterReceiver(connectionReceiver);
+        super.onPause();
     }
 
 

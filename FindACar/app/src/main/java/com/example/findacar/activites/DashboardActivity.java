@@ -96,11 +96,6 @@ public class DashboardActivity extends AppCompatActivity implements NavigationVi
         loadLanguage();
 
 
-        IntentFilter intentFilter = new IntentFilter();
-        intentFilter.addAction("android.net.conn.CONNECTIVITY_CHANGE");
-        connectionReceiver = new ConnectionReceiver();
-        registerReceiver(connectionReceiver, intentFilter);
-
 
         email = getIntent().getStringExtra("user");
         setContentView(R.layout.activity_dashboard);
@@ -133,7 +128,7 @@ public class DashboardActivity extends AppCompatActivity implements NavigationVi
             alarmIntent.putExtra("email", email);
             pendingIntent = PendingIntent.getService(this, 0, alarmIntent, 0);
             alarmManager.setRepeating(AlarmManager.RTC_WAKEUP, System.currentTimeMillis(),
-                    60000 * 5, pendingIntent); // na 5 min
+                    60000 * 4, pendingIntent); // na 5 min
 
         }
 
@@ -334,11 +329,20 @@ public class DashboardActivity extends AppCompatActivity implements NavigationVi
         mDialog.show();
     }
 
+    @Override
+    protected void onResume(){
+        IntentFilter intentFilter = new IntentFilter();
+        intentFilter.addAction("android.net.conn.CONNECTIVITY_CHANGE");
+        connectionReceiver = new ConnectionReceiver();
+        registerReceiver(connectionReceiver, intentFilter);
+        super.onResume();
+    }
 
     @Override
-    protected void onDestroy(){
+    protected void onPause(){
         unregisterReceiver(connectionReceiver);
-        super.onDestroy();
+        super.onPause();
     }
+
 
 }
