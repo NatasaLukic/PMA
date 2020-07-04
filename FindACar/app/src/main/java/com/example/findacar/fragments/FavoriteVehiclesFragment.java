@@ -17,6 +17,7 @@ import com.example.findacar.model.Review;
 import com.example.findacar.model.UserWithVehiclesAndReviews;
 import com.example.findacar.model.VehicleWithReviews;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -33,17 +34,24 @@ public class FavoriteVehiclesFragment extends ListFragment {
     public FavoriteVehiclesFragment(String email) {
         userDatabase = UserDatabase.getInstance(getActivity());
         long userId = userDatabase.userDao().loadSingleByEmail(email);
-        this.list = userDatabase
-                .userDao().getUserWithVehiclesAndReviews(userId).vehiclesWithReviews;
 
-        for(VehicleWithReviews vehicleWithReviews : this.list){
+        UserWithVehiclesAndReviews userWithVehiclesAndReviews = userDatabase.userDao().getUserWithVehiclesAndReviews(userId);
 
-            System.out.println("Vozilo " + vehicleWithReviews.vehicle.getName());
-            for(Review review : vehicleWithReviews.reviews){
-                System.out.println("--Komentar " + review.getComment());
+        if(userWithVehiclesAndReviews != null && userWithVehiclesAndReviews.vehiclesWithReviews.size()!=0){
+            list = userWithVehiclesAndReviews.vehiclesWithReviews;
+            for(VehicleWithReviews vehicleWithReviews : this.list){
+
+                System.out.println("Vozilo " + vehicleWithReviews.vehicle.getName());
+                for(Review review : vehicleWithReviews.reviews){
+                    System.out.println("--Komentar " + review.getComment());
+                }
+                System.out.println("**************************************");
             }
-            System.out.println("**************************************");
+
+        }else {
+            list = new ArrayList<VehicleWithReviews>();
         }
+
 
 
     }

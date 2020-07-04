@@ -336,8 +336,26 @@ public class VehicleActivity extends AppCompatActivity {
         String email = getIntent().getStringExtra("email");
         long userId = userDatabase.userDao().loadSingleByEmail(email);
 
-        final Vehicle dbVehicle = userDatabase.userDao().getVehicleByServerId(vehicle.getId());
+        int counter = 0;
 
+        UserWithVehiclesAndReviews vehicles = userDatabase.userDao().getUserWithVehiclesAndReviews(userId);
+        for (VehicleWithReviews vehicleWithReviews : vehicles.vehiclesWithReviews) {
+
+            if (vehicleWithReviews.vehicle.getId() == vehicle.getId()) {
+                counter++;
+                clickedImage.setVisibility(View.VISIBLE);
+                notClickedImage.setVisibility(View.GONE);
+                break;
+            }
+        }
+
+        if(counter==0){
+            clickedImage.setVisibility(View.GONE);
+            notClickedImage.setVisibility(View.VISIBLE);
+        }
+
+/*
+        final Vehicle dbVehicle = userDatabase.userDao().getVehicleByServerId(vehicle.getId());
         if (dbVehicle != null) {
             UserWithVehiclesAndReviews vehicles = userDatabase.userDao().getUserWithVehiclesAndReviews(userId);
 
@@ -358,7 +376,7 @@ public class VehicleActivity extends AppCompatActivity {
                // remove.setVisibility(View.GONE);
                // add.setVisibility(View.VISIBLE);
             }
-        }
+        }*/
     }
 
     @Override

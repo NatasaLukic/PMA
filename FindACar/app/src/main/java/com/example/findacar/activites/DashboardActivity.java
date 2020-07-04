@@ -120,18 +120,20 @@ public class DashboardActivity extends AppCompatActivity implements NavigationVi
 
 //        System.out.println("Broj u listi " + userWithVehiclesAndReviews.vehiclesWithReviews.size());
 
-        if (userWithVehiclesAndReviews.vehiclesWithReviews.size() > 0) {
+        if(userWithVehiclesAndReviews != null) {
 
-            alarmManager = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
+            if (userWithVehiclesAndReviews.vehiclesWithReviews.size() > 0) {
 
-            Intent alarmIntent = new Intent(this, SyncService.class);
-            alarmIntent.putExtra("email", email);
-            pendingIntent = PendingIntent.getService(this, 0, alarmIntent, 0);
-            alarmManager.setRepeating(AlarmManager.RTC_WAKEUP, System.currentTimeMillis(),
-                    60000 * 4, pendingIntent); // na 5 min
+                alarmManager = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
 
+                Intent alarmIntent = new Intent(this, SyncService.class);
+                alarmIntent.putExtra("email", email);
+                pendingIntent = PendingIntent.getService(this, 0, alarmIntent, 0);
+                alarmManager.setRepeating(AlarmManager.RTC_WAKEUP, System.currentTimeMillis(),
+                        60000 * 4, pendingIntent); // na 5 min
+
+            }
         }
-
 
         sessionService = SessionService.getInstance(getApplicationContext());
         sessionService.insertStringValue("user", email);
@@ -171,7 +173,10 @@ public class DashboardActivity extends AppCompatActivity implements NavigationVi
 
         TextView name = v.findViewById(R.id.nameOfUser);
 
-        name.setText(logged.getFirstName() + " " + logged.getLastName());
+        if(logged != null){
+
+            name.setText(logged.getFirstName() + " " + logged.getLastName());
+        }
 
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, drawer, toolbar, 0, 0);
         drawer.addDrawerListener(toggle);
