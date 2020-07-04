@@ -265,6 +265,8 @@ public class DashboardActivity extends AppCompatActivity implements NavigationVi
                     ft.detach(frg);
                     ft.attach(frg);
                     ft.commit();
+                    navigationView.getMenu().clear();
+                    navigationView.inflateMenu(R.menu.drawer_menu);
                 } else if (i == 1) {
                     checkedLanguage = 1;
                     setLocale("sr");
@@ -275,6 +277,8 @@ public class DashboardActivity extends AppCompatActivity implements NavigationVi
                     ft.detach(frg);
                     ft.attach(frg);
                     ft.commit();
+                    navigationView.getMenu().clear();
+                    navigationView.inflateMenu(R.menu.drawer_menu);
                 }
 
 
