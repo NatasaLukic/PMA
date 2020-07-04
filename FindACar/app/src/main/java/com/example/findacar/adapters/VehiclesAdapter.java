@@ -73,19 +73,21 @@ public class VehiclesAdapter extends BaseAdapter {
         TextView doors = (TextView)vi.findViewById(R.id.doors);
         TextView seats = (TextView)vi.findViewById(R.id.seats);
         ImageView image = (ImageView)vi.findViewById(R.id.vehiclePhoto);
-        TextView price = (TextView) vi.findViewById(R.id.price);
+        TextView price = (TextView) vi.findViewById(R.id.priceText);
         TextView type = (TextView) vi.findViewById(R.id.type);
 
         name.setText(vehicle.getName());
         seats.setText(Integer.toString(vehicle.getSeats()));
         doors.setText(Integer.toString(vehicle.getDoors()));
         type.setText(vehicle.getType());
-        price.setText("Price: " + vehicle.getPriceForDays() + " RSD");
+        price.setText(vehicle.getPriceForDays() + " RSD");
 
         TextView date = (TextView) vi.findViewById(R.id.reg);
         TextView autom = (TextView) vi.findViewById(R.id.aut);
 
-        date.setText("Vehicle registrated until " + vehicle.getRegUntil());
+        String[] strings = vehicle.getRegUntil().split("T");
+
+        date.setText(strings[0]);
 
         Button details = (Button) vi.findViewById(R.id.button);
 

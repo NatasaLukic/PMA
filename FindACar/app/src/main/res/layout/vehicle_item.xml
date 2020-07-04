@@ -184,10 +184,25 @@
 
         <TextView
             android:id="@+id/price"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
+            android:layout_toLeftOf="@id/priceText"
             android:layout_height="wrap_content"
             android:layout_below="@id/line2"
-            android:layout_marginLeft="15dp"
+            android:layout_marginTop="-27dp"
+            android:layout_marginRight="5dp"
+            android:layout_marginBottom="5dp"
+            android:gravity="right"
+            android:text="@string/price2"
+            android:textSize="20dp"
+            android:textStyle="bold"
+            app:fontFamily="serif" />
+
+        <TextView
+            android:id="@+id/priceText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/line2"
+            android:layout_alignParentRight="true"
             android:layout_marginTop="-27dp"
             android:layout_marginRight="15dp"
             android:layout_marginBottom="5dp"
@@ -198,11 +213,26 @@
             app:fontFamily="serif" />
 
         <TextView
-            android:id="@+id/reg"
+            android:id="@+id/reg2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@id/vehiclePhoto"
             android:layout_marginLeft="15dp"
+            android:layout_marginBottom="35dp"
+            android:layout_marginTop="-25dp"
+            android:fontFamily="serif"
+            android:text="@string/registratedUntil"
+            android:textSize="11dp">
+
+        </TextView>
+
+        <TextView
+            android:id="@+id/reg"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@id/reg2"
+            android:layout_below="@id/vehiclePhoto"
+            android:layout_marginLeft="5dp"
             android:layout_marginBottom="35dp"
             android:layout_marginTop="-25dp"
             android:fontFamily="serif"

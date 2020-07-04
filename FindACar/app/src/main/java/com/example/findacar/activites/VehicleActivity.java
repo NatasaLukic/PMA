@@ -53,8 +53,6 @@ public class VehicleActivity extends AppCompatActivity {
     private UserDatabase userDatabase;
     private ImageView notClickedImage;
     private ImageView clickedImage;
-    private TextView add;
-    private TextView remove;
     private ConnectionReceiver connectionReceiver;
 
 
@@ -65,12 +63,6 @@ public class VehicleActivity extends AppCompatActivity {
 
         notClickedImage = (ImageView) findViewById(R.id.notClickedImage);
         clickedImage = (ImageView) findViewById(R.id.clickedImage);
-
-        add = (TextView) findViewById(R.id.addFav);
-        remove = (TextView) findViewById(R.id.remFav);
-
-        add.setVisibility(View.GONE);
-        remove.setVisibility(View.GONE);
 
         userDatabase = UserDatabase.getInstance(this);
         Toolbar toolbar = findViewById(R.id.toolbar);
@@ -354,29 +346,6 @@ public class VehicleActivity extends AppCompatActivity {
             notClickedImage.setVisibility(View.VISIBLE);
         }
 
-/*
-        final Vehicle dbVehicle = userDatabase.userDao().getVehicleByServerId(vehicle.getId());
-        if (dbVehicle != null) {
-            UserWithVehiclesAndReviews vehicles = userDatabase.userDao().getUserWithVehiclesAndReviews(userId);
-
-            if (vehicles != null && !vehicles.vehiclesWithReviews.isEmpty()) {
-                for (VehicleWithReviews vehicleWithReviews : vehicles.vehiclesWithReviews) {
-                    if (vehicleWithReviews.vehicle.getVehicleId() == dbVehicle.getVehicleId()) {
-                        clickedImage.setVisibility(View.VISIBLE);
-                       // remove.setVisibility(View.VISIBLE);
-                      //  add.setVisibility(View.GONE);
-                        notClickedImage.setVisibility(View.GONE);
-                        break;
-                    }
-                }
-
-            } else {
-                clickedImage.setVisibility(View.GONE);
-                notClickedImage.setVisibility(View.VISIBLE);
-               // remove.setVisibility(View.GONE);
-               // add.setVisibility(View.VISIBLE);
-            }
-        }*/
     }
 
     @Override

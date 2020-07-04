@@ -3,6 +3,7 @@ package com.example.findacar.activites;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Gravity;
@@ -21,6 +22,7 @@ import com.example.findacar.adapters.AdditionalServicesReservationAdapter;
 import com.example.findacar.model.AdditionalService;
 import com.example.findacar.model.CarService;
 import com.example.findacar.modelDTO.CreateReservationDTO;
+import com.example.findacar.service.ConnectionReceiver;
 import com.example.findacar.service.ServiceUtils;
 import com.squareup.picasso.Picasso;
 
@@ -37,6 +39,7 @@ import retrofit2.Response;
 public class CarReservationActivity extends AppCompatActivity {
     private CreateReservationDTO reservation;
     List<AdditionalService> additionalServicesRes = new ArrayList<AdditionalService>();
+    private ConnectionReceiver connectionReceiver;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -195,5 +198,20 @@ public class CarReservationActivity extends AppCompatActivity {
 
         Picasso.get().load(ServiceUtils.SERVICE_API_PATH + "search/getImage/" +m)
                 .resize(300,300).into(image);
+    }
+
+    @Override
+    protected void onResume(){
+        IntentFilter intentFilter = new IntentFilter();
+        intentFilter.addAction("android.net.conn.CONNECTIVITY_CHANGE");
+        connectionReceiver = new ConnectionReceiver();
+        registerReceiver(connectionReceiver, intentFilter);
+        super.onResume();
+    }
+
+    @Override
+    protected void onPause(){
+        unregisterReceiver(connectionReceiver);
+        super.onPause();
     }
 }

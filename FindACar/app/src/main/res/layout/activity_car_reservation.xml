@@ -410,7 +410,7 @@
 
             <androidx.cardview.widget.CardView
                 android:id="@+id/cardV"
-                android:layout_width="320dp"
+                android:layout_width="330dp"
                 android:layout_height="67dp"
                 android:layout_below="@id/linFin"
                 android:layout_centerHorizontal="true"
@@ -419,11 +419,11 @@
                 tools:cardCornerRadius="50dp">
 
                 <TextView
-                    android:layout_width="85dp"
+                    android:layout_width="100dp"
                     android:layout_height="wrap_content"
                     android:layout_gravity="start|center_vertical"
                     android:layout_marginLeft="55dp"
-                    android:text="TOTAL:"
+                    android:text="@string/total"
                     android:textColor="@color/colorPrimary"
                     android:textSize="20dp"
                     app:fontFamily="@font/fjord_one" />

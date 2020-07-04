@@ -58,6 +58,7 @@
     <string name="service_info">O SERVISU</string>
     <string name="reviews">RECENZIJE</string>
     <string name="btnBook">REZERVISI</string>
+    <string name="price2">Cena:</string>
     <!--About-->
     <string name="contact">Kontakt</string>
     <string name="about">O servisu</string>
@@ -114,6 +115,8 @@
     <string name="previous">PROSLE</string>
     <string name="favorites">Omiljena vozila</string>
     <string name="prodYear">Godina proizvodnje</string>
+    <string name="total">UKUPNO:</string>
+
 
     <string name="searcyResults">Rezultati pretrage</string>
 
