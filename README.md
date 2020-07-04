@@ -1,5 +1,5 @@
 # PMA
-FindACar predstavlja android aplikaciju koja omogućava korisnicima da rezervišu vozilo iz određenog rent-a-car servisa, na određeni vremenski period. Aplikacija u ponudi ima samo rent-a-car servise na teritoriji Republike Srbije.
+FindACar predstavlja android aplikaciju koja omogućava korisnicima da rezervišu vozilo iz određenog rent-a-car servisa, na određeni vremenski period. Aplikacija u ponudi ima rent-a-car servise na teritoriji Republike Srbije.
 
 
 Funkcionalnosti podržane aplikacijom: 
@@ -31,6 +31,8 @@ Serverska aplikacija na linku [FindACarServer](https://github.com/IvanaaM/FindAC
 
 Članovi tima:
 [Ilinka Kovačević](https://github.com/ilinkaKo)
+&nbsp;
 [Ivana Marin](https://github.com/IvanaaM)
+&nbsp;
 [Nataša Lukić](https://github.com/NatasaLukic)
 
