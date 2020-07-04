@@ -30,8 +30,8 @@ Funkcionalnosti podržane aplikacijom:
 Serverska aplikacija na linku [FindACarServer](https://github.com/IvanaaM/FindACarServer)
 
 <p>&nbsp;</p>
-  Članovi tima:\
-  [Ilinka Kovačević](https://github.com/ilinkaKo)\
-  [Ivana Marin](https://github.com/IvanaaM)\
-  [Nataša Lukić](https://github.com/NatasaLukic)\
+  Članovi tima:
+  [Ilinka Kovačević](https://github.com/ilinkaKo)
+  [Ivana Marin](https://github.com/IvanaaM)
+  [Nataša Lukić](https://github.com/NatasaLukic)
 
