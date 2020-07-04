@@ -28,6 +28,7 @@ import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.findacar.R;
 import com.example.findacar.database.UserDatabase;
@@ -40,6 +41,7 @@ import com.example.findacar.model.User;
 import com.example.findacar.model.UserWithVehiclesAndReviews;
 import com.example.findacar.model.VehicleWithReviews;
 import com.example.findacar.service.ConnectionReceiver;
+import com.example.findacar.service.NetworkUtils;
 import com.example.findacar.service.ServiceUtils;
 import com.example.findacar.service.SyncService;
 import com.example.findacar.service.SessionService;
@@ -190,18 +192,29 @@ public class DashboardActivity extends AppCompatActivity implements NavigationVi
 
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
+        int status = NetworkUtils.getConnectivityStatus(getApplicationContext());
+
         switch (menuItem.getItemId()) {
             case R.id.nav_dashboard:
                 getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new DashboardFragment(), "A").commit();
                 currentFragment = "A";
                 break;
             case R.id.nav_user_profile:
-                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new UserProfileFragment(), "B").commit();
-                currentFragment = "B";
+                if(status == NetworkUtils.TYPE_WIFI || status == NetworkUtils.TYPE_MOBILE) {
+                    getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new UserProfileFragment(), "B").commit();
+                    currentFragment = "B";
+                } else {
+                    Toast.makeText(getApplicationContext(), NetworkUtils.getConnectivityStatusString(this), Toast.LENGTH_SHORT).show();
+
+                }
                 break;
             case R.id.nav_reservations:
-                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new ReservationsFragment(email), "C" ).commit();
-                currentFragment = "C";
+                if(status == NetworkUtils.TYPE_WIFI || status == NetworkUtils.TYPE_MOBILE) {
+                    getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new ReservationsFragment(email), "C" ).commit();
+                    currentFragment = "C";
+                } else {
+                    Toast.makeText(getApplicationContext(), NetworkUtils.getConnectivityStatusString(this), Toast.LENGTH_SHORT).show();
+                }
                 break;
             case R.id.nav_favorites:
                 getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new FavoriteVehiclesFragment(email), "D").commit();
