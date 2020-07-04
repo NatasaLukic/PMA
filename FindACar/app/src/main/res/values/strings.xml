@@ -113,4 +113,7 @@
     <string name="previous">PREVIOUS</string>
     <string name="favorites">Favorites</string>
     <string name="prodYear">Production year</string>
+
+    <string name="searcyResults">Search results</string>
+
 </resources>

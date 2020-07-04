@@ -45,7 +45,7 @@ public class SearchResultsActivity extends AppCompatActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
 
-        getSupportActionBar().setTitle("Search results: " + getIntent().getStringExtra("place"));
+        getSupportActionBar().setTitle(R.id.search_results + ": " + getIntent().getStringExtra("place"));
         getSupportActionBar().setElevation(0);
 
         pickupDateTime = getIntent().getStringExtra("pickUp");
