@@ -25,14 +25,16 @@ Funkcionalnosti podržane aplikacijom:
 *	Notifikacije 
 
 * Lista omiljenih vozila
+<p>&nbsp;</p>
 
 Serverska aplikacija na linku [FindACarServer](https://github.com/IvanaaM/FindACarServer)
 
-
-Članovi tima:
-[Ilinka Kovačević](https://github.com/ilinkaKo)
-&nbsp;
-[Ivana Marin](https://github.com/IvanaaM)
-&nbsp;
-[Nataša Lukić](https://github.com/NatasaLukic)
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>
+  Članovi tima:<br>
+  [Ilinka Kovačević](https://github.com/ilinkaKo)<br>
+  [Ivana Marin](https://github.com/IvanaaM)<br>
+  [Nataša Lukić](https://github.com/NatasaLukic)<br>
+</p>
 
