@@ -28,13 +28,9 @@ Funkcionalnosti podržane aplikacijom:
 <p>&nbsp;</p>
 
 Detaljnija specifikacija ovde
-
 <p>&nbsp;</p>
-
 Serverska aplikacija na linku: [FindACarServer](https://github.com/IvanaaM/FindACarServer)
-
 <p>&nbsp;</p>
-
 Demo video na linku: 
 
 <p>&nbsp;</p>
