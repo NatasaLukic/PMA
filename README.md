@@ -32,11 +32,11 @@ Serverska aplikacija na linku [FindACarServer](https://github.com/IvanaaM/FindAC
 <p>&nbsp;</p>
 <p>
   Članovi tima:
-  &nbsp;
-  [Ilinka Kovačević](https://github.com/ilinkaKo)
-  &nbsp;
-  [Ivana Marin](https://github.com/IvanaaM)
-  &nbsp;
-  [Nataša Lukić](https://github.com/NatasaLukic)
+  <br>
+  <p>[Ilinka Kovačević](https://github.com/ilinkaKo)</p>
+  <br>
+  <p>[Ivana Marin](https://github.com/IvanaaM)</p>
+  <br>
+  <p>[Nataša Lukić](https://github.com/NatasaLukic)</p>
 </p>
 
