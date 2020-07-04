@@ -27,7 +27,7 @@ Funkcionalnosti podržane aplikacijom:
 * Lista omiljenih vozila
 <p>&nbsp;</p>
 
-Detaljnija specifikacija: FindACar.pdf
+Detaljnija specifikacija: [FindACar.pdf](https://github.com/NatasaLukic/PMA/blob/master/PMA_2020_05.pdf)
 
 Serverska aplikacija na linku: [FindACarServer](https://github.com/IvanaaM/FindACarServer)
 
