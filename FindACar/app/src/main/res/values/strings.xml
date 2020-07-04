@@ -62,6 +62,7 @@
     <string name="doors">doors</string>
     <string name="removeFav">Remove from favorites</string>
     <string name="addFav">Add to favorites</string>
+    <string name="vehiclePrice">VEHICLE PRICE:</string>
 
     <!--About-->
     <string name="contact">Contact</string>

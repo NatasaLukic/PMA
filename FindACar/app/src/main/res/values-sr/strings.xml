@@ -52,6 +52,7 @@
     <string name="name_of_car">Naziv auta</string>
     <string name="without_deposit">*Bez depozita</string>
     <string name="unlimited_mileage">*Neogranicena kilometraza</string>
+    <string name="vehiclePrice">CENA VOZILA:</string>
     <string name="car_specification">KARAKTERISTIKE VOZILA</string>
     <string name="additional_services">DODATNE USLUGE</string>
     <string name="service_info">O SERVISU</string>

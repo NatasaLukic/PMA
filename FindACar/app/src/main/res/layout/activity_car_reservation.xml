@@ -370,6 +370,37 @@
                 android:background="@color/colorLightGray" />
 
             <View
+                android:id="@+id/linFin"
+                android:layout_width="match_parent"
+                android:layout_height="7dp"
+                android:layout_below="@id/vehPrice"
+                android:layout_marginTop="10dp"
+                android:background="@color/colorLightGray" />
+
+            <TextView
+                android:layout_marginTop="5dp"
+                android:layout_marginLeft="15dp"
+                android:id="@+id/vehPrice"
+                android:textColor="@color/colorPrimary"
+                android:textSize="13dp"
+                android:text="@string/vehiclePrice"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/lin22"
+                />
+
+            <TextView
+                android:layout_marginTop="5dp"
+                android:layout_marginLeft="10dp"
+                android:id="@+id/vehPrice2"
+                android:text="price"
+                android:layout_toRightOf="@id/vehPrice"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/lin22"
+                />
+
+            <View
                 android:id="@+id/lin3"
                 android:layout_width="match_parent"
                 android:layout_height="3dp"
@@ -381,7 +412,7 @@
                 android:id="@+id/cardV"
                 android:layout_width="320dp"
                 android:layout_height="67dp"
-                android:layout_below="@id/lin22"
+                android:layout_below="@id/linFin"
                 android:layout_centerHorizontal="true"
                 android:layout_marginTop="15dp"
                 app:cardCornerRadius="15dp"

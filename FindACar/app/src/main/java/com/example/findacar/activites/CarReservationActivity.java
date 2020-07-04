@@ -50,6 +50,9 @@ public class CarReservationActivity extends AppCompatActivity {
 
         TextView name = (TextView) findViewById(R.id.name);
 
+        TextView vehPrice = (TextView) findViewById(R.id.vehPrice2);
+
+        vehPrice.setText(String.valueOf(reservation.getPrice()) + " RSD");
 
         TextView nDoors = (TextView) findViewById(R.id.numOfDoors);
         TextView nSeats = (TextView) findViewById(R.id.numOfSeats);
