@@ -194,7 +194,7 @@ public class VehicleActivity extends AppCompatActivity {
                     Vehicle dbVehicle = userDatabase.userDao().getVehicleByServerId(vehicle.getId());
                     if (dbVehicle != null) {
                         long vehicleId = dbVehicle.getVehicleId();
-                        userDatabase.userDao().delete(vehicle);
+                        userDatabase.userDao().deleteVehicle(vehicleId);
 
                         UserVehicleCrossRef temp = userDatabase.userDao().findOneByUserIdAndVehicleId(userId, vehicleId);
                         userDatabase.userDao().delete(temp);

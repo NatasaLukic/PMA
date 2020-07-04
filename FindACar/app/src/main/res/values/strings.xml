@@ -45,8 +45,8 @@
 
     <string name="list">List</string>
     <string name="map">Map</string>
-    <string name="pickUpValidationMessage">Molimo unesite datum i vreme preuzimanja vozila.</string>
-    <string name="returnValidationMessage">Molimo unesite datum i vreme vracanja vozila</string>
+    <string name="pickUpValidationMessage">Please enter pick up date and time.</string>
+    <string name="returnValidationMessage">Please enter return date and time.</string>
 
     <!--Vehicle details-->
     <string name="name_of_car">Name of car</string>

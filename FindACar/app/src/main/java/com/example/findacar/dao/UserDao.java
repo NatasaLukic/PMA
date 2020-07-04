@@ -34,6 +34,10 @@ public abstract class UserDao {
     @Delete
     public abstract void delete(Vehicle vehicle);
 
+    @Transaction
+    @Query("DELETE FROM vehicle where vehicleId=:vehicleId")
+    public abstract void deleteVehicle(long vehicleId);
+
     @Insert
     public abstract void insertAll(List<Review> reviews);
 
