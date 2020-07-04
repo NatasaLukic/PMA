@@ -79,7 +79,7 @@
             android:layout_marginBottom="15dp"
             android:layout_toRightOf="@id/hint3"
             android:fontFamily="@font/fjord_one"
-            android:layout_marginLeft="75dp"
+            android:layout_marginLeft="70dp"
             android:layout_marginTop="3dp"
             android:text="@string/addFav"
             android:textSize="11dp" />
@@ -132,7 +132,7 @@
             android:layout_width="37dp"
             android:layout_height="37dp"
             android:layout_below="@id/slider"
-            android:layout_marginLeft="280dp"
+            android:layout_marginLeft="250dp"
             android:layout_marginTop="16dp"
             android:src="@drawable/ic_like_1" />
 
@@ -142,7 +142,7 @@
             android:visibility="gone"
             android:layout_height="37dp"
             android:layout_below="@id/slider"
-            android:layout_marginLeft="280dp"
+            android:layout_marginLeft="250dp"
             android:layout_marginTop="16dp"
             android:src="@drawable/ic_like_2" />
 

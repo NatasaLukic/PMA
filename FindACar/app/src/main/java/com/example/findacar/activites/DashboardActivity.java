@@ -6,6 +6,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
 
 import android.app.Activity;
 import android.app.AlarmManager;
@@ -72,6 +74,7 @@ public class DashboardActivity extends AppCompatActivity implements NavigationVi
     public UserDatabase userDatabase;
     public List<VehicleWithReviews> vehiclesWithReviews;
     private SessionService sessionService;
+    private String currentFragment;
 
     private PendingIntent pendingIntent;
     private AlarmManager alarmManager;
@@ -91,6 +94,14 @@ public class DashboardActivity extends AppCompatActivity implements NavigationVi
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         loadLanguage();
+
+
+        IntentFilter intentFilter = new IntentFilter();
+        intentFilter.addAction("android.net.conn.CONNECTIVITY_CHANGE");
+        connectionReceiver = new ConnectionReceiver();
+        registerReceiver(connectionReceiver, intentFilter);
+
+
         email = getIntent().getStringExtra("user");
         setContentView(R.layout.activity_dashboard);
 
@@ -171,7 +182,8 @@ public class DashboardActivity extends AppCompatActivity implements NavigationVi
         drawer.addDrawerListener(toggle);
         toggle.syncState();
         if (savedInstanceState == null) {
-            getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new DashboardFragment()).commit();
+            getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new DashboardFragment(), "A").commit();
+            currentFragment = "A";
             navigationView.setCheckedItem(R.id.nav_dashboard);
         }
     }
@@ -180,16 +192,20 @@ public class DashboardActivity extends AppCompatActivity implements NavigationVi
     public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
         switch (menuItem.getItemId()) {
             case R.id.nav_dashboard:
-                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new DashboardFragment()).commit();
+                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new DashboardFragment(), "A").commit();
+                currentFragment = "A";
                 break;
             case R.id.nav_user_profile:
-                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new UserProfileFragment()).commit();
+                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new UserProfileFragment(), "B").commit();
+                currentFragment = "B";
                 break;
             case R.id.nav_reservations:
-                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new ReservationsFragment(email)).commit();
+                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new ReservationsFragment(email), "C" ).commit();
+                currentFragment = "C";
                 break;
             case R.id.nav_favorites:
-                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new FavoriteVehiclesFragment(email)).commit();
+                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new FavoriteVehiclesFragment(email), "D").commit();
+                currentFragment = "D";
                 break;
             case R.id.nav_settings:
                 showSettingsChangeDialog();
@@ -242,13 +258,26 @@ public class DashboardActivity extends AppCompatActivity implements NavigationVi
                 if (i == 0) {
                     checkedLanguage = 0;
                     setLocale("en");
-                    recreate();
+                    dialog.dismiss();
+                    Fragment frg = null;
+                    frg = getSupportFragmentManager().findFragmentByTag(currentFragment);
+                    FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
+                    ft.detach(frg);
+                    ft.attach(frg);
+                    ft.commit();
                 } else if (i == 1) {
                     checkedLanguage = 1;
                     setLocale("sr");
-                    recreate();
+                    Fragment frg = null;
+                    dialog.dismiss();
+                    frg = getSupportFragmentManager().findFragmentByTag(currentFragment);
+                    FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
+                    ft.detach(frg);
+                    ft.attach(frg);
+                    ft.commit();
                 }
-                dialog.dismiss();
+
+
             }
         });
 
@@ -305,14 +334,11 @@ public class DashboardActivity extends AppCompatActivity implements NavigationVi
         mDialog.show();
     }
 
-    @Override
-    protected void onStart(){
-        IntentFilter intentFilter = new IntentFilter();
-        intentFilter.addAction("android.net.conn.CONNECTIVITY_CHANGE");
-        connectionReceiver = new ConnectionReceiver(this);
-        registerReceiver(connectionReceiver, intentFilter);
-        super.onStart();
-    }
 
+    @Override
+    protected void onDestroy(){
+        unregisterReceiver(connectionReceiver);
+        super.onDestroy();
+    }
 
 }

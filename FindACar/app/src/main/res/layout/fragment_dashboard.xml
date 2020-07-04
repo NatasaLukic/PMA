@@ -90,7 +90,7 @@
                         android:layout_below="@id/pickUpString"
                         android:layout_marginTop="50dp"
                         android:focusable="false"
-                        android:hint="Date"
+                        android:hint="@string/date"
                         android:editable="false"
                         tools:ignore="Deprecated"
                         android:textSize="15dp"
@@ -103,7 +103,7 @@
                         android:layout_below="@id/datePickUp"
                         android:layout_marginTop="90dp"
                         android:focusable="false"
-                        android:hint="Time"
+                        android:hint="@string/time"
                         android:editable="false"
                         tools:ignore="Deprecated"
                         android:textSize="15dp" />
@@ -147,7 +147,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginTop="50dp"
                         android:focusable="false"
-                        android:hint="Date"
+                        android:hint="@string/date"
                         android:editable="false"
                         tools:ignore="Deprecated"
                         android:textSize="15dp" />
@@ -158,7 +158,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginTop="90dp"
                         android:focusable="false"
-                        android:hint="Time"
+                        android:hint="@string/time"
                         android:editable="false"
                         tools:ignore="Deprecated"
                         android:textSize="15dp" />

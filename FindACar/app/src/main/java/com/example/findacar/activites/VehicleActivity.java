@@ -65,6 +65,9 @@ public class VehicleActivity extends AppCompatActivity {
         add = (TextView) findViewById(R.id.addFav);
         remove = (TextView) findViewById(R.id.remFav);
 
+        add.setVisibility(View.GONE);
+        remove.setVisibility(View.GONE);
+
         userDatabase = UserDatabase.getInstance(this);
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -334,8 +337,8 @@ public class VehicleActivity extends AppCompatActivity {
                 for (VehicleWithReviews vehicleWithReviews : vehicles.vehiclesWithReviews) {
                     if (vehicleWithReviews.vehicle.getVehicleId() == dbVehicle.getVehicleId()) {
                         clickedImage.setVisibility(View.VISIBLE);
-                        remove.setVisibility(View.VISIBLE);
-                        add.setVisibility(View.GONE);
+                       // remove.setVisibility(View.VISIBLE);
+                      //  add.setVisibility(View.GONE);
                         notClickedImage.setVisibility(View.GONE);
                         break;
                     }
@@ -344,8 +347,8 @@ public class VehicleActivity extends AppCompatActivity {
             } else {
                 clickedImage.setVisibility(View.GONE);
                 notClickedImage.setVisibility(View.VISIBLE);
-                remove.setVisibility(View.GONE);
-                add.setVisibility(View.VISIBLE);
+               // remove.setVisibility(View.GONE);
+               // add.setVisibility(View.VISIBLE);
             }
         }
     }
