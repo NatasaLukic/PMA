@@ -17,22 +17,32 @@
             </intent-filter>
         </receiver>
 
-        <activity android:name=".activites.MapsActivity"/>
-        <activity android:name=".activites.CarReservationActivity"/>
-        <activity android:name=".activites.EditProfileActivity" />
-        <activity android:name=".activites.VehicleActivity" />
-        <activity android:name=".activites.DashboardActivity" />
+        <activity android:name=".activites.MapsActivity"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".activites.CarReservationActivity"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".activites.EditProfileActivity"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".activites.VehicleActivity"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".activites.DashboardActivity"
+            android:screenOrientation="portrait"/>
         <activity
             android:name=".activites.SignUpActivity"
-            android:theme="@style/AppTheme.NoActionBar" />
+            android:theme="@style/AppTheme.NoActionBar"
+            android:screenOrientation="portrait"/>
         <activity
             android:name=".activites.LoginActivity"
             android:theme="@style/AppTheme.NoActionBar"
             android:noHistory="true"
-            android:excludeFromRecents="true"/>
-        <activity android:name=".activites.ChangePasswordActivity" />
-        <activity android:name=".activites.CarServiceDetailsActivity" />
-        <activity android:name=".activites.SearchResultsActivity" />
+            android:excludeFromRecents="true"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".activites.ChangePasswordActivity"
+            android:screenOrientation="portrait" />
+        <activity android:name=".activites.CarServiceDetailsActivity"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".activites.SearchResultsActivity"
+            android:screenOrientation="portrait"/>
         <activity
             android:name=".activites.MainActivity"
             android:screenOrientation="portrait"
