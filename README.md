@@ -32,7 +32,7 @@ Detaljnija specifikacija: [FindACar.pdf](https://github.com/NatasaLukic/PMA/blob
 Serverska aplikacija na linku: [FindACarServer](https://github.com/IvanaaM/FindACarServer)
 
 
-Demo video na linku: 
+Demo video na linku: [Demo video] (https://www.youtube.com/watch?v=gPHr_3JEq_g)
 
 <p>&nbsp;</p>
 
